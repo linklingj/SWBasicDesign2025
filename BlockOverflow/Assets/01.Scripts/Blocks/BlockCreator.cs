@@ -7,7 +7,7 @@ public class BlockCreator : SerializedMonoBehaviour {
     [SerializeField] GameObject blockPrefab;
     [SerializeField] GameObject elementPrefab;
     
-    [TableMatrix(SquareCells = true, DrawElementMethod = "DrawColoredGrid")] public bool[,] blockCreationGrid = new bool[4, 4];
+    [TableMatrix(SquareCells = true, DrawElementMethod = "DrawColoredGridBool")] public bool[,] blockCreationGrid = new bool[4, 4];
     [EnumButtons] public BlockType blockType;
 
     [Button] public void CreateBlock() => GetNewBlock(blockCreationGrid, blockType);
@@ -150,7 +150,7 @@ public class BlockCreator : SerializedMonoBehaviour {
         };
     }
     
-    private static bool DrawColoredGrid(Rect rect, bool value)
+    public static bool DrawColoredGridBool(Rect rect, bool value)
     {
         if (Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
         {
@@ -160,6 +160,13 @@ public class BlockCreator : SerializedMonoBehaviour {
         }
 
         UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? new Color(0.1f, 0.8f, 0.2f) : new Color(0, 0, 0, 0.5f));
+
+        return value;
+    }
+    
+    public static BlockElement DrawColoredGridEl(Rect rect, BlockElement value)
+    {
+        UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? BlockType.BasicStats.ToColor() : new Color(0, 0, 0, 0.5f));
 
         return value;
     }
