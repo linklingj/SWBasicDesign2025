@@ -9,31 +9,31 @@ public class AimMovement : MonoBehaviour
 {
     [Header("오브젝트")] 
     [SerializeField] private Camera cam;
-    [SerializeField] private Transform rightHandPivot; //오른손
-    [SerializeField] private Transform leftHandPivot; //왼손
+    [SerializeField] private Transform rightHandPivot; //오른손 피벗
+    [SerializeField] private Transform leftHandPivot; //왼손 피벗
     [SerializeField] private Transform weapon;
     
     [Header("무기 위치")]
     [SerializeField] private Vector3 weaponLocalPos = new Vector3(0.25f, 0, 0);
     [SerializeField] private float weaponLocalAngle = 0f; //무기 기본 각도
-    [SerializeField] private float leftHandAngleAdd = 180f; //왼손일 때 무기의 각도 추가
+    [SerializeField] private float leftHandAngleAdd = 0f; //왼손일 때 무기의 각도 조절(오브젝트가 어색할 때 각도 조절용)
     
     
-    [FormerlySerializedAs("stickDeadzone")]
     [Header("조이스틱")]
-    [SerializeField, Range(0f, 1f)] private float stickDeadZone = 0.1f; 
+    [SerializeField, Range(0f, 1f)] private float stickDeadZone = 0.1f;
+    //스틱 데드라인 ( 저 간격에 들어온 값 무시)
     
     
     [Header("회전")]
-    [SerializeField, Range(1f, 100f)] private float rotateLerp = 20f;
-    [SerializeField, Range(0f, 1f)] private float sideSwitchDeadzone = 0.1f; //손 전환 데드존
+    [SerializeField, Range(1f, 100f)] private float rotateLerp = 20f; //회전 속도(높을수록 빠르게)
+    [FormerlySerializedAs("sideSwitchDeadzone")] [SerializeField, Range(0f, 1f)] private float sideSwitchDeadZone = 0.1f; //손 전환 데드존
 
     
     
     
     private Transform _activeHandPivot; //현재 사용중인 손
     private Transform _inactiveHandPivot; //현재 사용하지 않는 손
-    private bool _usingRightHand = true; // 현재 오른손 사용중?
+    private bool _usingRightHand = true; // 현재 오른손 사용중? 맞으면 ture, 왼손이면 false
     
     
     
@@ -50,20 +50,20 @@ public class AimMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 targetPos;
-        if (!TryGetAimTarget(out targetPos)) return;
+        Vector3 targetPos; //조준 목표 좌표
+        if (!TryGetAimTarget(out targetPos)) return; //조준 좌표 획득 실패 시 종료
         
-        float dx = targetPos.x - transform.position.x;
-        bool wantRight;
-        if (dx < -sideSwitchDeadzone) wantRight = false;
-        else if (dx > sideSwitchDeadzone) wantRight = true;
+        float dx = targetPos.x - transform.position.x; //플레이어 기준 조준 좌표의 x좌표 차이
+        bool wantRight;//오른손 사용 희망?
+        if (dx < -sideSwitchDeadZone) wantRight = false;
+        else if (dx > sideSwitchDeadZone) wantRight = true; //양수면(오른쪽에 있으면) 오른손 사용 희망
         else wantRight = _usingRightHand; //데드존 안이면 현재 손 유지
         
         
         if (wantRight != _usingRightHand) SetActiveHand(wantRight); //손 전환
         RotateHandToward(_activeHandPivot, targetPos);
         
-        Debug.DrawLine(_activeHandPivot.position, targetPos, Color.yellow);
+        Debug.DrawLine(_activeHandPivot.position, targetPos, Color.yellow); //조준선 확인용
        
         
     }
@@ -73,9 +73,9 @@ public class AimMovement : MonoBehaviour
     // 손 전환
     private void SetActiveHand(bool useRight, bool forceReparent = false)
     {
-        _usingRightHand = useRight;
-        _activeHandPivot = useRight ? rightHandPivot : leftHandPivot;
-        _inactiveHandPivot = useRight ? leftHandPivot : rightHandPivot;
+        _usingRightHand = useRight; //현재 사용중인 손 설정
+        _activeHandPivot = useRight ? rightHandPivot : leftHandPivot; //활성화 손 설정
+        _inactiveHandPivot = useRight ? leftHandPivot : rightHandPivot; //비활성화 손 설정
 
 // 무기 부모 교체(손 바뀜에 따라)
         if (weapon != null && (forceReparent || weapon.parent != _activeHandPivot)) //무기 있고, (강제 재부모화이거나, 무기 부모가 현재 활성 손이 아니면)
@@ -87,7 +87,7 @@ public class AimMovement : MonoBehaviour
             {
                 offset.x *= -1; //왼손이면 x축 반전
             }
-            weapon.localScale = weapon.localScale * -1f;
+            weapon.localScale = weapon.localScale * -1f; //무기를 반대손으로 넘길때 좌우 반전
             
             weapon.localPosition = offset; // 무기 위치
 
@@ -108,27 +108,27 @@ public class AimMovement : MonoBehaviour
     
     
     //마우스 or 스틱 좌표 획득 시도(실패 시 false 반환)
-    private bool TryGetAimTarget(out Vector3 aimTarget)
+    private bool TryGetAimTarget(out Vector3 aimTarget) 
     {
-        aimTarget = default;
+        aimTarget = default; //out이니까 일단 초기화
 
-        if (Mouse.current != null)
+        if (Mouse.current != null) //마우스값이 존재하면
         {
-            Vector2 mp = Mouse.current.position.ReadValue();
+            Vector2 mp = Mouse.current.position.ReadValue(); //좌표 획득
 
-            if (mp.x >= 0 && mp.x <= Screen.width && mp.y >= 0 && mp.y <= Screen.height)
+            if (mp.x >= 0 && mp.x <= Screen.width && mp.y >= 0 && mp.y <= Screen.height) //커서가 화면 안?
             {
-                Vector3 sp = new Vector3(mp.x, mp.y, 0f);
-                aimTarget = cam.ScreenToWorldPoint(sp);
+                Vector3 sp = new Vector3(mp.x, mp.y, 0f); //스크린 좌표
+                aimTarget = cam.ScreenToWorldPoint(sp);//월드 좌표로 변환
                 aimTarget.z = 0f;
                 return true;
             }
         }
-        if (Gamepad.current != null)
+        if (Gamepad.current != null) //마우스 x, 게임패드 존재
         {
-            Vector2 stick = Gamepad.current.leftStick.ReadValue();
+            Vector2 stick = Gamepad.current.rightStick.ReadValue(); //오른쪽 스틱 값 획득
 
-            if (stick.sqrMagnitude > stickDeadZone * stickDeadZone)
+            if (stick.sqrMagnitude > stickDeadZone * stickDeadZone) //스틱입력값 제곱이 데드존 제곱보다 크면
             {
                 aimTarget = transform.position + (Vector3)stick;
                 return true;
@@ -142,22 +142,26 @@ public class AimMovement : MonoBehaviour
     
     
     
-    private void RotateHandToward(Transform handPivot, Vector3 targetPos)
+    private void RotateHandToward(Transform handPivot, Vector3 targetPos) //목표 좌표쪽으로 회전
     {
         if (!handPivot) return;
         
-        Vector2 dir = targetPos - handPivot.position;
+        Vector2 dir = targetPos - handPivot.position; //피벗과 목표 좌표 사이의 상대 값
         
         //arctan(x,y) -> 라디안 * 180/파이 -> 각도
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        if (!_usingRightHand) angle += 180f;
-        float baseAngle = 0;
-        //float baseAngle = _usingRightHand ? 0f : 180f;
-        float relativeAngle = Mathf.DeltaAngle(baseAngle, angle); 
-        relativeAngle = Mathf.Clamp(relativeAngle, -90, 90);
-        angle = baseAngle + relativeAngle;
-        Quaternion q = Quaternion.Euler(0f, 0f, angle);
-        float t = rotateLerp * Time.deltaTime;
+        if (!_usingRightHand) angle += 180f; //왼손이면 180도 회전
+        
+        float relativeAngle = Mathf.DeltaAngle(0, angle); //각도 정규화
+        relativeAngle = Mathf.Clamp(relativeAngle, -90, 90); //-90~90도 사이로 제한(손이 뒤로 돌아가는 것 방지)
+        
+        
+        
+        
+        angle = relativeAngle; //제한된 각도를 설정
+       
+        Quaternion q = Quaternion.Euler(0f, 0f, angle); //회전
+        float t = rotateLerp * Time.deltaTime; //보간 계수
         handPivot.rotation = Quaternion.Lerp(handPivot.rotation, q, t);
         
         
@@ -165,7 +169,7 @@ public class AimMovement : MonoBehaviour
     
     
     
-
+    
 }
 
 
