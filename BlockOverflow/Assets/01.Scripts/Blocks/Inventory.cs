@@ -13,6 +13,7 @@ public class Inventory : SerializedMonoBehaviour {
     public BlockElement[,] blockPlacedGrid = new BlockElement[InventoryHeight, InventoryWidth];
 
 
+
     [Button]
     public void ResetGrid()
     {
@@ -20,6 +21,12 @@ public class Inventory : SerializedMonoBehaviour {
         blocks = new List<Block>();
         //odin inspector 새로고침
         UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+    }
+    
+    private Vector2 GetInventoryLeftUp()
+    {
+        Vector2 center = transform.position;
+        return center + new Vector2(-(float)InventoryWidth / 2f, (float)InventoryHeight / 2f);
     }
     
     //block를 배치할 수 있는 상태인지 검사
@@ -30,8 +37,8 @@ public class Inventory : SerializedMonoBehaviour {
         BlockElement[,] elements = block.elements;
         if (elements == null) return false;
 
-        int originX = position.x - block.Center.x;
-        int originY = position.y - block.Center.y;
+        int originX = position.x - block.center.x;
+        int originY = position.y - block.center.y;
 
         int height = elements.GetLength(0);
         int width = elements.GetLength(1);
@@ -94,8 +101,8 @@ public class Inventory : SerializedMonoBehaviour {
             }
         }
 
-        int originX = Mathf.RoundToInt(position.x) - block.Center.x;
-        int originY = Mathf.RoundToInt(position.y) - block.Center.y;
+        int originX = position.x - block.center.x;
+        int originY = position.y - block.center.y;
 
         BlockElement[,] elements = block.elements;
         int height = elements.GetLength(0);
@@ -117,11 +124,44 @@ public class Inventory : SerializedMonoBehaviour {
         if (!blocks.Contains(block))
         {
             blocks.Add(block);
-            block.PlaceBlock(new Vector2Int(originX, originY));
         }
+
+        block.PlaceBlock(position, GetInventoryLeftUp());
         
         UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
         
+    }
+
+    public bool TrySet(Block block, Vector2Int position)
+    {
+        if (!CheckViability(block, position))
+        {
+            return false;
+        }
+
+        Set(block, position);
+        return true;
+    }
+
+    public Vector2 GridToWorldCenter(Vector2Int gridPosition)
+    {
+        Vector2 leftUp = GetInventoryLeftUp();
+        return new Vector2(leftUp.x + gridPosition.y + 0.5f, leftUp.y - gridPosition.x - 0.5f);
+    }
+
+    public bool TryGetNearestGridPosition(Vector2 worldPosition, out Vector2Int gridPosition)
+    {
+        Vector2 leftUp = GetInventoryLeftUp();
+        float rowApprox = leftUp.y - worldPosition.y - 0.5f;
+        float columnApprox = worldPosition.x - leftUp.x - 0.5f;
+
+        gridPosition = new Vector2Int(Mathf.RoundToInt(rowApprox), Mathf.RoundToInt(columnApprox));
+
+        if (gridPosition.x < 0 || gridPosition.x >= InventoryWidth || gridPosition.y < 0 || gridPosition.y >= InventoryHeight)
+        {
+            return false;
+        }
+        return true;
     }
     
     private BlockElement DrawColoredGrid(Rect rect, BlockElement value) => BlockCreator.DrawColoredGridEl(rect, value);

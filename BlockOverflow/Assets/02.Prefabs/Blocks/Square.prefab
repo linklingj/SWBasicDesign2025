@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 565243281606468013}
   - component: {fileID: 1792732787286267176}
+  - component: {fileID: 6465957685349823761}
   - component: {fileID: 383991846197388930}
   m_Layer: 0
   m_Name: Square
@@ -88,6 +89,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &6465957685349823761
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2437957449762486356}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.8, y: 0.8}
+  m_EdgeRadius: 0
 --- !u!114 &383991846197388930
 MonoBehaviour:
   m_ObjectHideFlags: 0

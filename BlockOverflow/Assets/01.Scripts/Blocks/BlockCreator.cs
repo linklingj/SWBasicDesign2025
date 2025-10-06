@@ -128,8 +128,6 @@ public class BlockCreator : SerializedMonoBehaviour {
             }
         }
 
-        Debug.Log(height);
-        Debug.Log(width);
         GameObject blockObj = Instantiate(blockPrefab, transform);
         Block block = blockObj.GetComponent<Block>();
 
