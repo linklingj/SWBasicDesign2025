@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Block))]
 public class BlockDragHandler : MonoBehaviour {
-    [SerializeField] private Inventory inventory;
+    private Inventory inventory;
 
     private Block block;
     private Camera mainCamera;
@@ -18,16 +18,17 @@ public class BlockDragHandler : MonoBehaviour {
     {
         block = GetComponent<Block>();
         mainCamera = Camera.main;
-
-        if (inventory == null)
-        {
-            inventory = FindObjectOfType<Inventory>();
-        }
+        inventory = FindObjectOfType<Inventory>();
     }
 
     private void Update()
     {
-        if (inventory == null)
+        MouseControl();
+    }
+
+    private void MouseControl()
+    {
+        if (!inventory)
         {
             return;
         }
@@ -37,7 +38,7 @@ public class BlockDragHandler : MonoBehaviour {
             return;
         }
 
-        if (mainCamera == null)
+        if (!mainCamera)
         {
             mainCamera = Camera.main;
             if (mainCamera == null)

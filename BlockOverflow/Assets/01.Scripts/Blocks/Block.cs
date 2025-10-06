@@ -19,7 +19,15 @@ public class Block : SerializedMonoBehaviour {
     
     // 블록이 인벤토리에 배치되었는지
     public bool IsPlaced { private set; get; } = false;
+    
+    private BlockAnimatior blockAnimatior;
 
+    private void Awake()
+    {
+        blockAnimatior = GetComponent<BlockAnimatior>();
+    }
+
+    // 처음 블록이 생성되었을 때 설정 (주로 에디터에서)
     public void Init(bool[,] shape, int width, int height, BlockType blockType, GameObject elementPrefab)
     {
         this.blockType = blockType;
@@ -44,6 +52,11 @@ public class Block : SerializedMonoBehaviour {
                 }
             }
         }
+    }
+
+    public void Appear()
+    {
+        blockAnimatior.FirstAppearAnim();
     }
     
     public void PlaceBlock(Vector2Int position, Vector2 lu)

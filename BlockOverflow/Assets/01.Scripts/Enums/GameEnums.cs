@@ -9,3 +9,9 @@ public enum BlockType
     SpecialAbility,
 }
 
+public enum Rarity 
+{
+    Common,
+    Rare,
+    Legend
+}
