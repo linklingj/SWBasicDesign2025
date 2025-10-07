@@ -21,9 +21,9 @@ public class BlockDragHandler : MonoBehaviour {
     {
         block = GetComponent<Block>();
         mainCamera = Camera.main;
-        if (mainCamera == null) mainCamera = FindObjectOfType<Camera>();
-        inventory = FindObjectOfType<Inventory>();
-        upgradeManager = FindObjectOfType<UpgradeManager>();
+        if (mainCamera == null) mainCamera = FindFirstObjectByType<Camera>();
+        inventory = FindFirstObjectByType<Inventory>();
+        upgradeManager = FindFirstObjectByType<UpgradeManager>();
         blockAnimator = GetComponent<BlockAnimator>();
     }
 
