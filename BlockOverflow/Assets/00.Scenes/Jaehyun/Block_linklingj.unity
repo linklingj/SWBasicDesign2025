@@ -151,11 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockWeightTable: {fileID: 11400000, guid: c8fc054794772475096dd84959345826, type: 2}
   blockTable: {fileID: 11400000, guid: ecda6100989084504a832baecfe67910, type: 2}
-  selectedBlock: {fileID: 0}
-  blockGeneratePos: {x: 0, y: 4, z: 0}
-  blockGenerateSpread: 6
-  transitionTime: 1
-  cameraConroller: {fileID: 2074098415}
+  animData: {fileID: 11400000, guid: d3a6760a77dc245e790663906174341b, type: 2}
 --- !u!4 &148665401
 Transform:
   m_ObjectHideFlags: 0

@@ -40,10 +40,10 @@ public class RewardCameraConroller : MonoBehaviour
     // 일반 상태 전환: 위치/회전/FOV를 주어진 시간 동안 트윈
     public void ApplySetting(CameraSetting setting, float duration, Action onFinish = null) {
         if (cam != null) {
-            cam.DOOrthoSize(setting.projectionSize, duration).SetEase(Ease.OutSine);
+            cam.DOOrthoSize(setting.projectionSize, duration).SetEase(Ease.InOutSine);
         }
-        transform.DOMove(setting.position, duration).SetEase(Ease.OutSine);
-        transform.DORotate(setting.rotation, duration).SetEase(Ease.InSine)
+        transform.DOMove(setting.position, duration).SetEase(Ease.InOutSine);
+        transform.DORotate(setting.rotation, duration).SetEase(Ease.InOutSine)
             .OnComplete(() => onFinish?.Invoke());
     }
 }

@@ -1,12 +1,15 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Block))]
 public class BlockDragHandler : MonoBehaviour {
     private Inventory inventory;
-
+    private UpgradeManager upgradeManager;
     private Block block;
     private Camera mainCamera;
+    private BlockAnimator blockAnimator;
+    
     private bool isDragging;
     private Vector3 dragOffset;
     private Vector3 originalPosition;
@@ -18,38 +21,33 @@ public class BlockDragHandler : MonoBehaviour {
     {
         block = GetComponent<Block>();
         mainCamera = Camera.main;
+        if (mainCamera == null) mainCamera = FindObjectOfType<Camera>();
         inventory = FindObjectOfType<Inventory>();
+        upgradeManager = FindObjectOfType<UpgradeManager>();
+        blockAnimator = GetComponent<BlockAnimator>();
     }
 
     private void Update()
     {
-        MouseControl();
+        if (!block.IsSelectMode)
+            DragMouseControl();
     }
 
-    private void MouseControl()
+    private void OnMouseUpAsButton()
     {
-        if (!inventory)
+        if (block.IsSelectMode)
         {
-            return;
+            upgradeManager.SelectBlock(block);
         }
+    }
 
-        if (Mouse.current == null)
-        {
-            return;
-        }
+    private void DragMouseControl()
+    {
+        if (!inventory) return;
 
-        if (!mainCamera)
-        {
-            mainCamera = Camera.main;
-            if (mainCamera == null)
-            {
-                mainCamera = FindObjectOfType<Camera>();
-                if (mainCamera == null)
-                {
-                    return;
-                }
-            }
-        }
+        if (Mouse.current == null) return;
+
+        if (!mainCamera) return;
 
         if (!isDragging)
         {
@@ -62,7 +60,7 @@ public class BlockDragHandler : MonoBehaviour {
         {
             FollowCursor();
 
-            if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+            if (Keyboard.current != null && Mouse.current.rightButton.wasPressedThisFrame)
             {
                 RotateWhileDragging();
             }
@@ -111,6 +109,7 @@ public class BlockDragHandler : MonoBehaviour {
         hasOriginalGridPosition = inventory.TryGetNearestGridPosition(originalPosition, out originalGridPosition);
         dragOffset = transform.position - (Vector3)mouseWorld;
         rotationStepsDuringDrag = 0;
+        blockAnimator.OnDragStartAnim();
     }
 
     private void FollowCursor()
@@ -130,21 +129,19 @@ public class BlockDragHandler : MonoBehaviour {
         if (!placed)
         {
             if (rotationStepsDuringDrag != 0)
-            {
                 RevertRotation();
-            }
 
             transform.position = originalPosition;
+            blockAnimator.OnDropAnim(transform.position);
 
             if (hasOriginalGridPosition)
-            {
                 inventory.TrySet(block, originalGridPosition);
-            }
         }
         else
         {
             rotationStepsDuringDrag = 0;
         }
+        
     }
 
     private Vector2 GetMouseWorldPosition()
@@ -152,9 +149,7 @@ public class BlockDragHandler : MonoBehaviour {
         Vector3 mouse = Mouse.current.position.ReadValue();
         float depth = Mathf.Abs(transform.position.z - mainCamera.transform.position.z);
         if (depth < 0.0001f)
-        {
             depth = Mathf.Abs(mainCamera.transform.position.z);
-        }
 
         mouse.z = depth;
         return mainCamera.ScreenToWorldPoint(mouse);

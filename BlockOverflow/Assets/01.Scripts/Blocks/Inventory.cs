@@ -129,7 +129,6 @@ public class Inventory : SerializedMonoBehaviour {
         block.PlaceBlock(position, GetInventoryLeftUp());
         
         UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
-        
     }
 
     public bool TrySet(Block block, Vector2Int position)

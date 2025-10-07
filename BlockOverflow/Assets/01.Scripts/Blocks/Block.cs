@@ -17,14 +17,17 @@ public class Block : SerializedMonoBehaviour {
     public Vector2Int center;
     public int rotationState { private set; get; } = 0;
     
+    // 블록 선택 모드
+    public bool IsSelectMode { private set; get; }
+    
     // 블록이 인벤토리에 배치되었는지
     public bool IsPlaced { private set; get; } = false;
     
-    private BlockAnimatior blockAnimatior;
+    private BlockAnimator _blockAnimator;
 
     private void Awake()
     {
-        blockAnimatior = GetComponent<BlockAnimatior>();
+        _blockAnimator = GetComponent<BlockAnimator>();
     }
 
     // 처음 블록이 생성되었을 때 설정 (주로 에디터에서)
@@ -54,16 +57,33 @@ public class Block : SerializedMonoBehaviour {
         }
     }
 
-    public void Appear()
+    // 처음 보상으로 등장
+    public void Appear(int idx, int total)
     {
-        blockAnimatior.FirstAppearAnim();
+        IsSelectMode = true;
+        _blockAnimator.FirstAppearAnim(idx, total);
+    }
+
+    // 보상 중에 선택됨
+    public void Selected()
+    {
+        IsSelectMode = false;
+        _blockAnimator.SelectedAnim();
+    }
+
+    public void NotSelected()
+    {
+        _blockAnimator.NotSelectedAnim();
     }
     
+    // 블록 놓아짐
     public void PlaceBlock(Vector2Int position, Vector2 lu)
     {
         Debug.Log("place:" + position);
-        transform.position= new Vector2(lu.x + position.y + 0.5f, lu.y - position.x - 0.5f);
+        Vector3 targetPos = new Vector3(lu.x + position.y + 0.5f, lu.y - position.x - 0.5f, transform.position.z);
+        // if (set) transform.position = targetPos;
         IsPlaced = true;
+        _blockAnimator.PlacedAnim(targetPos);
     }
 
     public void RotateClockwise()

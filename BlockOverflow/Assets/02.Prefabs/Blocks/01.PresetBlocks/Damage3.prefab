@@ -173,17 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd12fb3ee99544fd8adace102a0a230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shownSize: {x: 1.5, y: 1.5, z: 1.5}
-  placedSize: {x: 1, y: 1, z: 1}
-  dragSize: {x: 1.3, y: 1.3, z: 1.3}
-  appearDuration: 0.35
-  hoverDuration: 0.15
-  selectDuration: 0.2
-  dragDuration: 0.2
-  dropDuration: 0.25
-  disappearDuration: 0.2
-  shakeStrength: 8
-  shakeVibrato: 10
+  blockAnimData: {fileID: 11400000, guid: d3a6760a77dc245e790663906174341b, type: 2}
 --- !u!50 &-6326029720195793287
 Rigidbody2D:
   serializedVersion: 5

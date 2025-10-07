@@ -4,31 +4,28 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class UpgradeManager : MonoBehaviour 
 {
     public FSM<UpgradeManager> StateMachine { get; private set; }
     
-    private Inventory inventory;
-    
+    [Header("Data")]
     [SerializeField] RewardBlockWeightTable blockWeightTable;
     [SerializeField] RewardBlocks blockTable;
-
-    [SerializeField] private Block selectedBlock;
-
-    [SerializeField] private Vector3 blockGeneratePos;
-    [SerializeField] private float blockGenerateSpread;
+    [SerializeField] BlockAnimatorData animData;
     
-    [SerializeField] private float transitionTime;
+    RewardCameraConroller cameraConroller;
+    private Inventory inventory;
     
-    [SerializeField] RewardCameraConroller cameraConroller;
-
+    List<Block> rewardBlocks = new List<Block>();
     private bool interactable;
 
     private void Awake()
     {
-        inventory = GetComponent<Inventory>();
         StateMachine = new FSM<UpgradeManager>(this);
+        inventory = GetComponent<Inventory>();
+        cameraConroller = FindFirstObjectByType<RewardCameraConroller>();
     }
     
     private void Start()
@@ -43,8 +40,6 @@ public class UpgradeManager : MonoBehaviour
     }
 
     public class RewardState : State<UpgradeManager> {
-        private float beginAnimDuration = 0.5f;
-        
         public override void OnBegin(UpgradeManager owner)
         {
             owner.interactable = false;
@@ -52,28 +47,26 @@ public class UpgradeManager : MonoBehaviour
             //블록 선택하여 가져오기
             owner.GenerateRewardBlocks();
             
-            DOVirtual.DelayedCall(beginAnimDuration, () => owner.interactable = true);
+            DOVirtual.DelayedCall(owner.animData.appearDuration, () => owner.interactable = true);
         }
 
-        public override void OnUpdate(UpgradeManager owner)
+        public override void OnUpdate(UpgradeManager owner) { }
+
+        public IEnumerator BlockSelected(UpgradeManager owner)
         {
-            if (Keyboard.current.aKey.wasPressedThisFrame && owner.interactable)
-            {
-                owner.cameraConroller.SetCameraByState<InventorySetState>(owner.transitionTime, () => Set<InventorySetState>());
-            }
+            owner.interactable = false;
+            //선택 블록 애니메이션 -> 카메라 애니메이션 -> 상태 전환
+            yield return new WaitForSeconds(owner.animData.selectDuration);
+            owner.cameraConroller.SetCameraByState<InventorySetState>(owner.animData.inventoryTransitionDuration, () => Set<InventorySetState>());
         }
 
-        public override void OnEnd(UpgradeManager owner)
-        {
-            Debug.Log("Exiting Reward State");
-        }
+        public override void OnEnd(UpgradeManager owner) { }
     }
     
     public class InventorySetState : State<UpgradeManager>
     {
         public override void OnBegin(UpgradeManager owner)
         {
-            Debug.Log("Entering Inventory State");
             owner.interactable = true;
         }
 
@@ -85,20 +78,19 @@ public class UpgradeManager : MonoBehaviour
 
         public override void OnEnd(UpgradeManager owner)
         {
-            Debug.Log("Exiting Inventory State");
+            
         }
     }
 
     private void GenerateRewardBlocks()
     {
-        int generateCnt = 3;
-        var blocks = GetRewardBlocks(generateCnt);
+        var blocks = GetRewardBlocks();
         for (int i = 0; i < blocks.Count; i++)
-        {
-            float diff = i - (float)(generateCnt - 1) / 2;
-            Vector3 offset = new Vector3(diff * blockGenerateSpread, 0, 0);
-            Instantiate(blocks[i], blockGeneratePos + offset, Quaternion.identity);
-        }
+            rewardBlocks.Add(Instantiate(blocks[i]).GetComponent<Block>());
+        
+        // 보여주기
+        for (int i = 0; i < rewardBlocks.Count; i++)
+            rewardBlocks[i].Appear(i, 3);
     }
 
     // 패배자에게 주어지는 보상 블록 랜덤 생성
@@ -128,10 +120,24 @@ public class UpgradeManager : MonoBehaviour
             var newBlock = blockTable.GetBlockByRarity(blockWeightTable.GetBlockRarity(blockList.Count));
             blockList.Add(newBlock);
         }
-        
-        // foreach (var obj in blockList)
-        //     obj.GetComponent<BlockAnimatior>().FirstAppearAnim();
 
         return blockList;
+    }
+
+    public void SelectBlock(Block block)
+    {
+        if (!interactable) return;
+        var state = StateMachine.State as RewardState;
+        if (state != null)
+        {
+            foreach (var b in rewardBlocks)
+            {
+                if (b == block)
+                    b.Selected();
+                else
+                    b.NotSelected();
+            }
+            StartCoroutine(state.BlockSelected(this));
+        }
     }
 }
