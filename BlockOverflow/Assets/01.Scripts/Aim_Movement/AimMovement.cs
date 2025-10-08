@@ -36,6 +36,12 @@ public class AimMovement : MonoBehaviour
     [FormerlySerializedAs("LeftRestAngle")] [SerializeField] float leftRestAngle  = 180f;
     [FormerlySerializedAs("ResetDuration")] [SerializeField] float resetDuration  = 0.15f; // 0이면 즉시 스냅
 
+    [Header("자연스러운 흔들림")]
+    [SerializeField] private bool swayInactiveHand = true;          // 스웨이 On/Off
+    [SerializeField] private float swayAmplitude = 1f;              // 흔들림 진폭(도)
+    [SerializeField] private float swayFrequency = 0.8f;            // 흔들림 속도(Hz)
+    [SerializeField, Range(0f, 1f)] private float swayFollow = 0.25f; // 따라가는 정도(보간 속도)
+    [SerializeField, Range(0f,1f)] private float swayCenterFollow = 0.1f; // '센터'가 현재 각도를 따라가는 속도
     
     
     
@@ -48,9 +54,11 @@ public class AimMovement : MonoBehaviour
     private Coroutine _resetCoRight;
     private Coroutine _resetCoLeft;
 
+    private float _swayCenterRight; // 오른손 중심각(도)
+    private float _swayCenterLeft;  // 왼손 중심각(도)
 
     
-    
+            
     
     
     void Start()
@@ -79,6 +87,28 @@ public class AimMovement : MonoBehaviour
         RotateHandToward(_activeHandPivot, targetPos);
         
         Debug.DrawLine(_activeHandPivot.position, targetPos, Color.yellow); //조준선 확인용
+        
+        
+        
+        //비활성화 손 흔들림
+        if (swayInactiveHand && _inactiveHandPivot)
+        {
+            //손별 센터 레퍼런스 선택
+            ref float center = ref (_inactiveHandPivot == rightHandPivot ? ref _swayCenterRight : ref _swayCenterLeft);
+
+            // 현재 각도를 읽고, 센터가 그쪽으로 서서히 따라가게(고정 기준 없이 현재 기준)
+            float current = _inactiveHandPivot.eulerAngles.z;
+            center = Mathf.LerpAngle(center, current, swayCenterFollow);
+
+            //  센터 ± 사인파로 목표 각도 생성
+            float wobble = Mathf.Sin(Time.time * Mathf.PI * 2f * swayFrequency) * swayAmplitude;
+            float targetAngle = center + wobble;
+
+            // 4) 부드럽게 회전
+            Quaternion targetRot = Quaternion.Euler(0f, 0f, targetAngle);
+            _inactiveHandPivot.rotation = Quaternion.Slerp(_inactiveHandPivot.rotation, targetRot, swayFollow);
+        }
+        
        
         
     }
@@ -112,6 +142,10 @@ public class AimMovement : MonoBehaviour
             float ang = weaponLocalAngle + (!_usingRightHand ? leftHandAngleAdd : 0f); //왼손이면 각도 추가
             weapon.localRotation = Quaternion.Euler(0, 0, ang);// 무기 각도
             
+            if (_inactiveHandPivot == rightHandPivot)
+                _swayCenterRight = rightHandPivot.eulerAngles.z;
+            else
+                _swayCenterLeft  = leftHandPivot.eulerAngles.z;
             
             
         }

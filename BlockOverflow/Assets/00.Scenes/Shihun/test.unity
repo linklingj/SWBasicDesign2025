@@ -642,6 +642,11 @@ MonoBehaviour:
   rightRestAngle: -35
   leftRestAngle: 35
   resetDuration: 0.2
+  swayInactiveHand: 1
+  swayAmplitude: 1
+  swayFrequency: 0.8
+  swayFollow: 0.25
+  swayCenterFollow: 0.1
 --- !u!1 &1532508798
 GameObject:
   m_ObjectHideFlags: 0
