@@ -1,6 +1,5 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEngine;
 using System;
 using System.Collections.Generic;
 
@@ -27,7 +26,7 @@ public class RewardBlockWeightTable : ScriptableObject {
         public float Weight;   // % 개념이지만 합 100이 아니어도 됨(가중치로 해석)
     }
 
-    [Title("주사위별 등급 확률 테이블", "- 에서 사용", TitleAlignments.Centered)]
+    [Title("블록 등급 확률 테이블", "- 에서 사용", TitleAlignments.Centered)]
     [SerializeField]
     [TableList(ShowIndexLabels = false, AlwaysExpanded = true, DrawScrollView = false)]
     private List<RankWeightTable> table = new();
