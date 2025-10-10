@@ -74,7 +74,7 @@ namespace PlayerInput
     /// }
     /// </code>
     /// </example>
-    public partial class @Controls: IInputActionCollection2, IDisposable
+    public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         /// <summary>
         /// Provides access to the underlying asset instance.
@@ -84,7 +84,7 @@ namespace PlayerInput
         /// <summary>
         /// Constructs a new instance.
         /// </summary>
-        public @Controls()
+        public @PlayerControls()
         {
             asset = InputActionAsset.FromJson(@"{
     ""version"": 1,
@@ -1169,10 +1169,10 @@ namespace PlayerInput
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         }
 
-        ~@Controls()
+        ~@PlayerControls()
         {
-            UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, Controls.Player.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, Controls.UI.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerControls.Player.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
         }
 
         /// <summary>
@@ -1262,12 +1262,12 @@ namespace PlayerInput
         /// </summary>
         public struct PlayerActions
         {
-            private @Controls m_Wrapper;
+            private @PlayerControls m_Wrapper;
 
             /// <summary>
             /// Construct a new instance of the input action map wrapper class.
             /// </summary>
-            public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             /// <summary>
             /// Provides access to the underlying input action "Player/Move".
             /// </summary>
@@ -1447,12 +1447,12 @@ namespace PlayerInput
         /// </summary>
         public struct UIActions
         {
-            private @Controls m_Wrapper;
+            private @PlayerControls m_Wrapper;
 
             /// <summary>
             /// Construct a new instance of the input action map wrapper class.
             /// </summary>
-            public UIActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             /// <summary>
             /// Provides access to the underlying input action "UI/Navigate".
             /// </summary>
