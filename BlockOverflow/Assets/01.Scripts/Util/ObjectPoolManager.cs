@@ -34,7 +34,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
     private Dictionary<int, PoolQueue> _poolDictionary;//여기다 풀링할 오브젝트들 저장해둠 
 
-    protected void Awake()
+    protected override void Awake()
     {
         _poolDictionary = new Dictionary<int, PoolQueue>();
     }

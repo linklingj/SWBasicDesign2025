@@ -70,7 +70,6 @@ public class AimMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 targetPos; //조준 목표 좌표
@@ -132,7 +131,7 @@ public class AimMovement : MonoBehaviour
             {
                 offset.x *= -1; //왼손이면 x축 반전
             }
-            weapon.localScale = weapon.localScale * -1f; //무기를 반대손으로 넘길때 좌우 반전
+            weapon.localScale = new Vector3(weapon.localScale.x * -1f, weapon.localScale.y, weapon.localScale.z); //무기를 반대손으로 넘길때 좌우 반전
             
             weapon.localPosition = offset; // 무기 위치
 
