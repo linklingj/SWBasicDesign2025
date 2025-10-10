@@ -27,7 +27,21 @@ public class AimMovement : MonoBehaviour
     [Header("회전")]
     [SerializeField, Range(1f, 100f)] private float rotateLerp = 20f; //회전 속도(높을수록 빠르게)
     [FormerlySerializedAs("sideSwitchDeadzone")] [SerializeField, Range(0f, 1f)] private float sideSwitchDeadZone = 0.1f; //손 전환 데드존
+    
+    
+    // 휴식 각도 & 리셋 시간
+    [FormerlySerializedAs("RightRestAngle")]
+    [Header("휴식 각도 & 리셋 시간")]
+    [SerializeField] float rightRestAngle = 0f;
+    [FormerlySerializedAs("LeftRestAngle")] [SerializeField] float leftRestAngle  = 180f;
+    [FormerlySerializedAs("ResetDuration")] [SerializeField] float resetDuration  = 0.15f; // 0이면 즉시 스냅
 
+    [Header("자연스러운 흔들림")]
+    [SerializeField] private bool swayInactiveHand = true;          // 스웨이 On/Off
+    [SerializeField] private float swayAmplitude = 1f;              // 흔들림 진폭(도)
+    [SerializeField] private float swayFrequency = 0.8f;            // 흔들림 속도(Hz)
+    [SerializeField, Range(0f, 1f)] private float swayFollow = 0.25f; // 따라가는 정도(보간 속도)
+    [SerializeField, Range(0f,1f)] private float swayCenterFollow = 0.1f; // '센터'가 현재 각도를 따라가는 속도
     
     
     
@@ -36,6 +50,15 @@ public class AimMovement : MonoBehaviour
     private bool _usingRightHand = true; // 현재 오른손 사용중? 맞으면 ture, 왼손이면 false
     
     
+    // 손 리셋용 코루틴 참조(중복 실행 방지)
+    private Coroutine _resetCoRight;
+    private Coroutine _resetCoLeft;
+
+    private float _swayCenterRight; // 오른손 중심각(도)
+    private float _swayCenterLeft;  // 왼손 중심각(도)
+
+    
+            
     
     
     void Start()
@@ -47,7 +70,6 @@ public class AimMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 targetPos; //조준 목표 좌표
@@ -64,6 +86,28 @@ public class AimMovement : MonoBehaviour
         RotateHandToward(_activeHandPivot, targetPos);
         
         Debug.DrawLine(_activeHandPivot.position, targetPos, Color.yellow); //조준선 확인용
+        
+        
+        
+        //비활성화 손 흔들림
+        if (swayInactiveHand && _inactiveHandPivot)
+        {
+            //손별 센터 레퍼런스 선택
+            ref float center = ref (_inactiveHandPivot == rightHandPivot ? ref _swayCenterRight : ref _swayCenterLeft);
+
+            // 현재 각도를 읽고, 센터가 그쪽으로 서서히 따라가게(고정 기준 없이 현재 기준)
+            float current = _inactiveHandPivot.eulerAngles.z;
+            center = Mathf.LerpAngle(center, current, swayCenterFollow);
+
+            //  센터 ± 사인파로 목표 각도 생성
+            float wobble = Mathf.Sin(Time.time * Mathf.PI * 2f * swayFrequency) * swayAmplitude;
+            float targetAngle = center + wobble;
+
+            // 4) 부드럽게 회전
+            Quaternion targetRot = Quaternion.Euler(0f, 0f, targetAngle);
+            _inactiveHandPivot.rotation = Quaternion.Slerp(_inactiveHandPivot.rotation, targetRot, swayFollow);
+        }
+        
        
         
     }
@@ -87,7 +131,7 @@ public class AimMovement : MonoBehaviour
             {
                 offset.x *= -1; //왼손이면 x축 반전
             }
-            weapon.localScale = weapon.localScale * -1f; //무기를 반대손으로 넘길때 좌우 반전
+            weapon.localScale = new Vector3(weapon.localScale.x * -1f, weapon.localScale.y, weapon.localScale.z); //무기를 반대손으로 넘길때 좌우 반전
             
             weapon.localPosition = offset; // 무기 위치
 
@@ -97,10 +141,15 @@ public class AimMovement : MonoBehaviour
             float ang = weaponLocalAngle + (!_usingRightHand ? leftHandAngleAdd : 0f); //왼손이면 각도 추가
             weapon.localRotation = Quaternion.Euler(0, 0, ang);// 무기 각도
             
+            if (_inactiveHandPivot == rightHandPivot)
+                _swayCenterRight = rightHandPivot.eulerAngles.z;
+            else
+                _swayCenterLeft  = leftHandPivot.eulerAngles.z;
             
             
         }
         
+        ResetHandToRest(_inactiveHandPivot);
         //if (_inactiveHandPivot != null) _inactiveHandPivot.gameObject.SetActive(false); // 비활성화 손 비활성화
         //if (_activeHandPivot != null) _activeHandPivot.gameObject.SetActive(true); // 활성화 손 활성화
         
@@ -166,6 +215,65 @@ public class AimMovement : MonoBehaviour
         
         
     }
+    
+    
+    
+    
+    
+    
+    //손 전환 시 자연스럽게 위치 조정
+    private void ResetHandToRest(Transform handPivot)
+    {
+        if (!handPivot) return; //손이 없으면 종료
+
+        // 손 각도 설정
+        float rest = (handPivot == rightHandPivot) ? rightRestAngle : leftRestAngle;
+
+        // 이전에 돌던 코루틴 중단
+        if (handPivot == rightHandPivot)
+        {
+            if (_resetCoRight != null) { StopCoroutine(_resetCoRight); _resetCoRight = null; }
+            _resetCoRight =  StartCoroutine(SmoothReset(handPivot, rest, resetDuration));
+        }
+        else // left
+        {
+            if (_resetCoLeft  != null) { StopCoroutine(_resetCoLeft);  _resetCoLeft  = null; }
+            _resetCoLeft = StartCoroutine(SmoothReset(handPivot, rest, resetDuration));
+        }
+    }
+    
+    //손을 부드럽게 휴식 각도로 되돌림
+    private System.Collections.IEnumerator SmoothReset(Transform t, float restAngle, float duration)
+    {
+        if (!t) yield break;//손이 없으면 종료
+
+        Quaternion from = t.rotation; //현재 회전
+        Quaternion to   = Quaternion.Euler(0f, 0f, restAngle); //목표 회전
+
+        if (duration <= 0f) //시간이 0이하면
+        {
+            t.rotation = to; // 즉시 회전
+            yield break;
+        }
+
+        float elapsed = 0f; //경과 시간
+        while (elapsed < duration) //시간이 다 될 때까지
+        {
+            elapsed += Time.deltaTime; //시간 누적
+            float k = Mathf.Clamp01(elapsed / duration); 
+            t.rotation = Quaternion.Slerp(from, to, k); // 회전
+            yield return null; // 다음 프레임
+        }
+        t.rotation = to; //시간 다 됬을때 위치 안맞을수도 있으니.. 시간 다되면 목표 위치로 강제 이동
+    }
+
+    //씬 끝나면 코루틴 정리
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        _resetCoRight = _resetCoLeft = null;
+    }
+
     
     
     

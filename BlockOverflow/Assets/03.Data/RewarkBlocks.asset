@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7f21329a78d4f6fa42866246ba867c, type: 3}
+  m_Name: RewarkBlocks
+  m_EditorClassIdentifier: 
+  DiceByRarity:
+  - rarity: 0
+    blockList:
+    - {fileID: 2808117450475872111, guid: fcccde349608b44b4940b1b0372e0d38, type: 3}
+  - rarity: 1
+    blockList:
+    - {fileID: 3085532241237668033, guid: 08c7bdce27b4d4fdba100a4de3c0a4c8, type: 3}
+  - rarity: 2
+    blockList:
+    - {fileID: 9060125166255383194, guid: 7a5922f078d5145cca2879fdc526d44e, type: 3}

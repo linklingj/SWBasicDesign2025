@@ -11,6 +11,12 @@ public static class ColorGet {
         if (c.HasValue) return c.Value;
         return Color.gray;
     }
+    
+    public static Color ToColor(this Rarity rarity) {
+        var c = TryGetPaletteColor(rarity);
+        if (c.HasValue) return c.Value;
+        return Color.gray;
+    }
 
     private static bool EnsurePaletteLoaded() {
         if (palette != null) return true;
@@ -23,6 +29,15 @@ public static class ColorGet {
         var pal = palette.blockTypeColorPalette;
         if (pal == null || pal.Colors == null) return null;
         int idx = (int)blockType;
+        if ((uint)idx >= (uint)pal.Colors.Length) return null;
+        return pal.Colors[idx];
+    }
+    
+    private static Color? TryGetPaletteColor(Rarity rarity) {
+        if (!EnsurePaletteLoaded()) return null;
+        var pal = palette.blockTypeColorPalette;
+        if (pal == null || pal.Colors == null) return null;
+        int idx = (int)rarity;
         if ((uint)idx >= (uint)pal.Colors.Length) return null;
         return pal.Colors[idx];
     }

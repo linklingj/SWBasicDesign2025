@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager> {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             GameObject myBullet = ObjectPoolManager.Instance.Get(bullet, new Vector3(Random.Range(0,10), Random.Range(0,10),0), Quaternion.identity);
-            Bullet b = myBullet.GetComponent<Bullet>();
+            Bullet_EXAMPLE b = myBullet.GetComponent<Bullet_EXAMPLE>();
             b.Init();
         }
         
