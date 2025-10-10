@@ -20,6 +20,9 @@ public class FSM<T>
     /// </summary>
     /// <typeparam name="R"></typeparam>
     /// <returns></returns>
+    ///
+    /// 출처가 T에서 나온 상태인게 맞냐??
+    /// R은 사실 State 여러개 중 한개일거임 예시로는 R <IdleState T<PlayerState>>
     public FSM<T> Set<R>() where R : IState<T>, new()
     {
         NextState = new R();
