@@ -1,44 +1,52 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class IdleState : State<PlayerController>
 {
     public override void OnBegin(PlayerController owner)
     {
         owner.StopImmediately();
-        owner.EndCrouch(); // 안전하게 서있는 상태로
+        owner.EndCrouch();
     }
 
     public override void OnUpdate(PlayerController owner)
     {
-        // 지상 입력 확인
-        if (owner.GetMoveInput().sqrMagnitude > 0.0001f)
-        {
-            Set<MoveState>();
-            return;
-        }
-
-        // 아래키로 숙이기
-        if (owner.IsPressingDown() || owner.Player.Crouch.IsPressed())
+        // 숙이기 입력
+        if (owner.IsPressingDown() && owner.IsGrounded())
         {
             Set<CrouchState>();
             return;
         }
 
-        // 점프(버퍼/코요테)
-        if (owner.TryGroundOrBufferedJump())
+        // 이동 시작
+        if (Mathf.Abs(owner.GetMoveInput().x) > 0.01f)
         {
-            owner.EnterAir();
+            Set<MoveState>();
+            return;
+        }
+
+        // 점프
+        if (owner.Player.Jump.WasPressedThisFrame())
+        {
+            if (owner.TryGroundOrBufferedJump())
+            {
+                
+                Set<AirState>();
+                return;
+            }
+        }
+
+        // 낙하 (지면 이탈)
+        if (!owner.IsGrounded())
+        {
             Set<AirState>();
             return;
         }
 
-        // 사격
+        // 공격
         if (owner.Player.Attack.WasPressedThisFrame())
         {
             owner.Fire();
         }
-
-        // 지상 유지 중에는 벽 부착 락아웃 해제 가능
-        owner.ClearWallStickLockoutOnLand();
     }
 }
