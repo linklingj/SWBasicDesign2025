@@ -1525,7 +1525,11 @@ PrefabInstance:
       objectReference: {fileID: 7694148424303568655}
     - target: {fileID: 5832164370477415167, guid: 8f6684e8a9dd340c6bc39ca2d5eb5e75, type: 3}
       propertyPath: crouchScaleY
-      value: 0.5
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8664612267288742932, guid: 8f6684e8a9dd340c6bc39ca2d5eb5e75, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8664612267288742932, guid: 8f6684e8a9dd340c6bc39ca2d5eb5e75, type: 3}
       propertyPath: m_Offset.y
@@ -1540,67 +1544,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3710903599187868495, guid: 8f6684e8a9dd340c6bc39ca2d5eb5e75, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1131157053}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1851039830660407429, guid: 8f6684e8a9dd340c6bc39ca2d5eb5e75, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8092568008076290400}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6684e8a9dd340c6bc39ca2d5eb5e75, type: 3}
 --- !u!4 &7694148424303568655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5217055567144787881, guid: 8f6684e8a9dd340c6bc39ca2d5eb5e75, type: 3}
   m_PrefabInstance: {fileID: 4411181953253451881}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8092568008076290399 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1851039830660407429, guid: 8f6684e8a9dd340c6bc39ca2d5eb5e75, type: 3}
-  m_PrefabInstance: {fileID: 4411181953253451881}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &8092568008076290400
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8092568008076290399}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.5}
-  m_EdgeRadius: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
