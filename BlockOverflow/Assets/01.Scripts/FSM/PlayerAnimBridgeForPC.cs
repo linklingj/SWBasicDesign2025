@@ -133,11 +133,20 @@ public class PlayerAnimBridgeForPC : MonoBehaviour
         }
 
         // 4) 더블점프 휴리스틱(공중 상태에서 vy가 급상승하면 트리거)
-        if (!grounded && !lastGrounded)
+        if (!grounded)
         {
-            float deltaVy = vy - lastVy;
-            if (deltaVy > doubleJumpVySpike)
-                anim.SetTrigger("DoubleJumpTrigger");
+            // 더블 점프
+            if (!lastGrounded)
+            {
+                float deltaVy = vy - lastVy;
+                if (deltaVy > doubleJumpVySpike)
+                    anim.SetTrigger("DoubleJumpTrigger");
+            }
+            // 점프
+            else
+            {
+                anim.SetTrigger("JumpTrigger");
+            }
         }
 
         // 5) 캐시 갱신
