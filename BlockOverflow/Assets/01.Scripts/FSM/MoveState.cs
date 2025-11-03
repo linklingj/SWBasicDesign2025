@@ -1,41 +1,51 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MoveState : State<PlayerController>
 {
-    public override void OnBegin(PlayerController owner) { }
+    public override void OnBegin(PlayerController owner)
+    {
+        owner.EndCrouch();
+    }
 
     public override void OnUpdate(PlayerController owner)
     {
         owner.ApplyMovement();
 
-        // 이동 중 입력 0 → Idle
-        if (owner.GetMoveInput().sqrMagnitude < 0.0001f)
+        // 방향키 입력 없으면 대기
+        if (Mathf.Abs(owner.GetMoveInput().x) < 0.01f)
         {
             Set<IdleState>();
             return;
         }
 
-        // 아래키 → Crouch
-        if (owner.IsPressingDown() || owner.Player.Crouch.IsPressed())
+        // 숙이기
+        if (owner.IsPressingDown() && owner.IsGrounded())
         {
             Set<CrouchState>();
             return;
         }
 
-        // 점프(버퍼/코요테)
-        if (owner.TryGroundOrBufferedJump())
+        // 점프
+        if (owner.Player.Jump.WasPressedThisFrame())
         {
-            owner.EnterAir();
+            if (owner.TryGroundOrBufferedJump())
+            {
+                
+                Set<AirState>();
+                return;
+            }
+        }
+
+        // 낙하
+        if (!owner.IsGrounded())
+        {
             Set<AirState>();
             return;
         }
 
-        // 이동 중에도 사격 가능
+        // 공격
         if (owner.Player.Attack.WasPressedThisFrame())
-        {
             owner.Fire();
-        }
-
-        owner.ClearWallStickLockoutOnLand();
     }
 }
