@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class WallStickState : State<PlayerController>
 {
@@ -15,8 +14,7 @@ public class WallStickState : State<PlayerController>
     {
         owner.TickWallStick();
 
-        // 점프 → 벽점프
-        if (owner.Player.Jump.WasPressedThisFrame())
+        if (owner.ConsumeJumpPressed())
         {
             owner.DoWallJump(wallNormal);
             owner.EnterAir();
@@ -24,11 +22,8 @@ public class WallStickState : State<PlayerController>
             return;
         }
 
-        // 공격 가능
-        if (owner.Player.Attack.WasPressedThisFrame())
-            owner.Fire();
+        if (owner.ConsumeAttackPressed()) owner.Fire();
 
-        // 매달림 종료
         if (owner.IsWallStickExpired() || !owner.IsTouchingWall(out _))
         {
             owner.BreakWallStickUntilLand();
@@ -37,12 +32,10 @@ public class WallStickState : State<PlayerController>
             return;
         }
 
-        // 착지
         if (owner.IsGrounded())
         {
             owner.ClearWallStickLockoutOnLand();
             Set<IdleState>();
-            return;
         }
     }
 }
