@@ -18,7 +18,7 @@ public class TitleSceneUI : MonoBehaviour
     [Button]
     public void StartGame()
     {
-        SceneLoader.Instance.LoadScene(SceneName.CharacterSelection);
+        GameManager.Instance.StartNewGame();
     }
     
     [Button]
