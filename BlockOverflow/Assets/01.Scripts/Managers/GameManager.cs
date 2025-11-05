@@ -29,7 +29,18 @@ public class GameManager : Singleton<GameManager>
 
     public void StartNewGame()
     {
+        SceneLoader.Instance.LoadScene(SceneName.CharacterSelection, () => ChangeGameState(GameState.CharacterSelection));
+    }
+
+    public void BattleStart()
+    {
         SceneLoader.Instance.LoadScene(SceneName.Battle, () => ChangeGameState(GameState.Battle));
+
+    }
+
+    public void EndBattle(int winPlayerIndex)
+    {
+        SceneLoader.Instance.LoadScene(SceneName.Reward, () => ChangeGameState(GameState.Reward));
     }
 
 

@@ -13,6 +13,8 @@ public class AimMovement : MonoBehaviour
     [SerializeField] private Transform leftHandPivot; //왼손 피벗
     [SerializeField] private Transform weapon;
     
+    [Header("에임 평면 (3D 카메라 지원)")]
+    [SerializeField] private float aimPlaneZ = 0f; // 마우스 에임이 찍힐 월드 Z (XY 평면)
     [Header("무기 위치")]
     [SerializeField] private Vector3 weaponLocalPos = new Vector3(0.25f, 0, 0);
     [SerializeField] private float weaponLocalAngle = 0f; //무기 기본 각도
@@ -156,6 +158,24 @@ public class AimMovement : MonoBehaviour
     }
     
     
+    // 스크린 좌표를 카메라 기준 레이로 쏴서 Z=aimPlaneZ 인 평면과의 교차점을 구한다
+    private bool ScreenToAimPlane(Vector2 screenPos, out Vector3 world)
+    {
+        world = default;
+        if (cam == null) return false;
+
+        Ray ray = cam.ScreenPointToRay(screenPos);
+        // Z=aimPlaneZ 평면 (법선: +Z)
+        Plane plane = new Plane(Vector3.forward, new Vector3(0f, 0f, aimPlaneZ));
+        if (plane.Raycast(ray, out float enter))
+        {
+            world = ray.GetPoint(enter);
+            world.z = aimPlaneZ; // 수치 오차 보정
+            return true;
+        }
+        return false;
+    }
+
     //마우스 or 스틱 좌표 획득 시도(실패 시 false 반환)
     private bool TryGetAimTarget(out Vector3 aimTarget) 
     {
@@ -167,10 +187,10 @@ public class AimMovement : MonoBehaviour
 
             if (mp.x >= 0 && mp.x <= Screen.width && mp.y >= 0 && mp.y <= Screen.height) //커서가 화면 안?
             {
-                Vector3 sp = new Vector3(mp.x, mp.y, 0f); //스크린 좌표
-                aimTarget = cam.ScreenToWorldPoint(sp);//월드 좌표로 변환
-                aimTarget.z = 0f;
-                return true;
+                if (ScreenToAimPlane(mp, out aimTarget))
+                {
+                    return true;
+                }
             }
         }
         if (Gamepad.current != null) //마우스 x, 게임패드 존재
@@ -179,7 +199,9 @@ public class AimMovement : MonoBehaviour
 
             if (stick.sqrMagnitude > stickDeadZone * stickDeadZone) //스틱입력값 제곱이 데드존 제곱보다 크면
             {
-                aimTarget = transform.position + (Vector3)stick;
+                aimTarget = new Vector3(transform.position.x + stick.x,
+                                        transform.position.y + stick.y,
+                                        aimPlaneZ);
                 return true;
             }
         }
