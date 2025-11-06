@@ -62,6 +62,12 @@ TagManager:
   - name: Player03
     uniqueID: 2819295543
     locked: 0
+  - name: Bullet
+    uniqueID: 2722139139
+    locked: 0
+  - name: VFX
+    uniqueID: 2140716773
+    locked: 0
   - name: Foreground
     uniqueID: 3323464157
     locked: 0
