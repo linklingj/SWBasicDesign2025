@@ -15,3 +15,11 @@ public enum Rarity
     Rare,
     Legend
 }
+
+public enum GameState 
+{
+    Title,
+    CharacterSelection,
+    Battle,
+    Reward
+}
