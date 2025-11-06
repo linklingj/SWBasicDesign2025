@@ -1123,22 +1123,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2041613087279825512, guid: 141fafe8f86bc4a6dbfc4caa7285840b, type: 3}
-      propertyPath: poolObjData.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2041613087279825512, guid: 141fafe8f86bc4a6dbfc4caa7285840b, type: 3}
-      propertyPath: poolObjData.Array.data[1].count
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2041613087279825512, guid: 141fafe8f86bc4a6dbfc4caa7285840b, type: 3}
-      propertyPath: poolObjData.Array.data[0].prefab
-      value: 
-      objectReference: {fileID: 2477019627802649338, guid: 51712a504d35b6542b8631dbad146255, type: 3}
-    - target: {fileID: 2041613087279825512, guid: 141fafe8f86bc4a6dbfc4caa7285840b, type: 3}
-      propertyPath: poolObjData.Array.data[1].prefab
-      value: 
-      objectReference: {fileID: 5258058266996059316, guid: ef9a08cc8488f4d7b976cd48034fd0ce, type: 3}
     - target: {fileID: 2274113559609678795, guid: 141fafe8f86bc4a6dbfc4caa7285840b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1346,10 +1330,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5533827784029737525, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
-      propertyPath: muzzleFlashPrefab
-      value: 
-      objectReference: {fileID: 6975738564399930652, guid: ef9a08cc8488f4d7b976cd48034fd0ce, type: 3}
     - target: {fileID: 8675466437622409480, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_Name
       value: Player

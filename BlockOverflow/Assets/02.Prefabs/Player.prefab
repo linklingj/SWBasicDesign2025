@@ -362,6 +362,7 @@ MonoBehaviour:
   rightHandPivot: {fileID: 3134985702879677144}
   leftHandPivot: {fileID: 41791666023451689}
   weapon: {fileID: 3227612018981965210}
+  aimPlaneZ: 0
   weaponLocalPos: {x: 0.5, y: 0, z: 0}
   weaponLocalAngle: 0
   leftHandAngleAdd: 0
@@ -483,7 +484,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 75088439
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f4de4da555d88416288a51a779dab0d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -704,7 +705,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -301283297
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1551578244945190711, guid: aec9e71f8e6b8432ca4c210a2b2a1a38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -813,6 +814,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3004987730608447500, guid: 51712a504d35b6542b8631dbad146255, type: 3}
   firePoint: {fileID: 4042515548747418140}
   animator: {fileID: 8127083373555908500}
+  muzzleFlashPrefab: {fileID: 6975738564399930652, guid: ef9a08cc8488f4d7b976cd48034fd0ce, type: 3}
 --- !u!212 &3006138092238988635
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -938,6 +940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   airControlMultiplier: 0.7
+  crouchMoveMultiplier: 0.5
   jumpForce: 12
   coyoteTime: 0.1
   jumpBuffer: 0.1
@@ -951,13 +954,16 @@ MonoBehaviour:
   wallCheckDistance: 0.35
   standCollider: {fileID: 4716840547640000626}
   crouchCollider: {fileID: 8936141092730045610}
-  crouchMoveMultiplier: 0.5
-  wallStickMaxTime: 3
   wallJumpForce: {x: 10, y: 12}
+  wallStickMaxTime: 3
   firePoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
   bulletSpeed: 16
   fireCooldown: 0.15
+  jumpPressedThisFrame: 0
+  jumpReleasedThisFrame: 0
+  attackPressedThisFrame: 0
+  crouchHeld: 0
 --- !u!50 &9030402184952837912
 Rigidbody2D:
   serializedVersion: 5
