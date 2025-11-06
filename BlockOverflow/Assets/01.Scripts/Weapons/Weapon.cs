@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform firePoint;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject muzzleFlashPrefab;
 
     protected float nextFireTime;
 
@@ -79,5 +80,21 @@ public class Weapon : MonoBehaviour
         {
             bulletComponent.Init(dir);
         }
+        Vector3 muzzlepos = pos + firePoint.right * -0.1f;
+        // 탄환 생성 후
+        if (muzzleFlashPrefab)
+        {
+            Transform flash = null;
+
+            if (ObjectPoolManager.Instance)
+                flash = ObjectPoolManager.Instance.Get(muzzleFlashPrefab, muzzlepos, bulletRotation).transform;
+            else
+                flash = Instantiate(muzzleFlashPrefab, muzzlepos, bulletRotation).transform;
+
+            // 수명이 짧은 이펙트는 자동 Release 스크립트 붙여두면 됨
+        }
+
+        
+        
     }
 }

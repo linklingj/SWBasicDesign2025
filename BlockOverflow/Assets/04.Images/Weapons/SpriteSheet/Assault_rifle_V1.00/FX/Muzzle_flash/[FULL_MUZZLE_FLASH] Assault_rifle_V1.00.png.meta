@@ -87,7 +87,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,10 +139,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_0'
       rect:
         serializedVersion: 2
-        x: 723
-        y: 29
-        width: 12
-        height: 11
+        x: 128
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,10 +161,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_1'
       rect:
         serializedVersion: 2
-        x: 850
-        y: 29
-        width: 18
-        height: 18
+        x: 256
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_2'
       rect:
         serializedVersion: 2
-        x: 979
-        y: 40
-        width: 8
-        height: 8
+        x: 384
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_3'
       rect:
         serializedVersion: 2
-        x: 1115
-        y: 18
-        width: 894
-        height: 30
+        x: 512
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,10 +227,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_4'
       rect:
         serializedVersion: 2
-        x: 1115
-        y: 35
-        width: 7
-        height: 6
+        x: 640
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,10 +249,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_5'
       rect:
         serializedVersion: 2
-        x: 209
-        y: 26
-        width: 394
-        height: 8
+        x: 768
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,10 +271,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_6'
       rect:
         serializedVersion: 2
-        x: 721
-        y: 27
-        width: 7
-        height: 6
+        x: 896
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,10 +293,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_7'
       rect:
         serializedVersion: 2
-        x: 723
-        y: 18
-        width: 11
-        height: 11
+        x: 1024
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,10 +315,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_8'
       rect:
         serializedVersion: 2
-        x: 847
-        y: 28
-        width: 8
-        height: 7
+        x: 1152
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,10 +337,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_9'
       rect:
         serializedVersion: 2
-        x: 849
-        y: 15
-        width: 14
-        height: 14
+        x: 1280
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -359,10 +359,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_10'
       rect:
         serializedVersion: 2
-        x: 976
-        y: 28
-        width: 20
-        height: 11
+        x: 1408
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,10 +381,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_11'
       rect:
         serializedVersion: 2
-        x: 984
-        y: 22
-        width: 11
-        height: 7
+        x: 1536
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -403,10 +403,10 @@ TextureImporter:
       name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_12'
       rect:
         serializedVersion: 2
-        x: 978
-        y: 12
-        width: 8
-        height: 10
+        x: 1664
+        y: 0
+        width: 128
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -421,11 +421,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_13'
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 128
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a5817e6f238b4822a390d3b28ee43e4
+      internalID: 1773802412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_14'
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 128
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59cb445406f344a18a0f0468831c98b8
+      internalID: -391092439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e032b63388c6f4bb58c99c224f7d1a30
     internalID: 0
     vertices: []
     indices: 
@@ -433,13 +477,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_0': 3671602967030333706
       '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_1': 1766277085183046467
       '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_10': -7544166900648226576
       '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_11': -8984538567030996713
       '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_12': 6695013138461008297
+      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_13': 1773802412
+      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_14': -391092439
       '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_2': 859098648515370576
       '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_3': -7283479775425848116
       '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_4': -4770212239602731533

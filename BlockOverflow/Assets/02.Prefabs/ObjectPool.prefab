@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolObjData:
-  - prefab: {fileID: 2477019627802649338, guid: 78d73db4cc7f2438e82920e4321fc5c7, type: 3}
+  - prefab: {fileID: 2477019627802649338, guid: 51712a504d35b6542b8631dbad146255, type: 3}
     count: 50
