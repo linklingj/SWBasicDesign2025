@@ -1,46 +1,49 @@
 fileFormatVersion: 2
-guid: 5b977be2e41a34ad8ba932116f1402d1
+guid: 9fbb9f808d81e4b8db4673b34404d9b6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3671602967030333706
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_0'
+      213: -4079527793174955439
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_0'
   - first:
-      213: 1766277085183046467
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_1'
+      213: -1329891463037033927
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_1'
   - first:
-      213: 859098648515370576
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_2'
+      213: 396622832543667253
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_2'
   - first:
-      213: -7283479775425848116
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_3'
+      213: 3343888820085291261
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_3'
   - first:
-      213: -4770212239602731533
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_4'
+      213: 8363044121713978540
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_4'
   - first:
-      213: 5271391000310866332
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_5'
+      213: -5390846618646721746
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_5'
   - first:
-      213: 5123734045212410762
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_6'
+      213: -4313108485470202010
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_6'
   - first:
-      213: 472343721573643115
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_7'
+      213: -9038595233721091746
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_7'
   - first:
-      213: 2572544983005778118
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_8'
+      213: -7240871524911247782
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_8'
   - first:
-      213: -9167444507425846182
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_9'
+      213: 4302929407484540397
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_9'
   - first:
-      213: -7544166900648226576
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_10'
+      213: -5924560799512734574
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_10'
   - first:
-      213: -8984538567030996713
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_11'
+      213: -1001399423327613090
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_11'
   - first:
-      213: 6695013138461008297
-    second: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_12'
+      213: -3289154281723916942
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_12'
+  - first:
+      213: -3484096638469153102
+    second: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_13'
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -73,7 +76,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -111,7 +114,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -136,188 +139,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_0'
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_0'
       rect:
         serializedVersion: 2
-        x: 723
-        y: 29
-        width: 12
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a010d1e027724f230800000000000000
-      internalID: 3671602967030333706
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_1'
-      rect:
-        serializedVersion: 2
-        x: 850
-        y: 29
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3437f3d96a3138810800000000000000
-      internalID: 1766277085183046467
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_2'
-      rect:
-        serializedVersion: 2
-        x: 979
-        y: 40
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 05ed6cb4ba12ceb00800000000000000
-      internalID: 859098648515370576
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_3'
-      rect:
-        serializedVersion: 2
-        x: 1115
-        y: 18
-        width: 894
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ccc1009dbb1ebea90800000000000000
-      internalID: -7283479775425848116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_4'
-      rect:
-        serializedVersion: 2
-        x: 1115
-        y: 35
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f53243ed3dcccdb0800000000000000
-      internalID: -4770212239602731533
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_5'
-      rect:
-        serializedVersion: 2
-        x: 209
+        x: 45
         y: 26
-        width: 394
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c9168bd8f2eb72940800000000000000
-      internalID: 5271391000310866332
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_6'
-      rect:
-        serializedVersion: 2
-        x: 721
-        y: 27
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a830678a7f82b1740800000000000000
-      internalID: 5123734045212410762
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_7'
-      rect:
-        serializedVersion: 2
-        x: 723
-        y: 18
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b637848bc1a1e8600800000000000000
-      internalID: 472343721573643115
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_8'
-      rect:
-        serializedVersion: 2
-        x: 847
-        y: 28
-        width: 8
+        width: 895
         height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -327,85 +154,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6c0d5c8380483b320800000000000000
-      internalID: 2572544983005778118
+      spriteID: 15a397c161b9267c0800000000000000
+      internalID: -4079527793174955439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_9'
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_1'
       rect:
         serializedVersion: 2
-        x: 849
-        y: 15
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a5cc6ccaac1b6c080800000000000000
-      internalID: -9167444507425846182
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_10'
-      rect:
-        serializedVersion: 2
-        x: 976
-        y: 28
-        width: 20
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0f05a90bc2cbd4790800000000000000
-      internalID: -7544166900648226576
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_11'
-      rect:
-        serializedVersion: 2
-        x: 984
-        y: 22
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 711025186c1805380800000000000000
-      internalID: -8984538567030996713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_12'
-      rect:
-        serializedVersion: 2
-        x: 978
-        y: 12
-        width: 8
+        x: 1064
+        y: 31
+        width: 134
         height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -415,8 +176,272 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9a1aa8c4af679ec50800000000000000
-      internalID: 6695013138461008297
+      spriteID: 9326adba2c64b8de0800000000000000
+      internalID: -1329891463037033927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_2'
+      rect:
+        serializedVersion: 2
+        x: 1319
+        y: 34
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53413936d56118500800000000000000
+      internalID: 396622832543667253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_3'
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 26
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df875994a21e76e20800000000000000
+      internalID: 3343888820085291261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_4'
+      rect:
+        serializedVersion: 2
+        x: 1575
+        y: 26
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cac2ea3c1508f0470800000000000000
+      internalID: 8363044121713978540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_5'
+      rect:
+        serializedVersion: 2
+        x: 1703
+        y: 26
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2b42f0ff8ddf25b0800000000000000
+      internalID: -5390846618646721746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_6'
+      rect:
+        serializedVersion: 2
+        x: 1831
+        y: 26
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66753dd2fa2c424c0800000000000000
+      internalID: -4313108485470202010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_7'
+      rect:
+        serializedVersion: 2
+        x: 1958
+        y: 26
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e59f3810685709280800000000000000
+      internalID: -9038595233721091746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_8'
+      rect:
+        serializedVersion: 2
+        x: 2087
+        y: 23
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5e8c6d36b1438b90800000000000000
+      internalID: -7240871524911247782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_9'
+      rect:
+        serializedVersion: 2
+        x: 2213
+        y: 18
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de5b2ba8f7317bb30800000000000000
+      internalID: 4302929407484540397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_10'
+      rect:
+        serializedVersion: 2
+        x: 2341
+        y: 16
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 294d6dea75bb7cda0800000000000000
+      internalID: -5924560799512734574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_11'
+      rect:
+        serializedVersion: 2
+        x: 2469
+        y: 10
+        width: 7
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5fc646b7805a12f0800000000000000
+      internalID: -1001399423327613090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_12'
+      rect:
+        serializedVersion: 2
+        x: 2598
+        y: 4
+        width: 8
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27d04628b939a52d0800000000000000
+      internalID: -3289154281723916942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_13'
+      rect:
+        serializedVersion: 2
+        x: 2724
+        y: 0
+        width: 135
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bed9ec119006afc0800000000000000
+      internalID: -3484096638469153102
       vertices: []
       indices: 
       edges: []
@@ -435,19 +460,20 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_0': 3671602967030333706
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_1': 1766277085183046467
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_10': -7544166900648226576
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_11': -8984538567030996713
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_12': 6695013138461008297
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_2': 859098648515370576
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_3': -7283479775425848116
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_4': -4770212239602731533
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_5': 5271391000310866332
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_6': 5123734045212410762
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_7': 472343721573643115
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_8': 2572544983005778118
-      '[FULL_MUZZLE_FLASH] Assault_rifle_V1.00_9': -9167444507425846182
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_0': -4079527793174955439
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_1': -1329891463037033927
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_10': -5924560799512734574
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_11': -1001399423327613090
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_12': -3289154281723916942
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_13': -3484096638469153102
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_2': 396622832543667253
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_3': 3343888820085291261
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_4': 8363044121713978540
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_5': -5390846618646721746
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_6': -4313108485470202010
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_7': -9038595233721091746
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_8': -7240871524911247782
+      '[FULL_AUTO_CASINGS] Assault_rifle_V1.00_9': 4302929407484540397
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
