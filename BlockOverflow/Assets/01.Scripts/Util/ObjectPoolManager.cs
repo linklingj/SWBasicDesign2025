@@ -37,6 +37,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     protected override void Awake()
     {
         _poolDictionary = new Dictionary<int, PoolQueue>();
+        base.Awake();
     }
 
     private void Start()

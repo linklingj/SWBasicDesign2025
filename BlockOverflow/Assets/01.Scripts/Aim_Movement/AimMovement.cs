@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
 
+//private PlayerInput _playerInput;
+
 
 public class AimMovement : MonoBehaviour
 {

@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class Bullet : PoolObject {
     [SerializeField] protected BulletData bulletData;
+    
+    [Header("Impact (pooled)")]
+    [SerializeField] private GameObject impactPrefab;    // 오브젝트 풀에 등록된 임팩트 프리팹
+    [SerializeField] private float impactOffset = 0.02f; // 벽에 반쯤 박히지 않게 약간 앞쪽으로
 
     protected Rigidbody2D rb;
     protected float speed;
     protected float range;
     protected Vector2 moveDir;
     protected Vector2 startPosition;
+    
+    
+    private bool released;
 
     protected virtual void Awake()
     {
@@ -16,6 +23,7 @@ public class Bullet : PoolObject {
 
     public void Init(Vector3 direction)
     {
+        released = false;
         if (!rb) rb = GetComponent<Rigidbody2D>();
 
         if (bulletData == null)
@@ -54,7 +62,8 @@ public class Bullet : PoolObject {
             float travelledSqr = (nextPosition - startPosition).sqrMagnitude;
             if (travelledSqr >= range * range)
             {
-                Release();
+                DespawnWithImpact(currentPosition + moveDir * impactOffset, -moveDir);
+                //Release();
                 return;
             }
         }
@@ -64,11 +73,37 @@ public class Bullet : PoolObject {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Release();
+        Vector2 p = other.ClosestPoint(rb.position);
+        DespawnWithImpact(p, -moveDir);
+        //Release();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        ContactPoint2D cp = collision.GetContact(0);
+        DespawnWithImpact(cp.point + cp.normal * impactOffset, cp.normal);
+        //Release();
+    }
+    
+    private void DespawnWithImpact(Vector2 pos, Vector2 normal)
+    {
+        if (released) return;
+        released = true;
+        SpawnImpact(pos, normal);
         Release();
     }
+
+    private void SpawnImpact(Vector2 pos, Vector2 normal)
+    {
+        if (!impactPrefab) return;
+
+        float angle = Mathf.Atan2(normal.y, normal.x) * Mathf.Rad2Deg;
+        Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        ObjectPoolManager.Instance.Get(impactPrefab, pos, rot);
+    }
+    
+    
+    
+    
 }
