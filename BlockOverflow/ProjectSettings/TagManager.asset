@@ -11,8 +11,8 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Background
   - 
   - 
   - 
@@ -41,14 +41,35 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
+  - name: Background01
     uniqueID: 1418790561
     locked: 0
-  - name: Player
-    uniqueID: 3993683999
+  - name: Background02
+    uniqueID: 3715140481
+    locked: 0
+  - name: Stage
+    uniqueID: 3809656549
     locked: 0
   - name: Weapon
     uniqueID: 75088439
+    locked: 0
+  - name: Player01
+    uniqueID: 3993683999
+    locked: 0
+  - name: Player02
+    uniqueID: 1003660823
+    locked: 0
+  - name: Player03
+    uniqueID: 2819295543
+    locked: 0
+  - name: Bullet
+    uniqueID: 2722139139
+    locked: 0
+  - name: VFX
+    uniqueID: 2140716773
+    locked: 0
+  - name: Foreground
+    uniqueID: 3323464157
     locked: 0
   m_RenderingLayers:
   - Default
