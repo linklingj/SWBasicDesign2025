@@ -10,8 +10,10 @@ public class Bullet : PoolObject {
     protected Rigidbody2D rb;
     protected float speed;
     protected float range;
+    protected float damage;
     protected Vector2 moveDir;
     protected Vector2 startPosition;
+    
     
     
     private bool released;
@@ -50,6 +52,8 @@ public class Bullet : PoolObject {
         MoveBullet();
     }
 
+    public void SetDamage(float damage) => this.damage = damage;
+
     protected virtual void MoveBullet()
     {
         if (!rb) return;
@@ -72,8 +76,15 @@ public class Bullet : PoolObject {
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {
+    {   
+        //Debug.Log("istrigger");
         Vector2 p = other.ClosestPoint(rb.position);
+        var damageable = other.GetComponentInParent<IDamageable>(); // 여기
+        if(damageable != null)
+        {
+            damageable.TakeDamage(damage);
+            Debug.Log("damage!");
+        }
         DespawnWithImpact(p, -moveDir);
         //Release();
     }
@@ -99,7 +110,7 @@ public class Bullet : PoolObject {
 
         float angle = Mathf.Atan2(normal.y, normal.x) * Mathf.Rad2Deg;
         Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
-
+        
         ObjectPoolManager.Instance.Get(impactPrefab, pos, rot);
     }
     
