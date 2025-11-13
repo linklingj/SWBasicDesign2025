@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RifleBullet
   m_EditorClassIdentifier: 
   name: Rifle Bullet
-  range: 14
-  bulletSpeed: 16
+  range: 18
+  bulletSpeed: 24

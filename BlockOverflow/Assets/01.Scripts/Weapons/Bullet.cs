@@ -14,8 +14,6 @@ public class Bullet : PoolObject {
     protected Vector2 moveDir;
     protected Vector2 startPosition;
     
-    
-    
     private bool released;
 
     protected virtual void Awake()
@@ -23,7 +21,7 @@ public class Bullet : PoolObject {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Init(Vector3 direction)
+    public void Init(Vector2 pos, Vector3 direction)
     {
         released = false;
         if (!rb) rb = GetComponent<Rigidbody2D>();
@@ -37,9 +35,12 @@ public class Bullet : PoolObject {
 
         speed = bulletData.bulletSpeed;
         range = bulletData.range;
+        
         Vector2 planarDirection = new Vector2(direction.x, direction.y);
         moveDir = planarDirection.sqrMagnitude > 0f ? planarDirection.normalized : Vector2.zero;
-        startPosition = rb ? rb.position : (Vector2)transform.position;
+        
+        startPosition = pos;
+        rb.position = startPosition;
 
         if (moveDir == Vector2.zero || speed <= 0f)
         {
@@ -49,7 +50,7 @@ public class Bullet : PoolObject {
 
     private void FixedUpdate()
     {
-        MoveBullet();
+        if (!released) MoveBullet();
     }
 
     public void SetDamage(float damage) => this.damage = damage;
@@ -63,9 +64,9 @@ public class Bullet : PoolObject {
 
         if (range > 0f)
         {
-            float travelledSqr = (nextPosition - startPosition).sqrMagnitude;
-            if (travelledSqr >= range * range)
+            if ((currentPosition - startPosition).magnitude >= range)
             {
+                Debug.Log("destroy, startPos: " + startPosition + ", currentPos: " + currentPosition);
                 DespawnWithImpact(currentPosition + moveDir * impactOffset, -moveDir);
                 //Release();
                 return;
@@ -76,8 +77,7 @@ public class Bullet : PoolObject {
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {   
-        //Debug.Log("istrigger");
+    { 
         Vector2 p = other.ClosestPoint(rb.position);
         var damageable = other.GetComponentInParent<IDamageable>(); // 여기
         if(damageable != null)
@@ -91,6 +91,7 @@ public class Bullet : PoolObject {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Debug.Log(collision.gameObject.name);
         ContactPoint2D cp = collision.GetContact(0);
         DespawnWithImpact(cp.point + cp.normal * impactOffset, cp.normal);
         //Release();
