@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6502279760234058911}
   - component: {fileID: 3654805493905738239}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: ShotGunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,9 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65648aad5688c4e3b810b9825c2a31b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 11400000, guid: 48b66710d08594d02a740f99a4c185ba, type: 2}
-  impactPrefab: {fileID: 8985154451090314334, guid: c83665188a77e41a59776d3ce748346d, type: 3}
-  impactOffset: 0.02
+  bulletData: {fileID: 11400000, guid: 44af8de569efb4507a7855a35b346f80, type: 2}
 --- !u!212 &1110849339197282372
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,7 +92,7 @@ SpriteRenderer:
   m_SortingLayerID: -1572828157
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2346302928887187388, guid: fe5ee3f92dc1c4bf68b327f8cd800b73, type: 3}
+  m_Sprite: {fileID: 8280706693239681097, guid: de0c8acede69f49c28943bea540c2a78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -162,7 +160,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -170,7 +168,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.4, y: 1.0166667}
+    oldSize: {x: 0.2, y: 0.08}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

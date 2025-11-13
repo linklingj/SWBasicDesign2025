@@ -78,6 +78,7 @@ public class Weapon : MonoBehaviour
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
         if (bulletComponent)
         {
+            bulletComponent.SetDamage(data.damage);
             bulletComponent.Init(dir);
         }
         Vector3 muzzlepos = pos + firePoint.right * -0.1f;
