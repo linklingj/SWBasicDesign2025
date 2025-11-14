@@ -18,8 +18,6 @@ public class AirState : State<PlayerController>
         if (owner.CanWallStickAgain() && owner.IsTouchingWall(out _))
         { Set<WallStickState>(); return; }
 
-        if (owner.ConsumeAttackPressed()) owner.Fire();
-
         if (owner.IsGrounded() && owner.Rb.linearVelocity.y <= 0.01f)
         {
             if (Mathf.Abs(owner.GetMoveInput().x) > 0.01f)
