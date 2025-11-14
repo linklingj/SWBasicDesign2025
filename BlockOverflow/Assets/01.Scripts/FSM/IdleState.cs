@@ -17,7 +17,5 @@ public class IdleState : State<PlayerController>
         { Set<AirState>(); return; }
 
         if (!owner.IsGrounded()) { Set<AirState>(); return; }
-
-        if (owner.ConsumeAttackPressed()) owner.Fire();
     }
 }
