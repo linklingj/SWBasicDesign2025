@@ -75,11 +75,12 @@ public class Weapon : MonoBehaviour
             bullet = Instantiate(bulletPrefab, pos, bulletRotation).transform;
         }
 
+        Debug.Log(pos);
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
         if (bulletComponent)
         {
             bulletComponent.SetDamage(data.damage);
-            bulletComponent.Init(dir);
+            bulletComponent.Init(pos, dir);
         }
         Vector3 muzzlepos = pos + firePoint.right * -0.1f;
         // 탄환 생성 후

@@ -11,13 +11,11 @@ public class VFX : PoolObject
 
     private void OnEnable()
     {
-        Debug.Log($"{name} enabled!");
         timer = 0f;
         
 
         if (animator)
         {
-            Debug.Log("Animator found, playing...");
             // 🔹 Animator 초기화 후 첫 프레임부터 재생
             animator.Rebind();
             animator.Update(0f);
