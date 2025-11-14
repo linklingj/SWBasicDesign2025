@@ -19,8 +19,6 @@ public class CrouchState : State<PlayerController>
 
         if (!owner.IsGrounded())
         { owner.EnterAir(); Set<AirState>(); return; }
-
-        if (owner.ConsumeAttackPressed()) owner.Fire();
     }
 
     public override void OnEnd(PlayerController owner)
