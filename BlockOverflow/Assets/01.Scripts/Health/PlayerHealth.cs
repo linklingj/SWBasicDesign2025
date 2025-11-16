@@ -33,6 +33,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (IsDead) return;
     
         CurrentHealth = Mathf.Max(0, CurrentHealth - damageAmount);
+        DamageTextSpawner.Instance.ShowDamage(damageAmount, transform.position);
         // 혹시 전에 돌던 코루틴 있으면 끊고 다시
         //StopCoroutine(nameof(HitFlash));
         StartCoroutine(HitFlash());
