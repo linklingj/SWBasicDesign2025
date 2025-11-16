@@ -31,6 +31,7 @@ public class PlayerAnimBridgeForPC : MonoBehaviour
     
     private Vector3 _leftPivotDefault;
     private Vector3 _rightPivotDefault;
+    public PlayerHealth playerHealth;
 
     // 리플렉션 캐시 (StateMachine.Current 같은 멤버 찾기용)
     FieldInfo  smField;
@@ -80,6 +81,11 @@ public class PlayerAnimBridgeForPC : MonoBehaviour
 
         if (!leftHandPivot)  Debug.LogWarning("[PlayerAnimBridgeForPC] leftHandPivot is not assigned. Hand pivot offset will be skipped.");
         if (!rightHandPivot) Debug.LogWarning("[PlayerAnimBridgeForPC] rightHandPivot is not assigned. Hand pivot offset will be skipped.");
+        
+        
+        playerHealth = GetComponentInParent<PlayerHealth>();
+        playerHealth.OnDeath += HandleDeath;
+        
     }
     void Reset()
     {
@@ -295,5 +301,10 @@ public class PlayerAnimBridgeForPC : MonoBehaviour
                 return t;
         }
         return null;
+    }
+    
+    private void HandleDeath()
+    {
+        anim.SetTrigger("Death");
     }
 }
