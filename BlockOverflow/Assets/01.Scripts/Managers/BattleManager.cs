@@ -28,6 +28,11 @@ public class BattleManager : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        StartBattle();
+    }
+
     public void GameStateChanged(GameState gameState)
     {
         if (gameState == GameState.Battle)

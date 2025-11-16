@@ -66,7 +66,6 @@ public class Bullet : PoolObject {
         {
             if ((currentPosition - startPosition).magnitude >= range)
             {
-                Debug.Log("destroy, startPos: " + startPosition + ", currentPos: " + currentPosition);
                 DespawnWithImpact(currentPosition + moveDir * impactOffset, -moveDir);
                 //Release();
                 return;
@@ -83,7 +82,6 @@ public class Bullet : PoolObject {
         if(damageable != null)
         {
             damageable.TakeDamage(damage);
-            Debug.Log("damage!");
         }
         DespawnWithImpact(p, -moveDir);
         //Release();

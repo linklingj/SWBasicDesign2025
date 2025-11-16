@@ -75,7 +75,6 @@ public class Weapon : MonoBehaviour
             bullet = Instantiate(bulletPrefab, pos, bulletRotation).transform;
         }
 
-        Debug.Log(pos);
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
         if (bulletComponent)
         {
