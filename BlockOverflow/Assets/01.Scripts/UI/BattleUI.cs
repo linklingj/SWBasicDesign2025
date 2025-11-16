@@ -9,6 +9,9 @@ public class BattleUI : MonoBehaviour {
     [SerializeField] RectTransform countdownUI;
     [SerializeField] Slider countdownSlider;
     [SerializeField] RectTransform startUI;
+    
+    [SerializeField] HealthBarSliderUI healthBarSliderUI1;
+    [SerializeField] HealthBarSliderUI healthBarSliderUI2;
 
     private void Start()
     {
@@ -16,8 +19,12 @@ public class BattleUI : MonoBehaviour {
         startUI.gameObject.SetActive(false);
     }
 
-    public void CountDown()
+    public void CountDown(PlayerController player1, PlayerController player2)
     {
+        healthBarSliderUI1?.gameObject.SetActive(true);
+        healthBarSliderUI2?.gameObject.SetActive(true);
+        healthBarSliderUI1?.SetPlayer(player1.transform);
+        healthBarSliderUI2?.SetPlayer(player2.transform);
         StartCoroutine(CountDownSequence());
     }
     

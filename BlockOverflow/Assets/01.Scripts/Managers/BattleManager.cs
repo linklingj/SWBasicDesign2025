@@ -65,7 +65,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(prestartDelay);
         
         //countdown
-        battleUI.CountDown();
+        battleUI.CountDown(player1, player2);
         cameraController.ZoomTo(player1.transform.position, CameraController.zoomType.Close);
         yield return new WaitForSeconds(1f);
         cameraController.ZoomTo(player2.transform.position, CameraController.zoomType.Close);

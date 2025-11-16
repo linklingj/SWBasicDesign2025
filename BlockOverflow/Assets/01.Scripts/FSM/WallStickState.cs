@@ -21,8 +21,7 @@ public class WallStickState : State<PlayerController>
             Set<AirState>();
             return;
         }
-
-        if (owner.ConsumeAttackPressed()) owner.Fire();
+        
 
         if (owner.IsWallStickExpired() || !owner.IsTouchingWall(out _))
         {

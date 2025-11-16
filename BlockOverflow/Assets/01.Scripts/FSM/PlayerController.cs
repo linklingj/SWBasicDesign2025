@@ -30,36 +30,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 wallJumpForce = new Vector2(10f, 12f);
     [SerializeField] private float wallStickMaxTime = 3f;
 
-    [Header("Shoot / Aim")]
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private Rigidbody2D bulletPrefab;
-    [SerializeField] private float bulletSpeed = 16f;
-    [SerializeField] private float fireCooldown = 0.15f;
-
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     private Vector2 moveInput;
-    private Vector2 aimInput;
     private bool isFacingRight = true;
-    private float nextFireTime;
 
-    // 점프/공격 플래그
+    // 입력 플래그
     [HideInInspector] public bool jumpPressedThisFrame;
     [HideInInspector] public bool jumpReleasedThisFrame;
     [HideInInspector] public bool attackPressedThisFrame;
     [HideInInspector] public bool crouchHeld;
 
+    // 점프 / 상태 관련
     private float lastGroundedTime;
     private float lastJumpPressedTime;
     private int airJumpsAvailable;
-
     private bool wallStickLockout;
     private float wallStickTimer;
 
     public FSM<PlayerController> StateMachine { get; private set; }
+    private InputActionAsset _actionsInstance;
+
     public Rigidbody2D Rb => rb;
     public Vector2 GetMoveInput() => moveInput;
-    public Vector2 GetAimInput() => aimInput;
     public bool IsCrouching { get; private set; }
 
     private void Awake()
@@ -67,6 +60,13 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         StateMachine = new FSM<PlayerController>(this);
+
+        // InputAction 복제 (플레이어별로 독립)
+        if (playerInput != null && playerInput.actions != null)
+        {
+            _actionsInstance = Instantiate(playerInput.actions);
+            playerInput.actions = _actionsInstance;
+        }
     }
 
     private void Start()
@@ -78,9 +78,11 @@ public class PlayerController : MonoBehaviour
     {
         StateMachine.Update();
 
+        // 방향 전환
         if (moveInput.x > 0.01f) isFacingRight = true;
         else if (moveInput.x < -0.01f) isFacingRight = false;
 
+        // 착지 체크
         if (IsGrounded())
         {
             lastGroundedTime = Time.time;
@@ -209,23 +211,9 @@ public class PlayerController : MonoBehaviour
         if (standCollider) standCollider.enabled = true;
     }
 
-    // ================= Shooting =================
-    public void Fire()
-    {
-        if (Time.time < nextFireTime || !bulletPrefab || !firePoint) return;
-
-        Vector2 dir = aimInput.sqrMagnitude > 0.1f
-            ? aimInput.normalized
-            : (isFacingRight ? Vector2.right : Vector2.left);
-
-        var b = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        b.linearVelocity = dir * bulletSpeed;
-        nextFireTime = Time.time + fireCooldown;
-    }
-
     // ================= Input Callbacks =================
     public void OnMove(InputAction.CallbackContext ctx) => moveInput = ctx.ReadValue<Vector2>();
-    public void OnAim(InputAction.CallbackContext ctx) => aimInput = ctx.ReadValue<Vector2>();
+
     public void OnJump(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
@@ -239,11 +227,13 @@ public class PlayerController : MonoBehaviour
             CutJumpEarly();
         }
     }
+
     public void OnAttack(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
             attackPressedThisFrame = true;
     }
+
     public void OnCrouch(InputAction.CallbackContext ctx)
     {
         if (ctx.started)

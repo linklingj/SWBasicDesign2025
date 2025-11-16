@@ -7,9 +7,9 @@ using UnityEngine;
 public class CameraController : SerializedMonoBehaviour
 {
     
-    [MinMaxSlider(-10, 10, true)]
+    [MinMaxSlider(-50, 50, true)]
     public Vector2 cameraRangeX = new Vector2();
-    [MinMaxSlider(-10, 10, true)]
+    [MinMaxSlider(-30, 30, true)]
     public Vector2 cameraRangeY = new Vector2();
 
     [SerializeField] private Vector2 followOffset = Vector2.zero;
