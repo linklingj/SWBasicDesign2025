@@ -26,6 +26,9 @@ public class DamageText : PoolObject
         _time = 0f;
 
         var c = _startColor;
+        if (damage < 10f) c = Color.green;
+        else if (damage < 20f) c = Color.red;
+        else if (damage >= 20f) c = Color.darkRed;
         c.a = 1f;
         text.color = c;
 
