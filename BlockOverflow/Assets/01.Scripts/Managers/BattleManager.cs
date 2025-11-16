@@ -85,9 +85,9 @@ public class BattleManager : MonoBehaviour
         //승리 애니메이션
         //슬로우
         gameStarted.Value = false;
-        DOTween.To(()=> Time.timeScale, x=> Time.timeScale = x, 0.2f, 1f).SetEase(Ease.InQuad).SetUpdate(true);
+        DOTween.To(()=> Time.timeScale, x=> Time.timeScale = x, 0.3f, 1f).SetEase(Ease.InQuad).SetUpdate(true);
         cameraController.ZoomTo(winnerTransform.position, CameraController.zoomType.Close, 1f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         Time.timeScale = 1;
         GameManager.Instance.EndBattle(1);
     }

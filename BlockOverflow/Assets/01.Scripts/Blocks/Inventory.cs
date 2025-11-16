@@ -12,6 +12,7 @@ public class Inventory : SerializedMonoBehaviour {
     [TableMatrix(SquareCells = true, DrawElementMethod = "DrawColoredGrid")]
     public BlockElement[,] blockPlacedGrid = new BlockElement[InventoryHeight, InventoryWidth];
 
+    
 
     public void SaveToPlayerData(PlayerData data)
     {
@@ -34,7 +35,7 @@ public class Inventory : SerializedMonoBehaviour {
         UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
     }
     
-    private Vector2 GetInventoryLeftUp()
+    public Vector2 GetInventoryLeftUp()
     {
         Vector2 center = transform.position;
         return center + new Vector2(-(float)InventoryWidth / 2f, (float)InventoryHeight / 2f);

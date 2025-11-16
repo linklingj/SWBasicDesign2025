@@ -19,6 +19,9 @@ public class UpgradeManager : SerializedMonoBehaviour
     [Header("Preset")]
     [SerializeField] Dictionary<string, Block> presetBlocks;
     
+    [Header("UI")]
+    [SerializeField] GameObject toNextButton;
+    
     RewardCameraConroller cameraConroller;
     Inventory inventory;
     
@@ -26,6 +29,7 @@ public class UpgradeManager : SerializedMonoBehaviour
     int winnerIndex;
     
     List<Block> rewardBlocks = new List<Block>();
+    Block selectedBlock;
     private bool interactable;
 
     private void Awake()
@@ -50,6 +54,7 @@ public class UpgradeManager : SerializedMonoBehaviour
         public override void OnBegin(UpgradeManager owner)
         {
             owner.interactable = false;
+            owner.toNextButton.SetActive(false);
             owner.winnerIndex = GameManager.Instance.GetPreviousWinner();
             GameManager.Instance.GetPlayerData(out owner.playerData, owner.winnerIndex);
             owner.inventory.LoadFromPlayerData(owner.playerData, (string id) => owner.presetBlocks[id]);
@@ -82,9 +87,9 @@ public class UpgradeManager : SerializedMonoBehaviour
 
         public override void OnUpdate(UpgradeManager owner)
         {
-            if (Keyboard.current.aKey.wasPressedThisFrame)
+            if (owner.selectedBlock != null && owner.selectedBlock.IsPlaced)
             {
-                owner.inventory.SaveToPlayerData(owner.playerData);
+                owner.toNextButton.SetActive(true);
             }
         }
 
@@ -142,6 +147,7 @@ public class UpgradeManager : SerializedMonoBehaviour
         var state = StateMachine.State as RewardState;
         if (state != null)
         {
+            selectedBlock = block;
             foreach (var b in rewardBlocks)
             {
                 if (b == block)
@@ -151,5 +157,11 @@ public class UpgradeManager : SerializedMonoBehaviour
             }
             StartCoroutine(state.BlockSelected(this));
         }
+    }
+    
+    public void NextRound()
+    {
+        inventory.SaveToPlayerData(playerData);
+        GameManager.Instance.BattleStart();
     }
 }

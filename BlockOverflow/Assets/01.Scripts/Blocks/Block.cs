@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEditor.Rendering;
 
 // 블록의 기본 클래스
 // 블록의 최대 크기는 4x4
@@ -14,6 +13,8 @@ public class Block : SerializedMonoBehaviour {
 
     [TableMatrix(SquareCells = true, DrawElementMethod = "DrawColoredGrid")]
     public BlockElement[,] elements = new BlockElement[4,4];
+
+    public BlockElement element;
     
     public string blockID;
     
@@ -28,11 +29,14 @@ public class Block : SerializedMonoBehaviour {
     // 블록이 인벤토리에 배치되었는지
     public bool IsPlaced { private set; get; } = false;
     
+    public Vector2Int placedPosition { private set; get; } = Vector2Int.zero;
+    
     private BlockAnimator _blockAnimator;
 
     private void Awake()
     {
         _blockAnimator = GetComponent<BlockAnimator>();
+        element = GetComponentInChildren<BlockElement>();
     }
 
     // 처음 블록이 생성되었을 때 설정 (주로 에디터에서)
@@ -85,10 +89,20 @@ public class Block : SerializedMonoBehaviour {
     public void PlaceBlock(Vector2Int position, Vector2 lu)
     {
         Debug.Log("place:" + position);
+        placedPosition = position;
         Vector3 targetPos = new Vector3(lu.x + position.y + 0.5f, lu.y - position.x - 0.5f, transform.position.z);
         // if (set) transform.position = targetPos;
         IsPlaced = true;
         _blockAnimator.PlacedAnim(targetPos);
+    }
+    
+    public void SetBlockPosInstant(Vector2Int position, Vector2 lu)
+    {
+        placedPosition = position;
+        //_blockAnimator.SetPlacedPos();
+        Vector3 targetPos = new Vector3(lu.x + position.y + 0.5f, lu.y - position.x - 0.5f, transform.position.z);
+        transform.position = targetPos;
+        IsPlaced = true;
     }
 
     public void RotateClockwise()
