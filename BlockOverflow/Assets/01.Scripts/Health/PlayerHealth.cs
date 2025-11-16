@@ -8,9 +8,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     
     [SerializeField] private float maxHealth = 100f;
     public float MaxHealth => maxHealth;
+    public float FinalMaxHealth => maxHealth + stats.healthIncrease;
     [ReadOnly, ShowInInspector] public float CurrentHealth{get; private set;}
     public bool IsDead { get; private set; }
-    
+    public bool TookDamageThisFrame { get; private set; }
+
+    [SerializeField] private PlayerStats stats;
     [SerializeField] private SpriteRenderer sr;
     private Color originalColor;
     [SerializeField] private Color hurtColor;
@@ -19,19 +22,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        CurrentHealth = maxHealth;
+        CurrentHealth = maxHealth + stats.healthIncrease;
         IsDead = false;
         if (sr != null)
         {
             originalColor = sr.color;
         }
     }
-
-
+    
     public void TakeDamage(float damageAmount)
     {
         if (IsDead) return;
     
+        TookDamageThisFrame = true;
         CurrentHealth = Mathf.Max(0, CurrentHealth - damageAmount);
         // 혹시 전에 돌던 코루틴 있으면 끊고 다시
         //StopCoroutine(nameof(HitFlash));
@@ -59,11 +62,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         CurrentHealth = Mathf.Min(maxHealth, CurrentHealth + healAmount);
     }
     
-    public void Respawn()
+    public void Spawn()
     {
         IsDead = false;
-        CurrentHealth = maxHealth;
-        gameObject.SetActive(true);
+        CurrentHealth = maxHealth + stats.healthIncrease;
     }
     
     private IEnumerator HitFlash()
@@ -78,6 +80,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         
     }
     
-    
+    private void LateUpdate()
+    {
+        TookDamageThisFrame = false;
+    }
     
 }

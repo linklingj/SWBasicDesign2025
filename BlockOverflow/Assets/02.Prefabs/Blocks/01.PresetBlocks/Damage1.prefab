@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8229365edd5634e53a5f9f6d50dfc754, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc115dad772214b3e8ea84ee49a72e6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -139,8 +139,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0666667, y: 1.0666667}
-    newSize: {x: 0.8, y: 0.8}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -289,8 +289,18 @@ MonoBehaviour:
       Entry: 8
       Data: 
   blockType: 0
+  blockEffect:
+    rid: 4987116833686421615
+  blockID: W01
   size: {x: 1, y: 1}
   center: {x: 0, y: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4987116833686421615
+      type: {class: BlockDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damageAmount: 1
 --- !u!114 &9010961071759922530
 MonoBehaviour:
   m_ObjectHideFlags: 0

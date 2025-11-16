@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class UpgradeManager : MonoBehaviour 
+public class UpgradeManager : SerializedMonoBehaviour 
 {
     public FSM<UpgradeManager> StateMachine { get; private set; }
     
@@ -15,8 +16,14 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] RewardBlocks blockTable;
     [SerializeField] BlockAnimatorData animData;
     
+    [Header("Preset")]
+    [SerializeField] Dictionary<string, Block> presetBlocks;
+    
     RewardCameraConroller cameraConroller;
-    private Inventory inventory;
+    Inventory inventory;
+    
+    PlayerData playerData;
+    int winnerIndex;
     
     List<Block> rewardBlocks = new List<Block>();
     private bool interactable;
@@ -43,11 +50,14 @@ public class UpgradeManager : MonoBehaviour
         public override void OnBegin(UpgradeManager owner)
         {
             owner.interactable = false;
+            owner.winnerIndex = GameManager.Instance.GetPreviousWinner();
+            GameManager.Instance.GetPlayerData(out owner.playerData, owner.winnerIndex);
+            owner.inventory.LoadFromPlayerData(owner.playerData, (string id) => owner.presetBlocks[id]);
             
-            //블록 선택하여 가져오기
+            
             owner.GenerateRewardBlocks();
             
-            DOVirtual.DelayedCall(owner.animData.appearDuration, () => owner.interactable = true);
+            DOVirtual.DelayedCall(owner.animData.appearDuration, () => owner.interactable = true, false);
         }
 
         public override void OnUpdate(UpgradeManager owner) { }
@@ -73,7 +83,9 @@ public class UpgradeManager : MonoBehaviour
         public override void OnUpdate(UpgradeManager owner)
         {
             if (Keyboard.current.aKey.wasPressedThisFrame)
-                Debug.Log("to battle scene");
+            {
+                owner.inventory.SaveToPlayerData(owner.playerData);
+            }
         }
 
         public override void OnEnd(UpgradeManager owner)

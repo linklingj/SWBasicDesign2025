@@ -8,9 +8,14 @@ using UnityEditor.Rendering;
 public class Block : SerializedMonoBehaviour {
     [EnumPaging]
     public BlockType blockType;
+    
+    [SerializeReference, InlineProperty, HideLabel]
+    public IBlockEffect blockEffect;
 
     [TableMatrix(SquareCells = true, DrawElementMethod = "DrawColoredGrid")]
     public BlockElement[,] elements = new BlockElement[4,4];
+    
+    public string blockID;
     
     // 블록의 크기와 중심점
     public Vector2Int size;

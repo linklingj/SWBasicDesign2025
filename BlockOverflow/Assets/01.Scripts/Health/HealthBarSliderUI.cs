@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +13,16 @@ public class HealthBarSliderUI : MonoBehaviour
     [Header("머리 위 오프셋")]
     [SerializeField] private Vector3 worldOffset = new Vector3(0, 1.5f, 0);
 
+    [Header("체력바 크기 설정")]
+    [SerializeField] private float baseWidth = 100f; // MaxHealth 100 기준 너비
+    [SerializeField] private float height = 20f;
+
+    [Header("데미지 피드백")]
+    [SerializeField] private Image fillImage;
+    [SerializeField] private Color damageFlashColor = Color.white;
+    [SerializeField] private float flashDuration = 0.15f;
+    private Color originalColor;
+
     private Camera cam;
     private RectTransform rectTransform;
 
@@ -25,6 +35,11 @@ public class HealthBarSliderUI : MonoBehaviour
             slider = GetComponent<Slider>();
         
         TrySetupFromPlayer();
+
+        if (fillImage == null)
+            fillImage = slider.fillRect.GetComponent<Image>();
+        if (fillImage != null)
+            originalColor = fillImage.color;
     }
 
     private void OnValidate()
@@ -60,8 +75,16 @@ public class HealthBarSliderUI : MonoBehaviour
         if (playerHealth != null && slider != null)
         {
             slider.minValue = 0;
-            slider.maxValue = playerHealth.MaxHealth;
+            slider.maxValue = playerHealth.FinalMaxHealth;
             slider.value = playerHealth.CurrentHealth;
+
+            if (rectTransform != null)
+            {
+                float scale = playerHealth.FinalMaxHealth / 100f;
+                float newWidth = baseWidth * scale;
+                rectTransform.sizeDelta = new Vector2(newWidth, height);
+                rectTransform.pivot = new Vector2(0.5f, 0.5f); // 중심 고정
+            }
         }
     }
 
@@ -84,10 +107,25 @@ public class HealthBarSliderUI : MonoBehaviour
                                   playerHealth.CurrentHealth,
                                   Time.deltaTime * 10f);
 
+        // 데미지 피드백
+        if (playerHealth.TookDamageThisFrame)
+        {
+            StartCoroutine(FlashDamage());
+        }
+
         if (playerHealth.IsDead)
         {
             gameObject.SetActive(false);
         }
         
+    }
+    
+    private IEnumerator FlashDamage()
+    {
+        if (fillImage == null) yield break;
+
+        fillImage.color = damageFlashColor;
+        yield return new WaitForSeconds(flashDuration);
+        fillImage.color = originalColor;
     }
 }

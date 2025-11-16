@@ -80,6 +80,7 @@ public class PlayerAnimBridgeForPC : MonoBehaviour
 
         if (!leftHandPivot)  Debug.LogWarning("[PlayerAnimBridgeForPC] leftHandPivot is not assigned. Hand pivot offset will be skipped.");
         if (!rightHandPivot) Debug.LogWarning("[PlayerAnimBridgeForPC] rightHandPivot is not assigned. Hand pivot offset will be skipped.");
+
     }
     void Reset()
     {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager> 
@@ -8,6 +9,11 @@ public class GameManager : Singleton<GameManager>
     GameState currentGameState;
     public GameState CurrentGameState { get => currentGameState; }
     public Action<GameState> OnGameStateChanged;
+
+    [SerializeField] private PlayerData playerData1;
+    [SerializeField] private PlayerData playerData2;
+    
+    private List<int> winPlayerIndices = new List<int>();
 
     protected override void Awake()
     {
@@ -29,20 +35,38 @@ public class GameManager : Singleton<GameManager>
 
     public void StartNewGame()
     {
+        winPlayerIndices.Clear();
+        playerData1 = ScriptableObject.CreateInstance<PlayerData>();
+        playerData2 = ScriptableObject.CreateInstance<PlayerData>();
         SceneLoader.Instance.LoadScene(SceneName.CharacterSelection, () => ChangeGameState(GameState.CharacterSelection));
     }
 
     public void BattleStart()
     {
-        SceneLoader.Instance.LoadScene(SceneName.Battle, () => ChangeGameState(GameState.Battle));
+        SceneLoader.Instance.LoadScene(SceneName.Battle);
 
     }
 
     public void EndBattle(int winPlayerIndex)
     {
+        winPlayerIndices.Add(winPlayerIndex);
         SceneLoader.Instance.LoadScene(SceneName.Reward, () => ChangeGameState(GameState.Reward));
     }
 
+    public int GetPreviousWinner()
+    {
+        if (winPlayerIndices.Count == 0)
+            return 1;
+        return winPlayerIndices[winPlayerIndices.Count - 1];
+    }
+    
+    public void GetPlayerData(out PlayerData playerData, int playerIndex = -1)
+    {
+        if (playerIndex == -1)
+            playerIndex = GetPreviousWinner();
+
+        playerData = playerIndex == 1 ? playerData1 : playerData2;
+    }
 
     private static GameState GetGameStateFromScene(SceneName sceneName)
     {

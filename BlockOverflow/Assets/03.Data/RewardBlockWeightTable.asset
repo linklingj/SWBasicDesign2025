@@ -25,6 +25,6 @@ MonoBehaviour:
       Weight: 10
   - table:
     - Rank: 1
-      Weight: 50
+      Weight: 70
     - Rank: 2
-      Weight: 50
+      Weight: 30

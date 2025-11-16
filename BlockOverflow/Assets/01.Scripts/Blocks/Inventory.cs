@@ -13,6 +13,17 @@ public class Inventory : SerializedMonoBehaviour {
     public BlockElement[,] blockPlacedGrid = new BlockElement[InventoryHeight, InventoryWidth];
 
 
+    public void SaveToPlayerData(PlayerData data)
+    {
+        data.SaveInventory(this);
+    }
+
+    public void LoadFromPlayerData(PlayerData data, Func<string, Block> blockFactory)
+    {
+        data.LoadInventory(this, blockFactory);
+        UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+    }
+
 
     [Button]
     public void ResetGrid()
