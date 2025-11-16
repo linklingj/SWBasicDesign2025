@@ -13,18 +13,17 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     
     [SerializeField] private SpriteRenderer sr;
     private Color originalColor;
+    [SerializeField] private Color hurtColor;
     
-    
+    public Action OnDeath;
 
     private void Awake()
     {
-        //gameObject.SetActive(true);
         CurrentHealth = maxHealth;
         IsDead = false;
         if (sr != null)
         {
             originalColor = sr.color;
-            //sr.color = Color.green;
         }
     }
 
@@ -49,9 +48,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         IsDead = true;
         Debug.Log($"{gameObject.name} has died.");
-        gameObject.SetActive(false); //걍 꺼도 됨?
         
-        
+        OnDeath?.Invoke();
     }
     
     public void Heal(float healAmount)
@@ -72,10 +70,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (sr == null)
         {
-            Debug.LogWarning("HitFlash: sr가 null 입니다!", this);
             yield break;
         }
-        sr.color = Color.red;
+        sr.color = hurtColor;
         yield return new WaitForSeconds(0.1f);
         sr.color = originalColor;
         

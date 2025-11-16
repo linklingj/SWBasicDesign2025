@@ -907,6 +907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   sr: {fileID: 7344980455148113763}
+  hurtColor: {r: 1, g: 0.3578551, b: 0.28773582, a: 0.70980394}
 --- !u!114 &3053784746910986090
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -54,7 +54,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _blurAmount: 5.7
+    - _blurAmount: 1.87
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
