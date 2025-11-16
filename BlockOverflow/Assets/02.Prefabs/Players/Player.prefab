@@ -456,66 +456,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &6740995357063295320
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5151212614306112132}
-  - component: {fileID: 1059654987133856993}
-  m_Layer: 0
-  m_Name: AimMovement
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5151212614306112132
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6740995357063295320}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 697193937783942884}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1059654987133856993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6740995357063295320}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 839094997838a488ea4c39cab2aa59d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightHandPivot: {fileID: 3134985702879677144}
-  leftHandPivot: {fileID: 41791666023451689}
-  weapon: {fileID: 3227612018981965210}
-  stickDeadZone: 0.1
-  rotateLerp: 20
-  sideSwitchDeadZone: 0.1
-  weaponLocalPos: {x: 0.25, y: 0, z: 0}
-  aimRange: 4
-  rightRestAngle: 0
-  leftRestAngle: 180
-  resetDuration: 0.15
-  swayInactiveHand: 1
-  swayAmplitude: 1
-  swayFrequency: 0.8
-  swayFollow: 0.25
-  swayCenterFollow: 0.1
 --- !u!1 &7207717912735620188
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +729,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: 0.33, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4042515548747418140}
@@ -886,7 +826,7 @@ MonoBehaviour:
   stickDeadZone: 0.1
   rotateLerp: 20
   sideSwitchDeadZone: 0.1
-  weaponLocalPos: {x: 1, y: 0, z: 0}
+  weaponLocalPos: {x: 0.25, y: 0, z: 0}
   aimRange: 4
   rightRestAngle: 0
   leftRestAngle: 360
@@ -938,7 +878,6 @@ Transform:
   - {fileID: 943492147867995784}
   - {fileID: 2538111494622631089}
   - {fileID: 1430410976715884209}
-  - {fileID: 5151212614306112132}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1876442354891786945
