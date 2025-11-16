@@ -823,10 +823,19 @@ MonoBehaviour:
   rightHandPivot: {fileID: 3134985702879677144}
   leftHandPivot: {fileID: 41791666023451689}
   weapon: {fileID: 3227612018981965210}
-  aimPlaneZ: 0
   stickDeadZone: 0.1
   rotateLerp: 20
   sideSwitchDeadZone: 0.1
+  weaponLocalPos: {x: 0.25, y: 0, z: 0}
+  aimRange: 4
+  rightRestAngle: 0
+  leftRestAngle: 360
+  resetDuration: 0.15
+  swayInactiveHand: 1
+  swayAmplitude: 1
+  swayFrequency: 0.8
+  swayFollow: 0.25
+  swayCenterFollow: 0.1
 --- !u!1 &8675466437622409480
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  sr: {fileID: 7344980455148113763}
 --- !u!114 &3053784746910986090
 MonoBehaviour:
   m_ObjectHideFlags: 0
