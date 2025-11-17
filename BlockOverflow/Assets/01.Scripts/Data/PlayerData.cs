@@ -10,7 +10,25 @@ public class BlockCellData
     public string blockId; // Unique ID per Block prefab or instance
 }
 
+<<<<<<< Updated upstream
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Game/PlayerData")]
+=======
+[Serializable]
+public class BlockData
+{
+    public string blockId;
+    public Vector2Int placedPosition;
+    public int rotationState;
+    public BlockData(string id, Vector2Int position, int rotationState)
+    {
+        blockId = id;
+        placedPosition = position;
+        this.rotationState = rotationState;
+    }
+}
+
+[CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/PlayerData")]
+>>>>>>> Stashed changes
 public class PlayerData : ScriptableObject
 {
     public List<BlockCellData> placedBlocks = new List<BlockCellData>();
@@ -40,7 +58,11 @@ public class PlayerData : ScriptableObject
 
                 if (!ownedBlockIds.Contains(owner.blockID))
                 {
+<<<<<<< Updated upstream
                     ownedBlockIds.Add(owner.blockID);
+=======
+                    ownedBlocks.Add(new BlockData(owner.blockID, owner.placedPosition, owner.rotationState));
+>>>>>>> Stashed changes
                 }
             }
         }
@@ -54,6 +76,7 @@ public class PlayerData : ScriptableObject
 
         foreach (var cell in placedBlocks)
         {
+<<<<<<< Updated upstream
             if (!created.TryGetValue(cell.blockId, out Block block))
             {
                 block = blockFactory(cell.blockId);
@@ -62,5 +85,20 @@ public class PlayerData : ScriptableObject
 
             inventory.blockPlacedGrid[cell.row, cell.column] = block.elements[cell.row, cell.column];
         }
+=======
+            Block b = Instantiate(blockFactory(block.blockId), inventory.transform);
+            inventory.blocks.Add(b);
+            inventory.Set(b, block.placedPosition, block.rotationState);
+            b.SetPresetBlock();
+            //b.SetBlockPosInstant(block.placedPosition, inventory.GetInventoryLeftUp());
+            //b.PlaceBlock(block.placedPosition, inventory.GetInventoryLeftUp());
+        }
+        
+        // foreach (var e in placedBlocks)
+        // {
+        //     inventory.blockPlacedGrid[e.row, e.column] = blockFactory(e.blockId).element;
+        // }
+
+>>>>>>> Stashed changes
     }
 }

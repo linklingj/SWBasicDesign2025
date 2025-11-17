@@ -3,6 +3,8 @@ using DG.Tweening;
 using UnityEngine;
 
 public class BlockAnimator : MonoBehaviour {
+    public bool interactable = true;
+    
     [SerializeField] BlockAnimatorData blockAnimData;
 
     private Sequence seq;
@@ -28,6 +30,7 @@ public class BlockAnimator : MonoBehaviour {
     public void FirstAppearAnim(int idx, int total)
     {
         KillAllTweens();
+        if (!interactable) return;
         float diff = idx - (float)(total - 1) / 2;
         Vector3 offset = new Vector3(diff * blockAnimData.generateSpread, 0, 0);
         transform.position = blockAnimData.showPosition + offset;
@@ -41,6 +44,7 @@ public class BlockAnimator : MonoBehaviour {
     //마우스 가져갔을때 살짝 커짐
     public void OnMouseEnter()
     {
+        if (!interactable) return;
         if (!mousePopupInteraction) return;
         if (scaleTween != null && scaleTween.IsActive()) scaleTween.Kill();
         scaleTween = transform.DOScale(blockAnimData.shownSize * 1.05f, blockAnimData.hoverDuration)
@@ -51,6 +55,7 @@ public class BlockAnimator : MonoBehaviour {
     //원래 크기로 되돌아옴
     public void OnMouseExit()
     {
+        if (!interactable) return;
         if (!mousePopupInteraction) return;
         if (scaleTween != null && scaleTween.IsActive()) scaleTween.Kill();
         scaleTween = transform.DOScale(blockAnimData.shownSize, blockAnimData.hoverDuration)

@@ -11,8 +11,12 @@ public class Inventory : SerializedMonoBehaviour {
     
     [TableMatrix(SquareCells = true, DrawElementMethod = "DrawColoredGrid")]
     public BlockElement[,] blockPlacedGrid = new BlockElement[InventoryHeight, InventoryWidth];
+<<<<<<< Updated upstream
 
 
+=======
+    
+>>>>>>> Stashed changes
     public void SaveToPlayerData(PlayerData data)
     {
         data.SaveInventory(this);
@@ -137,9 +141,19 @@ public class Inventory : SerializedMonoBehaviour {
             blocks.Add(block);
         }
 
-        block.PlaceBlock(position, GetInventoryLeftUp());
+        block.PlaceBlock(position,GetInventoryLeftUp());
         
         UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+    }
+
+    public void Set(Block block, Vector2Int position, int rotationState)
+    {
+        block.SetRotationState(rotationState);
+        for (int i = 0; i < rotationState; i++)
+        {
+            block.RotateClockwise();
+        }
+        Set(block, position);
     }
 
     public bool TrySet(Block block, Vector2Int position)

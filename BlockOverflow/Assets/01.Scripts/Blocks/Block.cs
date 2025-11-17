@@ -21,6 +21,7 @@ public class Block : SerializedMonoBehaviour {
     public Vector2Int size;
     public Vector2Int center;
     public int rotationState { private set; get; } = 0;
+    public void SetRotationState(int rotationState) => this.rotationState = rotationState % 4;
     
     // 블록 선택 모드
     public bool IsSelectMode { private set; get; }
@@ -82,14 +83,28 @@ public class Block : SerializedMonoBehaviour {
     }
     
     // 블록 놓아짐
-    public void PlaceBlock(Vector2Int position, Vector2 lu)
+    public void PlaceBlock(Vector2Int position, Vector2 lu, bool imidiate = false)
     {
         Debug.Log("place:" + position);
         Vector3 targetPos = new Vector3(lu.x + position.y + 0.5f, lu.y - position.x - 0.5f, transform.position.z);
-        // if (set) transform.position = targetPos;
         IsPlaced = true;
-        _blockAnimator.PlacedAnim(targetPos);
+        if (!_blockAnimator) _blockAnimator = GetComponent<BlockAnimator>();
+        
+        if (imidiate) SetBlockPosInstant(position, lu);
+        else _blockAnimator.PlacedAnim(targetPos);
     }
+<<<<<<< Updated upstream
+=======
+    
+    public void SetBlockPosInstant(Vector2Int position, Vector2 lu)
+    {
+        placedPosition = position;
+        _blockAnimator.interactable = false;
+        Vector3 targetPos = new Vector3(lu.x + position.y + 0.5f, lu.y - position.x - 0.5f, transform.position.z);
+        transform.position = targetPos;
+        IsPlaced = true;
+    }
+>>>>>>> Stashed changes
 
     public void RotateClockwise()
     {
@@ -178,6 +193,11 @@ public class Block : SerializedMonoBehaviour {
                 element.transform.localPosition = GetElementLocalPosition(r, c);
             }
         }
+    }
+
+    public void SetPresetBlock()
+    {
+        _blockAnimator.interactable = false;
     }
 
     private BlockElement DrawColoredGrid(Rect rect, BlockElement value) => BlockCreator.DrawColoredGridEl(rect, value);
