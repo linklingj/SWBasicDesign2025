@@ -29,6 +29,9 @@ public class BattleManager : MonoBehaviour
     
     private Maps map;
 
+    private float gameTime;
+    public float GameTime => gameTime;
+
 
     private void Awake()
     {
@@ -39,6 +42,11 @@ public class BattleManager : MonoBehaviour
     {
         GenerateMap();
         StartBattle();
+    }
+
+    private void Update()
+    {
+        gameTime += Time.deltaTime;
     }
 
     public void GameStateChanged(GameState gameState)
@@ -62,6 +70,7 @@ public class BattleManager : MonoBehaviour
     public void StartBattle()
     {
         gameStarted.Value = false;
+        cameraController.SetTargetPositions(map.originalCameraPos, map.finalCameraPos);
         StartCoroutine(PrestartSequence());
         
         SpawnPlayers();
@@ -122,6 +131,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(prestartDelay);
         
         //countdown
+        gameTime = -3f;
         battleUI.CountDown(player1, player2);
         cameraController.ZoomTo(player1.transform.position, CameraController.zoomType.Close);
         yield return new WaitForSeconds(1f);
@@ -129,6 +139,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         cameraController.ZoomTo(map.originalCameraPos.position, CameraController.zoomType.Wide); //todo: 중앙 포인트로 변경
         yield return new WaitForSeconds(1f);
+        gameTime = 0;
         cameraController.ShakeCamera(0.3f, 0.5f, 10);
         
         gameStarted.Value = true;

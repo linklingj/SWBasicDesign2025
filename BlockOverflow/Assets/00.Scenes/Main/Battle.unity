@@ -537,9 +537,13 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  battleManager: {fileID: 1802884453}
+  childObj: {fileID: 0}
   cameraRangeX: {x: -20, y: 20}
   cameraRangeY: {x: -17, y: 20}
   followOffset: {x: 0, y: 0}
+  moveStartTime: 30
+  moveDuration: 30
 --- !u!1 &671053772
 GameObject:
   m_ObjectHideFlags: 0

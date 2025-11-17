@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class CameraController : SerializedMonoBehaviour
 {
+    [SerializeField] BattleManager battleManager;
+    [SerializeField] Transform childObj;
     
     [MinMaxSlider(-50, 50, true)]
     public Vector2 cameraRangeX = new Vector2();
@@ -16,16 +18,24 @@ public class CameraController : SerializedMonoBehaviour
     
     [SerializeField, EnumPaging] private Dictionary<zoomType, float> zoomSize = new Dictionary<zoomType, float>();
     public enum zoomType { Wide, Normal, Close }
-    
+
+    public float moveStartTime;
+    public float moveDuration;
     
     private Camera cam;
+    private Transform startPos, endPos;
 
     private void Awake()
     {
         cam = GetComponent<Camera>();
     }
 
-    
+    private void Update()
+    {
+        MoveCamera();
+    }
+
+
     /// <summary>
     /// 카메라 줌을 부드럽게 변경하고, cameraRange를 지키며 위치 보정
     /// </summary>
@@ -45,7 +55,6 @@ public class CameraController : SerializedMonoBehaviour
     /// </summary>
     private Vector3 ClampCameraPosition(Vector3 focusPoint)
     {
-
         // clamp 적용
         float clampedX = Mathf.Clamp(focusPoint.x, cameraRangeX.x, cameraRangeX.y);
         float clampedY = Mathf.Clamp(focusPoint.y, cameraRangeY.x, cameraRangeY.y );
@@ -57,5 +66,19 @@ public class CameraController : SerializedMonoBehaviour
     {
         if (cam == null) cam = Camera.main;
         transform.DOShakePosition(duration, strength, vibrato);
+    }
+    
+    public void SetTargetPositions(Transform startPos, Transform endPos)
+    {
+        this.startPos = startPos;
+        this.endPos = endPos;
+    }
+
+    public void MoveCamera()
+    {
+        if (!battleManager || !startPos || !endPos) return;
+        float moveTime = battleManager.GameTime - moveStartTime;
+        if (moveTime <= 0 || moveTime > moveDuration) return;
+        transform.position = Vector3.Lerp(startPos.position, endPos.position, moveTime / moveDuration);
     }
 }
