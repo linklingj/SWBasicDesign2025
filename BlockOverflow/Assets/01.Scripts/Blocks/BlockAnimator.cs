@@ -117,4 +117,10 @@ public class BlockAnimator : MonoBehaviour {
             .SetLink(gameObject);
     }
     
+    public void SetPlacedPos()
+    {
+        KillAllTweens();
+        transform.localScale = blockAnimData.placedSize;
+    }
+    
 }

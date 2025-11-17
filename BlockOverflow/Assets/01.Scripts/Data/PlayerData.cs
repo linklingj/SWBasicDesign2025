@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class BlockCellData
@@ -10,9 +12,7 @@ public class BlockCellData
     public string blockId; // Unique ID per Block prefab or instance
 }
 
-<<<<<<< Updated upstream
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Game/PlayerData")]
-=======
 [Serializable]
 public class BlockData
 {
@@ -28,11 +28,10 @@ public class BlockData
 }
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/PlayerData")]
->>>>>>> Stashed changes
 public class PlayerData : ScriptableObject
 {
     public List<BlockCellData> placedBlocks = new List<BlockCellData>();
-    public List<string> ownedBlockIds = new List<string>();
+    public List<BlockData> ownedBlockIds = new List<BlockData>();
 
     public void SaveInventory(Inventory inventory)
     {
@@ -58,11 +57,8 @@ public class PlayerData : ScriptableObject
 
                 if (!ownedBlockIds.Contains(owner.blockID))
                 {
-<<<<<<< Updated upstream
                     ownedBlockIds.Add(owner.blockID);
-=======
                     ownedBlocks.Add(new BlockData(owner.blockID, owner.placedPosition, owner.rotationState));
->>>>>>> Stashed changes
                 }
             }
         }
@@ -76,7 +72,6 @@ public class PlayerData : ScriptableObject
 
         foreach (var cell in placedBlocks)
         {
-<<<<<<< Updated upstream
             if (!created.TryGetValue(cell.blockId, out Block block))
             {
                 block = blockFactory(cell.blockId);
@@ -85,7 +80,6 @@ public class PlayerData : ScriptableObject
 
             inventory.blockPlacedGrid[cell.row, cell.column] = block.elements[cell.row, cell.column];
         }
-=======
             Block b = Instantiate(blockFactory(block.blockId), inventory.transform);
             inventory.blocks.Add(b);
             inventory.Set(b, block.placedPosition, block.rotationState);
@@ -99,6 +93,5 @@ public class PlayerData : ScriptableObject
         //     inventory.blockPlacedGrid[e.row, e.column] = blockFactory(e.blockId).element;
         // }
 
->>>>>>> Stashed changes
     }
 }

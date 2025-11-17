@@ -13,6 +13,7 @@ public class Inventory : SerializedMonoBehaviour {
     public BlockElement[,] blockPlacedGrid = new BlockElement[InventoryHeight, InventoryWidth];
 <<<<<<< Updated upstream
 
+    
 
 =======
     
@@ -38,7 +39,7 @@ public class Inventory : SerializedMonoBehaviour {
         UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
     }
     
-    private Vector2 GetInventoryLeftUp()
+    public Vector2 GetInventoryLeftUp()
     {
         Vector2 center = transform.position;
         return center + new Vector2(-(float)InventoryWidth / 2f, (float)InventoryHeight / 2f);

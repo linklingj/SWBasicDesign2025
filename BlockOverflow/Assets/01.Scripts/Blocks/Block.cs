@@ -29,6 +29,8 @@ public class Block : SerializedMonoBehaviour {
     // 블록이 인벤토리에 배치되었는지
     public bool IsPlaced { private set; get; } = false;
     
+    public Vector2Int placedPosition { private set; get; } = Vector2Int.zero;
+    
     private BlockAnimator _blockAnimator;
 
     private void Awake()
@@ -86,6 +88,7 @@ public class Block : SerializedMonoBehaviour {
     public void PlaceBlock(Vector2Int position, Vector2 lu, bool imidiate = false)
     {
         Debug.Log("place:" + position);
+        placedPosition = position;
         Vector3 targetPos = new Vector3(lu.x + position.y + 0.5f, lu.y - position.x - 0.5f, transform.position.z);
         IsPlaced = true;
         if (!_blockAnimator) _blockAnimator = GetComponent<BlockAnimator>();
@@ -93,8 +96,6 @@ public class Block : SerializedMonoBehaviour {
         if (imidiate) SetBlockPosInstant(position, lu);
         else _blockAnimator.PlacedAnim(targetPos);
     }
-<<<<<<< Updated upstream
-=======
     
     public void SetBlockPosInstant(Vector2Int position, Vector2 lu)
     {
@@ -103,8 +104,8 @@ public class Block : SerializedMonoBehaviour {
         Vector3 targetPos = new Vector3(lu.x + position.y + 0.5f, lu.y - position.x - 0.5f, transform.position.z);
         transform.position = targetPos;
         IsPlaced = true;
+        _blockAnimator.PlacedAnim(targetPos);
     }
->>>>>>> Stashed changes
 
     public void RotateClockwise()
     {
