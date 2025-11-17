@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rifle
   m_EditorClassIdentifier: 
   weaponName: 
-  damage: 1
+  damage: 8
   fireRate: 5

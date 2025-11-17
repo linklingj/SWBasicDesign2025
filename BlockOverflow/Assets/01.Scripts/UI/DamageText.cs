@@ -55,7 +55,6 @@ public class DamageText : PoolObject
            
             if (_time > lifeTime + fadeTime)
             {
-                Debug.Log("released!");
                 Release();
             }
         }
