@@ -41,10 +41,14 @@ public class PlayerController : MonoBehaviour
     public bool jumpReleasedThisFrame;
     public bool attackPressedThisFrame;
     public bool crouchHeld;
+    
 
     // 점프 관련
     private float lastGroundedTime;
     private float lastJumpPressedTime;
+    public bool hasStartedJump = false;
+    private float jumpStartTime;     // (옵션) 시간 단위로도 쓸 수 있음
+    public int jumpStartFrame;      // 🔹 점프 시작한 프레임
 
     public int airJumpsAvailable;
     public bool wasTouchingWall = false;
@@ -94,18 +98,22 @@ public class PlayerController : MonoBehaviour
 
         StateMachine.Update();
         Debug.Log($"PlayerController({gameObject.name}) Update Running");
-        // 방향 반영
+
         if (moveInput.x > 0.01f) isFacingRight = true;
         else if (moveInput.x < -0.01f) isFacingRight = false;
 
-        // 착지
+        // 착지 처리
         if (IsGrounded())
         {
             lastGroundedTime = Time.time;
             ClearWallStickLockoutOnLand();
+
+            // ✅ 땅에 있고 위로 안 날아갈 때는 "점프 중 아님"
+            if (rb.linearVelocity.y <= 0f)
+                hasStartedJump = false;
         }
 
-        // 벽 닿았을 때 공중점프 회복(딱 1번만)
+        // 벽 닿았을 때 공중 점프 회복
         if (IsTouchingWall(out _) && !wasTouchingWall)
         {
             wasTouchingWall = true;
@@ -115,14 +123,11 @@ public class PlayerController : MonoBehaviour
         {
             wasTouchingWall = false;
         }
-    }
 
-    private void LateUpdate()
-    {
-        // 이번 프레임에만 유효한 플래그 리셋
+        // 🔥 이 프레임에서 JumpThisFrame 사용 끝
         JumpThisFrame = false;
-        jumpPressedThisFrame = false;
     }
+    
 
     // ==== INPUT CALLBACKS ====
     public void OnMove(InputAction.CallbackContext ctx)
@@ -149,7 +154,6 @@ public class PlayerController : MonoBehaviour
 
             jumpReleasedThisFrame = true;
             JumpHeld = false;
-            CutJumpEarly();
         }
     }
 
@@ -218,22 +222,38 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-
+    
     public void DoJump()
     {
+        hasStartedJump = true;
+        jumpStartFrame = Time.frameCount;
+        jumpStartTime = Time.time;
+
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-        // 같은 입력으로 여러 번 점프 안 되게, 아주 과거로 날림
         lastJumpPressedTime = -999f;
     }
 
     public void CutJumpEarly()
     {
-        if (Rb.linearVelocity.y > 0)
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
-    }
+        // 아직 진짜 점프 시작 전이면 무시
+        if (!hasStartedJump) return;
 
+        // ✅ 점프한 바로 그 프레임에는 절대 컷하지 않기
+        if (Time.frameCount == jumpStartFrame)
+            return;
+
+        // (선택) 점프 후 최소 0.05초는 유지해도 됨
+        // if (Time.time - jumpStartTime < 0.05f)
+        //     return;
+
+        if (Rb.linearVelocity.y > 0)
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                rb.linearVelocity.y * jumpCutMultiplier
+            );
+    }
     // ===== CROUCH =====
     public void StartCrouch()
     {
