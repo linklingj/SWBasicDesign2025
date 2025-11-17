@@ -114,9 +114,9 @@ public class PlayerAnimBridgeForPC : MonoBehaviour
         float vy = controller.Rb ? controller.Rb.linearVelocity.y : 0f;
         anim.SetFloat("Speed", Mathf.Abs(vx));
         
-        Vector2 move = controller.GetMoveInput();
+        Vector2 move = controller.MoveInput;
         float moveSign = Mathf.Abs(move.x) > 0.01f ? Mathf.Sign(move.x) : 0f;
-        anim.SetFloat("MoveX", moveSign);
+        anim.SetFloat("MoveX", Mathf.Sign(controller.MoveInput.x));
         
         if (sr && moveSign != 0f)
             sr.flipX = (moveSign < 0f);
@@ -239,7 +239,7 @@ public class PlayerAnimBridgeForPC : MonoBehaviour
         anim.SetBool("IsGrounded", controller.IsGrounded());
         anim.SetBool("IsCrouch", controller.IsCrouching);
         anim.SetFloat("Speed", Mathf.Abs(controller.Rb ? controller.Rb.linearVelocity.x : 0f));
-        anim.SetFloat("MoveX", Mathf.Sign(controller.GetMoveInput().x));
+        anim.SetFloat("MoveX", Mathf.Sign(controller.MoveInput.x));
 
         lastGrounded = controller.IsGrounded();
         lastVy = controller.Rb ? controller.Rb.linearVelocity.y : 0f;
