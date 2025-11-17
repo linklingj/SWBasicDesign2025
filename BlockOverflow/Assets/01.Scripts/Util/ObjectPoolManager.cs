@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -99,14 +99,30 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             Debug.LogError(prefab.name + " Pool not found");
             return null;
         }
+        
+        
+        // 수정 버전
+        
+        PoolQueue poolQueue = _poolDictionary[id];
+        PoolObject poolObject = null;
 
-        PoolObject poolObject;
-        if (_poolDictionary[id].queue.Count != 0)
+        //큐에서 "살아 있는" 오브젝트를 찾을 때까지 꺼냄
+        while (poolQueue.queue.Count > 0)
         {
-            poolObject = _poolDictionary[id].queue.Dequeue();
+            poolObject = poolQueue.queue.Dequeue();
 
+            // Unity 특유의 pseudo-null까지 포함해서 체크
+            if (poolObject != null && poolObject.gameObject != null)
+            {
+                break; // 살아있는 놈 찾음
+            }
+
+            // null / 이미 Destroy된 놈이면 그냥 버리고 다음으로 넘어감
+            poolObject = null;
         }
-        else
+
+        // 큐에 쓸만한 놈이 하나도 없었으면 새로 생성
+        if (poolObject == null || poolObject.gameObject == null)
         {
             GameObject obj = Instantiate(prefab);
 
@@ -114,9 +130,28 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             poolObject.PrefabID = id;
         }
 
+        // 여기까지 오면 무조건 유효한 오브젝트
         poolObject.Get();
 
         return poolObject.gameObject;
+
+        // PoolObject poolObject; 수정 이전 버전
+        // if (_poolDictionary[id].queue.Count != 0)
+        // {
+        //     poolObject = _poolDictionary[id].queue.Dequeue();
+        //
+        // }
+        // else
+        // {
+        //     GameObject obj = Instantiate(prefab);
+        //
+        //     poolObject = obj.GetComponent<PoolObject>();
+        //     poolObject.PrefabID = id;
+        // }
+        //
+        // poolObject.Get();
+        //
+        // return poolObject.gameObject;
 
     }
     
