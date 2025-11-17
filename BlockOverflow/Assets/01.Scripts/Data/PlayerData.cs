@@ -31,12 +31,12 @@ public class BlockData
 public class PlayerData : ScriptableObject
 {
     public List<BlockCellData> placedBlocks = new List<BlockCellData>();
-    public List<BlockData> ownedBlockIds = new List<BlockData>();
+    public List<BlockData> ownedBlocks = new List<BlockData>();
 
     public void SaveInventory(Inventory inventory)
     {
         placedBlocks.Clear();
-        ownedBlockIds.Clear();
+        ownedBlocks.Clear();
 
         for (int r = 0; r < Inventory.InventoryHeight; r++)
         {
@@ -55,9 +55,8 @@ public class PlayerData : ScriptableObject
                     blockId = owner.blockID // blockId must exist in Block
                 });
 
-                if (!ownedBlockIds.Contains(owner.blockID))
+                if (ownedBlocks.All(b => b.blockId != owner.blockID))
                 {
-                    ownedBlockIds.Add(owner.blockID);
                     ownedBlocks.Add(new BlockData(owner.blockID, owner.placedPosition, owner.rotationState));
                 }
             }
@@ -70,28 +69,12 @@ public class PlayerData : ScriptableObject
 
         Dictionary<string, Block> created = new Dictionary<string, Block>();
 
-        foreach (var cell in placedBlocks)
+        foreach (var block in ownedBlocks)
         {
-            if (!created.TryGetValue(cell.blockId, out Block block))
-            {
-                block = blockFactory(cell.blockId);
-                created[cell.blockId] = block;
-            }
-
-            inventory.blockPlacedGrid[cell.row, cell.column] = block.elements[cell.row, cell.column];
-        }
             Block b = Instantiate(blockFactory(block.blockId), inventory.transform);
             inventory.blocks.Add(b);
             inventory.Set(b, block.placedPosition, block.rotationState);
             b.SetPresetBlock();
-            //b.SetBlockPosInstant(block.placedPosition, inventory.GetInventoryLeftUp());
-            //b.PlaceBlock(block.placedPosition, inventory.GetInventoryLeftUp());
         }
-        
-        // foreach (var e in placedBlocks)
-        // {
-        //     inventory.blockPlacedGrid[e.row, e.column] = blockFactory(e.blockId).element;
-        // }
-
     }
 }

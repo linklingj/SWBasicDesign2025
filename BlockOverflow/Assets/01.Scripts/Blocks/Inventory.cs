@@ -11,13 +11,7 @@ public class Inventory : SerializedMonoBehaviour {
     
     [TableMatrix(SquareCells = true, DrawElementMethod = "DrawColoredGrid")]
     public BlockElement[,] blockPlacedGrid = new BlockElement[InventoryHeight, InventoryWidth];
-<<<<<<< Updated upstream
 
-    
-
-=======
-    
->>>>>>> Stashed changes
     public void SaveToPlayerData(PlayerData data)
     {
         data.SaveInventory(this);
