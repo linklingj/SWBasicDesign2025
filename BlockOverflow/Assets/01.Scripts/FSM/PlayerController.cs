@@ -76,6 +76,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!CanControl)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
         StateMachine.Update();
 
         // 방향 전환
@@ -212,7 +217,11 @@ public class PlayerController : MonoBehaviour
     }
 
     // ================= Input Callbacks =================
-    public void OnMove(InputAction.CallbackContext ctx) => moveInput = ctx.ReadValue<Vector2>();
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+        if (!CanControl) { moveInput = Vector2.zero; return; }
+        moveInput = ctx.ReadValue<Vector2>();
+    }
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
@@ -247,4 +256,14 @@ public class PlayerController : MonoBehaviour
             EndCrouch();
         }
     }
+    public bool CanControl { get; private set; } = false;
+
+    public void SetControl(bool value)
+    {
+        CanControl = value;
+
+        if (!CanControl)
+            rb.linearVelocity = Vector2.zero;
+    }
+
 }
