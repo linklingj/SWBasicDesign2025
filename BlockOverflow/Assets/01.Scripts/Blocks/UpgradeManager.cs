@@ -20,13 +20,14 @@ public class UpgradeManager : SerializedMonoBehaviour
     [SerializeField] Dictionary<string, Block> presetBlocks;
     
     [Header("UI")]
+    [SerializeField] BlocksUI blocksUI;
     [SerializeField] GameObject toNextButton;
     
     RewardCameraConroller cameraConroller;
     Inventory inventory;
     
     PlayerData playerData;
-    int winnerIndex;
+    int loserIndex;
     
     List<Block> rewardBlocks = new List<Block>();
     Block selectedBlock;
@@ -55,10 +56,12 @@ public class UpgradeManager : SerializedMonoBehaviour
         {
             owner.interactable = false;
             owner.toNextButton.SetActive(false);
-            owner.winnerIndex = GameManager.Instance.GetPreviousWinner();
-            GameManager.Instance.GetPlayerData(out owner.playerData, owner.winnerIndex);
+            owner.loserIndex = GameManager.Instance.GetPreviousLoser();
+            GameManager.Instance.GetPlayerData(out owner.playerData, owner.loserIndex);
             owner.inventory.LoadFromPlayerData(owner.playerData, (string id) => owner.presetBlocks[id]);
             
+            owner.blocksUI.SetTitleText(owner.loserIndex);
+            owner.blocksUI.SetUpgradeText(owner.inventory.blocks);
             
             owner.GenerateRewardBlocks();
             
@@ -87,9 +90,9 @@ public class UpgradeManager : SerializedMonoBehaviour
 
         public override void OnUpdate(UpgradeManager owner)
         {
-            if (owner.selectedBlock != null && owner.selectedBlock.IsPlaced)
+            if (owner.selectedBlock != null && owner.selectedBlock.IsPlaced && !owner.toNextButton.activeSelf)
             {
-                owner.toNextButton.SetActive(true);
+                owner.BlockPlaced();
             }
         }
 
@@ -158,10 +161,18 @@ public class UpgradeManager : SerializedMonoBehaviour
             StartCoroutine(state.BlockSelected(this));
         }
     }
+
+    public void BlockPlaced()
+    {
+        toNextButton.SetActive(true);
+        blocksUI.SetUpgradeText(inventory.blocks);
+    }
     
     public void NextRound()
     {
         inventory.SaveToPlayerData(playerData);
+        inventory.UpadatePlayerStats(playerData, (string id) => presetBlocks[id]);
+        
         GameManager.Instance.BattleStart();
     }
 }

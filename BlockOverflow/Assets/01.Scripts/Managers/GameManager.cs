@@ -65,6 +65,13 @@ public class GameManager : Singleton<GameManager>
         return winPlayerIndices[winPlayerIndices.Count - 1];
     }
     
+    public int GetPreviousLoser()
+    {
+        if (winPlayerIndices.Count == 0)
+            return 2;
+        return winPlayerIndices[winPlayerIndices.Count - 1] == 1 ? 2 : 1;
+    }
+    
     public void GetPlayerData(out PlayerData playerData, int playerIndex = -1)
     {
         if (playerIndex == -1)

@@ -749,7 +749,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: b2d7ed5e4234d4413ae72c30a5e87ab9, type: 2}
-  stats: {fileID: -4946456873615364437}
   bulletPrefab: {fileID: 3004987730608447500, guid: 51712a504d35b6542b8631dbad146255, type: 3}
   firePoint: {fileID: 4042515548747418140}
   animator: {fileID: 8127083373555908500}
@@ -847,7 +846,6 @@ GameObject:
   m_Component:
   - component: {fileID: 697193937783942884}
   - component: {fileID: 1876442354891786945}
-  - component: {fileID: -4946456873615364437}
   - component: {fileID: 3967283010225930555}
   - component: {fileID: 3053784746910986090}
   - component: {fileID: 9030402184952837912}
@@ -895,21 +893,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 5533827784029737525}
---- !u!114 &-4946456873615364437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8675466437622409480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da32bc86e5244c3ca4b7a2cf94b497a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthIncrease: 0
-  damageIncrease: 0
-  fireRateIncrease: 0
 --- !u!114 &3967283010225930555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,7 +906,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  stats: {fileID: -4946456873615364437}
   sr: {fileID: 7344980455148113763}
   hurtColor: {r: 1, g: 0.3578551, b: 0.28773582, a: 0.70980394}
 --- !u!114 &3053784746910986090

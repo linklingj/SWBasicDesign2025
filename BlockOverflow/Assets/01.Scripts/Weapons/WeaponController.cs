@@ -21,4 +21,8 @@ public class WeaponController : MonoBehaviour {
         weapon = newWeapon;
         weapon?.Init();
     }
+    
+    public void SetUpgrades(int damageIncrease, float fireRateIncrease) {
+        weapon?.SetUpgrades(damageIncrease, fireRateIncrease);
+    }
 }

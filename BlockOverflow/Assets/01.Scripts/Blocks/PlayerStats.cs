@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour {
-    public int healthIncrease;
-    public int damageIncrease;
-    public float fireRateIncrease;
+[Serializable]
+public class PlayerStats {
+    public int healthIncrease = 0;
+    public int damageIncrease = 0;
+    public float fireRateIncrease = 0f;
 }

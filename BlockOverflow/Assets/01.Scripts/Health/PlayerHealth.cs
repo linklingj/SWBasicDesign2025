@@ -5,15 +5,14 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
-    
     [SerializeField] private float maxHealth = 100f;
     public float MaxHealth => maxHealth;
-    public float FinalMaxHealth => maxHealth + stats.healthIncrease;
+    public float extraHealth = 0;
+    public float FinalMaxHealth => maxHealth + extraHealth;
     [ReadOnly, ShowInInspector] public float CurrentHealth{get; private set;}
     public bool IsDead { get; private set; }
     public bool TookDamageThisFrame { get; private set; }
 
-    [SerializeField] private PlayerStats stats;
     [SerializeField] private SpriteRenderer sr;
     private Color originalColor;
     [SerializeField] private Color hurtColor;
@@ -22,7 +21,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        CurrentHealth = maxHealth + stats.healthIncrease;
         IsDead = false;
         if (sr != null)
         {
@@ -62,10 +60,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         CurrentHealth = Mathf.Min(maxHealth, CurrentHealth + healAmount);
     }
     
-    public void Spawn()
+    public void Spawn(float extraHealth)
     {
+        this.extraHealth = extraHealth;
+        CurrentHealth = maxHealth + extraHealth;
         IsDead = false;
-        CurrentHealth = maxHealth + stats.healthIncrease;
     }
     
     private IEnumerator HitFlash()

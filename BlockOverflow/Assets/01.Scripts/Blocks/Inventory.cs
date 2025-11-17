@@ -17,6 +17,11 @@ public class Inventory : SerializedMonoBehaviour {
         data.SaveInventory(this);
     }
 
+    public void UpadatePlayerStats(PlayerData data, Func<string, Block> blockFactory)
+    {
+        data.UpdatePlayerStats(blockFactory);
+    }
+
     public void LoadFromPlayerData(PlayerData data, Func<string, Block> blockFactory)
     {
         data.LoadInventory(this, blockFactory);

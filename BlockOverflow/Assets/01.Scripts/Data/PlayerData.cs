@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine.Serialization;
 
 [Serializable]
@@ -32,6 +33,16 @@ public class PlayerData : ScriptableObject
 {
     public List<BlockCellData> placedBlocks = new List<BlockCellData>();
     public List<BlockData> ownedBlocks = new List<BlockData>();
+    
+    public PlayerStats playerStats = new PlayerStats();
+    
+    [Button]
+    public void ResetData()
+    {
+        placedBlocks.Clear();
+        ownedBlocks.Clear();
+        playerStats = new PlayerStats();
+    }
 
     public void SaveInventory(Inventory inventory)
     {
@@ -76,5 +87,19 @@ public class PlayerData : ScriptableObject
             inventory.Set(b, block.placedPosition, block.rotationState);
             b.SetPresetBlock();
         }
+    }
+    
+    public void UpdatePlayerStats(Func<string, Block> blockFactory)
+    {
+        foreach (var block in ownedBlocks)
+        {
+            Block b = blockFactory(block.blockId);
+            if (b != null)
+            {
+                b.blockEffect.ApplyEffect(playerStats);
+                Debug.Log(b.blockEffect.EffectDescription);
+            }
+        }
+        
     }
 }

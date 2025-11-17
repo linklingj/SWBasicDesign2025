@@ -24,6 +24,8 @@ public class BattleManager : MonoBehaviour
     
     private PlayerController player1;
     private PlayerController player2;
+    private PlayerData playerData1;
+    private PlayerData playerData2;
     
     private Maps map;
 
@@ -62,15 +64,38 @@ public class BattleManager : MonoBehaviour
         gameStarted.Value = false;
         StartCoroutine(PrestartSequence());
         
+        SpawnPlayers();
+    }
+    
+    void SpawnPlayers()
+    {
+        //플레이어 데이터 가져오기
+        GameManager.Instance.GetPlayerData(out playerData1, 1);
+        GameManager.Instance.GetPlayerData(out playerData2, 2);
+        
         //플레이어 스폰
         player1 = Instantiate(playerPrefab, map.player1Spawn.position, map.player1Spawn.rotation)
             .GetComponent<PlayerController>();
         player2 = Instantiate(playerPrefab, map.player2Spawn.position, map.player2Spawn.rotation)
             .GetComponent<PlayerController>();
+        
         player1.transform.SetParent(PlayerTransform);
         player2.transform.SetParent(PlayerTransform);
-        player1.GetComponent<PlayerHealth>().OnDeath += () => OnPlayerDeath(1);
-        player2.GetComponent<PlayerHealth>().OnDeath += () => OnPlayerDeath(2);
+        
+        //플레이어 무기 업그레이드 적용
+        var p1Weapon = player1.GetComponent<WeaponController>();
+        var p2Weapon = player2.GetComponent<WeaponController>();
+        p1Weapon.SetUpgrades(playerData1.playerStats.damageIncrease, playerData1.playerStats.fireRateIncrease);
+        p2Weapon.SetUpgrades(playerData2.playerStats.damageIncrease, playerData2.playerStats.fireRateIncrease);
+        
+        //플레이어 체력 초기화 및 죽음 이벤트 연결
+        var p1Health = player1.GetComponent<PlayerHealth>();
+        var p2Health = player2.GetComponent<PlayerHealth>();
+        
+        p1Health.OnDeath += () => OnPlayerDeath(1);
+        p2Health.OnDeath += () => OnPlayerDeath(2);
+        p1Health.Spawn(playerData1.playerStats.healthIncrease);
+        p2Health.Spawn(playerData2.playerStats.healthIncrease);
     }
     
     public void OnPlayerDeath(int playerIdx)
