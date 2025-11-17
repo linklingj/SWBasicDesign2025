@@ -4,13 +4,15 @@ using UnityEngine;
 public class Weapon : MonoBehaviour 
 {
     [SerializeField] protected WeaponData data;
-    [SerializeField] protected PlayerStats stats;
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform firePoint;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject muzzleFlashPrefab;
 
     protected float nextFireTime;
+    
+    protected int extraDamage = 0;
+    protected float extraFireRate = 0f;
 
     private static readonly int IsShooting = Animator.StringToHash("isShooting");
     
@@ -18,6 +20,12 @@ public class Weapon : MonoBehaviour
     {
         if (!firePoint) firePoint = transform;
         nextFireTime = 0f;
+    }
+    
+    public void SetUpgrades(int damageIncrease, float fireRateIncrease)
+    {
+        extraDamage = damageIncrease;
+        extraFireRate = fireRateIncrease;
     }
 
     private void Update()
@@ -48,7 +56,7 @@ public class Weapon : MonoBehaviour
         float cooldown = 0f;
         if (data != null && data.fireRate > 0f)
         {
-            cooldown = 1f / (data.fireRate + stats.fireRateIncrease);
+            cooldown = 1f / (data.fireRate + extraFireRate);
         }
 
         nextFireTime = Time.time + cooldown;
@@ -79,7 +87,7 @@ public class Weapon : MonoBehaviour
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
         if (bulletComponent)
         {
-            bulletComponent.SetDamage(data.damage + stats.damageIncrease);
+            bulletComponent.SetDamage(data.damage + extraDamage);
             bulletComponent.Init(pos, dir);
         }
         Vector3 muzzlepos = pos + firePoint.right * -0.1f;

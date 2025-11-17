@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,12 +35,15 @@ public class HealthBarSliderUI : MonoBehaviour
         if (slider == null)
             slider = GetComponent<Slider>();
         
-        TrySetupFromPlayer();
-
         if (fillImage == null)
             fillImage = slider.fillRect.GetComponent<Image>();
         if (fillImage != null)
             originalColor = fillImage.color;
+    }
+
+    private void Start()
+    {
+        TrySetupFromPlayer();
     }
 
     private void OnValidate()

@@ -2020,6 +2020,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1994551507706256509, guid: 5fc9eaf3ab91b44808f4a99857df20b0, type: 3}
+      propertyPath: playerData1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994551507706256509, guid: 5fc9eaf3ab91b44808f4a99857df20b0, type: 3}
+      propertyPath: playerData2
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2080872811911223933, guid: 5fc9eaf3ab91b44808f4a99857df20b0, type: 3}
       propertyPath: m_Name
       value: GameManager

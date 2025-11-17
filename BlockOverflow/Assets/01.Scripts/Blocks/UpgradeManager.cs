@@ -19,13 +19,18 @@ public class UpgradeManager : SerializedMonoBehaviour
     [Header("Preset")]
     [SerializeField] Dictionary<string, Block> presetBlocks;
     
+    [Header("UI")]
+    [SerializeField] BlocksUI blocksUI;
+    [SerializeField] GameObject toNextButton;
+    
     RewardCameraConroller cameraConroller;
     Inventory inventory;
     
     PlayerData playerData;
-    int winnerIndex;
+    int loserIndex;
     
     List<Block> rewardBlocks = new List<Block>();
+    Block selectedBlock;
     private bool interactable;
 
     private void Awake()
@@ -50,10 +55,13 @@ public class UpgradeManager : SerializedMonoBehaviour
         public override void OnBegin(UpgradeManager owner)
         {
             owner.interactable = false;
-            owner.winnerIndex = GameManager.Instance.GetPreviousWinner();
-            GameManager.Instance.GetPlayerData(out owner.playerData, owner.winnerIndex);
+            owner.toNextButton.SetActive(false);
+            owner.loserIndex = GameManager.Instance.GetPreviousLoser();
+            GameManager.Instance.GetPlayerData(out owner.playerData, owner.loserIndex);
             owner.inventory.LoadFromPlayerData(owner.playerData, (string id) => owner.presetBlocks[id]);
             
+            owner.blocksUI.SetTitleText(owner.loserIndex);
+            owner.blocksUI.SetUpgradeText(owner.inventory.blocks);
             
             owner.GenerateRewardBlocks();
             
@@ -82,9 +90,9 @@ public class UpgradeManager : SerializedMonoBehaviour
 
         public override void OnUpdate(UpgradeManager owner)
         {
-            if (Keyboard.current.aKey.wasPressedThisFrame)
+            if (owner.selectedBlock != null && owner.selectedBlock.IsPlaced && !owner.toNextButton.activeSelf)
             {
-                owner.inventory.SaveToPlayerData(owner.playerData);
+                owner.BlockPlaced();
             }
         }
 
@@ -142,6 +150,7 @@ public class UpgradeManager : SerializedMonoBehaviour
         var state = StateMachine.State as RewardState;
         if (state != null)
         {
+            selectedBlock = block;
             foreach (var b in rewardBlocks)
             {
                 if (b == block)
@@ -151,5 +160,19 @@ public class UpgradeManager : SerializedMonoBehaviour
             }
             StartCoroutine(state.BlockSelected(this));
         }
+    }
+
+    public void BlockPlaced()
+    {
+        toNextButton.SetActive(true);
+        blocksUI.SetUpgradeText(inventory.blocks);
+    }
+    
+    public void NextRound()
+    {
+        inventory.SaveToPlayerData(playerData);
+        inventory.UpadatePlayerStats(playerData, (string id) => presetBlocks[id]);
+        
+        GameManager.Instance.BattleStart();
     }
 }

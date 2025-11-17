@@ -32,19 +32,24 @@ public class GameManager : Singleton<GameManager>
 
         OnGameStateChanged?.Invoke(gameState);
     }
+    
+    void GeneratePlayerData()
+    {
+        playerData1 = ScriptableObject.CreateInstance<PlayerData>();
+        playerData2 = ScriptableObject.CreateInstance<PlayerData>();
+    }
 
     public void StartNewGame()
     {
         winPlayerIndices.Clear();
-        playerData1 = ScriptableObject.CreateInstance<PlayerData>();
-        playerData2 = ScriptableObject.CreateInstance<PlayerData>();
+        GeneratePlayerData();
         SceneLoader.Instance.LoadScene(SceneName.CharacterSelection, () => ChangeGameState(GameState.CharacterSelection));
     }
 
     public void BattleStart()
     {
+        if (playerData1 == null || playerData2 == null) GeneratePlayerData();
         SceneLoader.Instance.LoadScene(SceneName.Battle);
-
     }
 
     public void EndBattle(int winPlayerIndex)
@@ -60,11 +65,19 @@ public class GameManager : Singleton<GameManager>
         return winPlayerIndices[winPlayerIndices.Count - 1];
     }
     
+    public int GetPreviousLoser()
+    {
+        if (winPlayerIndices.Count == 0)
+            return 2;
+        return winPlayerIndices[winPlayerIndices.Count - 1] == 1 ? 2 : 1;
+    }
+    
     public void GetPlayerData(out PlayerData playerData, int playerIndex = -1)
     {
         if (playerIndex == -1)
             playerIndex = GetPreviousWinner();
 
+        if (playerData1 == null || playerData2 == null) GeneratePlayerData();
         playerData = playerIndex == 1 ? playerData1 : playerData2;
     }
 
