@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public class BlockDamageEffect : IBlockEffect
 {
     public string EffectDescription => $"공격력 +{damageAmount}";

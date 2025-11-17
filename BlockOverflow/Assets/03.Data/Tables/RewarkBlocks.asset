@@ -18,11 +18,14 @@ MonoBehaviour:
     - {fileID: 2808117450475872111, guid: fcccde349608b44b4940b1b0372e0d38, type: 3}
     - {fileID: 7885146244441579541, guid: 502eb58a4280e4b259ba09cb8c009711, type: 3}
     - {fileID: 3325947911001158249, guid: 476c48bcb9e474de8a6364a16387f5ec, type: 3}
+    - {fileID: 7244702919463200926, guid: af71123b8fb814e7b8e92626fe88bd6f, type: 3}
+    - {fileID: 7254771377243939893, guid: 9e521f318114f4430b94234a0252ee03, type: 3}
   - rarity: 1
     blockList:
     - {fileID: 3085532241237668033, guid: 08c7bdce27b4d4fdba100a4de3c0a4c8, type: 3}
     - {fileID: 704622716959898860, guid: 756578bbe82fd470c9b05495474a24a3, type: 3}
     - {fileID: 5269600635471663704, guid: c94dbc8b7722548148189c6417f766b1, type: 3}
+    - {fileID: 4427331347873842631, guid: a20f349b5b6fc463599333adaf32ec93, type: 3}
   - rarity: 2
     blockList:
     - {fileID: 9060125166255383194, guid: 7a5922f078d5145cca2879fdc526d44e, type: 3}

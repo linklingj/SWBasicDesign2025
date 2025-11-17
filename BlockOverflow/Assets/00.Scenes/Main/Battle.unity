@@ -2198,7 +2198,8 @@ MonoBehaviour:
         m_Calls: []
   playerPrefab: {fileID: 8675466437622409480, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
   mapPrefabs:
-  - {fileID: 3604845064422884706, guid: 971d7de6db3394c57ac15eecd7c2cc48, type: 3}
+  - {fileID: 7562095252023536341, guid: 419e9fa0c0bd74a98a513c2a7eb21ea9, type: 3}
+  - {fileID: 2861011803183593009, guid: b9a29aacc88ae4df7b19f85cbd42dfb2, type: 3}
   prestartDelay: 1
   cameraController: {fileID: 519420033}
   battleUI: {fileID: 1058888179}
