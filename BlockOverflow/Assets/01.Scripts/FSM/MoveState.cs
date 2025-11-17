@@ -11,10 +11,10 @@ public class MoveState : State<PlayerController>
     {
         owner.ApplyMovement();
 
-        if (Mathf.Abs(owner.GetMoveInput().x) < 0.01f) { Set<IdleState>(); return; }
-        if (owner.crouchHeld && owner.IsGrounded()) { Set<CrouchState>(); return; }
+        if (Mathf.Abs(owner.MoveInput.x) < 0.01f) { Set<IdleState>(); return; }
+        if (owner.crouchHeld) { Set<CrouchState>(); return; }
 
-        if (owner.ConsumeJumpPressed() && owner.TryGroundOrBufferedJump())
+        if (owner.JumpThisFrame && owner.TryGroundOrBufferedJump())
         { Set<AirState>(); return; }
 
         if (!owner.IsGrounded()) { Set<AirState>(); return; }

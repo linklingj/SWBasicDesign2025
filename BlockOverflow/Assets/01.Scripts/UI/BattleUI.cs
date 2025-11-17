@@ -25,10 +25,10 @@ public class BattleUI : MonoBehaviour {
         healthBarSliderUI2?.gameObject.SetActive(true);
         healthBarSliderUI1?.SetPlayer(player1.transform);
         healthBarSliderUI2?.SetPlayer(player2.transform);
-        StartCoroutine(CountDownSequence());
+        StartCoroutine(CountDownSequence(player1, player2));
     }
     
-    private IEnumerator CountDownSequence()
+    private IEnumerator CountDownSequence(PlayerController p1, PlayerController p2)
     {
         //카운트다운 3초 시작
         Timer timer = new Timer();
@@ -60,7 +60,8 @@ public class BattleUI : MonoBehaviour {
         startUI.DOMoveX(Screen.width/2, 0.3f).From(new Vector3(-Screen.width, startUI.anchoredPosition.y, 0)).SetEase(Ease.OutBack);
         
         yield return new WaitForSeconds(1f);
-        
+        p1.SetControl(true);
+        p2.SetControl(true);
         startUI.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutSine);
     }
 }
