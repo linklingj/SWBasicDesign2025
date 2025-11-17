@@ -97,7 +97,6 @@ public class PlayerController : MonoBehaviour
         }
 
         StateMachine.Update();
-        Debug.Log($"PlayerController({gameObject.name}) Update Running");
 
         if (moveInput.x > 0.01f) isFacingRight = true;
         else if (moveInput.x < -0.01f) isFacingRight = false;
@@ -140,7 +139,6 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.started)
         {
-            Debug.Log("JUMP STARTED");
             lastJumpPressedTime = Time.time;
 
             JumpThisFrame = true;
@@ -150,7 +148,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (ctx.canceled)
         {
-            Debug.Log("JUMP CANCELED");
 
             jumpReleasedThisFrame = true;
             JumpHeld = false;

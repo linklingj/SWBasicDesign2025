@@ -321,7 +321,7 @@ MonoBehaviour:
     - rid: 4987116833686421816
       type: {class: BlockFireRateEffect, ns: , asm: Assembly-CSharp}
       data:
-        fireRateAmount: 20
+        fireRateAmount: 5
 --- !u!114 &4155872088554061352
 MonoBehaviour:
   m_ObjectHideFlags: 0

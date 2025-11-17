@@ -5,7 +5,7 @@ using UnityEngine;
 public class BlockFireRateEffect : IBlockEffect
 {
     public string EffectDescription => $"연사속도 +{fireRateAmount}";
-    [SerializeField] private int fireRateAmount = 1;
+    [SerializeField] private float fireRateAmount = 1;
 
     public void ApplyEffect(PlayerStats stats)
     {
