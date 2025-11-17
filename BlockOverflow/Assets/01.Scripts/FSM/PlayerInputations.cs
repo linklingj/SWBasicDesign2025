@@ -226,6 +226,17 @@ namespace GameInput
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""HID"",
+            ""bindingGroup"": ""HID"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<HID::Flydigi VADER4P>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
@@ -476,6 +487,19 @@ namespace GameInput
             {
                 if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
                 return asset.controlSchemes[m_GamepadSchemeIndex];
+            }
+        }
+        private int m_HIDSchemeIndex = -1;
+        /// <summary>
+        /// Provides access to the input control scheme.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
+        public InputControlScheme HIDScheme
+        {
+            get
+            {
+                if (m_HIDSchemeIndex == -1) m_HIDSchemeIndex = asset.FindControlSchemeIndex("HID");
+                return asset.controlSchemes[m_HIDSchemeIndex];
             }
         }
         /// <summary>

@@ -138,6 +138,17 @@
                     "isOR": false
                 }
             ]
+        },
+        {
+            "name": "HID",
+            "bindingGroup": "HID",
+            "devices": [
+                {
+                    "devicePath": "<HID::Flydigi VADER4P>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
         }
     ]
 }
