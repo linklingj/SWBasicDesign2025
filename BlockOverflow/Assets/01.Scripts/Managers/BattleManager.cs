@@ -109,10 +109,10 @@ public class BattleManager : MonoBehaviour
     
     public void OnPlayerDeath(int playerIdx)
     {
-        StartCoroutine(StopBattle(playerIdx == 1 ? player2.transform : player1.transform));
+        StartCoroutine(StopBattle(playerIdx == 1 ? 2 : 1));
     }
 
-    private IEnumerator StopBattle(Transform winnerTransform)
+    private IEnumerator StopBattle(int winnerIndex)
     {
         //todo: 배틀 종료 처리
         //승리 플레이어 확대
@@ -120,10 +120,10 @@ public class BattleManager : MonoBehaviour
         //슬로우
         gameStarted.Value = false;
         DOTween.To(()=> Time.timeScale, x=> Time.timeScale = x, 0.3f, 1f).SetEase(Ease.InQuad).SetUpdate(true);
-        cameraController.ZoomTo(winnerTransform.position, CameraController.zoomType.Close, 1f);
+        cameraController.ZoomTo((winnerIndex == 1)? player1.transform.position : player2.transform.position, CameraController.zoomType.Close, 1f);
         yield return new WaitForSeconds(1f);
         Time.timeScale = 1;
-        GameManager.Instance.EndBattle(1);
+        GameManager.Instance.EndBattle(winnerIndex);
     }
 
     private IEnumerator PrestartSequence()

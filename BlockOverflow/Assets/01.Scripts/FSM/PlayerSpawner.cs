@@ -32,8 +32,10 @@ public class PlayerSpawner : MonoBehaviour
             controlScheme: "Gamepad",
             pairWithDevice: pad
         );
-
+        
+        
         playerInput.transform.position = spawnPos;
+        
         playerInput.gameObject.name = $"Player_{index + 1}";
         Debug.Log($"✅ Spawned {playerInput.name} paired with {pad.displayName}");
     }

@@ -77,6 +77,7 @@ public class CameraController : SerializedMonoBehaviour
     public void MoveCamera()
     {
         if (!battleManager || !startPos || !endPos) return;
+        if (!battleManager.gameStarted) return;
         float moveTime = battleManager.GameTime - moveStartTime;
         if (moveTime <= 0 || moveTime > moveDuration) return;
         transform.position = Vector3.Lerp(startPos.position, endPos.position, moveTime / moveDuration);
