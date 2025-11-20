@@ -700,6 +700,7 @@ MonoBehaviour:
   rightHandPivot: {fileID: 3134985702879677144}
   pivotCrouchOffsetY: -0.2
   pivotLerpSpeed: 10
+  playerHealth: {fileID: 0}
 --- !u!1 &8240697772759655588
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,6 +852,7 @@ GameObject:
   - component: {fileID: 9030402184952837912}
   - component: {fileID: 1048356768493872553}
   - component: {fileID: -2610886720383930740}
+  - component: {fileID: 3761485586270827342}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -943,6 +945,10 @@ MonoBehaviour:
   jumpReleasedThisFrame: 0
   attackPressedThisFrame: 0
   crouchHeld: 0
+  hasStartedJump: 0
+  jumpStartFrame: 0
+  airJumpsAvailable: 0
+  wasTouchingWall: 0
 --- !u!50 &9030402184952837912
 Rigidbody2D:
   serializedVersion: 5
@@ -1123,3 +1129,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3761485586270827342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675466437622409480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f461c5ae1f8984d66927731fcbd17801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  margin: 0
+  startGraceTime: 3.5
