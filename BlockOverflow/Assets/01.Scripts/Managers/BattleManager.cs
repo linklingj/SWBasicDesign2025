@@ -120,7 +120,7 @@ public class BattleManager : MonoBehaviour
         //슬로우
         gameStarted.Value = false;
         DOTween.To(()=> Time.timeScale, x=> Time.timeScale = x, 0.3f, 1f).SetEase(Ease.InQuad).SetUpdate(true);
-        cameraController.ZoomTo((winnerIndex == 1)? player1.transform.position : player2.transform.position, CameraController.zoomType.Close, 1f);
+        cameraController.ZoomTo((winnerIndex == 1)? player1.transform.position : player2.transform.position, CameraController.zoomType.Normal, 1f, -10.5f);
         yield return new WaitForSeconds(1f);
         Time.timeScale = 1;
         GameManager.Instance.EndBattle(winnerIndex);
@@ -133,9 +133,9 @@ public class BattleManager : MonoBehaviour
         //countdown
         gameTime = -3f;
         battleUI.CountDown(player1, player2);
-        cameraController.ZoomTo(player1.transform.position, CameraController.zoomType.Close);
+        cameraController.ZoomTo(player1.transform.position, CameraController.zoomType.Normal, 0.3f, -10.5f);
         yield return new WaitForSeconds(1f);
-        cameraController.ZoomTo(player2.transform.position, CameraController.zoomType.Close);
+        cameraController.ZoomTo(player2.transform.position, CameraController.zoomType.Normal, 0.3f, -10.5f);
         yield return new WaitForSeconds(1f);
         cameraController.ZoomTo(map.originalCameraPos.position, CameraController.zoomType.Wide); //todo: 중앙 포인트로 변경
         yield return new WaitForSeconds(1f);

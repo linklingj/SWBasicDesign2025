@@ -34,7 +34,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     
         TookDamageThisFrame = true;
         CurrentHealth = Mathf.Max(0, CurrentHealth - damageAmount);
-        //일단 막아놓기
         if (DamageTextSpawner.Instance) DamageTextSpawner.Instance.ShowDamage(damageAmount, transform.position);
 
         
