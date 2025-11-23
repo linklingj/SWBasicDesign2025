@@ -8,7 +8,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected Transform firePoint;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject muzzleFlashPrefab;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
+    
+    
+    
     protected float nextFireTime;
     
     protected int extraDamage = 0;
@@ -19,7 +23,37 @@ public class Weapon : MonoBehaviour
     public virtual void Init()
     {
         if (!firePoint) firePoint = transform;
+        else
+        {
+            firePoint.localPosition = data.firePosoffset;
+        }
         nextFireTime = 0f;
+        
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+        ApplyWeaponData();
+    }
+    
+    protected void ApplyWeaponData()
+    {
+        if (data == null) return;
+        
+        // 1) 탄 프리팹 / 머즐 플래시를 데이터 기준으로 덮어쓰기 (데이터에 있으면)
+        if (data.bulletPrefab != null)
+            bulletPrefab = data.bulletPrefab;
+
+        if (data.muzzleFlashPrefab != null)
+            muzzleFlashPrefab = data.muzzleFlashPrefab;
+
+        // 2) 무기 스프라이트 교체
+        if (spriteRenderer != null && data.weaponSprite != null)
+            spriteRenderer.sprite = data.weaponSprite;
+
+        // 3) 애니메이션 교체
+        if (animator != null && data.animatorController != null)
+            animator.runtimeAnimatorController = data.animatorController;
+        
     }
     
     public void SetUpgrades(int damageIncrease, float fireRateIncrease)
