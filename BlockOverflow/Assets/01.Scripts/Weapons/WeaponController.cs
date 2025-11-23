@@ -31,7 +31,7 @@ public class WeaponController : MonoBehaviour {
         if (weapon == null) return;
         if (Mouse.current != null && Mouse.current.leftButton.isPressed) {
             weapon.Fire();
-            _cameraController.ShakeCamera(0.05f, 0.03f, 20);
+            _cameraController?.ShakeCamera(0.05f, 0.03f, 20);
         }
         if (_gamepad != null)
         {

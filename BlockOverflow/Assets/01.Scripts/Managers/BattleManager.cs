@@ -105,6 +105,13 @@ public class BattleManager : MonoBehaviour
         p2Health.OnDeath += () => OnPlayerDeath(2);
         p1Health.Spawn(playerData1.playerStats.healthIncrease);
         p2Health.Spawn(playerData2.playerStats.healthIncrease);
+
+        var customization1 = player1.GetComponent<PlayerCustomize>();
+        customization1.Init(playerData1.customization);
+        customization1.SetAll();
+        var customization2 = player2.GetComponent<PlayerCustomize>();
+        customization2.Init(playerData2.customization);
+        customization2.SetAll();
     }
     
     public void OnPlayerDeath(int playerIdx)

@@ -19,6 +19,7 @@ public class ColorPalette : ScriptableObject {
 
     public Palette blockTypeColorPalette;
     public Palette rarityTypeColorPalette;
+    public Palette customizeColorPalette;
     [ColorPalette]
     public Color forDebug;
     
@@ -30,9 +31,13 @@ public class ColorPalette : ScriptableObject {
         if (blockTypeColorPalette == null)
             Debug.LogError("BlockType color palette not found.");
         
-        blockTypeColorPalette = GetPalette("RarityType");
+        rarityTypeColorPalette = GetPalette("RarityType");
         if (rarityTypeColorPalette == null)
             Debug.LogError("RarityType color palette not found.");
+        
+        customizeColorPalette = GetPalette("CustomizeColor");
+        if (customizeColorPalette == null)
+            Debug.LogError("CustomizeColor color palette not found.");
     }
 
     private Palette GetPalette(string paletteName)

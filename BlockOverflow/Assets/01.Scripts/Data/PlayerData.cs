@@ -13,7 +13,6 @@ public class BlockCellData
     public string blockId; // Unique ID per Block prefab or instance
 }
 
-[CreateAssetMenu(fileName = "PlayerData", menuName = "Game/PlayerData")]
 [Serializable]
 public class BlockData
 {
@@ -28,6 +27,14 @@ public class BlockData
     }
 }
 
+[Serializable]
+public class PlayerCustomization
+{
+    [ColorPalette]
+    public Color playerColor = Color.white;
+    public Sprite hatSprite;
+}
+
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/PlayerData")]
 public class PlayerData : ScriptableObject
 {
@@ -35,6 +42,7 @@ public class PlayerData : ScriptableObject
     public List<BlockData> ownedBlocks = new List<BlockData>();
     
     public PlayerStats playerStats = new PlayerStats();
+    public PlayerCustomization customization = new PlayerCustomization();
     
     [Button]
     public void ResetData()
