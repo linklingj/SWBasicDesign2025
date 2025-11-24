@@ -57,6 +57,11 @@ public class KillOutsideCamera : MonoBehaviour
     {
         _enabled = true;
     }
+    
+    public void DisableKill()
+    {
+        _enabled = false;
+    }
 
 
 }

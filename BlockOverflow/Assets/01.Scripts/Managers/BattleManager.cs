@@ -22,6 +22,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private Transform StageTransform;
     [SerializeField] private Transform PlayerTransform;
     
+    [SerializeField] private SpecialObject frog;
+    
     private PlayerController player1;
     private PlayerController player2;
     private PlayerData playerData1;
@@ -126,6 +128,8 @@ public class BattleManager : MonoBehaviour
         //승리 애니메이션
         //슬로우
         gameStarted.Value = false;
+        player1.GetComponent<KillOutsideCamera>().DisableKill();
+        player2.GetComponent<KillOutsideCamera>().DisableKill();
         DOTween.To(()=> Time.timeScale, x=> Time.timeScale = x, 0.3f, 1f).SetEase(Ease.InQuad).SetUpdate(true);
         cameraController.ZoomTo((winnerIndex == 1)? player1.transform.position : player2.transform.position, CameraController.zoomType.Normal, 1f, -10.5f);
         yield return new WaitForSeconds(1f);
@@ -150,5 +154,15 @@ public class BattleManager : MonoBehaviour
         cameraController.ShakeCamera(0.3f, 0.5f, 10);
         
         gameStarted.Value = true;
+        SetSpecialObject();
+    }
+    
+    private void SetSpecialObject()
+    {
+        if (frog != null && map.specialWayPoints != null)
+        {
+            frog.gameObject.SetActive(true);
+            frog.Init(map.specialWayPoints.ToArray());
+        }
     }
 }

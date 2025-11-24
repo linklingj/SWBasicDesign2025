@@ -108,7 +108,7 @@ public class CameraController : SerializedMonoBehaviour
 
         if (t > 0.99f) intensity += Mathf.Sin((moveTime - moveDuration) * vignetteBlinkSpeed) * 0.03f;
 
-        vignette.intensity.value = Mathf.Clamp01(intensity);
+        if (vignette) vignette.intensity.value = Mathf.Clamp01(intensity);
     }
     
     private void UpdateSineMovement()
