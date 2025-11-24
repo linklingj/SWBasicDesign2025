@@ -6,10 +6,13 @@ public class WeaponController : MonoBehaviour {
     private PlayerInput _playerInput;
     //private InputAction _shootAction;
     private Gamepad _gamepad;
+    
+    private CameraController _cameraController;
 
     private void Awake() {
         if (weapon == null) weapon = GetComponentInChildren<Weapon>();
         _playerInput = GetComponentInParent<PlayerInput>();
+        _cameraController = FindFirstObjectByType<CameraController>();
         weapon?.Init();
     }
     
@@ -28,6 +31,7 @@ public class WeaponController : MonoBehaviour {
         if (weapon == null) return;
         if (Mouse.current != null && Mouse.current.leftButton.isPressed) {
             weapon.Fire();
+            _cameraController.ShakeCamera(0.05f, 0.03f, 20);
         }
         if (_gamepad != null)
         {
@@ -37,6 +41,7 @@ public class WeaponController : MonoBehaviour {
             if (trigger >= 0.1f)
             {
                 weapon.Fire(); // Fire 안에서 쿨타임 처리되어 있다고 가정
+                _cameraController.ShakeCamera(0.1f, 0.05f, 5);
             }
         }
         

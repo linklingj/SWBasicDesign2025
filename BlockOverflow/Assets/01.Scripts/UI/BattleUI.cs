@@ -21,8 +21,8 @@ public class BattleUI : MonoBehaviour {
 
     public void CountDown(PlayerController player1, PlayerController player2)
     {
-        healthBarSliderUI1?.gameObject.SetActive(true);
-        healthBarSliderUI2?.gameObject.SetActive(true);
+        // healthBarSliderUI1?.gameObject.SetActive(true);
+        // healthBarSliderUI2?.gameObject.SetActive(true);
         healthBarSliderUI1?.SetPlayer(player1.transform);
         healthBarSliderUI2?.SetPlayer(player2.transform);
         StartCoroutine(CountDownSequence(player1, player2));
