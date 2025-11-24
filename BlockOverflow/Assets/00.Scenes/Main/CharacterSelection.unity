@@ -542,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 697193937783942884, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 697193937783942884, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -586,7 +586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1876442354891786945, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3053784746910986090, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_Enabled
@@ -595,6 +595,10 @@ PrefabInstance:
     - target: {fileID: 3967283010225930555, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691105717695404175, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7344980455148113763, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_Color.b
@@ -959,6 +963,7 @@ GameObject:
   - component: {fileID: 368315922}
   - component: {fileID: 368315924}
   - component: {fileID: 368315923}
+  - component: {fileID: 368315925}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1084,6 +1089,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368315921}
   m_CullTransparentMesh: 1
+--- !u!114 &368315925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368315921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ec00ddb3eaa4fcfab414b595696b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hideOnInit: 0
 --- !u!1 &392196803
 GameObject:
   m_ObjectHideFlags: 0
@@ -3405,9 +3423,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1507808804}
+      - m_Target: {fileID: 1507808805}
         m_TargetAssemblyTypeName: CharacterSelectManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: NextButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3466,6 +3484,7 @@ GameObject:
   - component: {fileID: 1106838547}
   - component: {fileID: 1106838549}
   - component: {fileID: 1106838548}
+  - component: {fileID: 1106838550}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3591,6 +3610,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106838546}
   m_CullTransparentMesh: 1
+--- !u!114 &1106838550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106838546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ec00ddb3eaa4fcfab414b595696b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hideOnInit: 0
 --- !u!1 &1132752301
 GameObject:
   m_ObjectHideFlags: 0
@@ -4378,7 +4410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1876442354891786945, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3053784746910986090, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_Enabled
@@ -5013,6 +5045,11 @@ MonoBehaviour:
   - {fileID: 88044973}
   - {fileID: 2013715420}
   bg: {fileID: 2100000, guid: eff55995d44914ecbbe05e6435f0313d, type: 2}
+  nextButton: {fileID: 1047208012}
+  nextButtonText: {fileID: 368315925}
+  otherPlayerSelectManager: {fileID: 1963218310}
+  startButton: {fileID: 2134604017}
+  state: 0
 --- !u!4 &1507808806
 Transform:
   m_ObjectHideFlags: 0
@@ -5458,9 +5495,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1507808805}
+      - m_Target: {fileID: 1963218310}
         m_TargetAssemblyTypeName: CharacterSelectManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: NextButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6527,6 +6564,11 @@ MonoBehaviour:
   - {fileID: 1797329852}
   - {fileID: 224829170}
   bg: {fileID: 2100000, guid: 8eeee8a6aab244a4eb7f978bbcac97b7, type: 2}
+  nextButton: {fileID: 1614304880}
+  nextButtonText: {fileID: 1106838550}
+  otherPlayerSelectManager: {fileID: 1507808805}
+  startButton: {fileID: 2134604017}
+  state: 0
 --- !u!4 &1963218311
 Transform:
   m_ObjectHideFlags: 0
@@ -8000,7 +8042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2134604018
 RectTransform:
   m_ObjectHideFlags: 0

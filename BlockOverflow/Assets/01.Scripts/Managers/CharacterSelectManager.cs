@@ -16,6 +16,13 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
 
     [SerializeField] private Material bg;
 
+    [SerializeField] private Image nextButton;
+    [SerializeField] private TextUIElement nextButtonText;
+    
+    [SerializeField] CharacterSelectManager otherPlayerSelectManager;
+    [SerializeField] public GameObject startButton;
+
+    public int state = 0;
     private void Awake()
     {
         for (int i = 0; i < colorPreviews.Count; i++)
@@ -24,7 +31,9 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
         }
 
         AnimateHats();
-        DOVirtual.DelayedCall(1, AnimateColorPreviews);
+        foreach (var item in colorPreviews)
+            item.DOFade(0f, 0f);
+        DOVirtual.DelayedCall(1f, AnimateColorPreviews, false);
         bg.DOColor(new Color(0.8f,0.8f,0.8f), "_Color", 0f);
     }
 
@@ -165,5 +174,30 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
         customization.SetColor(true);
         //set background shader input color
         bg.DOColor(Color.Lerp(color, Color.white, 0.5f), "_Color", 1f);
+    }
+
+    public void NextButton()
+    {
+        if (state == 2) return;
+        if (state == 0)
+        {
+            colorPreviews.ForEach(item => item.DOFade(0f, 0.3f));
+            hatpreviews.ForEach(item => item.DOFade(0f, 0.3f));
+            nextButtonText.SetText("준비 완료");
+            nextButton.DOColor(Color.red, 0.5f);
+        }
+
+        if (state == 1)
+        {
+            nextButton.gameObject.SetActive(false);
+            if (otherPlayerSelectManager.state == 2)
+            {
+                startButton.SetActive(true);
+                //tween start button
+                startButton.transform.localScale = Vector3.zero;
+                startButton.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+            }
+        }
+        state++;
     }
 }

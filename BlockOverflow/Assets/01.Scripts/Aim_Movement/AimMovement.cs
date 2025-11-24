@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -70,6 +71,18 @@ public class AimMovement : MonoBehaviour
         if (leftHandPivot)  leftHandPivot.localScale  = Vector3.one;
 
         SetActiveHand(true, force:true);
+    }
+
+    private void Start()
+    {
+        if (transform.position.x > 0)
+        {
+            SetActiveHand(true, force:true);
+        }
+        else
+        {
+            SetActiveHand(false, force:true);
+        }
     }
 
     private void Update()

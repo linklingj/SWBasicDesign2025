@@ -53,4 +53,9 @@ public class PlayerCustomize : MonoBehaviour
             hat.sprite = null;
         }
     }
+    
+    public Color GetColor()
+    {
+        return playerBody.color;
+    }
 }
