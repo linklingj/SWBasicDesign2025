@@ -35,6 +35,7 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
             item.DOFade(0f, 0f);
         DOVirtual.DelayedCall(1f, AnimateColorPreviews, false);
         bg.DOColor(new Color(0.8f,0.8f,0.8f), "_Color", 0f);
+        bg.SetVector("_Tiling", new Vector2(10,10));
     }
 
     public void StartGame()
