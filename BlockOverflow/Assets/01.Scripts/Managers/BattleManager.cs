@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BattleManager : MonoBehaviour
+public class BattleManager : SerializedMonoBehaviour
 {
     public Observable<bool> gameStarted = new Observable<bool>(false);
     
@@ -23,6 +23,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private Transform PlayerTransform;
     
     [SerializeField] private SpecialObject frog;
+    [SerializeField] private float frogSpawnTime;
+
+    [SerializeField] private Dictionary<WeaponType, WeaponData> weaponDatas;
     
     private PlayerController player1;
     private PlayerController player2;
@@ -96,6 +99,8 @@ public class BattleManager : MonoBehaviour
         //플레이어 무기 업그레이드 적용
         var p1Weapon = player1.GetComponent<WeaponController>();
         var p2Weapon = player2.GetComponent<WeaponController>();
+        p1Weapon.SetWeapon(weaponDatas[playerData1.selectedWeaponType], 1);
+        p2Weapon.SetWeapon(weaponDatas[playerData2.selectedWeaponType], 2);
         p1Weapon.SetUpgrades(playerData1.playerStats.damageIncrease, playerData1.playerStats.fireRateIncrease);
         p2Weapon.SetUpgrades(playerData2.playerStats.damageIncrease, playerData2.playerStats.fireRateIncrease);
         
@@ -128,6 +133,7 @@ public class BattleManager : MonoBehaviour
         //승리 애니메이션
         //슬로우
         gameStarted.Value = false;
+        frog.StopMoving();
         player1.GetComponent<KillOutsideCamera>().DisableKill();
         player2.GetComponent<KillOutsideCamera>().DisableKill();
         DOTween.To(()=> Time.timeScale, x=> Time.timeScale = x, 0.3f, 1f).SetEase(Ease.InQuad).SetUpdate(true);
@@ -164,5 +170,13 @@ public class BattleManager : MonoBehaviour
             frog.gameObject.SetActive(true);
             frog.Init(map.specialWayPoints.ToArray());
         }
+
+        StartCoroutine(SpawnSpecialObjectAfterDelay(frogSpawnTime));
+    }
+    
+    private IEnumerator SpawnSpecialObjectAfterDelay(float delay)
+    {
+        yield return new WaitUntil(() => gameTime >= delay);
+        frog.StartMoving();
     }
 }

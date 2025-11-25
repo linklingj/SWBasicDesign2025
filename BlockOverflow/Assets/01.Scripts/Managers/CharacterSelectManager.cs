@@ -22,6 +22,9 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
     [SerializeField] CharacterSelectManager otherPlayerSelectManager;
     [SerializeField] public GameObject startButton;
 
+    [SerializeField] private WeaponController playerWeapon;
+    [SerializeField] private Dictionary<WeaponType, WeaponData> weaponData;
+
     public int state = 0;
     private void Awake()
     {
@@ -180,12 +183,15 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
     public void NextButton()
     {
         if (state == 2) return;
+        
         if (state == 0)
         {
             colorPreviews.ForEach(item => item.DOFade(0f, 0.3f));
             hatpreviews.ForEach(item => item.DOFade(0f, 0.3f));
             nextButtonText.SetText("준비 완료");
             nextButton.DOColor(Color.red, 0.5f);
+            playerWeapon.gameObject.SetActive(true);
+            playerWeapon.SetWeapon(weaponData[WeaponType.Rifle], index);
         }
 
         if (state == 1)

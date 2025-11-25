@@ -596,6 +596,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6397547306224806348, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6691105717695404175, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1010,7 +1014,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB2E4\uC74C"
+  m_text: "\uB2E4 \uC74C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 814f130b1b6634db78c5af7781e18a7f, type: 2}
   m_sharedMaterial: {fileID: 1860198414240903403, guid: 814f130b1b6634db78c5af7781e18a7f, type: 2}
@@ -3303,6 +3307,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adeac4bccfff45eab70636fdc66cacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &923030947 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1876442354891786945, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
+  m_PrefabInstance: {fileID: 235446790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1a0fbbe77ae4a80bf6e8df7cbbe336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1045940443
 GameObject:
   m_ObjectHideFlags: 0
@@ -3377,7 +3392,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 947, y: -1962}
-  m_SizeDelta: {x: 517.4637, y: 216.2983}
+  m_SizeDelta: {x: 635.36, y: 216.2983}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1047208011
 MonoBehaviour:
@@ -3473,6 +3488,171 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047208009}
   m_CullTransparentMesh: 1
+--- !u!43 &1084176962
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 0
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 0
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 0
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 0
+    _typelessdata: 
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &1106838546
 GameObject:
   m_ObjectHideFlags: 0
@@ -3531,7 +3711,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB2E4\uC74C"
+  m_text: "\uB2E4 \uC74C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 814f130b1b6634db78c5af7781e18a7f, type: 2}
   m_sharedMaterial: {fileID: 1860198414240903403, guid: 814f130b1b6634db78c5af7781e18a7f, type: 2}
@@ -4432,6 +4612,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6397547306224806348, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7344980455148113763, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -4914,6 +5098,9 @@ MonoBehaviour:
     - {fileID: -5716421005481303614, guid: 0190a69cdd0a64586a302b3d818c91d3, type: 3}
     - {fileID: -7387593275960739065, guid: e2e56b8e886f54c099b21661b844c97d, type: 3}
     - {fileID: -5611270562437816321, guid: 90ee2a2fed1f940c090d06cedf2614d0, type: 3}
+    - {fileID: 11400000, guid: b2d7ed5e4234d4413ae72c30a5e87ab9, type: 2}
+    - {fileID: 11400000, guid: 76eb14ac4a5ca482e9b0df1319375a5d, type: 2}
+    - {fileID: 11400000, guid: 7267f0fb6af2641e4891766fad1df7aa, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -5023,6 +5210,68 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: weaponData
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[WeaponType, Assembly-CSharp],[WeaponData,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[WeaponType, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   index: 1
   customization: {fileID: 902144751}
   canvas: {fileID: 844160226}
@@ -5049,6 +5298,7 @@ MonoBehaviour:
   nextButtonText: {fileID: 368315925}
   otherPlayerSelectManager: {fileID: 1963218310}
   startButton: {fileID: 2134604017}
+  playerWeapon: {fileID: 1565833203}
   state: 0
 --- !u!4 &1507808806
 Transform:
@@ -5355,6 +5605,17 @@ MonoBehaviour:
   shakeVibrato: 15
   shakeRandomness: 90
   defaultSelected: 0
+--- !u!114 &1565833203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1876442354891786945, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
+  m_PrefabInstance: {fileID: 1327183609}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1a0fbbe77ae4a80bf6e8df7cbbe336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1610655101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5449,7 +5710,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 3073, y: -1962}
-  m_SizeDelta: {x: 517.4637, y: 216.2983}
+  m_SizeDelta: {x: 635.36, y: 216.2983}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1614304879
 MonoBehaviour:
@@ -6240,6 +6501,171 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797329847}
   m_CullTransparentMesh: 1
+--- !u!43 &1815523886
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 0
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 0
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 0
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 0
+    _typelessdata: 
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &1882595542
 GameObject:
   m_ObjectHideFlags: 0
@@ -6433,6 +6859,9 @@ MonoBehaviour:
     - {fileID: -5716421005481303614, guid: 0190a69cdd0a64586a302b3d818c91d3, type: 3}
     - {fileID: -7387593275960739065, guid: e2e56b8e886f54c099b21661b844c97d, type: 3}
     - {fileID: -5611270562437816321, guid: 90ee2a2fed1f940c090d06cedf2614d0, type: 3}
+    - {fileID: 11400000, guid: b2d7ed5e4234d4413ae72c30a5e87ab9, type: 2}
+    - {fileID: 11400000, guid: 76eb14ac4a5ca482e9b0df1319375a5d, type: 2}
+    - {fileID: 11400000, guid: 7267f0fb6af2641e4891766fad1df7aa, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -6542,6 +6971,68 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: weaponData
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[WeaponType, Assembly-CSharp],[WeaponData,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[WeaponType, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   index: 2
   customization: {fileID: 235446791}
   canvas: {fileID: 844160226}
@@ -6568,6 +7059,7 @@ MonoBehaviour:
   nextButtonText: {fileID: 1106838550}
   otherPlayerSelectManager: {fileID: 1507808805}
   startButton: {fileID: 2134604017}
+  playerWeapon: {fileID: 923030947}
   state: 0
 --- !u!4 &1963218311
 Transform:

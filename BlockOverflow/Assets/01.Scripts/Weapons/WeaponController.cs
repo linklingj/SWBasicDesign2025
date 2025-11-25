@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour {
     [SerializeField] private Weapon weapon;
+    [SerializeField] private WeaponType weaponType;
     private PlayerInput _playerInput;
     //private InputAction _shootAction;
     private Gamepad _gamepad;
@@ -13,7 +14,7 @@ public class WeaponController : MonoBehaviour {
         if (weapon == null) weapon = GetComponentInChildren<Weapon>();
         _playerInput = GetComponentInParent<PlayerInput>();
         _cameraController = FindFirstObjectByType<CameraController>();
-        weapon?.Init();
+        //weapon?.Init(0);
     }
     
     private void Start() {
@@ -30,8 +31,8 @@ public class WeaponController : MonoBehaviour {
     private void Update() {
         if (weapon == null) return;
         if (Mouse.current != null && Mouse.current.leftButton.isPressed) {
-            weapon.Fire();
-            _cameraController?.ShakeCamera(0.05f, 0.03f, 20);
+            if (weapon.Fire())
+                _cameraController?.ShakeCamera(0.05f, 0.03f, 20);
         }
         if (_gamepad != null)
         {
@@ -40,22 +41,18 @@ public class WeaponController : MonoBehaviour {
 
             if (trigger >= 0.1f)
             {
-                weapon.Fire(); // Fire 안에서 쿨타임 처리되어 있다고 가정
-                _cameraController.ShakeCamera(0.1f, 0.05f, 5);
+                if (weapon.Fire()) // Fire 안에서 쿨타임 처리되어 있다고 가정
+                    _cameraController.ShakeCamera(0.1f, 0.05f, 5);
             }
         }
         
     }
 
-    public void SetWeapon(Weapon newWeapon) {
-        if (weapon == newWeapon) return;
-        weapon = newWeapon;
-        weapon?.Init();
+    public void SetWeapon(WeaponData newWeapon, int playerIdx) {
+        weapon?.Init(newWeapon, playerIdx);
     }
     
     public void SetUpgrades(int damageIncrease, float fireRateIncrease) {
         weapon?.SetUpgrades(damageIncrease, fireRateIncrease);
     }
-    
-    
 }

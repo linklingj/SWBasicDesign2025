@@ -316,6 +316,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SuddenDeath_ver1
       objectReference: {fileID: 0}
+    - target: {fileID: 2827310676909871648, guid: 40c8ae2c7284144e0ae4cf71b0b80ab3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -333,7 +337,7 @@ GameObject:
   - component: {fileID: 127812716}
   - component: {fileID: 127812715}
   - component: {fileID: 127812717}
-  - component: {fileID: 127812718}
+  - component: {fileID: 127812720}
   - component: {fileID: 127812719}
   m_Layer: 0
   m_Name: Frog
@@ -351,7 +355,7 @@ Transform:
   m_GameObject: {fileID: 127812713}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 57.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -373,8 +377,9 @@ MonoBehaviour:
   jumpDuration: 0.6
   jumpHeight: 2.4
   waitAtPoint: 1.5
-  playOnStart: 1
-  faceMoveDirection: 0
+  faceMoveDirection: 1
+  startingPos: {x: 0, y: 15, z: 0}
+  hurtColor: {r: 1, g: 0.25, b: 0.25, a: 1}
 --- !u!212 &127812716
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -420,7 +425,7 @@ SpriteRenderer:
   m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 6151381326578101787, guid: 026ccb57e5db5495aae35053c8d15e50, type: 3}
-  m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
+  m_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -452,19 +457,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &127812718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 127812713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ab8e43e40fe9416cbf1ce9eea54a0e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockHealth: 10
 --- !u!61 &127812719
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -503,7 +495,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.1111112}
+    oldSize: {x: 1.2777778, y: 1.1111112}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -511,6 +503,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.2777778, y: 1.1111112}
   m_EdgeRadius: 0
+--- !u!114 &127812720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127812713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55b246639644d4fb97721a6da763b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcHealth: 15
 --- !u!1001 &293076696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -562,6 +567,10 @@ PrefabInstance:
     - target: {fileID: 5948216861111823418, guid: e2ae0bd8ea96f41c9ab878a88d0a803c, type: 3}
       propertyPath: m_Name
       value: SuddenDeath_ver2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948216861111823418, guid: e2ae0bd8ea96f41c9ab878a88d0a803c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1064,13 +1073,14 @@ MonoBehaviour:
   cameraRangeX: {x: -30, y: 30}
   cameraRangeY: {x: -17, y: 20}
   followOffset: {x: 0, y: 0}
-  moveStartTime: 1
+  moveStartTime: 20
   moveDuration: 20
   sineAmplitude: 0.6
   sineFrequency: 0.8
   postProcessVolume: {fileID: 519420034}
   vignetteMax: 0.4
   vignetteBlinkSpeed: 5
+  screenFireEffect: {fileID: 1343063119}
 --- !u!4 &676279999
 Transform:
   m_ObjectHideFlags: 0
@@ -1301,6 +1311,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23abc615beee415abd7ab6facb80efc, type: 3}
+--- !u!4 &761955061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9145782507349978233, guid: e3bfaa881d0574413b23921527899c5e, type: 3}
+  m_PrefabInstance: {fileID: 1166138733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &792284295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,7 +1393,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 6d7b9b9b684104b9fb5c4f5283f33430, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1841,6 +1856,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 127812714}
+  - {fileID: 761955061}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1058888174
@@ -2328,7 +2344,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 993457065}
     m_Modifications:
     - target: {fileID: 4184770309075929551, guid: e3bfaa881d0574413b23921527899c5e, type: 3}
       propertyPath: m_Name
@@ -2352,15 +2368,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9145782507349978233, guid: e3bfaa881d0574413b23921527899c5e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9145782507349978233, guid: e3bfaa881d0574413b23921527899c5e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9145782507349978233, guid: e3bfaa881d0574413b23921527899c5e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9145782507349978233, guid: e3bfaa881d0574413b23921527899c5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2466,6 +2482,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1343063119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2827310676909871648, guid: 40c8ae2c7284144e0ae4cf71b0b80ab3, type: 3}
+  m_PrefabInstance: {fileID: 116619820}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1448875257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,7 +2788,7 @@ PrefabInstance:
     - target: {fileID: 1994551507706256509, guid: 5fc9eaf3ab91b44808f4a99857df20b0, type: 3}
       propertyPath: playerData1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: cb2b9a238719a4a3c9be07dfc8fab391, type: 2}
     - target: {fileID: 1994551507706256509, guid: 5fc9eaf3ab91b44808f4a99857df20b0, type: 3}
       propertyPath: playerData2
       value: 
@@ -2912,6 +2933,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba9862e2f5a1449ab84969041e12512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: b2d7ed5e4234d4413ae72c30a5e87ab9, type: 2}
+    - {fileID: 11400000, guid: 76eb14ac4a5ca482e9b0df1319375a5d, type: 2}
+    - {fileID: 11400000, guid: 7267f0fb6af2641e4891766fad1df7aa, type: 2}
+    - {fileID: 11400000, guid: ccb46261332614d809f4713bccfb5073, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: weaponDatas
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[WeaponType, Assembly-CSharp],[WeaponData,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[WeaponType, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   gameStarted:
     value: 0
     onValueChanged:
@@ -2950,6 +3058,7 @@ MonoBehaviour:
   StageTransform: {fileID: 1974142980}
   PlayerTransform: {fileID: 993457065}
   frog: {fileID: 127812715}
+  frogSpawnTime: 5
 --- !u!1 &1854803050
 GameObject:
   m_ObjectHideFlags: 0
@@ -3643,7 +3752,6 @@ SceneRoots:
   - {fileID: 38785115}
   - {fileID: 1802884452}
   - {fileID: 993457065}
-  - {fileID: 1166138733}
   - {fileID: 1974142980}
   - {fileID: 1862579095}
   - {fileID: 1121276477}

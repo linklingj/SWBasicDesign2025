@@ -43,6 +43,8 @@ public class PlayerData : ScriptableObject
     
     public PlayerStats playerStats = new PlayerStats();
     public PlayerCustomization customization = new PlayerCustomization();
+
+    public WeaponType selectedWeaponType = WeaponType.Rifle;
     
     [Button]
     public void ResetData()

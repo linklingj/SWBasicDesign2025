@@ -77,11 +77,11 @@ public class AimMovement : MonoBehaviour
     {
         if (transform.position.x > 0)
         {
-            SetActiveHand(true, force:true);
+            SetActiveHand(false);
         }
         else
         {
-            SetActiveHand(false, force:true);
+            SetActiveHand(true);
         }
     }
 

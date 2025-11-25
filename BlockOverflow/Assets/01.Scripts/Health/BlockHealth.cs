@@ -31,7 +31,4 @@ public class BlockHealth : MonoBehaviour, IDamageable
         CurrentHealth = blockHealth;
         
     }
-    
-    
-
 }

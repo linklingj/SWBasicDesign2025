@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using Sirenix.OdinInspector;
@@ -15,27 +16,37 @@ public class SpecialObject : MonoBehaviour
     [SerializeField] private float waitAtPoint = 0.5f;   // 포인트에 도착 후 대기 시간
 
     [Header("Options")]
-    [SerializeField] private bool playOnStart = true;    // 시작하자마자 자동 이동할지
     [SerializeField] private bool faceMoveDirection = true; // 이동 방향 바라보기 (2D면 flip 등으로 응용)
+    [SerializeField] private Vector3 startingPos;
 
+    [Header("Hurt Flash Settings")] 
+    [SerializeField] private Color hurtColor;
+
+    public Action OnDeath;
+    
     private int currentIndex = 0;
     private Coroutine moveRoutine;
+    private NPCHealth health;
+    private SpriteRenderer sr;
+    private Animator anim;
+    Color originalColor;
 
-    private void Start()
+    private void Awake()
     {
-        if (playOnStart && waypoints != null && waypoints.Length > 0)
-        {
-            transform.position = waypoints[0].position;
-            moveRoutine = StartCoroutine(FollowPathLoop());
-        }
+        anim = GetComponent<Animator>();
+        health = GetComponent<NPCHealth>();
+        sr = GetComponent<SpriteRenderer>();
     }
-    
+
+
     public void Init(Transform[] pathPoints)
     {
         waypoints = pathPoints;
         currentIndex = 0;
-        transform.position = waypoints[0].position;
-
+        transform.position = startingPos;
+        originalColor = GetComponent<SpriteRenderer>().color;
+        health.OnDeath += Death;
+        health.OnHit += Damaged;
     }
 
     private IEnumerator FollowPathLoop()
@@ -71,11 +82,12 @@ public class SpecialObject : MonoBehaviour
             dir.z = 0f;
             if (dir.sqrMagnitude > 0.0001f)
             {
-                // 2D라면: x축 방향에 따라 flipX 하는 식으로 응용
                 GetComponent<SpriteRenderer>().flipX = dir.x < 0;
-                transform.right = dir.normalized; // 3D/2D 공용 간단 버전
+                //transform.right = dir.normalized;
             }
         }
+        
+        anim.SetTrigger("Jump");
 
         float t = 0f;
 
@@ -97,16 +109,19 @@ public class SpecialObject : MonoBehaviour
 
         // 마지막에 딱 목표 위치로 스냅
         transform.position = targetPos;
+        anim.SetTrigger("Idle");
     }
 
     // 외부에서 시작/정지 제어하고 싶으면 이런 메서드도 쓸 수 있음
     [Button]
     public void StartMoving()
     {
+        transform.position = startingPos;
         if (moveRoutine == null && waypoints != null && waypoints.Length > 0)
         {
             moveRoutine = StartCoroutine(FollowPathLoop());
         }
+        anim.SetTrigger("Idle");
     }
 
     public void StopMoving()
@@ -116,5 +131,33 @@ public class SpecialObject : MonoBehaviour
             StopCoroutine(moveRoutine);
             moveRoutine = null;
         }
+    }
+
+    void Death()
+    {
+        anim.SetTrigger("Death");
+        OnDeath?.Invoke();
+    }
+
+    void Damaged()
+    {
+        StartCoroutine(HitFlash());
+    }
+    
+    private IEnumerator HitFlash()
+    {
+        if (sr == null)
+        {
+            yield break;
+        }
+        sr.color = hurtColor;
+        yield return new WaitForSeconds(0.1f);
+        sr.color = originalColor;
+    }
+
+    private IEnumerator Kill()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

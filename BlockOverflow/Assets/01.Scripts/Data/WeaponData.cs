@@ -8,6 +8,8 @@ public class WeaponData : ScriptableObject {
     [LabelText("이름")] public string weaponName;
     [LabelText("데이지"), Min(0)] public float damage;
     [LabelText("연사 속도"), Min(0)] public float fireRate;
+    [LabelText("무기 타입")] public WeaponType weaponType;
+    public BulletData bulletData;
     
     
     [Title("외형 / 이펙트")]

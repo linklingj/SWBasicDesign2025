@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210963a0a89534d82809a66db9235470, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Pistol
   damage: 12
   fireRate: 3
+  weaponType: 3
+  bulletData: {fileID: 11400000, guid: 5178ef3d0f4644be8baad151843c2a58, type: 2}
   weaponSprite: {fileID: -1468778687981988818, guid: dc7384f1e22a8442d8b01da9cd2a33db, type: 3}
   bulletPrefab: {fileID: 3004987730608447500, guid: 51712a504d35b6542b8631dbad146255, type: 3}
   muzzleFlashPrefab: {fileID: 6975738564399930652, guid: ef9a08cc8488f4d7b976cd48034fd0ce, type: 3}
