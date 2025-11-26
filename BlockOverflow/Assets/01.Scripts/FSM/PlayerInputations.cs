@@ -138,6 +138,15 @@ namespace GameInput
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Ult"",
+                    ""type"": ""Button"",
+                    ""id"": ""c891ffc3-e0e9-459b-b1f8-fdd865498b36"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -195,6 +204,17 @@ namespace GameInput
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b78af05-c7e8-4627-94f1-9f4957cda198"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ult"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -247,6 +267,7 @@ namespace GameInput
             m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
             m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
             m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
+            m_Player_Ult = m_Player.FindAction("Ult", throwIfNotFound: true);
         }
 
         ~@PlayerControls()
@@ -332,6 +353,7 @@ namespace GameInput
         private readonly InputAction m_Player_Crouch;
         private readonly InputAction m_Player_Attack;
         private readonly InputAction m_Player_Aim;
+        private readonly InputAction m_Player_Ult;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -363,6 +385,10 @@ namespace GameInput
             /// Provides access to the underlying input action "Player/Aim".
             /// </summary>
             public InputAction @Aim => m_Wrapper.m_Player_Aim;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Ult".
+            /// </summary>
+            public InputAction @Ult => m_Wrapper.m_Player_Ult;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -404,6 +430,9 @@ namespace GameInput
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @Ult.started += instance.OnUlt;
+                @Ult.performed += instance.OnUlt;
+                @Ult.canceled += instance.OnUlt;
             }
 
             /// <summary>
@@ -430,6 +459,9 @@ namespace GameInput
                 @Aim.started -= instance.OnAim;
                 @Aim.performed -= instance.OnAim;
                 @Aim.canceled -= instance.OnAim;
+                @Ult.started -= instance.OnUlt;
+                @Ult.performed -= instance.OnUlt;
+                @Ult.canceled -= instance.OnUlt;
             }
 
             /// <summary>
@@ -544,6 +576,13 @@ namespace GameInput
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnAim(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Ult" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnUlt(InputAction.CallbackContext context);
         }
     }
 }
