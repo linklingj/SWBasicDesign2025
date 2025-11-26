@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 wallJumpForce = new Vector2(10f, 12f);
     [SerializeField] private float wallStickMaxTime = 0.3f;
 
+    [Header("Ultimate / Cutscene")]
+    [SerializeField] private PersonaCutscene cutscene;  // 🔥 인스펙터에 연결
+
     private Rigidbody2D rb;
     private PlayerInput playerInput;
 
@@ -173,6 +176,32 @@ public class PlayerController : MonoBehaviour
         if (ctx.started)
             attackPressedThisFrame = true;
     }
+    
+    public void OnUltimate(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.started) return;  // 버튼 눌렀을 때만
+        if (!CanControl) return;   // 이미 멈춰있으면 무시
+
+        Debug.Log("ULTIMATE TRIGGERED");
+
+        // 조작 잠금
+        SetControl(false);
+
+        if (cutscene != null)
+        {
+            // 컷신 재생 + 끝나면 조작 풀기
+            cutscene.Play("SOUL BREAKER", () =>
+            {
+                SetControl(true);
+            });
+        }
+        else
+        {
+            Debug.LogWarning("PersonaCutscene is not assigned on PlayerController!");
+            SetControl(true);
+        }
+    }
+
 
     // === CONSUME HELPERS ===
     public bool ConsumeJumpReleased()
