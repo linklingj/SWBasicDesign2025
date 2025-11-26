@@ -700,6 +700,7 @@ MonoBehaviour:
   rightHandPivot: {fileID: 3134985702879677144}
   pivotCrouchOffsetY: -0.2
   pivotLerpSpeed: 10
+  playerHealth: {fileID: 0}
 --- !u!1 &8240697772759655588
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,10 +940,15 @@ MonoBehaviour:
   crouchCollider: {fileID: 8936141092730045610}
   wallJumpForce: {x: 10, y: 12}
   wallStickMaxTime: 3
+  cutscene: {fileID: 0}
   jumpPressedThisFrame: 0
   jumpReleasedThisFrame: 0
   attackPressedThisFrame: 0
   crouchHeld: 0
+  hasStartedJump: 0
+  jumpStartFrame: 0
+  airJumpsAvailable: 0
+  wasTouchingWall: 0
 --- !u!50 &9030402184952837912
 Rigidbody2D:
   serializedVersion: 5
@@ -1118,6 +1124,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 349863fd-a273-49c5-a5cb-d7f6580b8493
     m_ActionName: 'Player/Aim[/Mouse/position,/Pen/position]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3053784746910986090}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnUltimate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c891ffc3-e0e9-459b-b1f8-fdd865498b36
+    m_ActionName: Player/Ult
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
