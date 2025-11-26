@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         originalColor = GetComponent<PlayerCustomize>().GetColor();
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, int damagingPlayerIdx = -1)
     {
         if (IsDead) return;
     

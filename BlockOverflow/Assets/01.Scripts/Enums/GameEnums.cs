@@ -27,7 +27,7 @@ public enum GameState
 public enum WeaponType 
 {
     Rifle,
-    Shotgun,
+    Pistol,
     Sniper, 
-    Pistol
+    Shotgun
 }

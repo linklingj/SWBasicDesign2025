@@ -11,7 +11,7 @@ public class BlockHealth : MonoBehaviour, IDamageable
     {
         CurrentHealth = blockHealth;
     }
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, int damagingPlayerIdx = -1)
     {
         if (IsDead) return;
 

@@ -78,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -971503139
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -177,8 +177,16 @@ MonoBehaviour:
       Entry: 8
       Data: 
   blockType: 3
+  blockEffect:
+    rid: -2
+  blockID: 
   size: {x: 0, y: 0}
   center: {x: 0, y: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &2403191535169662487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd12fb3ee99544fd8adace102a0a230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
   blockAnimData: {fileID: 11400000, guid: d3a6760a77dc245e790663906174341b, type: 2}
 --- !u!50 &-7722435302385752333
 Rigidbody2D:

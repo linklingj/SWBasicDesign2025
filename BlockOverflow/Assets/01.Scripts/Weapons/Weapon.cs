@@ -57,7 +57,7 @@ public class Weapon : MonoBehaviour
             spriteRenderer.sprite = data.weaponSprite;
 
         // 3) 애니메이션 교체
-        if (animator != null && data.animatorController != null)
+        //if (animator != null && data.animatorController != null)
             animator.runtimeAnimatorController = data.animatorController;
         
     }

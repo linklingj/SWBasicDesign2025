@@ -136,6 +136,7 @@ public class BattleManager : SerializedMonoBehaviour
         frog.StopMoving();
         player1.GetComponent<KillOutsideCamera>().DisableKill();
         player2.GetComponent<KillOutsideCamera>().DisableKill();
+        battleUI.Win(winnerIndex);
         DOTween.To(()=> Time.timeScale, x=> Time.timeScale = x, 0.3f, 1f).SetEase(Ease.InQuad).SetUpdate(true);
         cameraController.ZoomTo((winnerIndex == 1)? player1.transform.position : player2.transform.position, CameraController.zoomType.Normal, 1f, -10.5f);
         yield return new WaitForSeconds(1f);
@@ -171,7 +172,20 @@ public class BattleManager : SerializedMonoBehaviour
             frog.Init(map.specialWayPoints.ToArray());
         }
 
+        frog.OnDeath += GiveSpecialAbility;
         StartCoroutine(SpawnSpecialObjectAfterDelay(frogSpawnTime));
+    }
+
+    public void GiveSpecialAbility(int playerIdx)
+    {
+        if (playerIdx == 1)
+        {
+            player1.GetComponent<PlayerController>().specialAbility.Value = true;
+        }
+        else if (playerIdx == 2)
+        {
+            player2.GetComponent<PlayerController>().specialAbility.Value = true;
+        }
     }
     
     private IEnumerator SpawnSpecialObjectAfterDelay(float delay)

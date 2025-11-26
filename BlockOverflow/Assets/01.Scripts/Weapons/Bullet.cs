@@ -107,8 +107,4 @@ public class Bullet : PoolObject {
         
         ObjectPoolManager.Instance.Get(impactPrefab, pos, rot);
     }
-    
-    
-    
-    
 }

@@ -1040,6 +1040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 5533827784029737525}
+  weaponType: 0
 --- !u!114 &3967283010225930555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,6 +1102,12 @@ MonoBehaviour:
   crouchCollider: {fileID: 8936141092730045610}
   wallJumpForce: {x: 10, y: 12}
   wallStickMaxTime: 3
+  specialAbility:
+    value: 0
+    onValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+  specialAvailibleEffect: {fileID: 6397547306224806348}
   jumpPressedThisFrame: 0
   jumpReleasedThisFrame: 0
   attackPressedThisFrame: 0
@@ -1363,5 +1370,10 @@ PrefabInstance:
 --- !u!4 &6344972759221654880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2940170432277091779, guid: 9b2ee8e589610445faeb273bcec160a6, type: 3}
+  m_PrefabInstance: {fileID: 8124575595424399523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6397547306224806348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2884816232850991471, guid: 9b2ee8e589610445faeb273bcec160a6, type: 3}
   m_PrefabInstance: {fileID: 8124575595424399523}
   m_PrefabAsset: {fileID: 0}

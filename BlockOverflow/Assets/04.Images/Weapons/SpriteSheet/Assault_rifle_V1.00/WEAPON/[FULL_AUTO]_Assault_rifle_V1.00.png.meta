@@ -141,7 +141,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -173,9 +173,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,9 +195,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 129
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,9 +217,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 257
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,9 +239,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 385
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -261,9 +261,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 513
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -282,10 +282,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_5'
       rect:
         serializedVersion: 2
-        x: 640
-        y: 8
-        width: 85
-        height: 30
+        x: 641
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,10 +304,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_6'
       rect:
         serializedVersion: 2
-        x: 768
-        y: 8
-        width: 85
-        height: 30
+        x: 769
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,10 +326,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_7'
       rect:
         serializedVersion: 2
-        x: 896
-        y: 8
-        width: 85
-        height: 30
+        x: 897
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,9 +349,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1025
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -370,10 +370,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_9'
       rect:
         serializedVersion: 2
-        x: 1154
-        y: 8
-        width: 85
-        height: 30
+        x: 1153
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -392,10 +392,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_10'
       rect:
         serializedVersion: 2
-        x: 1282
-        y: 8
-        width: 85
-        height: 30
+        x: 1281
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -415,9 +415,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1409
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -437,9 +437,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1537
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -459,9 +459,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1665
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -481,9 +481,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1793
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -503,9 +503,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1921
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -524,10 +524,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_16'
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 8
-        width: 85
-        height: 30
+        x: 2049
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -546,10 +546,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_17'
       rect:
         serializedVersion: 2
-        x: 2176
-        y: 8
-        width: 85
-        height: 30
+        x: 2177
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -568,10 +568,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_18'
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 8
-        width: 85
-        height: 30
+        x: 2305
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -591,9 +591,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2433
-        y: 8
-        width: 85
-        height: 30
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -612,10 +612,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_20'
       rect:
         serializedVersion: 2
-        x: 2562
-        y: 8
-        width: 85
-        height: 30
+        x: 2561
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -634,10 +634,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_21'
       rect:
         serializedVersion: 2
-        x: 2690
-        y: 8
-        width: 85
-        height: 30
+        x: 2689
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -656,10 +656,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_22'
       rect:
         serializedVersion: 2
-        x: 2818
-        y: 8
-        width: 85
-        height: 30
+        x: 2817
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -678,10 +678,10 @@ TextureImporter:
       name: '[FULL_AUTO]_Assault_rifle_V1.00_23'
       rect:
         serializedVersion: 2
-        x: 2946
-        y: 8
-        width: 85
-        height: 30
+        x: 2945
+        y: 6
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -700,7 +700,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cbced96e37723457f9d0524c71ea8232
     internalID: 0
     vertices: []
     indices: 
@@ -708,7 +708,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":96.0,"y":32.0},"gridSpriteOffset":{"x":1.0,"y":10.0},"gridSpritePadding":{"x":32.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       '[FULL_AUTO]_Assault_rifle_V1.00_0': 1658535225314875917
       '[FULL_AUTO]_Assault_rifle_V1.00_1': 9032083317404951157

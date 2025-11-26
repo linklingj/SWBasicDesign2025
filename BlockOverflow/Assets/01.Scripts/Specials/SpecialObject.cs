@@ -22,7 +22,7 @@ public class SpecialObject : MonoBehaviour
     [Header("Hurt Flash Settings")] 
     [SerializeField] private Color hurtColor;
 
-    public Action OnDeath;
+    public Action<int> OnDeath;
     
     private int currentIndex = 0;
     private Coroutine moveRoutine;
@@ -133,10 +133,10 @@ public class SpecialObject : MonoBehaviour
         }
     }
 
-    void Death()
+    void Death(int damagingPlayerIdx)
     {
         anim.SetTrigger("Death");
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(damagingPlayerIdx);
     }
 
     void Damaged()

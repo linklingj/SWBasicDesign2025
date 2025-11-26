@@ -8,26 +8,32 @@ public class NPCHealth : MonoBehaviour, IDamageable
     public float MaxHealth => npcHealth;
     public bool IsDead => CurrentHealth <= 0f;
     
-    public Action OnDeath;
+    public Action<int> OnDeath;
     public Action OnHit;
     
     private void Awake()
     {
         CurrentHealth = npcHealth;
     }
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, int damagingPlayerIdx = -1)
     {
         if (IsDead) return;
 
         CurrentHealth = Mathf.Max(0, CurrentHealth - damageAmount);
+
+        if (IsDead)
+        {
+            OnDeath?.Invoke(damagingPlayerIdx);
+            Die();
+        }
         
-        if (IsDead) Die();
         else OnHit?.Invoke();
     }
     
+    
+    
     public void Die()
     {
-        OnDeath?.Invoke();
     }
     
     private void OnEnable()

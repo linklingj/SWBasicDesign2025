@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 wallJumpForce = new Vector2(10f, 12f);
     [SerializeField] private float wallStickMaxTime = 0.3f;
 
+    [Header("Special Ability")]
+    public Observable<bool> specialAbility;
+    [SerializeField] private GameObject specialAvailibleEffect;
+    
     private Rigidbody2D rb;
     private PlayerInput playerInput;
 
@@ -68,6 +72,7 @@ public class PlayerController : MonoBehaviour
     public bool IsCrouching { get; private set; }
     public bool CanControl { get; private set; } = false;
 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -81,11 +86,14 @@ public class PlayerController : MonoBehaviour
             actionsCopy = Instantiate(playerInput.actions);
             playerInput.actions = actionsCopy;
         }
+        
+        specialAbility.AddListener(OnSpecialAbility);
     }
 
     private void Start()
     {
         StateMachine.Set<IdleState>();
+        specialAbility.Value = false;
     }
 
     private void Update()
@@ -352,5 +360,10 @@ public class PlayerController : MonoBehaviour
         CanControl = value;
         if (!value)
             rb.linearVelocity = Vector2.zero;
+    }
+    
+    public void OnSpecialAbility(bool enabled)
+    {
+        specialAvailibleEffect.SetActive(enabled);
     }
 }
