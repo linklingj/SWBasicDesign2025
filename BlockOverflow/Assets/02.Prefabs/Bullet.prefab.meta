@@ -1,13 +1,12 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 828c765627ee36246a37bf115406c819
-=======
 <<<<<<<< HEAD:BlockOverflow/Assets/Plugins/Sirenix/Odin Inspector/Config/Editor/AOTGenerationConfig.asset.meta
-guid: bf95b8c0d18fe4c72a6d3157a5392a80
->>>>>>> Stashed changes
+guid: bb71105e029f04dae8d3bb38f89181ad
 NativeFormatImporter:
+========
+guid: 8f6fa0fbf57904c338ae659750d3186b
+PrefabImporter:
+>>>>>>>> feature/minseong:BlockOverflow/Assets/02.Prefabs/Bullet.prefab.meta
   externalObjects: {}
-  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
