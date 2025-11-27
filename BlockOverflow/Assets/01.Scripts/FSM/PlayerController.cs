@@ -89,6 +89,11 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         StateMachine.Set<IdleState>();
+
+        if (cutscene == null)
+        {
+            cutscene = FindObjectOfType<PersonaCutscene>();
+        }
     }
 
     private void Update()
