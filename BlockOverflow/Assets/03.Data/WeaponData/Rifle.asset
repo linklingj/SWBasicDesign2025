@@ -15,3 +15,8 @@ MonoBehaviour:
   weaponName: 
   damage: 8
   fireRate: 5
+  weaponSprite: {fileID: 21300000, guid: f4de4da555d88416288a51a779dab0d9, type: 3}
+  bulletPrefab: {fileID: 3004987730608447500, guid: 51712a504d35b6542b8631dbad146255, type: 3}
+  muzzleFlashPrefab: {fileID: 0}
+  firePosoffset: {x: 2.5, y: 0.1, z: 0}
+  animatorController: {fileID: 9100000, guid: 5f50b46c8976c4b2a8a42e2a7267796c, type: 2}

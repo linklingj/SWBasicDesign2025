@@ -2,6 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
@@ -34,7 +35,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     
         TookDamageThisFrame = true;
         CurrentHealth = Mathf.Max(0, CurrentHealth - damageAmount);
-        //일단 막아놓기
         if (DamageTextSpawner.Instance) DamageTextSpawner.Instance.ShowDamage(damageAmount, transform.position);
 
         
@@ -51,6 +51,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         IsDead = true;
         Debug.Log($"{gameObject.name} has died.");
+        
+        DOTween.Kill(transform);  // (선택) 혹시 모를 이전 트윈 정리
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(transform.DOMoveY(transform.position.y + 4f, 0.3f).SetEase(Ease.OutQuad))  // 위로
+            .Append(transform.DOMoveY(transform.position.y, 0.5f).SetEase(Ease.InQuad)); // 아래로
         
         OnDeath?.Invoke();
     }

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletData: {fileID: 11400000, guid: 48b66710d08594d02a740f99a4c185ba, type: 2}
-  impactPrefab: {fileID: 8985154451090314334, guid: c83665188a77e41a59776d3ce748346d, type: 3}
+  impactPrefab: {fileID: 2492376117500618341, guid: e7b834f054c7343dba6664fe3120ad87, type: 3}
   impactOffset: 0.02
 --- !u!212 &1110849339197282372
 SpriteRenderer:
