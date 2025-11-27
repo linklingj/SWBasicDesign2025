@@ -3529,7 +3529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7558715876161813414
 Transform:
   m_ObjectHideFlags: 0
@@ -3579,6 +3579,7 @@ MonoBehaviour:
   player2Spawn: {fileID: 6358709050096422355}
   originalCameraPos: {fileID: 1567554112990451824}
   finalCameraPos: {fileID: 6475352602191210021}
+  mapType: 0
   specialWayPoints:
   - {fileID: 5819567216396763307}
   - {fileID: 6457325164077899769}

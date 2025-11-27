@@ -31,3 +31,10 @@ public enum WeaponType
     Sniper, 
     Shotgun
 }
+
+public enum MapType 
+{
+    Swamp,
+    Harbor,
+    Factory
+}

@@ -13,6 +13,7 @@ public class BattleManager : SerializedMonoBehaviour
     
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private List<GameObject> mapPrefabs;
+    [SerializeField] private Dictionary<MapType, GameObject> bgObjects;
     
     [SerializeField] private float prestartDelay = 2f;
     
@@ -67,6 +68,11 @@ public class BattleManager : SerializedMonoBehaviour
         GameObject m = Instantiate(mapPrefabs[randIdx], StageTransform);
         m.transform.position = Vector3.zero;
         map = m.GetComponent<Maps>();
+        m.SetActive(true);
+
+        foreach (var bg in bgObjects)
+            bg.Value.SetActive(false);
+        bgObjects[map.mapType].SetActive(true);
 
         return randIdx;
     }
