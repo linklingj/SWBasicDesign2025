@@ -45,8 +45,8 @@ Material:
     m_Colors:
     - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
-    - _ScrollSpeed: {r: 0.5, g: 0, b: 0, a: 0}
-    - _Tiling: {r: 30, g: 30, b: 0, a: 0}
+    - _ScrollSpeed: {r: 1, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 100, g: 15, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2563469075609340343
