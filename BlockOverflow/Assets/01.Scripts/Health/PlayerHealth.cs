@@ -23,13 +23,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void Awake()
     {
         IsDead = false;
-        if (sr != null)
-        {
-            originalColor = sr.color;
-        }
     }
-    
-    public void TakeDamage(float damageAmount)
+
+    private void Start()
+    {
+        originalColor = GetComponent<PlayerCustomize>().GetColor();
+    }
+
+    public void TakeDamage(float damageAmount, int damagingPlayerIdx = -1)
     {
         if (IsDead) return;
     

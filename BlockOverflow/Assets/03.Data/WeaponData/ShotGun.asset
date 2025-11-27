@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210963a0a89534d82809a66db9235470, type: 3}
   m_Name: ShotGun
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Shotgun
   damage: 4
   fireRate: 1
+  weaponType: 1
+  bulletData: {fileID: 11400000, guid: 44af8de569efb4507a7855a35b346f80, type: 2}
   weaponSprite: {fileID: 21300000, guid: 6bb5d336905ff46ab911dd3dbac9c6d4, type: 3}
   bulletPrefab: {fileID: 3004987730608447500, guid: 51712a504d35b6542b8631dbad146255, type: 3}
   muzzleFlashPrefab: {fileID: 6975738564399930652, guid: ef9a08cc8488f4d7b976cd48034fd0ce, type: 3}

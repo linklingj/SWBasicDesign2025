@@ -54,8 +54,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amplitude: 0
-    - _Speed: 0
+    - _Amplitude: 0.0002
+    - _Speed: 3
     - _Thickness: 0.0008
     m_Colors:
     - _Color: {r: 0.9622642, g: 0.9308953, b: 0.2133321, a: 1}

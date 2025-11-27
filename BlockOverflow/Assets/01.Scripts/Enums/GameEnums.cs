@@ -23,3 +23,11 @@ public enum GameState
     Battle,
     Reward
 }
+
+public enum WeaponType 
+{
+    Rifle,
+    Pistol,
+    Sniper, 
+    Shotgun
+}

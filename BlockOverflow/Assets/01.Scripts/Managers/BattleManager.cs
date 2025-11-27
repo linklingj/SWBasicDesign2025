@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BattleManager : MonoBehaviour
+public class BattleManager : SerializedMonoBehaviour
 {
     public Observable<bool> gameStarted = new Observable<bool>(false);
     
@@ -21,6 +21,11 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] private Transform StageTransform;
     [SerializeField] private Transform PlayerTransform;
+    
+    [SerializeField] private SpecialObject frog;
+    [SerializeField] private float frogSpawnTime;
+
+    [SerializeField] private Dictionary<WeaponType, WeaponData> weaponDatas;
     
     private PlayerController player1;
     private PlayerController player2;
@@ -94,6 +99,8 @@ public class BattleManager : MonoBehaviour
         //플레이어 무기 업그레이드 적용
         var p1Weapon = player1.GetComponent<WeaponController>();
         var p2Weapon = player2.GetComponent<WeaponController>();
+        p1Weapon.SetWeapon(weaponDatas[playerData1.selectedWeaponType], 1);
+        p2Weapon.SetWeapon(weaponDatas[playerData2.selectedWeaponType], 2);
         p1Weapon.SetUpgrades(playerData1.playerStats.damageIncrease, playerData1.playerStats.fireRateIncrease);
         p2Weapon.SetUpgrades(playerData2.playerStats.damageIncrease, playerData2.playerStats.fireRateIncrease);
         
@@ -105,6 +112,13 @@ public class BattleManager : MonoBehaviour
         p2Health.OnDeath += () => OnPlayerDeath(2);
         p1Health.Spawn(playerData1.playerStats.healthIncrease);
         p2Health.Spawn(playerData2.playerStats.healthIncrease);
+
+        var customization1 = player1.GetComponent<PlayerCustomize>();
+        customization1.Init(playerData1.customization);
+        customization1.SetAll();
+        var customization2 = player2.GetComponent<PlayerCustomize>();
+        customization2.Init(playerData2.customization);
+        customization2.SetAll();
     }
     
     public void OnPlayerDeath(int playerIdx)
@@ -119,6 +133,10 @@ public class BattleManager : MonoBehaviour
         //승리 애니메이션
         //슬로우
         gameStarted.Value = false;
+        frog.StopMoving();
+        player1.GetComponent<KillOutsideCamera>().DisableKill();
+        player2.GetComponent<KillOutsideCamera>().DisableKill();
+        battleUI.Win(winnerIndex);
         DOTween.To(()=> Time.timeScale, x=> Time.timeScale = x, 0.3f, 1f).SetEase(Ease.InQuad).SetUpdate(true);
         cameraController.ZoomTo((winnerIndex == 1)? player1.transform.position : player2.transform.position, CameraController.zoomType.Normal, 1f, -10.5f);
         yield return new WaitForSeconds(1f);
@@ -143,5 +161,36 @@ public class BattleManager : MonoBehaviour
         cameraController.ShakeCamera(0.3f, 0.5f, 10);
         
         gameStarted.Value = true;
+        SetSpecialObject();
+    }
+    
+    private void SetSpecialObject()
+    {
+        if (frog != null && map.specialWayPoints != null)
+        {
+            frog.gameObject.SetActive(true);
+            frog.Init(map.specialWayPoints.ToArray());
+        }
+
+        frog.OnDeath += GiveSpecialAbility;
+        StartCoroutine(SpawnSpecialObjectAfterDelay(frogSpawnTime));
+    }
+
+    public void GiveSpecialAbility(int playerIdx)
+    {
+        if (playerIdx == 1)
+        {
+            player1.GetComponent<PlayerController>().specialAbility.Value = true;
+        }
+        else if (playerIdx == 2)
+        {
+            player2.GetComponent<PlayerController>().specialAbility.Value = true;
+        }
+    }
+    
+    private IEnumerator SpawnSpecialObjectAfterDelay(float delay)
+    {
+        yield return new WaitUntil(() => gameTime >= delay);
+        frog.StartMoving();
     }
 }

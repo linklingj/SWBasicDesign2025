@@ -36,15 +36,17 @@ public class CameraController : SerializedMonoBehaviour
     [SerializeField] private float vignetteMax = 0.45f;
     [SerializeField] private float vignetteBlinkSpeed = 6f;
     private UnityEngine.Rendering.Universal.Vignette vignette;
+    
+    [Header("Screen Effects")]
+    [SerializeField] GameObject screenFireEffect;
 
     private void Awake()
     {
         cam = GetComponentInChildren<Camera>();
         sineTime = 0;
-        if (postProcessVolume != null)
-        {
-            postProcessVolume.profile.TryGet(out vignette);
-        }
+        if (postProcessVolume != null) postProcessVolume.profile.TryGet(out vignette);
+        
+        screenFireEffect.SetActive(false);
     }
 
     private void Update()
@@ -98,7 +100,11 @@ public class CameraController : SerializedMonoBehaviour
         if (!battleManager || !startPos || !endPos) return;
         if (!battleManager.gameStarted) return;
         float moveTime = battleManager.GameTime - moveStartTime;
-        if (moveTime <= 0) return;
+        if (moveTime <= 0)
+        {
+            screenFireEffect.SetActive(false);
+            return;
+        }
         float t = Mathf.Clamp01(moveTime / moveDuration);
         
         transform.position = Vector3.Lerp(startPos.position, endPos.position, t);
@@ -108,7 +114,9 @@ public class CameraController : SerializedMonoBehaviour
 
         if (t > 0.99f) intensity += Mathf.Sin((moveTime - moveDuration) * vignetteBlinkSpeed) * 0.03f;
 
-        vignette.intensity.value = Mathf.Clamp01(intensity);
+        if (vignette) vignette.intensity.value = Mathf.Clamp01(intensity);
+        
+        screenFireEffect.SetActive(true);
     }
     
     private void UpdateSineMovement()
