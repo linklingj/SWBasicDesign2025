@@ -66,8 +66,8 @@ public class Bullet : PoolObject {
         {
             if ((currentPosition - startPosition).magnitude >= range)
             {
-                DespawnWithImpact(currentPosition + moveDir * impactOffset, -moveDir);
-                //Release();
+                //DespawnWithImpact(currentPosition + moveDir * impactOffset, -moveDir);
+                Release();
                 return;
             }
         }
@@ -109,8 +109,12 @@ public class Bullet : PoolObject {
 
         float angle = Mathf.Atan2(normal.y, normal.x) * Mathf.Rad2Deg;
         Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        Quaternion baseRot = Quaternion.Euler(0, 90f, 0f);
+        Quaternion finalRot = rot * baseRot;
+        ObjectPoolManager.Instance.Get(impactPrefab, pos, finalRot);
         
-        ObjectPoolManager.Instance.Get(impactPrefab, pos, rot);
+        
     }
     
     
