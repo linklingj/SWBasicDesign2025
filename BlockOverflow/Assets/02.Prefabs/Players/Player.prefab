@@ -1322,6 +1322,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UltimateReadyVFX
       objectReference: {fileID: 0}
+    - target: {fileID: 2884816232850991471, guid: 9b2ee8e589610445faeb273bcec160a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2940170432277091779, guid: 9b2ee8e589610445faeb273bcec160a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

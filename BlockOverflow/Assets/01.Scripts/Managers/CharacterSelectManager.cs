@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -27,6 +28,8 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
     [SerializeField] private WeaponController playerWeapon;
     [SerializeField] private Weapon weaponObj;
     [SerializeField] private Dictionary<WeaponType, WeaponData> weaponData;
+    
+    [SerializeField] private RectTransform CharacterSelectUI;
 
     public int state = 0;
     private void Awake()
@@ -44,6 +47,16 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
         DOVirtual.DelayedCall(0.5f, AnimateColorPreviews, false);
         bg.DOColor(new Color(0.8f,0.8f,0.8f), "_Color", 0f);
         bg.SetVector("_Tiling", new Vector2(10,10));
+    }
+
+    private void Start()
+    {
+        if (index == 1)
+        {
+            CharacterSelectUI.gameObject.SetActive(true);
+            CharacterSelectUI.localScale = Vector3.zero;
+            CharacterSelectUI.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+        }
     }
 
     public void StartGame()
