@@ -8,6 +8,7 @@ public class DamageText : PoolObject
     [SerializeField] private float moveUpSpeed = 0.1f;  // 위로 떠오르는 속도
     [SerializeField] private float lifeTime = 0.1f;   // 유지 시간
     [SerializeField] private float fadeTime = 0.1f;   // 사라지는 시간
+    
 
     private float _time;
     private Color _startColor;
@@ -26,11 +27,13 @@ public class DamageText : PoolObject
         _time = 0f;
 
         var c = _startColor;
-        if (damage < 10f) c = Color.green;
-        else if (damage < 20f) c = Color.red;
-        else if (damage >= 20f) c = Color.darkRed;
-        c.a = 1f;
+        if (damage < 10f) c = Color.yellow;
+        else if (damage < 20f) c = Color.green;
+        else if (damage < 30f) c= Color.blue;
+        else if (damage >= 30f) c = Color.red;
+        c.a = 1f;    
         text.color = c;
+        text.fontSize += damage; // 데미지에 비례해 글자 크기 증가
 
         text.text = damage.ToString();
         
