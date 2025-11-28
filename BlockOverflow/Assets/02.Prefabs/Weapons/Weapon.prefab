@@ -79,12 +79,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: b2d7ed5e4234d4413ae72c30a5e87ab9, type: 2}
   bulletPrefab: {fileID: 3004987730608447500, guid: 51712a504d35b6542b8631dbad146255, type: 3}
-  firePointDefault: {fileID: 5381500857976126034}
-  firePointSniper: {fileID: 0}
-  firePointPistol: {fileID: 0}
-  animator: {fileID: 1031637728120300182}
+  firePoint: {fileID: 0}
+  animator: {fileID: 0}
   muzzleFlashPrefab: {fileID: 6975738564399930652, guid: ef9a08cc8488f4d7b976cd48034fd0ce, type: 3}
   spriteRenderer: {fileID: 8621514170427577568}
+  recoilPivot: {fileID: 0}
+  recoilAngle: 6
+  recoilDuration: 0.05
 --- !u!1 &9180656555064857259
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +96,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6658460797754186213}
   - component: {fileID: 8621514170427577568}
-  - component: {fileID: 1031637728120300182}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -173,25 +173,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1031637728120300182
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9180656555064857259}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5f50b46c8976c4b2a8a42e2a7267796c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

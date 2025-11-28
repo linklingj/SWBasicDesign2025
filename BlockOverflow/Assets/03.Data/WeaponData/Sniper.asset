@@ -17,8 +17,9 @@ MonoBehaviour:
   fireRate: 1
   weaponType: 2
   bulletData: {fileID: 11400000, guid: ba4e5db3f09d14636b0f081a63e159d1, type: 2}
-  weaponSprite: {fileID: 21300000, guid: 5a2530bc0a1bd4408a1fbf01bf0c46b2, type: 3}
-  bulletPrefab: {fileID: 3004987730608447500, guid: 51712a504d35b6542b8631dbad146255, type: 3}
+  weaponSprite: {fileID: -3656602075172381145, guid: c8fb6ac3526204f84a25634f0fffc54d, type: 3}
+  bulletPrefab: {fileID: 3004987730608447500, guid: 61c34da696af8431dbdaa5b325fe40f1, type: 3}
+  usedAmmoPrefab: {fileID: 2492376117500618341, guid: 84d5749fc2daf4099ae773bba68682ed, type: 3}
   muzzleFlashPrefab: {fileID: 6975738564399930652, guid: ef9a08cc8488f4d7b976cd48034fd0ce, type: 3}
-  firePosoffset: {x: 3.2, y: 0.2, z: 0}
+  firePosoffset: {x: 1.6, y: 0.2, z: 0}
   animatorController: {fileID: 9100000, guid: 7d3cb9ccf051a4dba9de8f97799f8a2c, type: 2}

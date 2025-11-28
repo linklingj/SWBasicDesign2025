@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.0140625, y: 0.00703125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,8 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65648aad5688c4e3b810b9825c2a31b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 11400000, guid: ba4e5db3f09d14636b0f081a63e159d1, type: 2}
-  impactPrefab: {fileID: 8985154451090314334, guid: c83665188a77e41a59776d3ce748346d, type: 3}
+  impactPrefab: {fileID: 2492376117500618341, guid: e7b834f054c7343dba6664fe3120ad87, type: 3}
   impactOffset: 0.02
 --- !u!212 &1110849339197282372
 SpriteRenderer:
@@ -95,12 +94,12 @@ SpriteRenderer:
   m_SortingLayerID: -1572828157
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fe5ee3f92dc1c4bf68b327f8cd800b73, type: 3}
+  m_Sprite: {fileID: 2966154515114112000, guid: 65c0943f37f5c443c94fad62ba07483b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3.4133334, y: 3.4133334}
+  m_DrawMode: 1
+  m_Size: {x: 64, y: 64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -171,10 +170,10 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.4133334, y: 3.4133334}
-    newSize: {x: 3.4133334, y: 3.4133334}
+    oldSize: {x: 0.16, y: 0.08}
+    newSize: {x: 64, y: 64}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}

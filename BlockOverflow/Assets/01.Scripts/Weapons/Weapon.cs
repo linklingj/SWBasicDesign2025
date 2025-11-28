@@ -1,25 +1,35 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using DG.Tweening;
 
 public class Weapon : MonoBehaviour 
 {
     [SerializeField] protected WeaponData data;
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform firePoint;
-    [SerializeField] private Animator animator;
+    //[SerializeField] private Animator animator;
     [SerializeField] private GameObject muzzleFlashPrefab;
+    [SerializeField] private GameObject usedAmmoPrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
     
-    protected int playerIdx; 
     
+    
+    [Header("반동")]
+    [SerializeField] private Transform recoilPivot;     // 흔들릴 기준
+    [SerializeField] private float recoilAngle = 6f;    // 몇 도 정도 튕길지
+    [SerializeField] private float recoilDuration = 0.05f;
+    [SerializeField] private float recoilDistance = 0.06f;
+    
+    protected int playerIdx; 
     protected float nextFireTime;
     
     protected int extraDamage = 0;
     protected float extraFireRate = 0f;
     protected BulletData bulletData;
+    private Vector3 originalRecoilEuler;   
 
-    private static readonly int IsShooting = Animator.StringToHash("isShooting");
+    //private static readonly int IsShooting = Animator.StringToHash("isShooting");
     
     public virtual void Init(WeaponData weaponData, int playerIndex)
     {
@@ -36,7 +46,11 @@ public class Weapon : MonoBehaviour
         nextFireTime = 0f;
         
         if (spriteRenderer == null)
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        
+        if (recoilPivot == null)
+            recoilPivot = transform;
+        originalRecoilEuler = recoilPivot.localEulerAngles;
 
         ApplyWeaponData();
     }
@@ -51,14 +65,21 @@ public class Weapon : MonoBehaviour
 
         if (data.muzzleFlashPrefab != null)
             muzzleFlashPrefab = data.muzzleFlashPrefab;
+        
+        if (data.usedAmmoPrefab != null)
+            usedAmmoPrefab = data.usedAmmoPrefab;
 
         // 2) 무기 스프라이트 교체
         if (spriteRenderer != null && data.weaponSprite != null)
             spriteRenderer.sprite = data.weaponSprite;
+        
+
+        
+        
 
         // 3) 애니메이션 교체
         //if (animator != null && data.animatorController != null)
-            animator.runtimeAnimatorController = data.animatorController;
+            //animator.runtimeAnimatorController = data.animatorController;
         
     }
     
@@ -70,7 +91,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool(IsShooting, !CanFire());
+        //animator.SetBool(IsShooting, !CanFire());
     }
 
     public virtual bool Fire()
@@ -84,6 +105,8 @@ public class Weapon : MonoBehaviour
 
         ShootBullet(spawnPos, direction);
         ScheduleNextShot();
+
+        PlayRecoil(direction);
 
         return true;
     }
@@ -146,7 +169,84 @@ public class Weapon : MonoBehaviour
             // 수명이 짧은 이펙트는 자동 Release 스크립트 붙여두면 됨
         }
 
+        if (usedAmmoPrefab)
+        {
+            Transform ammo = null;
+            
+            Vector3 ammoPos = transform.position;
+            if (dir.sqrMagnitude > 0f)
+            {
+                ammoPos += -dir.normalized * 0.1f; 
+            }
+            
+            // === 회전 계산 ===
+            float xRot = (dir.x > 0) ? -75f : -105f;     
+            Quaternion ammoRot = Quaternion.Euler(xRot, -90f, 0f);
+            
+
+            if (ObjectPoolManager.Instance)
+            {
+                ammo = ObjectPoolManager.Instance.Get(usedAmmoPrefab, ammoPos, ammoRot).transform;
+            }
+                
+            else
+                ammo = Instantiate(usedAmmoPrefab, ammoPos, ammoRot).transform;
+            
+        }
+        
+        
+
         
         
     }
+    
+    protected virtual void PlayRecoil(Vector3 shotDir)
+    {
+        if (!recoilPivot) return;
+
+        recoilPivot.DOKill();
+
+        // 기준 회전값 복원
+        recoilPivot.localEulerAngles = originalRecoilEuler;
+
+        // === 1) 위치 반동 (항상 발사 방향의 반대로) ===
+        Vector3 startPos = recoilPivot.position;
+        Vector3 recoilDir = -shotDir.normalized;                      // 🔥 총알 나가는 반대 방향
+        Vector3 recoilPos = startPos + recoilDir * recoilDistance;
+
+        // === 2) 회전 반동 (좌우에 따라 각도 부호 바꾸기) ===
+        // shotDir.x > 0  → 오른쪽 발사
+        // shotDir.x < 0  → 왼쪽 발사
+        float side = Mathf.Sign(shotDir.x == 0 ? transform.right.x : shotDir.x);
+        // side가 1이면 한쪽, -1이면 반대쪽으로 틀어지게
+        float signedAngle = recoilAngle * side * -1f; // 필요에 따라 -1f 빼면 방향 바뀜
+
+        Sequence seq = DOTween.Sequence();
+
+        // 1단계: 뒤로 밀리면서 회전
+        seq.Append(
+            recoilPivot.DOMove(recoilPos, recoilDuration)
+                .SetEase(Ease.OutQuad)
+        );
+        seq.Join(
+            recoilPivot.DORotate(
+                originalRecoilEuler + new Vector3(0f, 0f, signedAngle),
+                recoilDuration
+            ).SetEase(Ease.OutQuad)
+        );
+
+        // 2단계: 다시 원래 자리로
+        seq.Append(
+            recoilPivot.DOMove(startPos, recoilDuration)
+                .SetEase(Ease.InQuad)
+        );
+        seq.Join(
+            recoilPivot.DORotate(
+                originalRecoilEuler,
+                recoilDuration
+            ).SetEase(Ease.InQuad)
+        );
+    }
+
+
 }
