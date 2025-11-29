@@ -183,7 +183,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1003660823
-  m_SortingLayer: 6
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -270,7 +270,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -301283297
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -357,7 +357,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -301283297
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -508,7 +508,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 75088439
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 8271715202566429118, guid: a245a47fdaed64ed3a7fb98d0fc02ca8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -731,7 +731,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1003660823
-  m_SortingLayer: 6
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 1551578244945190711, guid: aec9e71f8e6b8432ca4c210a2b2a1a38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -894,6 +894,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3004987730608447500, guid: 51712a504d35b6542b8631dbad146255, type: 3}
   firePoint: {fileID: 4042515548747418140}
   muzzleFlashPrefab: {fileID: 6975738564399930652, guid: ef9a08cc8488f4d7b976cd48034fd0ce, type: 3}
+  usedAmmoPrefab: {fileID: 0}
   spriteRenderer: {fileID: 0}
   recoilPivot: {fileID: 0}
   recoilAngle: 6
@@ -1049,6 +1050,7 @@ MonoBehaviour:
   crouchCollider: {fileID: 8936141092730045610}
   wallJumpForce: {x: 10, y: 12}
   wallStickMaxTime: 3
+  cutscene: {fileID: 0}
   specialAbility:
     value: 0
     onValueChanged:
@@ -1252,6 +1254,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 349863fd-a273-49c5-a5cb-d7f6580b8493
     m_ActionName: 'Player/Aim[/Mouse/position,/Pen/position]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3053784746910986090}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnUltimate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c891ffc3-e0e9-459b-b1f8-fdd865498b36
+    m_ActionName: 'Player/Ult[/Keyboard/u]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player

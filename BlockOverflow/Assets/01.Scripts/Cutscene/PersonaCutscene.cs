@@ -91,7 +91,21 @@ public class PersonaCutscene : MonoBehaviour
         seq?.Kill();
         seq = DOTween.Sequence().SetUpdate(true);
 
-        seq.AppendCallback(() => slashEffect?.Play());
+        seq.AppendCallback(() =>
+        {
+            var main = slashEffect.main;
+            main.useUnscaledTime = true;
+
+
+            slashEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            slashEffect.Simulate(0f, true, true, true);
+
+
+            slashEffect.Play(true);
+            
+            
+        });
+        
 
         seq.Join(redFlashBG?.DOFade(0.9f, 0.12f));
         seq.Join(vignetteGroup?.DOFade(0.25f, 0.25f));
