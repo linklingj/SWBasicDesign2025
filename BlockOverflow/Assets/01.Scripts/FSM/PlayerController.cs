@@ -32,7 +32,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ultimate / Cutscene")]
     [SerializeField] private PersonaCutscene cutscene;  // 🔥 인스펙터에 연결
-
+    
+    [Header("Special Ability")]
+    public Observable<bool> specialAbility;
+    [SerializeField] private GameObject specialAvailibleEffect;
+    
     private Rigidbody2D rb;
     private PlayerInput playerInput;
 
@@ -84,6 +88,8 @@ public class PlayerController : MonoBehaviour
             actionsCopy = Instantiate(playerInput.actions);
             playerInput.actions = actionsCopy;
         }
+        
+        specialAbility.AddListener(OnSpecialAbility);
     }
 
     private void Start()
@@ -94,6 +100,8 @@ public class PlayerController : MonoBehaviour
         {
             cutscene = FindObjectOfType<PersonaCutscene>();
         }
+        
+        specialAbility.Value = false;
     }
 
     private void Update()
@@ -356,6 +364,11 @@ public class PlayerController : MonoBehaviour
     {
         wallStickTimer = wallStickMaxTime;
         rb.linearVelocity = new Vector2(0f, Mathf.Min(rb.linearVelocity.y, -1f));
+    }
+    
+    public void OnSpecialAbility(bool enabled)
+    {
+        specialAvailibleEffect.SetActive(enabled);
     }
 
     public void TickWallStick() => wallStickTimer -= Time.deltaTime;
