@@ -247,6 +247,18 @@ public class Weapon : MonoBehaviour
             ).SetEase(Ease.InQuad)
         );
     }
+    
+    private void OnDisable()
+    {
+        if (recoilPivot != null)
+            DOTween.Kill(recoilPivot);
+    }
+
+    private void OnDestroy()
+    {
+        if (recoilPivot != null)
+            DOTween.Kill(recoilPivot);
+    }
 
 
 }
