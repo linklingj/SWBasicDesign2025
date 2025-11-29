@@ -3193,7 +3193,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2183788419405612608, guid: 58de62e88d29a81438698e7c9f7d1e26, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -400
+      value: -500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183788419405612608, guid: 58de62e88d29a81438698e7c9f7d1e26, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 4888155859118502484, guid: 58de62e88d29a81438698e7c9f7d1e26, type: 3}
       propertyPath: worldUI
@@ -3213,7 +3217,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5264567176550582803, guid: 58de62e88d29a81438698e7c9f7d1e26, type: 3}
       propertyPath: m_text
-      value: "\uC601     \n\uC5ED"
+      value: "\uC601     \n\n\n\uC804"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264567176550582803, guid: 58de62e88d29a81438698e7c9f7d1e26, type: 3}
+      propertyPath: m_fontSize
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5264567176550582803, guid: 58de62e88d29a81438698e7c9f7d1e26, type: 3}
       propertyPath: m_fontAsset
@@ -3230,6 +3238,10 @@ PrefabInstance:
     - target: {fileID: 5264567176550582803, guid: 58de62e88d29a81438698e7c9f7d1e26, type: 3}
       propertyPath: m_fontColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264567176550582803, guid: 58de62e88d29a81438698e7c9f7d1e26, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5264567176550582803, guid: 58de62e88d29a81438698e7c9f7d1e26, type: 3}
       propertyPath: m_sharedMaterial
@@ -4092,7 +4104,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: 255}
+  m_AnchoredPosition: {x: 500, y: 400}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1983372725
@@ -4127,7 +4139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC804   \uAC1C"
+  m_text: "\uC5ED\n\n\n\uAC1C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ecdf3e9d219a43fd900be1be961bdd6, type: 2}
   m_sharedMaterial: {fileID: 1860198414240903403, guid: 5ecdf3e9d219a43fd900be1be961bdd6, type: 2}
