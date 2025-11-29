@@ -3,7 +3,7 @@ using UnityEngine;
 public class VFX : PoolObject
 {
     [Header("기본 설정")]
-    [SerializeField] private float lifetime = 0.1f;     // Animator가 없을 때만 사용
+    [SerializeField] private float lifetime = 0.3f;     // Animator가 없을 때만 사용
     [SerializeField] private Animator animator;         // 선택사항 (없으면 자동 무시)
 
     private float timer;

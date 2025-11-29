@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public class Bullet : PoolObject {
-    [SerializeField] protected BulletData bulletData;
     
     [Header("Impact (pooled)")]
     [SerializeField] private GameObject impactPrefab;    // 오브젝트 풀에 등록된 임팩트 프리팹
@@ -13,6 +12,8 @@ public class Bullet : PoolObject {
     protected float damage;
     protected Vector2 moveDir;
     protected Vector2 startPosition;
+
+    protected int playerIdx;
     
     private bool released;
 
@@ -21,20 +22,14 @@ public class Bullet : PoolObject {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Init(Vector2 pos, Vector3 direction)
+    public void Init(Vector2 pos, Vector3 direction, BulletData data, int playerIndex = 1)
     {
         released = false;
         if (!rb) rb = GetComponent<Rigidbody2D>();
+        playerIdx = playerIndex;
 
-        if (bulletData == null)
-        {
-            Debug.LogWarning($"{name} is missing BulletData.", this);
-            Release();
-            return;
-        }
-
-        speed = bulletData.bulletSpeed;
-        range = bulletData.range;
+        speed = data.bulletSpeed;
+        range = data.range;
         
         Vector2 planarDirection = new Vector2(direction.x, direction.y);
         moveDir = planarDirection.sqrMagnitude > 0f ? planarDirection.normalized : Vector2.zero;
@@ -66,8 +61,8 @@ public class Bullet : PoolObject {
         {
             if ((currentPosition - startPosition).magnitude >= range)
             {
-                DespawnWithImpact(currentPosition + moveDir * impactOffset, -moveDir);
-                //Release();
+                //DespawnWithImpact(currentPosition + moveDir * impactOffset, -moveDir);
+                Release();
                 return;
             }
         }
@@ -109,11 +104,11 @@ public class Bullet : PoolObject {
 
         float angle = Mathf.Atan2(normal.y, normal.x) * Mathf.Rad2Deg;
         Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        Quaternion baseRot = Quaternion.Euler(0, 90f, 0f);
+        Quaternion finalRot = rot * baseRot;
+        ObjectPoolManager.Instance.Get(impactPrefab, pos, finalRot);
         
-        ObjectPoolManager.Instance.Get(impactPrefab, pos, rot);
+        
     }
-    
-    
-    
-    
 }

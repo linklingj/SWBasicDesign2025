@@ -1,0 +1,1105 @@
+fileFormatVersion: 2
+guid: e750e71a8903e4166a269c9145528e80
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 756670996748132819
+    second: FxPack1_0
+  - first:
+      213: 4858333734752016969
+    second: FxPack1_1
+  - first:
+      213: 7015800264072258866
+    second: FxPack1_2
+  - first:
+      213: 3611668390295542199
+    second: FxPack1_3
+  - first:
+      213: 5361213477963722551
+    second: FxPack1_4
+  - first:
+      213: 1736408252027360403
+    second: FxPack1_5
+  - first:
+      213: -7622781009439288364
+    second: FxPack1_6
+  - first:
+      213: 1723157179286936254
+    second: FxPack1_7
+  - first:
+      213: 7005457544375983271
+    second: FxPack1_8
+  - first:
+      213: 6013162367992962332
+    second: FxPack1_9
+  - first:
+      213: 3975490609311314584
+    second: FxPack1_10
+  - first:
+      213: 1003028213472011975
+    second: FxPack1_11
+  - first:
+      213: -4542378780037631397
+    second: FxPack1_12
+  - first:
+      213: 4168583898343144506
+    second: FxPack1_13
+  - first:
+      213: 1726471286553133486
+    second: FxPack1_14
+  - first:
+      213: 7012176669820042953
+    second: FxPack1_15
+  - first:
+      213: 2566936978442008502
+    second: FxPack1_16
+  - first:
+      213: -7579272200292063413
+    second: FxPack1_17
+  - first:
+      213: 6158775057595481276
+    second: FxPack1_18
+  - first:
+      213: -9211078844442301006
+    second: FxPack1_19
+  - first:
+      213: 8885494606980324608
+    second: FxPack1_20
+  - first:
+      213: -5283497959029263100
+    second: FxPack1_21
+  - first:
+      213: -1093660826174551927
+    second: FxPack1_22
+  - first:
+      213: -8038053477781188573
+    second: FxPack1_23
+  - first:
+      213: -1389881621833754734
+    second: FxPack1_24
+  - first:
+      213: -5079052923689588373
+    second: FxPack1_25
+  - first:
+      213: 7694858741470582099
+    second: FxPack1_26
+  - first:
+      213: -7978559442463270322
+    second: FxPack1_27
+  - first:
+      213: 1093423775238176411
+    second: FxPack1_28
+  - first:
+      213: 6316239801059303760
+    second: FxPack1_29
+  - first:
+      213: -432626044287500504
+    second: FxPack1_30
+  - first:
+      213: -9196935596251630374
+    second: FxPack1_31
+  - first:
+      213: 3014315055826452643
+    second: FxPack1_32
+  - first:
+      213: 4119893218699031291
+    second: FxPack1_33
+  - first:
+      213: 8727426575345915307
+    second: FxPack1_34
+  - first:
+      213: -4324752149163099317
+    second: FxPack1_35
+  - first:
+      213: -7436259823833464637
+    second: FxPack1_36
+  - first:
+      213: -7532267769829497930
+    second: FxPack1_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FxPack1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 500
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d16305334c308a00800000000000000
+      internalID: 756670996748132819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94ad03c8ac44c6340800000000000000
+      internalID: 4858333734752016969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_2
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 399
+        width: 90
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2356e1b3b212d5160800000000000000
+      internalID: 7015800264072258866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_3
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 499
+        width: 102
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b9921af3493f1230800000000000000
+      internalID: 3611668390295542199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_4
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 400
+        width: 88
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73f6017d04bd66a40800000000000000
+      internalID: 5361213477963722551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 400
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 394d527fa16f81810800000000000000
+      internalID: 1736408252027360403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_6
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 499
+        width: 90
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d317c32f01763690800000000000000
+      internalID: -7622781009439288364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_7
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 399
+        width: 301
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebadf8b2352e9e710800000000000000
+      internalID: 1723157179286936254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_8
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 361
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ac5c952582683160800000000000000
+      internalID: 7005457544375983271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_9
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 368
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1d97f8805b037350800000000000000
+      internalID: 6013162367992962332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_10
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 362
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 892f6e765a7cb2730800000000000000
+      internalID: 3975490609311314584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_11
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 300
+        width: 101
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c6a1bb88d87bed00800000000000000
+      internalID: 1003028213472011975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_12
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 315
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b52b59ce09a36f0c0800000000000000
+      internalID: -4542378780037631397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_13
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 304
+        width: 96
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3cf72d28f8c9d930800000000000000
+      internalID: 4168583898343144506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_14
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 304
+        width: 82
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea149e5ec78a5f710800000000000000
+      internalID: 1726471286553133486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_15
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 304
+        width: 87
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ceb7e27781405160800000000000000
+      internalID: 7012176669820042953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_16
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 323
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b7b9d8e4979f9320800000000000000
+      internalID: 2566936978442008502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 346
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b47299d271401d690800000000000000
+      internalID: -7579272200292063413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_18
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 346
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbcb387c84d587550800000000000000
+      internalID: 6158775057595481276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_19
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 323
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bda6e6e79cab2080800000000000000
+      internalID: -9211078844442301006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_20
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 300
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00d16b6844e9f4b70800000000000000
+      internalID: 8885494606980324608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_21
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 323
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4053f84799e3da6b0800000000000000
+      internalID: -5283497959029263100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_22
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 209
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9880b17e54982d0f0800000000000000
+      internalID: -1093660826174551927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_23
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 209
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 320524b03f8137090800000000000000
+      internalID: -8038053477781188573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_24
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 223
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29751c2670626bce0800000000000000
+      internalID: -1389881621833754734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_25
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 213
+        width: 64
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b69a210a6449389b0800000000000000
+      internalID: -5079052923689588373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_26
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 235
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 355d92a9141a9ca60800000000000000
+      internalID: 7694858741470582099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_27
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 235
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4a53a49576764190800000000000000
+      internalID: -7978559442463270322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_28
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 214
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9eb900612f9c2f00800000000000000
+      internalID: 1093423775238176411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_29
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 114
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 051e25a52aac7a750800000000000000
+      internalID: 6316239801059303760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_30
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 121
+        width: 52
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82f39a5a7e00ff9f0800000000000000
+      internalID: -432626044287500504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_31
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 103
+        width: 94
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad4b64b7dcbed5080800000000000000
+      internalID: -9196935596251630374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_32
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 0
+        width: 90
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a0c5af929ff4d920800000000000000
+      internalID: 3014315055826452643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_33
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 103
+        width: 94
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf2b815ed0dcc2930800000000000000
+      internalID: 4119893218699031291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_34
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 99
+        width: 90
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba51ccafa3c0e1970800000000000000
+      internalID: 8727426575345915307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_35
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 100
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4bb68775d46bf3c0800000000000000
+      internalID: -4324752149163099317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 201
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c0c5e6d6191dc890800000000000000
+      internalID: -7436259823833464637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FxPack1_37
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 0
+        width: 90
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b3603afe52087790800000000000000
+      internalID: -7532267769829497930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FxPack1_0: 756670996748132819
+      FxPack1_1: 4858333734752016969
+      FxPack1_10: 3975490609311314584
+      FxPack1_11: 1003028213472011975
+      FxPack1_12: -4542378780037631397
+      FxPack1_13: 4168583898343144506
+      FxPack1_14: 1726471286553133486
+      FxPack1_15: 7012176669820042953
+      FxPack1_16: 2566936978442008502
+      FxPack1_17: -7579272200292063413
+      FxPack1_18: 6158775057595481276
+      FxPack1_19: -9211078844442301006
+      FxPack1_2: 7015800264072258866
+      FxPack1_20: 8885494606980324608
+      FxPack1_21: -5283497959029263100
+      FxPack1_22: -1093660826174551927
+      FxPack1_23: -8038053477781188573
+      FxPack1_24: -1389881621833754734
+      FxPack1_25: -5079052923689588373
+      FxPack1_26: 7694858741470582099
+      FxPack1_27: -7978559442463270322
+      FxPack1_28: 1093423775238176411
+      FxPack1_29: 6316239801059303760
+      FxPack1_3: 3611668390295542199
+      FxPack1_30: -432626044287500504
+      FxPack1_31: -9196935596251630374
+      FxPack1_32: 3014315055826452643
+      FxPack1_33: 4119893218699031291
+      FxPack1_34: 8727426575345915307
+      FxPack1_35: -4324752149163099317
+      FxPack1_36: -7436259823833464637
+      FxPack1_37: -7532267769829497930
+      FxPack1_4: 5361213477963722551
+      FxPack1_5: 1736408252027360403
+      FxPack1_6: -7622781009439288364
+      FxPack1_7: 1723157179286936254
+      FxPack1_8: 7005457544375983271
+      FxPack1_9: 6013162367992962332
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

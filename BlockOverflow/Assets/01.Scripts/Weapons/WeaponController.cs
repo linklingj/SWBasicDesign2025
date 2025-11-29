@@ -3,14 +3,18 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour {
     [SerializeField] private Weapon weapon;
+    [SerializeField] private WeaponType weaponType;
     private PlayerInput _playerInput;
     //private InputAction _shootAction;
     private Gamepad _gamepad;
+    
+    private CameraController _cameraController;
 
     private void Awake() {
         if (weapon == null) weapon = GetComponentInChildren<Weapon>();
         _playerInput = GetComponentInParent<PlayerInput>();
-        weapon?.Init();
+        _cameraController = FindFirstObjectByType<CameraController>();
+        //weapon?.Init(0);
     }
     
     private void Start() {
@@ -27,7 +31,7 @@ public class WeaponController : MonoBehaviour {
     private void Update() {
         if (weapon == null) return;
         if (Mouse.current != null && Mouse.current.leftButton.isPressed) {
-            weapon.Fire();
+            if (weapon.Fire()) CameraShake();
         }
         if (_gamepad != null)
         {
@@ -36,21 +40,33 @@ public class WeaponController : MonoBehaviour {
 
             if (trigger >= 0.1f)
             {
-                weapon.Fire(); // Fire 안에서 쿨타임 처리되어 있다고 가정
+                if (weapon.Fire()) CameraShake();
             }
         }
         
     }
 
-    public void SetWeapon(Weapon newWeapon) {
-        if (weapon == newWeapon) return;
-        weapon = newWeapon;
-        weapon?.Init();
+    void CameraShake()
+    {
+        switch (weaponType)
+        {
+            case WeaponType.Pistol:
+                _cameraController?.ShakeCamera(0.03f, 0.02f, 15);
+                break;
+            case WeaponType.Sniper:
+                _cameraController?.ShakeCamera(0.1f, 0.07f, 25);
+                break;
+            default:
+                _cameraController?.ShakeCamera(0.05f, 0.05f, 20);
+                break;
+        }
+    }
+
+    public void SetWeapon(WeaponData newWeapon, int playerIdx) {
+        weapon?.Init(newWeapon, playerIdx);
     }
     
     public void SetUpgrades(int damageIncrease, float fireRateIncrease) {
         weapon?.SetUpgrades(damageIncrease, fireRateIncrease);
     }
-    
-    
 }

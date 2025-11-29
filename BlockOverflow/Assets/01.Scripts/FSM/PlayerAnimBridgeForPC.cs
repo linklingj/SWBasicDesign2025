@@ -85,8 +85,11 @@ public class PlayerAnimBridgeForPC : MonoBehaviour
         
         playerHealth = GetComponentInParent<PlayerHealth>();
         playerHealth.OnDeath += HandleDeath;
-        
 
+        if (transform.position.x > 0)
+        {
+            sr.flipX = true;
+        }
     }
     void Reset()
     {

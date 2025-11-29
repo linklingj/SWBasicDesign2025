@@ -79,10 +79,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: ccb46261332614d809f4713bccfb5073, type: 2}
-  bulletPrefab: {fileID: 3004987730608447500, guid: 51712a504d35b6542b8631dbad146255, type: 3}
+  bulletPrefab: {fileID: 3004987730608447500, guid: 3c4376ff235c343958f35b1177fa098c, type: 3}
   firePoint: {fileID: 5381500857976126034}
   animator: {fileID: 1031637728120300182}
   muzzleFlashPrefab: {fileID: 6975738564399930652, guid: ef9a08cc8488f4d7b976cd48034fd0ce, type: 3}
+  spriteRenderer: {fileID: 0}
 --- !u!212 &3590810833479315276
 SpriteRenderer:
   m_ObjectHideFlags: 0

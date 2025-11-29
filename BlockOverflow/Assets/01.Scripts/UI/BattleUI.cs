@@ -9,6 +9,9 @@ public class BattleUI : MonoBehaviour {
     [SerializeField] RectTransform countdownUI;
     [SerializeField] Slider countdownSlider;
     [SerializeField] RectTransform startUI;
+
+    [SerializeField] RectTransform p1WinUI;
+    [SerializeField] RectTransform p2WinUI;
     
     [SerializeField] HealthBarSliderUI healthBarSliderUI1;
     [SerializeField] HealthBarSliderUI healthBarSliderUI2;
@@ -17,12 +20,14 @@ public class BattleUI : MonoBehaviour {
     {
         countdownUI.gameObject.SetActive(false);
         startUI.gameObject.SetActive(false);
+        p1WinUI.gameObject.SetActive(false);
+        p2WinUI.gameObject.SetActive(false);
     }
 
     public void CountDown(PlayerController player1, PlayerController player2)
     {
-        healthBarSliderUI1?.gameObject.SetActive(true);
-        healthBarSliderUI2?.gameObject.SetActive(true);
+        // healthBarSliderUI1?.gameObject.SetActive(true);
+        // healthBarSliderUI2?.gameObject.SetActive(true);
         healthBarSliderUI1?.SetPlayer(player1.transform);
         healthBarSliderUI2?.SetPlayer(player2.transform);
         StartCoroutine(CountDownSequence(player1, player2));
@@ -63,5 +68,21 @@ public class BattleUI : MonoBehaviour {
         p1.SetControl(true);
         p2.SetControl(true);
         startUI.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutSine);
+    }
+
+    public void Win(int playerIndex)
+    {
+        if (playerIndex == 1)
+        {
+            p1WinUI.gameObject.SetActive(true);
+            p1WinUI.localScale = Vector3.zero;
+            p1WinUI.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+        }
+        else if (playerIndex == 2)
+        {
+            p2WinUI.gameObject.SetActive(true);
+            p2WinUI.localScale = Vector3.zero;
+            p2WinUI.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+        }
     }
 }

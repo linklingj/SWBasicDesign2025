@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Maps : MonoBehaviour {
@@ -5,4 +6,8 @@ public class Maps : MonoBehaviour {
     public Transform player2Spawn;
     public Transform originalCameraPos;
     public Transform finalCameraPos;
+    public MapType mapType;
+    
+    public List<Transform> specialWayPoints;
+    
 }

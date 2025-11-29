@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Weapon : MonoBehaviour 
 {
@@ -8,18 +9,57 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected Transform firePoint;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject muzzleFlashPrefab;
-
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    
+    protected int playerIdx; 
+    
     protected float nextFireTime;
     
     protected int extraDamage = 0;
     protected float extraFireRate = 0f;
+    protected BulletData bulletData;
 
     private static readonly int IsShooting = Animator.StringToHash("isShooting");
     
-    public virtual void Init()
+    public virtual void Init(WeaponData weaponData, int playerIndex)
     {
+        data = weaponData;
+        playerIdx = playerIndex;
+        gameObject.name = weaponData.name;
+        bulletData = weaponData.bulletData;
+        
         if (!firePoint) firePoint = transform;
+        else
+        {
+            firePoint.localPosition = data.firePosoffset;
+        }
         nextFireTime = 0f;
+        
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+        ApplyWeaponData();
+    }
+    
+    protected void ApplyWeaponData()
+    {
+        if (data == null) return;
+        
+        // 1) 탄 프리팹 / 머즐 플래시를 데이터 기준으로 덮어쓰기 (데이터에 있으면)
+        if (data.bulletPrefab != null)
+            bulletPrefab = data.bulletPrefab;
+
+        if (data.muzzleFlashPrefab != null)
+            muzzleFlashPrefab = data.muzzleFlashPrefab;
+
+        // 2) 무기 스프라이트 교체
+        if (spriteRenderer != null && data.weaponSprite != null)
+            spriteRenderer.sprite = data.weaponSprite;
+
+        // 3) 애니메이션 교체
+        //if (animator != null && data.animatorController != null)
+            animator.runtimeAnimatorController = data.animatorController;
+        
     }
     
     public void SetUpgrades(int damageIncrease, float fireRateIncrease)
@@ -33,17 +73,19 @@ public class Weapon : MonoBehaviour
         animator.SetBool(IsShooting, !CanFire());
     }
 
-    public virtual void Fire()
+    public virtual bool Fire()
     {
-        if (!CanFire() || bulletPrefab == null) return;
+        if (!CanFire() || bulletPrefab == null) return false;
 
         Vector3 spawnPos = firePoint.position;
         Vector3 direction = firePoint.right * transform.localScale.x;
 
-        if (direction.sqrMagnitude <= Mathf.Epsilon) return;
+        if (direction.sqrMagnitude <= Mathf.Epsilon) return false;
 
         ShootBullet(spawnPos, direction);
         ScheduleNextShot();
+
+        return true;
     }
 
     protected virtual bool CanFire()
@@ -88,7 +130,7 @@ public class Weapon : MonoBehaviour
         if (bulletComponent)
         {
             bulletComponent.SetDamage(data.damage + extraDamage);
-            bulletComponent.Init(pos, dir);
+            bulletComponent.Init(pos, dir, bulletData, playerIdx);
         }
         Vector3 muzzlepos = pos + firePoint.right * -0.1f;
         // 탄환 생성 후

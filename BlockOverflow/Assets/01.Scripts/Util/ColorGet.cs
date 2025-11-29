@@ -17,11 +17,25 @@ public static class ColorGet {
         if (c.HasValue) return c.Value;
         return Color.gray;
     }
+    
+    public static Color getCustomizeColor(int index) {
+        var c = TryGetCustomColor(index);
+        if (c.HasValue) return c.Value;
+        return Color.gray;
+    }
 
     private static bool EnsurePaletteLoaded() {
         if (palette != null) return true;
         palette = Resources.Load<ColorPalette>("ColorPalette");
         return palette != null;
+    }
+    
+    public static Color? TryGetCustomColor(int index) {
+        if (!EnsurePaletteLoaded()) return Color.gray;
+        var pal = palette.customizeColorPalette;
+        if (pal == null || pal.Colors == null) return Color.gray;
+        if ((uint)index >= (uint)pal.Colors.Length) return Color.gray;
+        return pal.Colors[index];
     }
 
     private static Color? TryGetPaletteColor(BlockType blockType) {

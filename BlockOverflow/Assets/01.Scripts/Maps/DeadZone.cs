@@ -5,7 +5,7 @@ public class DeadZone : MonoBehaviour
     
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        
     }
     
 

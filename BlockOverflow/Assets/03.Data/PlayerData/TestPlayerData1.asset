@@ -18,3 +18,7 @@ MonoBehaviour:
     healthIncrease: 0
     damageIncrease: 0
     fireRateIncrease: 0
+  customization:
+    playerColor: {r: 1, g: 1, b: 1, a: 1}
+    hatSprite: {fileID: 0}
+  selectedWeaponType: 3
