@@ -104,6 +104,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if (Keyboard.current.uKey.wasPressedThisFrame)
+        {
+            Debug.Log("U KEY ULTIMATE TEST");
+            OnUltimate(new InputAction.CallbackContext());
+        }
+        
         StateMachine.Update();
 
         if (moveInput.x > 0.01f) isFacingRight = true;
@@ -195,7 +201,7 @@ public class PlayerController : MonoBehaviour
         if (cutscene != null)
         {
             // 컷신 재생 + 끝나면 조작 풀기
-            cutscene.Play("SOUL BREAKER", () =>
+            cutscene.Play(() =>
             {
                 SetControl(true);
             });

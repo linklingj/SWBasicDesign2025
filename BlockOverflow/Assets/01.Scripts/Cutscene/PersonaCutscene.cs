@@ -6,12 +6,11 @@ using DG.Tweening;
 
 public class PersonaCutscene : MonoBehaviour
 {
-    [Header("Camera")]
-    [SerializeField] private Camera baseCamera;     // 원래 게임 카메라
-    [SerializeField] private Camera cutsceneCamera; // Overlay 카메라
+    [SerializeField] private Camera baseCamera;
+    [SerializeField] private Camera cutsceneCamera;
 
-    [Header("Root Group (전체 페이드용, 선택사항)")]
-    [SerializeField] private CanvasGroup rootGroup; // 없으면 null 둬도 됨
+    [Header("Root Group")]
+    [SerializeField] private CanvasGroup rootGroup;
 
     [Header("Portrait")]
     [SerializeField] private RectTransform characterPortrait;
@@ -34,18 +33,23 @@ public class PersonaCutscene : MonoBehaviour
     [SerializeField] private CanvasGroup vignetteGroup;
 
     [Header("Timing")]
-    [SerializeField] private float holdDuration = 0.6f;   // 정지 유지 시간
+    [SerializeField] private float holdDuration = 0.6f;
     [SerializeField] private float exitFadeDuration = 0.25f;
 
-    private Sequence currentSeq;
+    [SerializeField] private GameObject worldUI;  // 체력바 포함 상위 UI
+    
+    private Sequence seq;
     private bool isPlaying;
     private float prevTimeScale;
-
     private Action _onFinished;
 
     private void Awake()
     {
-        // 시작 시 안 보이게 초기화
+        DisableVisuals();
+    }
+
+    private void DisableVisuals()
+    {
         if (rootGroup) rootGroup.alpha = 0f;
         if (portraitGroup) portraitGroup.alpha = 0f;
         if (titleGroup) titleGroup.alpha = 0f;
@@ -53,8 +57,8 @@ public class PersonaCutscene : MonoBehaviour
 
         if (redFlashBG)
         {
-            var c = redFlashBG.color;
-            c.a = 0f;
+            Color c = redFlashBG.color;
+            c.a = 0;
             redFlashBG.color = c;
         }
 
@@ -62,16 +66,11 @@ public class PersonaCutscene : MonoBehaviour
             cutsceneCamera.enabled = false;
     }
 
-    /// <summary>
-    /// 궁극기 컷신 시작. PlayerController에서 호출.
-    /// </summary>
-    public void Play(string skillName, Action onFinished = null)
+    public void Play(Action onFinished = null)
     {
         if (isPlaying) return;
 
         _onFinished = onFinished;
-        if (skillTitleText && !string.IsNullOrEmpty(skillName))
-            skillTitleText.text = skillName;
 
         StartSequence();
     }
@@ -79,130 +78,70 @@ public class PersonaCutscene : MonoBehaviour
     private void StartSequence()
     {
         isPlaying = true;
-
-        // 시간 멈추기
         prevTimeScale = Time.timeScale;
         Time.timeScale = 0f;
+        
+        if (worldUI) worldUI.SetActive(false); // 🔥 여기 추가
 
-        // 카메라 세팅
+        if (baseCamera) baseCamera.enabled = false;
         if (cutsceneCamera) cutsceneCamera.enabled = true;
-
-        // 루트/초기 상태 세팅
         if (rootGroup) rootGroup.alpha = 1f;
 
-        if (portraitGroup) portraitGroup.alpha = 0f;
-        if (titleGroup) titleGroup.alpha = 0f;
-        if (vignetteGroup) vignetteGroup.alpha = 0f;
+        ResetUIPositions();
+        seq?.Kill();
+        seq = DOTween.Sequence().SetUpdate(true);
 
-        if (characterPortrait)
-        {
-            var pos = characterPortrait.anchoredPosition;
-            pos.x = portraitFromX;
-            characterPortrait.anchoredPosition = pos;
-        }
+        seq.AppendCallback(() => slashEffect?.Play());
 
-        if (skillTitle)
-        {
-            var pos = skillTitle.anchoredPosition;
-            pos.y = titleFromY;
-            skillTitle.anchoredPosition = pos;
-        }
+        seq.Join(redFlashBG?.DOFade(0.9f, 0.12f));
+        seq.Join(vignetteGroup?.DOFade(0.25f, 0.25f));
 
-        if (redFlashBG)
-        {
-            var c = redFlashBG.color;
-            c.a = 0f;
-            redFlashBG.color = c;
-        }
+        seq.Append(characterPortrait.DOAnchorPosX(0f, portraitDuration)
+            .SetEase(portraitEase));
+        seq.Join(portraitGroup.DOFade(1f, portraitDuration * 0.8f));
 
-        // DOTween 시퀀스 (unscaledTime 사용!)
-        currentSeq?.Kill();
-        currentSeq = DOTween.Sequence().SetUpdate(true);
+        seq.Insert(seq.Duration() - 0.15f,
+                                      skillTitle.DOAnchorPosY(344.6f, titleDuration).SetEase(titleEase));
+        seq.Insert(seq.Duration() - 0.15f,
+            titleGroup.DOFade(1f, titleDuration * 0.9f));
 
-        // 1) 붉은 번쩍 + 비네트 페이드인 + 베기 이펙트
-        currentSeq.AppendCallback(() =>
-        {
-            if (slashEffect) slashEffect.Play();
-        });
+        seq.AppendInterval(holdDuration);
 
-        if (redFlashBG)
-        {
-            currentSeq.Join(
-                redFlashBG.DOFade(0.9f, 0.12f)
-                          .From(0f)
-                          .SetEase(Ease.OutQuad)
-            );
-        }
+        seq.Append(rootGroup.DOFade(0f, exitFadeDuration));
+        seq.OnComplete(FinishCutscene);
+    }
 
-        if (vignetteGroup)
-        {
-            currentSeq.Join(
-                vignetteGroup.DOFade(0.8f, 0.25f)
-                             .From(0f)
-                             .SetEase(Ease.OutQuad)
-            );
-        }
+    private void ResetUIPositions()
+    {
+        var posP = characterPortrait.anchoredPosition;
+        posP.x = portraitFromX;
+        characterPortrait.anchoredPosition = posP;
 
-        // 2) 포트레이트 슬라이드 인
-        if (characterPortrait && portraitGroup)
-        {
-            currentSeq.Append(
-                characterPortrait.DOAnchorPosX(0f, portraitDuration)
-                                 .SetEase(portraitEase)
-            );
-            currentSeq.Join(
-                portraitGroup.DOFade(1f, portraitDuration * 0.8f)
-            );
-        }
-        else
-        {
-            currentSeq.AppendInterval(0.1f);
-        }
+        var posT = skillTitle.anchoredPosition;
+        posT.y = titleFromY;
+        skillTitle.anchoredPosition = posT;
 
-        // 3) 스킬 타이틀 튀어나오기 (포트레이트 조금 후에)
-        if (skillTitle && titleGroup)
-        {
-            currentSeq.Insert(
-                currentSeq.Duration() - 0.15f, // 포트레이트 거의 끝날 때
-                skillTitle.DOAnchorPosY(0f, titleDuration).SetEase(titleEase)
-            );
-            currentSeq.Insert(
-                currentSeq.Duration() - 0.15f,
-                titleGroup.DOFade(1f, titleDuration * 0.9f)
-            );
-        }
-
-        // 4) 정지 유지
-        currentSeq.AppendInterval(holdDuration);
-
-        // 5) 전체 페이드아웃
-        if (rootGroup)
-        {
-            currentSeq.Append(rootGroup.DOFade(0f, exitFadeDuration));
-        }
-        else
-        {
-            currentSeq.AppendInterval(exitFadeDuration);
-        }
-
-        currentSeq.OnComplete(FinishCutscene);
+        portraitGroup.alpha = 0f;
+        titleGroup.alpha = 0f;
     }
 
     private void FinishCutscene()
     {
-        if (cutsceneCamera)
-            cutsceneCamera.enabled = false;
+        if (worldUI) worldUI.SetActive(true); 
+        if (cutsceneCamera) cutsceneCamera.enabled = false;
+        if (baseCamera) baseCamera.enabled = true;
 
         Time.timeScale = prevTimeScale;
         isPlaying = false;
 
         _onFinished?.Invoke();
         _onFinished = null;
+        DisableVisuals();
     }
 
     private void OnDestroy()
     {
-        currentSeq?.Kill();
+        seq?.Kill();
         if (isPlaying)
             Time.timeScale = prevTimeScale;
     }

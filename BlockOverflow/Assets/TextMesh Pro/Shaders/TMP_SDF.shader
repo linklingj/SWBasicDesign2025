@@ -11,7 +11,7 @@ Properties {
 	_OutlineTex			("Outline Texture", 2D) = "white" {}
 	_OutlineUVSpeedX	("Outline UV Speed X", Range(-5, 5)) = 0.0
 	_OutlineUVSpeedY	("Outline UV Speed Y", Range(-5, 5)) = 0.0
-	_OutlineWidth		("Outline Thickness", Range(0, 1)) = 0
+	_OutlineWidth		("Outline Thickness", Range(0, 1)) = 0.25
 	_OutlineSoftness	("Outline Softness", Range(0,1)) = 0
 
 	_Bevel				("Bevel", Range(0,1)) = 0.5
@@ -43,7 +43,7 @@ Properties {
 	_UnderlayDilate		("Border Dilate", Range(-1,1)) = 0
 	_UnderlaySoftness	("Border Softness", Range(0,1)) = 0
 
-	_GlowColor		    ("Color", Color) = (0, 1, 0, 0.5)
+	_GlowColor		    ("Color", Color) = (0, 0, 0, 0)
 	_GlowOffset			("Offset", Range(-1,1)) = 0
 	_GlowInner			("Inner", Range(0,1)) = 0.05
 	_GlowOuter			("Outer", Range(0,1)) = 0.05
