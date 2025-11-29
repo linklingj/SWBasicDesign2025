@@ -183,7 +183,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -301283297
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -270,7 +270,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -301283297
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -421,7 +421,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 75088439
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f4de4da555d88416288a51a779dab0d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -642,7 +642,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1003660823
-  m_SortingLayer: 6
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 1551578244945190711, guid: aec9e71f8e6b8432ca4c210a2b2a1a38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -700,6 +700,7 @@ MonoBehaviour:
   rightHandPivot: {fileID: 3134985702879677144}
   pivotCrouchOffsetY: -0.2
   pivotLerpSpeed: 10
+  playerHealth: {fileID: 0}
 --- !u!1 &8240697772759655588
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +754,7 @@ MonoBehaviour:
   firePoint: {fileID: 4042515548747418140}
   animator: {fileID: 8127083373555908500}
   muzzleFlashPrefab: {fileID: 6975738564399930652, guid: ef9a08cc8488f4d7b976cd48034fd0ce, type: 3}
+  spriteRenderer: {fileID: 0}
 --- !u!212 &3006138092238988635
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -893,6 +895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 5533827784029737525}
+  weaponType: 0
 --- !u!114 &3967283010225930555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,10 +942,21 @@ MonoBehaviour:
   crouchCollider: {fileID: 8936141092730045610}
   wallJumpForce: {x: 10, y: 12}
   wallStickMaxTime: 3
+  cutscene: {fileID: 0}
+  specialAbility:
+    value: 0
+    onValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+  specialAvailibleEffect: {fileID: 0}
   jumpPressedThisFrame: 0
   jumpReleasedThisFrame: 0
   attackPressedThisFrame: 0
   crouchHeld: 0
+  hasStartedJump: 0
+  jumpStartFrame: 0
+  airJumpsAvailable: 0
+  wasTouchingWall: 0
 --- !u!50 &9030402184952837912
 Rigidbody2D:
   serializedVersion: 5
@@ -1103,10 +1117,14 @@ MonoBehaviour:
     m_ActionId: 11c4d21d-c7a7-4fca-96e6-44109ed7ffc7
     m_ActionName: 'Player/Attack[/Mouse/leftButton]'
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 349863fd-a273-49c5-a5cb-d7f6580b8493
+    m_ActionName: 'Player/Aim[/Mouse/position,/Pen/position]'
+  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AimMovement, Assembly-CSharp
-        m_MethodName: OnAim
+      - m_Target: {fileID: 3053784746910986090}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnUltimate
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1116,8 +1134,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 349863fd-a273-49c5-a5cb-d7f6580b8493
-    m_ActionName: 'Player/Aim[/Mouse/position,/Pen/position]'
+    m_ActionId: c891ffc3-e0e9-459b-b1f8-fdd865498b36
+    m_ActionName: 'Player/Ult[/Keyboard/u]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player

@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallStickMaxTime = 0.3f;
 
     [Header("Ultimate / Cutscene")]
-    [SerializeField] private PersonaCutscene cutscene;  // 🔥 인스펙터에 연결
+    [SerializeField] private PersonaCutscene cutscene;
     
     [Header("Special Ability")]
     public Observable<bool> specialAbility;
@@ -198,28 +198,25 @@ public class PlayerController : MonoBehaviour
     
     public void OnUltimate(InputAction.CallbackContext ctx)
     {
-        if (!ctx.started) return;  // 버튼 눌렀을 때만
-        if (!CanControl) return;   // 이미 멈춰있으면 무시
-
+        if (!ctx.started) return;
+        if (!CanControl) return;
+        
         Debug.Log("ULTIMATE TRIGGERED");
 
-        // 조작 잠금
-        SetControl(false);
+        if (cutscene == null)
+            cutscene = FindObjectOfType<PersonaCutscene>();
 
-        if (cutscene != null)
+        if (cutscene == null)
         {
-            // 컷신 재생 + 끝나면 조작 풀기
-            cutscene.Play(() =>
-            {
-                SetControl(true);
-            });
-        }
-        else
-        {
-            Debug.LogWarning("PersonaCutscene is not assigned on PlayerController!");
+            Debug.LogWarning("PersonaCutscene is not found! Make sure it is active.");
             SetControl(true);
+            return;
         }
+
+        SetControl(false);
+        cutscene.Play(() => SetControl(true));
     }
+
 
 
     // === CONSUME HELPERS ===
