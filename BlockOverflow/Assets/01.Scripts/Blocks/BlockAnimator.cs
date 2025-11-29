@@ -66,6 +66,7 @@ public class BlockAnimator : MonoBehaviour {
     //블록이 살짝 커지면서 흔들림(회전)
     public void SelectedAnim()
     {
+        AudioPlayer.Instance.Play("Block_Selected");
         KillAllTweens();
         mousePopupInteraction = false;
         seq = DOTween.Sequence().SetLink(gameObject);
@@ -90,6 +91,7 @@ public class BlockAnimator : MonoBehaviour {
     //dragsize로 커지고 살짝 흔들림
     public void OnDragStartAnim()
     {
+        AudioPlayer.Instance.Play("Block_Drag");
         KillAllTweens();
         seq = DOTween.Sequence().SetLink(gameObject);
         seq.Join(transform.DOScale(blockAnimData.dragSize, blockAnimData.dragDuration).SetEase(Ease.OutBack));
@@ -99,9 +101,10 @@ public class BlockAnimator : MonoBehaviour {
     //placedsize로 돌아감, position 위치로 이동함
     public void OnDropAnim(Vector3 position)
     {
+        AudioPlayer.Instance.Play("Block_Fail");
         KillAllTweens();
         seq = DOTween.Sequence().SetLink(gameObject);
-        seq.Join(transform.DOMove(position, blockAnimData.dropDuration).SetEase(Ease.OutQuad));
+        seq.Join(transform.DOMove(new Vector3(position.x, position.y, 0), blockAnimData.dropDuration).SetEase(Ease.OutQuad));
         seq.Join(transform.DOScale(blockAnimData.placedSize, blockAnimData.dropDuration).SetEase(Ease.OutBack));
         seq.Append(transform.DORotate(Vector3.zero, 0.05f));
     }
@@ -109,9 +112,10 @@ public class BlockAnimator : MonoBehaviour {
     //placedsize로 돌아감
     public void PlacedAnim(Vector3 position)
     {
+        AudioPlayer.Instance.Play("Block_Placed");
         KillAllTweens();
         seq = DOTween.Sequence().SetLink(gameObject);
-        seq.Join(transform.DOMove(position, blockAnimData.dropDuration).SetEase(Ease.OutBack));
+        seq.Join(transform.DOMove(new Vector3(position.x, position.y, 0), blockAnimData.dropDuration).SetEase(Ease.OutBack));
         scaleTween = transform.DOScale(blockAnimData.placedSize, 0.2f)
             .SetEase(Ease.OutQuad)
             .SetLink(gameObject);

@@ -68,6 +68,7 @@ MonoBehaviour:
   finalCameraPos: {fileID: 2281156142050663273}
   mapType: 1
   specialWayPoints: []
+  mapBGM: {fileID: 11400000, guid: 4e835feecb7bf4075940a361a389e5bd, type: 2}
 --- !u!1 &935302936675553016
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,11 @@ public class UpgradeManager : SerializedMonoBehaviour
     [Header("UI")]
     [SerializeField] BlocksUI blocksUI;
     [SerializeField] GameObject toNextButton;
+    [SerializeField] private Dictionary<MapType, GameObject> bgObjects;
+    
+    [Header("Sound")]
+    [SerializeField] AudioData upgradeBGM;
+
     
     RewardCameraConroller cameraConroller;
     Inventory inventory;
@@ -38,12 +43,18 @@ public class UpgradeManager : SerializedMonoBehaviour
         StateMachine = new FSM<UpgradeManager>(this);
         inventory = GetComponent<Inventory>();
         cameraConroller = FindFirstObjectByType<RewardCameraConroller>();
+        
+        foreach (var bg in bgObjects)
+            bg.Value.SetActive(false);
+        bgObjects[GameManager.Instance.currentMapType].SetActive(true);
     }
     
     private void Start()
     {
+        AudioPlayer.Instance.PlayBGM(upgradeBGM);
         StateMachine.Set<RewardState>();
         StateMachine.Update();
+        Time.timeScale = 1;
     }
 
     private void Update()

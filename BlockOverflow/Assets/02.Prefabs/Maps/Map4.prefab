@@ -4594,6 +4594,9 @@ MonoBehaviour:
   player2Spawn: {fileID: 204390879631995185}
   originalCameraPos: {fileID: 4221886810109877045}
   finalCameraPos: {fileID: 4798274565990815263}
+  mapType: 0
+  specialWayPoints: []
+  mapBGM: {fileID: 11400000, guid: d3160dcbd938845d485573141deaf7da, type: 2}
 --- !u!1 &8609669492295960509
 GameObject:
   m_ObjectHideFlags: 0

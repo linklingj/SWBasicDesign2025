@@ -46,7 +46,7 @@ public class CameraController : SerializedMonoBehaviour
         sineTime = 0;
         if (postProcessVolume != null) postProcessVolume.profile.TryGet(out vignette);
         
-        screenFireEffect.SetActive(false);
+        if (screenFireEffect) screenFireEffect.SetActive(false);
     }
 
     private void Update()

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2769878432551609200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1801893619170305501}
+  - component: {fileID: 525859218311660310}
+  m_Layer: 0
+  m_Name: AudioPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1801893619170305501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769878432551609200}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &525859218311660310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769878432551609200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a84d2f406a24bdfaf4dd1e0026571a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trackerPrefab: {fileID: 5975637715564916226, guid: b632980d1b80941a48a608722e2350c2, type: 3}
+  _audioDatas:
+  - name: UI_Click
+    audioData: {fileID: 11400000, guid: 0947fc191b6dd4a2a93af1ec25b26e72, type: 2}
+  - name: UI_Click_2
+    audioData: {fileID: 11400000, guid: eda3377c2c3ae41e2a37523dcbc21042, type: 2}
+  - name: Block_Drag
+    audioData: {fileID: 11400000, guid: 8f5b989664a0443da96c4b5e61e06ed4, type: 2}
+  - name: Block_Fail
+    audioData: {fileID: 11400000, guid: ed436cea670bb4f6bb37475209c6fc9a, type: 2}
+  - name: Block_Placed
+    audioData: {fileID: 11400000, guid: 8d3f43cafa11e42f5bee5733be5a42b9, type: 2}
+  - name: Block_Selected
+    audioData: {fileID: 11400000, guid: 73bebbd1e6e454c55a48b412076e5a1f, type: 2}

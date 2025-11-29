@@ -3594,6 +3594,7 @@ MonoBehaviour:
   - {fileID: 2029243790894435172}
   - {fileID: 7372644114698966096}
   - {fileID: 1497571537751975953}
+  mapBGM: {fileID: 11400000, guid: d3160dcbd938845d485573141deaf7da, type: 2}
 --- !u!1 &3607941465510939282
 GameObject:
   m_ObjectHideFlags: 0

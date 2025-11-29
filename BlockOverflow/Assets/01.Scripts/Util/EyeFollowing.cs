@@ -36,8 +36,6 @@ public class EyeFollowing : MonoBehaviour
         Vector3 mouseWorldPos = GetMouseWorldPosition();
         mouseWorldPos.z = eyeCenter.z;
 
-        Debug.Log(mouseWorldPos);
-
         // 기준점 → 마우스 방향
         Vector3 direction = (mouseWorldPos - eyeCenter);
 
