@@ -121,7 +121,14 @@ public class UpgradeManager : SerializedMonoBehaviour
         
         // 보여주기
         for (int i = 0; i < rewardBlocks.Count; i++)
-            rewardBlocks[i].Appear(i, 3);
+        {
+            var i1 = i;
+            DOVirtual.DelayedCall(i * 0.5f, () =>
+            {
+                rewardBlocks[i1].Appear(i1, 3);
+                blocksUI.SetRewardText(i1, rewardBlocks[i1]);
+            }, false);
+        }
     }
 
     // 패배자에게 주어지는 보상 블록 랜덤 생성

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6dbc77234e8b44a88f056e9ff5b5554, type: 3}
-  m_Name: Block_Selected
+  m_Name: RoundStart
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 65f7cff7616a2490b90d9c6791a988bc, type: 3}
-  trimming: {x: 0, y: 0.1260771}
+  clip: {fileID: 8300000, guid: 54480a15c8ae248f780fee062f8052a1, type: 3}
+  trimming: {x: 0, y: 1.0111338}
   audioMixerGroup: {fileID: 0}
   volume: 1
   pitch: 1

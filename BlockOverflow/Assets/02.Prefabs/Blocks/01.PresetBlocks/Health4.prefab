@@ -631,7 +631,7 @@ MonoBehaviour:
     - rid: 4987116833686421612
       type: {class: BlockHealthEffect, ns: , asm: Assembly-CSharp}
       data:
-        healthAmount: 80
+        healthAmount: 50
 --- !u!114 &5328164771758685909
 MonoBehaviour:
   m_ObjectHideFlags: 0

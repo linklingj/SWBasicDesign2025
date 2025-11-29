@@ -93,7 +93,11 @@ public class Inventory : SerializedMonoBehaviour {
     [Button]
     public void Set(Block block, Vector2Int position)
     {
-        if (!CheckViability(block, position)) return;
+        if (!CheckViability(block, position))
+        {
+            Debug.Log("Cannot place block at the specified position.");
+            return;
+        }
 
         if (blocks == null)
         {
@@ -148,7 +152,7 @@ public class Inventory : SerializedMonoBehaviour {
 
     public void Set(Block block, Vector2Int position, int rotationState)
     {
-        block.SetRotationState(rotationState);
+        //block.SetRotationState(rotationState);
         for (int i = 0; i < rotationState; i++)
         {
             block.RotateClockwise();

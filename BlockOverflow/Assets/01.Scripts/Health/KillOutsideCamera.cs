@@ -47,7 +47,7 @@ public class KillOutsideCamera : MonoBehaviour
             vpPos.y < 0f - margin ||
             vpPos.y > 1f + margin)
         {
-            health.Die();
+            health.FallDeath();
         }
     }
     

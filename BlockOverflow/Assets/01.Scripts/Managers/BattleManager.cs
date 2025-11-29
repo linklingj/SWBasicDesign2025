@@ -33,6 +33,7 @@ public class BattleManager : SerializedMonoBehaviour
     [SerializeField] private AudioData voice2;
     [SerializeField] private AudioData voice1;
     [SerializeField] private AudioData voiceGo;
+    [SerializeField] private AudioData gameStart;
     
     private PlayerController player1;
     private PlayerController player2;
@@ -52,6 +53,7 @@ public class BattleManager : SerializedMonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         GenerateMap();
         StartBattle();
     }
@@ -181,6 +183,7 @@ public class BattleManager : SerializedMonoBehaviour
         gameTime = 0;
         cameraController.ShakeCamera(0.3f, 0.5f, 10);
         AudioPlayer.Instance.Play(voiceGo);
+        AudioPlayer.Instance.Play(gameStart);
         
         gameStarted.Value = true;
         SetSpecialObject();

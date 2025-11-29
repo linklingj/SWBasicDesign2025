@@ -1135,6 +1135,7 @@ MonoBehaviour:
   vignetteMax: 0.4
   vignetteBlinkSpeed: 5
   screenFireEffect: {fileID: 1343063119}
+  startShrinkSound: {fileID: 11400000, guid: 27242fd04b43b412f9a85f3c3494cc89, type: 2}
 --- !u!4 &676279999
 Transform:
   m_ObjectHideFlags: 0
@@ -3319,7 +3320,7 @@ MonoBehaviour:
           m_CallState: 2
   playerPrefab: {fileID: 8675466437622409480, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
   mapPrefabs:
-  - {fileID: 490085246877784193, guid: 9952ac34d35384387afbe7f08953b5f1, type: 3}
+  - {fileID: 3604845064422884706, guid: 971d7de6db3394c57ac15eecd7c2cc48, type: 3}
   prestartDelay: 1
   cameraController: {fileID: 676279998}
   battleUI: {fileID: 1058888179}
@@ -3331,6 +3332,7 @@ MonoBehaviour:
   voice2: {fileID: 11400000, guid: d9f7125c607c045d79ed13f612be23a9, type: 2}
   voice1: {fileID: 11400000, guid: f8705ff6c37e340579b07c4ebb8f03a0, type: 2}
   voiceGo: {fileID: 11400000, guid: 2d4b63057577e43ef9c6e2b86ec06871, type: 2}
+  gameStart: {fileID: 11400000, guid: df45ddc1e48644149a43d8fad8c1d04a, type: 2}
 --- !u!1 &1854803050
 GameObject:
   m_ObjectHideFlags: 0

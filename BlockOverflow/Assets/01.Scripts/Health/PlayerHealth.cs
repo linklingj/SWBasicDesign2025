@@ -61,6 +61,25 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             .Append(transform.DOMoveY(transform.position.y, 0.5f).SetEase(Ease.InQuad)); // 아래로
         
         OnDeath?.Invoke();
+        AudioPlayer.Instance.Play("Player_Death");
+    }
+    
+    public void FallDeath()
+    {
+        if (IsDead) return;
+        
+        IsDead = true;
+        
+        DOTween.Kill(transform);
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(transform.DOMoveY(transform.position.y + 4f, 0.3f).SetEase(Ease.OutQuad))  // 위로
+            .Append(transform.DOMoveY(transform.position.y, 0.5f).SetEase(Ease.InQuad)); // 아래로
+        
+        OnDeath?.Invoke();
+        
+        AudioPlayer.Instance.Play("Player_Fall");
     }
     
     public void Heal(float healAmount)

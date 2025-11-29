@@ -58,3 +58,7 @@ MonoBehaviour:
     audioData: {fileID: 11400000, guid: 8d3f43cafa11e42f5bee5733be5a42b9, type: 2}
   - name: Block_Selected
     audioData: {fileID: 11400000, guid: 73bebbd1e6e454c55a48b412076e5a1f, type: 2}
+  - name: Player_Death
+    audioData: {fileID: 11400000, guid: 2b37a747810f44a8c8f4341bbac21f65, type: 2}
+  - name: Player_Fall
+    audioData: {fileID: 11400000, guid: 9811f1247083747d1a2bd726c07eb82c, type: 2}

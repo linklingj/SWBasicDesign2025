@@ -16,7 +16,7 @@ MonoBehaviour:
   placedSize: {x: 1, y: 1, z: 1}
   dragSize: {x: 1.2, y: 1.2, z: 1.2}
   showPosition: {x: 0, y: 9, z: 0}
-  generateSpread: 10
+  generateSpread: 11
   selectedPosition: {x: 12, y: -1, z: 0}
   appearDuration: 0.35
   hoverDuration: 0.15
