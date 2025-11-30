@@ -72,23 +72,36 @@ public class Bullet : PoolObject {
 
     private void OnTriggerEnter2D(Collider2D other)
     { 
-        Vector2 p = other.ClosestPoint(rb.position);
-        var damageable = other.GetComponentInParent<IDamageable>(); // 여기
-        if(damageable != null)
+        var damageable = other.GetComponentInParent<IDamageable>();
+
+        if (damageable != null)
         {
             damageable.TakeDamage(damage);
+            Vector2 p = other.ClosestPoint(rb.position);
+            SpawnImpact(p, -moveDir);
         }
-        DespawnWithImpact(p, -moveDir);
-        //Release();
+
+        if (!isUltimate)
+        {
+            Vector2 p = other.ClosestPoint(rb.position);
+            DespawnWithImpact(p, -moveDir);
+        }
+        // 🔥 궁극탄은 계속 진행 (파괴 X)
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log(collision.gameObject.name);
-        ContactPoint2D cp = collision.GetContact(0);
-        DespawnWithImpact(cp.point + cp.normal * impactOffset, cp.normal);
-        //Release();
+        if (!isUltimate)
+        {
+            ContactPoint2D cp = collision.GetContact(0);
+            DespawnWithImpact(cp.point + cp.normal * impactOffset, cp.normal);
+        }
+
+
+        
     }
+
     
     private void DespawnWithImpact(Vector2 pos, Vector2 normal)
     {
@@ -111,4 +124,13 @@ public class Bullet : PoolObject {
         
         
     }
+    
+    public bool isUltimate;
+
+    public void SetUltimate(bool value)
+    {
+        isUltimate = value;
+    }
+
+    
 }

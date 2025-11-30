@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject movedust;
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 6.0f;
     [SerializeField] private float airControlMultiplier = 0.8f;
@@ -30,6 +31,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 wallJumpForce = new Vector2(10f, 12f);
     [SerializeField] private float wallStickMaxTime = 0.3f;
 
+    [Header("Ultimate / Cutscene")]
+    [SerializeField] private PersonaCutscene cutscene;
+    [SerializeField] private UltimateWeapon ultimateWeapon;
+    
     [Header("Special Ability")]
     public Observable<bool> specialAbility;
     [SerializeField] private GameObject specialAvailibleEffect;
@@ -39,6 +44,10 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveInput;
     private bool isFacingRight = true;
+    
+    private Vector3 dustright = new Vector3(-.4f, -.5f, 0);
+    private Vector3 dustleft = new Vector3(.4f, -.5f, 0);
+    
 
     // 입력 플래그
     public bool jumpPressedThisFrame;
@@ -71,10 +80,12 @@ public class PlayerController : MonoBehaviour
     public Vector2 MoveInput => moveInput;
     public bool IsCrouching { get; private set; }
     public bool CanControl { get; private set; } = false;
+    
 
 
     private void Awake()
     {
+
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
 
@@ -93,25 +104,68 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         StateMachine.Set<IdleState>();
+
+        if (cutscene == null)
+            cutscene = FindObjectOfType<PersonaCutscene>();
+
+        if (ultimateWeapon != null)
+        {
+            Transform weaponFirePoint = transform.Find("Weapon/FirePos");
+            Weapon normalWeapon = GetComponentInChildren<Weapon>(); // ⭐ 현재 무기 가져오기
+
+            if (weaponFirePoint != null && normalWeapon != null)
+            {
+                ultimateWeapon.Init(normalWeapon.Data, 0); // WeaponData 전달
+                ultimateWeapon.SetFirePoint(weaponFirePoint); // FirePos 등록
+            }
+            else
+            {
+                Debug.LogWarning("[Ultimate] FirePos or Weapon missing");
+            }
+        }
+
         specialAbility.Value = false;
     }
 
+
+
+
     private void Update()
     {
+        
         if (!CanControl)
         {
             rb.linearVelocity = Vector2.zero;
             return;
         }
 
+        if (Keyboard.current.uKey.wasPressedThisFrame)
+        {
+            Debug.Log("U KEY ULTIMATE TEST");
+            OnUltimate(new InputAction.CallbackContext());
+        }
+        
         StateMachine.Update();
 
-        if (moveInput.x > 0.01f) isFacingRight = true;
-        else if (moveInput.x < -0.01f) isFacingRight = false;
+        if (moveInput.x > 0.01f)
+        {
+            isFacingRight = true;
+            movedust.transform.localPosition = dustright;
+            movedust.transform.rotation = Quaternion.Euler(180, 0, 0);
+            
+
+        }
+        else if (moveInput.x < -0.01f)
+        {
+            isFacingRight = false;
+            movedust.transform.localPosition = dustleft;
+            movedust.transform.rotation = Quaternion.Euler(-180, 0, 0);
+        }
 
         // 착지 처리
         if (IsGrounded())
         {
+            movedust.SetActive(true);   
             lastGroundedTime = Time.time;
             ClearWallStickLockoutOnLand();
 
@@ -131,7 +185,7 @@ public class PlayerController : MonoBehaviour
             wasTouchingWall = false;
         }
 
-        // 🔥 이 프레임에서 JumpThisFrame 사용 끝
+
         JumpThisFrame = false;
     }
     
@@ -145,8 +199,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
+        movedust.SetActive(false);
         if (ctx.started)
         {
+            
             lastJumpPressedTime = Time.time;
 
             JumpThisFrame = true;
@@ -181,6 +237,41 @@ public class PlayerController : MonoBehaviour
         if (ctx.started)
             attackPressedThisFrame = true;
     }
+    
+    public void OnUltimate(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.started || !CanControl) return;
+
+        Debug.Log("ULTIMATE TRIGGERED");
+
+        if (cutscene == null)
+            cutscene = FindObjectOfType<PersonaCutscene>();
+
+        if (cutscene == null)
+        {
+            Debug.LogWarning("PersonaCutscene is not found! Make sure it is active.");
+            return;
+        }
+
+        SetControl(false);
+
+        cutscene.Play(() =>
+        {
+            if (ultimateWeapon != null)
+            {
+                ultimateWeapon.Fire(); // 🚀 궁극기 탄 발사!
+            }
+            else
+            {
+                Debug.LogWarning("UltimateWeaponController not assigned!");
+            }
+
+            SetControl(true);
+        });
+    }
+
+
+
 
     // === CONSUME HELPERS ===
     public bool ConsumeJumpReleased()
@@ -325,6 +416,11 @@ public class PlayerController : MonoBehaviour
         wallStickTimer = wallStickMaxTime;
         rb.linearVelocity = new Vector2(0f, Mathf.Min(rb.linearVelocity.y, -1f));
     }
+    
+    public void OnSpecialAbility(bool enabled)
+    {
+        specialAvailibleEffect.SetActive(enabled);
+    }
 
     public void TickWallStick() => wallStickTimer -= Time.deltaTime;
     public bool IsWallStickExpired() => wallStickTimer <= 0f;
@@ -347,6 +443,7 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         if (!groundCheck) return false;
+        
         return Physics2D.OverlapCircle(
             groundCheck.position,
             groundRadius,
@@ -360,10 +457,5 @@ public class PlayerController : MonoBehaviour
         CanControl = value;
         if (!value)
             rb.linearVelocity = Vector2.zero;
-    }
-    
-    public void OnSpecialAbility(bool enabled)
-    {
-        specialAvailibleEffect.SetActive(enabled);
     }
 }

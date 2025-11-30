@@ -100,6 +100,8 @@ public class HealthBarSliderUI : MonoBehaviour
         Vector3 worldPos = player.position + worldOffset;
         Vector3 screenPos = cam.WorldToScreenPoint(worldPos);
         rectTransform.position = screenPos;
+        
+        
     }
 
     private void Update()

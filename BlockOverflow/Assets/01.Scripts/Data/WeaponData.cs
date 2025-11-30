@@ -19,6 +19,7 @@ public class WeaponData : ScriptableObject {
 
     [LabelText("탄 프리팹")]
     public GameObject bulletPrefab;
+    public GameObject usedAmmoPrefab;
 
     [LabelText("머즐 플래시 프리팹")]
     public GameObject muzzleFlashPrefab;
