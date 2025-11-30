@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject movedust;
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 6.0f;
     [SerializeField] private float airControlMultiplier = 0.8f;
@@ -42,6 +43,10 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveInput;
     private bool isFacingRight = true;
+    
+    private Vector3 dustright = new Vector3(-.4f, -.5f, 0);
+    private Vector3 dustleft = new Vector3(.4f, -.5f, 0);
+    
 
     // 입력 플래그
     public bool jumpPressedThisFrame;
@@ -74,9 +79,12 @@ public class PlayerController : MonoBehaviour
     public Vector2 MoveInput => moveInput;
     public bool IsCrouching { get; private set; }
     public bool CanControl { get; private set; } = false;
+    
+
 
     private void Awake()
     {
+
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
 
@@ -106,6 +114,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        
         if (!CanControl)
         {
             rb.linearVelocity = Vector2.zero;
@@ -120,12 +129,25 @@ public class PlayerController : MonoBehaviour
         
         StateMachine.Update();
 
-        if (moveInput.x > 0.01f) isFacingRight = true;
-        else if (moveInput.x < -0.01f) isFacingRight = false;
+        if (moveInput.x > 0.01f)
+        {
+            isFacingRight = true;
+            movedust.transform.localPosition = dustright;
+            movedust.transform.rotation = Quaternion.Euler(180, 0, 0);
+            
+
+        }
+        else if (moveInput.x < -0.01f)
+        {
+            isFacingRight = false;
+            movedust.transform.localPosition = dustleft;
+            movedust.transform.rotation = Quaternion.Euler(-180, 0, 0);
+        }
 
         // 착지 처리
         if (IsGrounded())
         {
+            movedust.SetActive(true);   
             lastGroundedTime = Time.time;
             ClearWallStickLockoutOnLand();
 
@@ -145,7 +167,7 @@ public class PlayerController : MonoBehaviour
             wasTouchingWall = false;
         }
 
-        // 🔥 이 프레임에서 JumpThisFrame 사용 끝
+
         JumpThisFrame = false;
     }
     
@@ -159,8 +181,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
+        movedust.SetActive(false);
         if (ctx.started)
         {
+            
             lastJumpPressedTime = Time.time;
 
             JumpThisFrame = true;
@@ -389,6 +413,7 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         if (!groundCheck) return false;
+        
         return Physics2D.OverlapCircle(
             groundCheck.position,
             groundRadius,
