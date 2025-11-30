@@ -33,7 +33,7 @@ public class UltimateWeapon : Weapon
     {
         Quaternion rot = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
 
-        GameObject go = Instantiate(bulletPrefab, pos, rot);
+        var go = Instantiate(bulletPrefab, pos, rot);
         Bullet b = go.GetComponent<Bullet>();
         if (!b) return;
 

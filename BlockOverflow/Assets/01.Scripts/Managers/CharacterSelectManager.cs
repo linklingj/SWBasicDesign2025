@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.Serialization;
+using Random = System.Random;
 
 public class CharacterSelectManager : SerializedMonoBehaviour {
     [SerializeField] private int index;

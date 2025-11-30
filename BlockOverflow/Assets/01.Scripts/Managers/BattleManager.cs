@@ -115,13 +115,17 @@ public class BattleManager : SerializedMonoBehaviour
         player1.transform.SetParent(PlayerTransform);
         player2.transform.SetParent(PlayerTransform);
         
-        //플레이어 무기 업그레이드 적용
+        //플레이어 무기 적용
         var p1Weapon = player1.GetComponent<WeaponController>();
         var p2Weapon = player2.GetComponent<WeaponController>();
         p1Weapon.SetWeapon(weaponDatas[playerData1.selectedWeaponType], 1);
         p2Weapon.SetWeapon(weaponDatas[playerData2.selectedWeaponType], 2);
+        
+        //업그레이드 적용
         p1Weapon.SetUpgrades(playerData1.playerStats.damageIncrease, playerData1.playerStats.fireRateIncrease);
         p2Weapon.SetUpgrades(playerData2.playerStats.damageIncrease, playerData2.playerStats.fireRateIncrease);
+        player1.SetUpgrades(playerData1.playerStats.speedIncrease);
+        player2.SetUpgrades(playerData2.playerStats.speedIncrease);
         
         //플레이어 체력 초기화 및 죽음 이벤트 연결
         var p1Health = player1.GetComponent<PlayerHealth>();
