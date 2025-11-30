@@ -128,9 +128,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2041613087279825512, guid: 141fafe8f86bc4a6dbfc4caa7285840b, type: 3}
+      propertyPath: poolObjData.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2041613087279825512, guid: 141fafe8f86bc4a6dbfc4caa7285840b, type: 3}
       propertyPath: poolObjData.Array.data[3].count
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 2041613087279825512, guid: 141fafe8f86bc4a6dbfc4caa7285840b, type: 3}
+      propertyPath: poolObjData.Array.data[8].count
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2041613087279825512, guid: 141fafe8f86bc4a6dbfc4caa7285840b, type: 3}
+      propertyPath: poolObjData.Array.data[8].prefab
+      value: 
+      objectReference: {fileID: 2477019627802649338, guid: 17c39c8cf81dd4fe3a60d3f6f9cae19a, type: 3}
     - target: {fileID: 2274113559609678795, guid: 141fafe8f86bc4a6dbfc4caa7285840b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
