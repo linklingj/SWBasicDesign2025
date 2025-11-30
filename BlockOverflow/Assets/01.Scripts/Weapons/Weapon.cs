@@ -13,6 +13,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject usedAmmoPrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
     
+    [SerializeField] protected WeaponData weaponData;
+    public WeaponData Data => weaponData;
+
+    
+    
     [Header("반동")]
     [SerializeField] private Transform recoilPivot;     // 흔들릴 기준
     [SerializeField] private float recoilAngle = 6f;    // 몇 도 정도 튕길지

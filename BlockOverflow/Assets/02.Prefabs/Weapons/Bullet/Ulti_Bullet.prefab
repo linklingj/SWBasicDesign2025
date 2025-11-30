@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactPrefab: {fileID: 2492376117500618341, guid: e7b834f054c7343dba6664fe3120ad87, type: 3}
   impactOffset: 0.02
+  isUltimate: 0
 --- !u!50 &6502279760234058911
 Rigidbody2D:
   serializedVersion: 5
@@ -115,8 +116,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.4133334, y: 3.4133334}
-    newSize: {x: 3.4133334, y: 3.4133334}
+    oldSize: {x: 0.2, y: 0.08}
+    newSize: {x: 0.2, y: 0.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_ShadowGroup: 0
   m_Priority: 0
   m_ComponentVersion: 5
-  m_HasRenderer: 0
+  m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
@@ -253,8 +254,24 @@ PrefabInstance:
       value: 0.57939434
       objectReference: {fileID: 0}
     - target: {fileID: 3319026295740190429, guid: acdb90624a404aa438447006f1026065, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319026295740190429, guid: acdb90624a404aa438447006f1026065, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1572828157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319026295740190429, guid: acdb90624a404aa438447006f1026065, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890765397544793498, guid: acdb90624a404aa438447006f1026065, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890765397544793498, guid: acdb90624a404aa438447006f1026065, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1572828157
       objectReference: {fileID: 0}
     - target: {fileID: 6890765397544793498, guid: acdb90624a404aa438447006f1026065, type: 3}
       propertyPath: m_Materials.Array.size
@@ -275,6 +292,14 @@ PrefabInstance:
     - target: {fileID: 8366612028392416556, guid: acdb90624a404aa438447006f1026065, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.57939434
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986935675043883179, guid: acdb90624a404aa438447006f1026065, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986935675043883179, guid: acdb90624a404aa438447006f1026065, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1572828157
       objectReference: {fileID: 0}
     - target: {fileID: 8986935675043883179, guid: acdb90624a404aa438447006f1026065, type: 3}
       propertyPath: m_Materials.Array.size

@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ultimate / Cutscene")]
     [SerializeField] private PersonaCutscene cutscene;
+    [SerializeField] private UltimateWeapon ultimateWeapon;
     
     [Header("Special Ability")]
     public Observable<bool> specialAbility;
@@ -105,12 +106,29 @@ public class PlayerController : MonoBehaviour
         StateMachine.Set<IdleState>();
 
         if (cutscene == null)
-        {
             cutscene = FindObjectOfType<PersonaCutscene>();
+
+        if (ultimateWeapon != null)
+        {
+            Transform weaponFirePoint = transform.Find("Weapon/FirePos");
+            Weapon normalWeapon = GetComponentInChildren<Weapon>(); // ⭐ 현재 무기 가져오기
+
+            if (weaponFirePoint != null && normalWeapon != null)
+            {
+                ultimateWeapon.Init(normalWeapon.Data, 0); // WeaponData 전달
+                ultimateWeapon.SetFirePoint(weaponFirePoint); // FirePos 등록
+            }
+            else
+            {
+                Debug.LogWarning("[Ultimate] FirePos or Weapon missing");
+            }
         }
-        
+
         specialAbility.Value = false;
     }
+
+
+
 
     private void Update()
     {
@@ -222,9 +240,8 @@ public class PlayerController : MonoBehaviour
     
     public void OnUltimate(InputAction.CallbackContext ctx)
     {
-        if (!ctx.started) return;
-        if (!CanControl) return;
-        
+        if (!ctx.started || !CanControl) return;
+
         Debug.Log("ULTIMATE TRIGGERED");
 
         if (cutscene == null)
@@ -233,13 +250,26 @@ public class PlayerController : MonoBehaviour
         if (cutscene == null)
         {
             Debug.LogWarning("PersonaCutscene is not found! Make sure it is active.");
-            SetControl(true);
             return;
         }
 
         SetControl(false);
-        cutscene.Play(() => SetControl(true));
+
+        cutscene.Play(() =>
+        {
+            if (ultimateWeapon != null)
+            {
+                ultimateWeapon.Fire(); // 🚀 궁극기 탄 발사!
+            }
+            else
+            {
+                Debug.LogWarning("UltimateWeaponController not assigned!");
+            }
+
+            SetControl(true);
+        });
     }
+
 
 
 
