@@ -116,7 +116,7 @@ public class BlockDragHandler : MonoBehaviour {
     {
         Vector2 mouseWorld = GetMouseWorldPosition();
         Vector3 target = (Vector3)mouseWorld + dragOffset;
-        transform.position = new Vector3(target.x, target.y, originalPosition.z);
+        transform.position = new Vector3(target.x, target.y, -0.4f);
     }
 
     private void EndDrag()

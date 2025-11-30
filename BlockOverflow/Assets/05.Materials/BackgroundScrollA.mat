@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _SizeTimeMult: 0.5
+    - _SizeTimeMult: 0.1
     m_Colors:
     - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Color: {r: 0.9206172, g: 0.7913626, b: 0.9575472, a: 1}

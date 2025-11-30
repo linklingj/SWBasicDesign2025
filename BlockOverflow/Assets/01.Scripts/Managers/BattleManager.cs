@@ -28,6 +28,13 @@ public class BattleManager : SerializedMonoBehaviour
 
     [SerializeField] private Dictionary<WeaponType, WeaponData> weaponDatas;
     
+    [Header("Audio")]
+    [SerializeField] private AudioData voice3;
+    [SerializeField] private AudioData voice2;
+    [SerializeField] private AudioData voice1;
+    [SerializeField] private AudioData voiceGo;
+    [SerializeField] private AudioData gameStart;
+    
     private PlayerController player1;
     private PlayerController player2;
     private PlayerData playerData1;
@@ -46,6 +53,7 @@ public class BattleManager : SerializedMonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         GenerateMap();
         StartBattle();
     }
@@ -73,7 +81,12 @@ public class BattleManager : SerializedMonoBehaviour
         foreach (var bg in bgObjects)
             bg.Value.SetActive(false);
         bgObjects[map.mapType].SetActive(true);
-
+        
+        GameManager.Instance.currentMapType = map.mapType;
+        
+        AudioPlayer.Instance.PlayBGM(map.mapBGM);
+        AudioPlayer.Instance.FadeInBGM(0.5f);
+        
         return randIdx;
     }
     
@@ -143,6 +156,7 @@ public class BattleManager : SerializedMonoBehaviour
         player1.GetComponent<KillOutsideCamera>().DisableKill();
         player2.GetComponent<KillOutsideCamera>().DisableKill();
         battleUI.Win(winnerIndex);
+        AudioPlayer.Instance.FadeOutBGM(1f);
         DOTween.To(()=> Time.timeScale, x=> Time.timeScale = x, 0.3f, 1f).SetEase(Ease.InQuad).SetUpdate(true);
         cameraController.ZoomTo((winnerIndex == 1)? player1.transform.position : player2.transform.position, CameraController.zoomType.Normal, 1f, -10.5f);
         yield return new WaitForSeconds(1f);
@@ -158,13 +172,18 @@ public class BattleManager : SerializedMonoBehaviour
         gameTime = -3f;
         battleUI.CountDown(player1, player2);
         cameraController.ZoomTo(player1.transform.position, CameraController.zoomType.Normal, 0.3f, -10.5f);
+        AudioPlayer.Instance.Play(voice3);
         yield return new WaitForSeconds(1f);
         cameraController.ZoomTo(player2.transform.position, CameraController.zoomType.Normal, 0.3f, -10.5f);
+        AudioPlayer.Instance.Play(voice2);
         yield return new WaitForSeconds(1f);
-        cameraController.ZoomTo(map.originalCameraPos.position, CameraController.zoomType.Wide); //todo: 중앙 포인트로 변경
+        cameraController.ZoomTo(map.originalCameraPos.position, CameraController.zoomType.Wide);
+        AudioPlayer.Instance.Play(voice1);
         yield return new WaitForSeconds(1f);
         gameTime = 0;
         cameraController.ShakeCamera(0.3f, 0.5f, 10);
+        AudioPlayer.Instance.Play(voiceGo);
+        AudioPlayer.Instance.Play(gameStart);
         
         gameStarted.Value = true;
         SetSpecialObject();

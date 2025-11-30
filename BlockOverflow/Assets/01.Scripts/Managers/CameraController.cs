@@ -39,6 +39,10 @@ public class CameraController : SerializedMonoBehaviour
     
     [Header("Screen Effects")]
     [SerializeField] GameObject screenFireEffect;
+    
+    [Header("Sound")]
+    [SerializeField] AudioData startShrinkSound;
+    bool soundPlayed = false;
 
     private void Awake()
     {
@@ -46,7 +50,7 @@ public class CameraController : SerializedMonoBehaviour
         sineTime = 0;
         if (postProcessVolume != null) postProcessVolume.profile.TryGet(out vignette);
         
-        screenFireEffect.SetActive(false);
+        if (screenFireEffect) screenFireEffect.SetActive(false);
     }
 
     private void Update()
@@ -105,6 +109,13 @@ public class CameraController : SerializedMonoBehaviour
             screenFireEffect.SetActive(false);
             return;
         }
+        
+        if (!soundPlayed)
+        {
+            AudioPlayer.Instance.Play(startShrinkSound);
+            soundPlayed = true;
+        }
+        
         float t = Mathf.Clamp01(moveTime / moveDuration);
         
         transform.position = Vector3.Lerp(startPos.position, endPos.position, t);

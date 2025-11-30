@@ -21,7 +21,7 @@ public class Block : SerializedMonoBehaviour {
     public Vector2Int size;
     public Vector2Int center;
     public int rotationState { private set; get; } = 0;
-    public void SetRotationState(int rotationState) => this.rotationState = rotationState % 4;
+    public void SetRotationState(int rotationState) => this.rotationState = rotationState;
     
     // 블록 선택 모드
     public bool IsSelectMode { private set; get; }
