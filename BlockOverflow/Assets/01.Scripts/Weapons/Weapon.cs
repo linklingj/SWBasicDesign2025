@@ -13,6 +13,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject usedAmmoPrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
     
+    [SerializeField] protected WeaponData weaponData;
+    public WeaponData Data => weaponData;
+
     
     
     [Header("반동")]
