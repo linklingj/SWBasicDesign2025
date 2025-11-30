@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3668608942527676715}
   - component: {fileID: 4036021980408169626}
   - component: {fileID: 95048034792559351}
+  - component: {fileID: -5434036409428156586}
   m_Layer: 0
   m_Name: Ulti_hit_effect2
   m_TagString: Untagged
@@ -80,8 +81,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2140716773
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
@@ -4927,6 +4928,20 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 0}
+--- !u!114 &-5434036409428156586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131597659668678659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c3527f4c06543bfbe4098ce16fb493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 1
+  animator: {fileID: 0}
 --- !u!1 &2489030225002378244
 GameObject:
   m_ObjectHideFlags: 0
@@ -9892,8 +9907,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2140716773
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -14795,8 +14810,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2140716773
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
@@ -19698,8 +19713,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2140716773
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

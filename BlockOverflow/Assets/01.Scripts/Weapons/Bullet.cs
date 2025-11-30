@@ -77,6 +77,8 @@ public class Bullet : PoolObject {
         if (damageable != null)
         {
             damageable.TakeDamage(damage);
+            Vector2 p = other.ClosestPoint(rb.position);
+            SpawnImpact(p, -moveDir);
         }
 
         if (!isUltimate)
@@ -95,6 +97,9 @@ public class Bullet : PoolObject {
             ContactPoint2D cp = collision.GetContact(0);
             DespawnWithImpact(cp.point + cp.normal * impactOffset, cp.normal);
         }
+
+
+        
     }
 
     
