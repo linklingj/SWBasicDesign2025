@@ -193,4 +193,9 @@ public class UpgradeManager : SerializedMonoBehaviour
         
         GameManager.Instance.BattleStart();
     }
+
+    public void OnCountdownFinished()
+    {
+        GameManager.Instance.ToResult();
+    }
 }

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float airControlMultiplier = 0.8f;
     [SerializeField] private float crouchMoveMultiplier = 0.5f;
     private float totalMoveSpeed;
+    private float totalJumpForce;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 12f;
@@ -90,6 +91,7 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         
         totalMoveSpeed = moveSpeed;
+        totalJumpForce = jumpForce;
 
         StateMachine = new FSM<PlayerController>(this);
 
@@ -129,8 +131,9 @@ public class PlayerController : MonoBehaviour
         specialAbility.Value = false;
     }
 
-    public void SetUpgrades(float speedIncrease) {
+    public void SetUpgrades(float speedIncrease, float jumpForceIncrease) {
         totalMoveSpeed = moveSpeed + speedIncrease;
+        totalJumpForce = jumpForce + jumpForceIncrease;
     }
 
 

@@ -124,8 +124,8 @@ public class BattleManager : SerializedMonoBehaviour
         //업그레이드 적용
         p1Weapon.SetUpgrades(playerData1.playerStats.damageIncrease, playerData1.playerStats.fireRateIncrease);
         p2Weapon.SetUpgrades(playerData2.playerStats.damageIncrease, playerData2.playerStats.fireRateIncrease);
-        player1.SetUpgrades(playerData1.playerStats.speedIncrease);
-        player2.SetUpgrades(playerData2.playerStats.speedIncrease);
+        player1.SetUpgrades(playerData1.playerStats.speedIncrease, playerData1.playerStats.jumpIncrease);
+        player2.SetUpgrades(playerData2.playerStats.speedIncrease, playerData2.playerStats.jumpIncrease);
         
         //플레이어 체력 초기화 및 죽음 이벤트 연결
         var p1Health = player1.GetComponent<PlayerHealth>();

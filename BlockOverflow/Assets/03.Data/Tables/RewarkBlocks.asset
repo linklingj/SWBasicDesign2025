@@ -22,6 +22,7 @@ MonoBehaviour:
     - {fileID: 7254771377243939893, guid: 9e521f318114f4430b94234a0252ee03, type: 3}
     - {fileID: 5826463494822917219, guid: ab9862f4c1a1b46628e7e6418586b69a, type: 3}
     - {fileID: 8900657176299890677, guid: 9f63fdba815ca4c9dac60cbf9f945cd4, type: 3}
+    - {fileID: 1691727123333217554, guid: c524499bebf38493c8d60af7c3deabc5, type: 3}
   - rarity: 1
     blockList:
     - {fileID: 3085532241237668033, guid: 08c7bdce27b4d4fdba100a4de3c0a4c8, type: 3}
@@ -29,7 +30,9 @@ MonoBehaviour:
     - {fileID: 5269600635471663704, guid: c94dbc8b7722548148189c6417f766b1, type: 3}
     - {fileID: 4427331347873842631, guid: a20f349b5b6fc463599333adaf32ec93, type: 3}
     - {fileID: 8504938873058794660, guid: c867f74cd1e4548c3a535fc0fd4629f5, type: 3}
+    - {fileID: 1641624362894176697, guid: 083e119260d31440f98bef675a9735f5, type: 3}
   - rarity: 2
     blockList:
     - {fileID: 9060125166255383194, guid: 7a5922f078d5145cca2879fdc526d44e, type: 3}
     - {fileID: 6726782482168721174, guid: f3b351c80b69f499e99747acb37a27b3, type: 3}
+    - {fileID: 3141039918943754851, guid: 6f75d6e98ad6d42c6878ad9e863b55b6, type: 3}

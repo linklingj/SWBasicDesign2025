@@ -7,4 +7,5 @@ public class PlayerStats {
     public int damageIncrease = 0;
     public float fireRateIncrease = 0f;
     public float speedIncrease = 0f;
+    public int jumpIncrease = 0;
 }

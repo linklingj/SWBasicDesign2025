@@ -75,6 +75,14 @@ public class TextUIElement : MonoBehaviour
         rt.DOScale(scaleUp, duration/2).SetEase(Ease.InOutCubic).SetLoops(2, LoopType.Yoyo);
         rt.DOShakeRotation(duration, new Vector3(0,0,shakeStrength), 5).OnComplete(() => rt.rotation = originalRotation);
     }
+    
+    public void SetSizeEmphasisTween(float duration = 0.5f)
+    {
+        Quaternion originalRotation = text.transform.rotation;
+        rt.localScale = Vector3.zero;
+        rt.DOScale(Vector3.one, duration).SetEase(Ease.OutBack);
+        rt.DOShakeRotation(duration, new Vector3(0,0,3), 5).OnComplete(() => rt.rotation = originalRotation);
+    }
 
     public void SetTextColor(Color color)
     {
@@ -85,4 +93,5 @@ public class TextUIElement : MonoBehaviour
     {
         text.textWrappingMode = enable ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
     }
+    
 }
