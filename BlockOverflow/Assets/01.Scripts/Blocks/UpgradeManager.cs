@@ -22,6 +22,11 @@ public class UpgradeManager : SerializedMonoBehaviour
     [Header("UI")]
     [SerializeField] BlocksUI blocksUI;
     [SerializeField] GameObject toNextButton;
+    [SerializeField] private Dictionary<MapType, GameObject> bgObjects;
+    
+    [Header("Sound")]
+    [SerializeField] AudioData upgradeBGM;
+
     
     RewardCameraConroller cameraConroller;
     Inventory inventory;
@@ -38,12 +43,18 @@ public class UpgradeManager : SerializedMonoBehaviour
         StateMachine = new FSM<UpgradeManager>(this);
         inventory = GetComponent<Inventory>();
         cameraConroller = FindFirstObjectByType<RewardCameraConroller>();
+        
+        foreach (var bg in bgObjects)
+            bg.Value.SetActive(false);
+        bgObjects[GameManager.Instance.currentMapType].SetActive(true);
     }
     
     private void Start()
     {
+        AudioPlayer.Instance.PlayBGM(upgradeBGM);
         StateMachine.Set<RewardState>();
         StateMachine.Update();
+        Time.timeScale = 1;
     }
 
     private void Update()
@@ -110,7 +121,14 @@ public class UpgradeManager : SerializedMonoBehaviour
         
         // 보여주기
         for (int i = 0; i < rewardBlocks.Count; i++)
-            rewardBlocks[i].Appear(i, 3);
+        {
+            var i1 = i;
+            DOVirtual.DelayedCall(i * 0.5f, () =>
+            {
+                rewardBlocks[i1].Appear(i1, 3);
+                blocksUI.SetRewardText(i1, rewardBlocks[i1]);
+            }, false);
+        }
     }
 
     // 패배자에게 주어지는 보상 블록 랜덤 생성

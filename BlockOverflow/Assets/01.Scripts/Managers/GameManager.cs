@@ -14,6 +14,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private PlayerData playerData2;
     
     private List<int> winPlayerIndices = new List<int>();
+    
+    public MapType currentMapType = MapType.Swamp;
 
     protected override void Awake()
     {

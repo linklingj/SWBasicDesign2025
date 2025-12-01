@@ -53,6 +53,8 @@ MonoBehaviour:
     count: 30
   - prefab: {fileID: 8462564304099240483, guid: e7b834f054c7343dba6664fe3120ad87, type: 3}
     count: 50
+  - prefab: {fileID: 6644552905175730951, guid: 08373ec9cdee149b3987af4459011f03, type: 3}
+    count: 5
   - prefab: {fileID: 2477019627802649338, guid: cb8ec305f7e514ee0ad5b8bb48ed4cd4, type: 3}
     count: 30
   - prefab: {fileID: 2477019627802649338, guid: 61c34da696af8431dbdaa5b325fe40f1, type: 3}
@@ -61,3 +63,5 @@ MonoBehaviour:
     count: 20
   - prefab: {fileID: 8462564304099240483, guid: 84d5749fc2daf4099ae773bba68682ed, type: 3}
     count: 20
+  - prefab: {fileID: -1724285208093442530, guid: 87c99bef2c34d4fdf82f62c90d88e212, type: 3}
+    count: 3

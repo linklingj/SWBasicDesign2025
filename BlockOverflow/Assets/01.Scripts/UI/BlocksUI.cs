@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class BlocksUI : MonoBehaviour
@@ -8,6 +10,19 @@ public class BlocksUI : MonoBehaviour
     
     [SerializeField] GameObject upgradePanelPrefab;
     [SerializeField] GameObject panelParent;
+
+    [SerializeField] BlockAnimatorData blockAnimatorData;
+    
+    [Serializable]
+    class RewardUIElements
+    {
+        public RectTransform rewardTransform;
+        public TextUIElement rewardText;
+    }
+    [SerializeField] List<RewardUIElements> rewards;
+
+    [SerializeField] private GameObject blockAppearEffect;
+    
     
     List<GameObject> upgradePanels = new List<GameObject>();
     
@@ -28,5 +43,16 @@ public class BlocksUI : MonoBehaviour
             upgradePanels.Add(o);
             o.GetComponentInChildren<TextUIElement>().SetText(b.blockEffect.EffectDescription);
         }
+    }
+
+    public void SetRewardText(int index, Block block)
+    {
+        Vector3 genPos = blockAnimatorData.showPosition + new Vector3(blockAnimatorData.generateSpread*(index-1),0,0);
+        ObjectPoolManager.Instance.Get(blockAppearEffect, genPos);
+        rewards[index].rewardTransform.transform.position = genPos + new Vector3(0,-1.5f,0);
+        rewards[index].rewardTransform.gameObject.SetActive(true);
+        rewards[index].rewardTransform.localScale = Vector3.zero;
+        rewards[index].rewardTransform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+        rewards[index].rewardText.SetText(block.blockEffect.EffectDescription);
     }
 }

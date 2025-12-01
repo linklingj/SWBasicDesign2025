@@ -10,4 +10,6 @@ public class Maps : MonoBehaviour {
     
     public List<Transform> specialWayPoints;
     
+    [Header("Audio")]
+    public AudioData mapBGM;
 }

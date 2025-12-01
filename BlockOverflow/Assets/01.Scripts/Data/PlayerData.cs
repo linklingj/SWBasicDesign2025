@@ -76,12 +76,19 @@ public class PlayerData : ScriptableObject
                     blockId = owner.blockID // blockId must exist in Block
                 });
 
-                if (ownedBlocks.All(b => b.blockId != owner.blockID))
+                if (ownedBlocks.All(b => CheckBlockExists(b, owner)))
                 {
                     ownedBlocks.Add(new BlockData(owner.blockID, owner.placedPosition, owner.rotationState));
                 }
             }
         }
+    }
+    
+    private bool CheckBlockExists(BlockData b, Block owner)
+    {
+        if (b.blockId != owner.blockID) return true;
+        if (b.placedPosition != owner.placedPosition) return true;
+        return false;
     }
 
     public void LoadInventory(Inventory inventory, Func<string, Block> blockFactory)

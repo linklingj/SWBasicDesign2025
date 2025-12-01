@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6dbc77234e8b44a88f056e9ff5b5554, type: 3}
+  m_Name: HarborBGM1
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 51cdf6af875514c9482264f3ed81ccdf, type: 3}
+  trimming: {x: 0, y: 201.456}
+  audioMixerGroup: {fileID: 0}
+  volume: 1
+  pitch: 1
+  loop: 1

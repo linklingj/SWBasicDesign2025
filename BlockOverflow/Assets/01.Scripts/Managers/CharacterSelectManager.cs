@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.Serialization;
+using Random = System.Random;
 
 public class CharacterSelectManager : SerializedMonoBehaviour {
     [SerializeField] private int index;
@@ -31,6 +32,11 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
     
     [SerializeField] private RectTransform CharacterSelectUI;
 
+    [Header("Sound")] 
+    [SerializeField] private AudioData selectSound;
+    [SerializeField] private AudioData confirmSound;
+    [SerializeField] private AudioData characterSelectBGM;
+
     public int state = 0;
     private void Awake()
     {
@@ -53,6 +59,7 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
     {
         if (index == 1)
         {
+            AudioPlayer.Instance.PlayBGM(characterSelectBGM);
             CharacterSelectUI.gameObject.SetActive(true);
             CharacterSelectUI.localScale = Vector3.zero;
             CharacterSelectUI.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
@@ -225,12 +232,14 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
     
     public void SelectColor(int colorIndex)
     {
+        AudioPlayer.Instance.Play(selectSound);
         Color color = ColorGet.getCustomizeColor(colorIndex);
         SelectColor(color);
     }
     
     public void SelectHat(int hatIndex)
     {
+        AudioPlayer.Instance.Play(selectSound);
         GameManager.Instance.GetPlayerData(out var playerData, index);
         playerData.customization.hatSprite = hatSprites[hatIndex];
         customization.Init(playerData.customization);
@@ -242,6 +251,7 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
     
     public void SelectWeapon(int weaponIndex)
     {
+        AudioPlayer.Instance.Play(selectSound);
         WeaponType weaponType = (WeaponType)weaponIndex;
         GameManager.Instance.GetPlayerData(out var playerData, index);
         playerData.selectedWeaponType = weaponType;
@@ -263,6 +273,8 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
     public void NextButton()
     {
         if (state == 2) return;
+        
+        AudioPlayer.Instance.Play(confirmSound);
         
         if (state == 0)
         {
