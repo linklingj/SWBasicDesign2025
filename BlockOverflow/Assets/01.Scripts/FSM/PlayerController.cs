@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float crouchMoveMultiplier = 0.5f;
 
     [Header("Jump")]
-    [SerializeField] private float jumpForce = 12f;
+    [SerializeField] private float jumpForce = 15f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private float jumpBuffer = 0.1f;
     [SerializeField] private float jumpCutMultiplier = 0.5f;
