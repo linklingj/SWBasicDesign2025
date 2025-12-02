@@ -33,8 +33,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallStickMaxTime = 0.3f;
 
     [Header("Ultimate / Cutscene")]
-    [SerializeField] private PersonaCutscene cutscene;
+    //[SerializeField] private PersonaCutscene cutscene;
     [SerializeField] private UltimateWeapon ultimateWeapon;
+    [SerializeField] private UltimateCutsceneDirector cutsceneDirector;
     
     [Header("Special Ability")]
     public Observable<bool> specialAbility;
@@ -106,9 +107,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         StateMachine.Set<IdleState>();
-
-        if (cutscene == null)
-            cutscene = FindObjectOfType<PersonaCutscene>();
+        
+        //컷신은 일단 주석
+        //if (cutscene == null)
+        //    cutscene = FindObjectOfType<PersonaCutscene>();
 
         if (ultimateWeapon != null)
         {
@@ -125,7 +127,16 @@ public class PlayerController : MonoBehaviour
                 Debug.LogWarning("[Ultimate] FirePos or Weapon missing");
             }
         }
+        
+        if (cutsceneDirector == null)
+        {
+            cutsceneDirector = FindObjectOfType<UltimateCutsceneDirector>();
 
+            if (cutsceneDirector == null)
+                Debug.LogError("❌ UltimateCutsceneDirector not found in scene!");
+            else
+                Debug.Log("✔ Director auto-assigned!");
+        }
         specialAbility.Value = false;
     }
 
@@ -235,44 +246,87 @@ public class PlayerController : MonoBehaviour
             EndCrouch();
         }
     }
-
-    public void OnAttack(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started)
-            attackPressedThisFrame = true;
-    }
     
+    
+    //컷신당시 OnUlti
+    // public void OnUltimate(InputAction.CallbackContext ctx)
+    // {
+    //     if (!ctx.started || !CanControl) return;
+    //
+    //     Debug.Log("ULTIMATE TRIGGERED");
+    //
+    //     if (cutscene == null)
+    //         cutscene = FindObjectOfType<PersonaCutscene>();
+    //
+    //     if (cutscene == null)
+    //     {
+    //         Debug.LogWarning("PersonaCutscene is not found! Make sure it is active.");
+    //         return;
+    //     }
+    //
+    //     SetControl(false);
+    //
+    //     cutscene.Play(() =>
+    //     {
+    //         if (ultimateWeapon != null)
+    //         {
+    //             ultimateWeapon.Fire(); // 🚀 궁극기 탄 발사!
+    //         }
+    //         else
+    //         {
+    //             Debug.LogWarning("UltimateWeaponController not assigned!");
+    //         }
+    //
+    //         SetControl(true);
+    //     });
+    // }
     public void OnUltimate(InputAction.CallbackContext ctx)
     {
         if (!ctx.started || !CanControl) return;
 
-        Debug.Log("ULTIMATE TRIGGERED");
+        Debug.Log("ULTIMATE START");
 
-        if (cutscene == null)
-            cutscene = FindObjectOfType<PersonaCutscene>();
+        Camera mainCam = Camera.main; // 여기서 메인 카메라 잡힘
+        Camera cutCam = cutsceneDirector?.Cam;
 
-        if (cutscene == null)
+        if (mainCam == null || cutCam == null)
         {
-            Debug.LogWarning("PersonaCutscene is not found! Make sure it is active.");
+            Debug.LogError("❌ Camera reference missing!");
             return;
         }
 
+        // 태그 교체
+        mainCam.tag = "Untagged";
+        cutCam.tag = "MainCamera";
+
+        // 활성화 관리
+        mainCam.gameObject.SetActive(false);
+        cutCam.gameObject.SetActive(true);
+        cutCam.enabled = true;
+
         SetControl(false);
 
-        cutscene.Play(() =>
+        cutsceneDirector.Play(() =>
         {
-            if (ultimateWeapon != null)
-            {
-                ultimateWeapon.Fire(); // 🚀 궁극기 탄 발사!
-            }
-            else
-            {
-                Debug.LogWarning("UltimateWeaponController not assigned!");
-            }
+            ultimateWeapon?.Fire();
+
+            // 원복
+            mainCam.gameObject.SetActive(true);
+            cutCam.gameObject.SetActive(false);
+
+            cutCam.tag = "Untagged";
+            mainCam.tag = "MainCamera";
 
             SetControl(true);
         });
     }
+
+
+
+
+
+
+
 
 
 
@@ -462,4 +516,27 @@ public class PlayerController : MonoBehaviour
         if (!value)
             rb.linearVelocity = Vector2.zero;
     }
+    
+    private void ResolveCutsceneRefs()
+    {
+        if (cutsceneDirector == null)
+            cutsceneDirector = FindObjectOfType<UltimateCutsceneDirector>();
+
+        if (cutsceneDirector == null) return;
+
+        // 🔹 플레이어 Transform 설정
+        if (cutsceneDirector.playerTransform == null)
+            cutsceneDirector.playerTransform = this.transform;
+
+        // 🔹 FirePos 재검색 (런타임 생성 대응)
+        if (cutsceneDirector.firePoint == null ||
+            cutsceneDirector.firePoint == cutsceneDirector.playerTransform)
+        {
+            cutsceneDirector.firePoint = transform.Find("Weapon/FirePos");
+
+            if (cutsceneDirector.firePoint == null)
+                Debug.LogError("❌ FirePos not found under Weapon!");
+        }
+    }
+
 }
