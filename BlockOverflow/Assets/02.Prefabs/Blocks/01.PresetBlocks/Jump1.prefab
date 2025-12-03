@@ -300,7 +300,7 @@ MonoBehaviour:
     - rid: 2068158321001234514
       type: {class: BlockJumpEffect, ns: , asm: Assembly-CSharp}
       data:
-        jumpAmount: 2
+        jumpAmount: 1
 --- !u!114 &8058044725557017834
 MonoBehaviour:
   m_ObjectHideFlags: 0
