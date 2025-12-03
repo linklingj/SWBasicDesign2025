@@ -12,6 +12,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject muzzleFlashPrefab;
     [SerializeField] private GameObject usedAmmoPrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private AudioData shotSound;
+    private string shotSoundName;
+    [SerializeField] private float shotPitchRange = 0.05f; 
     
     [SerializeField] protected WeaponData weaponData;
     public WeaponData Data => weaponData;
@@ -82,6 +85,13 @@ public class Weapon : MonoBehaviour
         if (spriteRenderer != null && data.weaponSprite != null)
             spriteRenderer.sprite = data.weaponSprite;
 
+        if (data != null && data.shotSound != null)
+        {
+            shotSound = data.shotSound;
+            shotSoundName = data.shotSoundName;
+        }
+
+        
         // 3) 애니메이션 교체
         //if (animator != null && data.animatorController != null)
         //    animator.runtimeAnimatorController = data.animatorController;
@@ -109,6 +119,18 @@ public class Weapon : MonoBehaviour
 
         ShootBullet(spawnPos, direction);
         ScheduleNextShot();
+        
+        // 사운드 재생
+        // 원래 피치 저장
+        float originalPitch = shotSound.pitch;
+
+        // 2) 랜덤 피치 적용
+        float offset = UnityEngine.Random.Range(-shotPitchRange, shotPitchRange);
+        shotSound.pitch = Mathf.Clamp(originalPitch + offset, 0.5f, 2f);
+        //AudioPlayer.Instance.Play("Ulti_Sound");
+        AudioPlayer.Instance.Play(shotSoundName);
+        
+        shotSound.pitch = originalPitch;
 
         // 🔥 반동 재생 (이제 로컬 기준이라 캐릭터 따라감)
         PlayRecoil(direction);

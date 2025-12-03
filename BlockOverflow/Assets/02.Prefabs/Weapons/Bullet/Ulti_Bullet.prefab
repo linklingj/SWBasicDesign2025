@@ -221,11 +221,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6890765397544793498, guid: acdb90624a404aa438447006f1026065, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7710086954383210093, guid: acdb90624a404aa438447006f1026065, type: 3}
       propertyPath: m_Intensity
-      value: 1.9636233
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8366612028392416556, guid: acdb90624a404aa438447006f1026065, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -253,6 +253,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9186446616439801708, guid: acdb90624a404aa438447006f1026065, type: 3}
       propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186446616439801708, guid: acdb90624a404aa438447006f1026065, type: 3}
+      propertyPath: TrailModule.mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186446616439801708, guid: acdb90624a404aa438447006f1026065, type: 3}
+      propertyPath: TrailModule.enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9186446616439801708, guid: acdb90624a404aa438447006f1026065, type: 3}

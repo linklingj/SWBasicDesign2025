@@ -3664,18 +3664,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 525859218311660310, guid: 30daecf2a2a9641518d4b5dfa3761263, type: 3}
-      propertyPath: _audioDatas.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 525859218311660310, guid: 30daecf2a2a9641518d4b5dfa3761263, type: 3}
-      propertyPath: _audioDatas.Array.data[8].name
-      value: RifleSound
-      objectReference: {fileID: 0}
-    - target: {fileID: 525859218311660310, guid: 30daecf2a2a9641518d4b5dfa3761263, type: 3}
-      propertyPath: _audioDatas.Array.data[8].audioData
-      value: 
-      objectReference: {fileID: 11400000, guid: 0ef797372df17491dba878f32438bb61, type: 2}
     - target: {fileID: 1801893619170305501, guid: 30daecf2a2a9641518d4b5dfa3761263, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
