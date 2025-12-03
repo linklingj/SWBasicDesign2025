@@ -162,20 +162,30 @@ public class PlayerController : MonoBehaviour
         
         StateMachine.Update();
 
+        // ==== 방향 처리 ==== (Update 내 기존 코드 교체)
         if (moveInput.x > 0.01f)
         {
             isFacingRight = true;
+
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x); // 1P/오른쪽=+
+            transform.localScale = scale;
+
             movedust.transform.localPosition = dustright;
             movedust.transform.rotation = Quaternion.Euler(180, 0, 0);
-            
-
         }
         else if (moveInput.x < -0.01f)
         {
             isFacingRight = false;
+
+            Vector3 scale = transform.localScale;
+            scale.x = -Mathf.Abs(scale.x); // 2P/왼쪽=-
+            transform.localScale = scale;
+
             movedust.transform.localPosition = dustleft;
             movedust.transform.rotation = Quaternion.Euler(-180, 0, 0);
         }
+
 
         // 착지 처리
         if (IsGrounded())
@@ -283,43 +293,29 @@ public class PlayerController : MonoBehaviour
     public void OnUltimate(InputAction.CallbackContext ctx)
     {
         if (!ctx.started || !CanControl) return;
-
         Debug.Log("ULTIMATE START");
-
-        Camera mainCam = Camera.main; // 여기서 메인 카메라 잡힘
-        Camera cutCam = cutsceneDirector?.Cam;
-
-        if (mainCam == null || cutCam == null)
-        {
-            Debug.LogError("❌ Camera reference missing!");
-            return;
-        }
-
-        // 태그 교체
-        mainCam.tag = "Untagged";
-        cutCam.tag = "MainCamera";
-
-        // 활성화 관리
-        mainCam.gameObject.SetActive(false);
-        cutCam.gameObject.SetActive(true);
-        cutCam.enabled = true;
 
         SetControl(false);
 
-        cutsceneDirector.Play(() =>
-        {
-            ultimateWeapon?.Fire();
+        // 🔒 방향 잠금
+        Vector3 lockScale = transform.localScale;
+        transform.localScale = lockScale;
 
-            // 원복
-            mainCam.gameObject.SetActive(true);
-            cutCam.gameObject.SetActive(false);
+        Transform firePos = transform.Find("Weapon/FirePos");
+        if (!firePos) firePos = transform;
 
-            cutCam.tag = "Untagged";
-            mainCam.tag = "MainCamera";
-
-            SetControl(true);
-        });
+        cutsceneDirector.Play(
+            this.transform,
+            firePos,
+            () =>
+            {
+                ultimateWeapon?.Fire();
+                SetControl(true);
+            }
+        );
     }
+
+
 
 
     
@@ -509,26 +505,6 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
     }
     
-    private void ResolveCutsceneRefs()
-    {
-        if (cutsceneDirector == null)
-            cutsceneDirector = FindObjectOfType<UltimateCutsceneDirector>();
-
-        if (cutsceneDirector == null) return;
-
-        // 🔹 플레이어 Transform 설정
-        if (cutsceneDirector.playerTransform == null)
-            cutsceneDirector.playerTransform = this.transform;
-
-        // 🔹 FirePos 재검색 (런타임 생성 대응)
-        if (cutsceneDirector.firePoint == null ||
-            cutsceneDirector.firePoint == cutsceneDirector.playerTransform)
-        {
-            cutsceneDirector.firePoint = transform.Find("Weapon/FirePos");
-
-            if (cutsceneDirector.firePoint == null)
-                Debug.LogError("❌ FirePos not found under Weapon!");
-        }
-    }
+    
 
 }
