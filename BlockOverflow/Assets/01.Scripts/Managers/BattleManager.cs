@@ -142,16 +142,6 @@ public class BattleManager : SerializedMonoBehaviour
         var customization2 = player2.GetComponent<PlayerCustomize>();
         customization2.Init(playerData2.customization);
         customization2.SetAll();
-        
-        // === Player Facing Direction Fix === //
-        Vector3 s1 = player1.transform.localScale;
-        s1.x = Mathf.Abs(s1.x);           // 1P → 항상 오른쪽(+)
-        player1.transform.localScale = s1;
-
-        Vector3 s2 = player2.transform.localScale;
-        s2.x = -Mathf.Abs(s2.x);          // 2P → 항상 왼쪽(-)
-        player2.transform.localScale = s2;
-
     }
     
     public void OnPlayerDeath(int playerIdx)

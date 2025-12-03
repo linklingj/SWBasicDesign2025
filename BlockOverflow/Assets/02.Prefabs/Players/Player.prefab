@@ -1104,7 +1104,6 @@ GameObject:
   - component: {fileID: 6483338699557577423}
   - component: {fileID: 1048356768493872553}
   - component: {fileID: -2610886720383930740}
-  - component: {fileID: 3438251738914087261}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1213,8 +1212,8 @@ MonoBehaviour:
   crouchCollider: {fileID: 8936141092730045610}
   wallJumpForce: {x: 10, y: 12}
   wallStickMaxTime: 3
+  cutscene: {fileID: 0}
   ultimateWeapon: {fileID: 2680852413081665251}
-  cutsceneDirector: {fileID: 0}
   specialAbility:
     value: 0
     onValueChanged:
@@ -1439,28 +1438,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!95 &3438251738914087261
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8675466437622409480}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &875984020979773568
 PrefabInstance:
   m_ObjectHideFlags: 0
