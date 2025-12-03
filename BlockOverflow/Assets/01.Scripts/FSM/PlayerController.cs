@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpBuffer = 0.1f;
     [SerializeField] private float jumpCutMultiplier = 0.5f;
     [SerializeField] public int maxAirJumps = 1;
+    private int totalAirJumps = 1;
 
     [Header("Ground / Wall Check")]
     [SerializeField] private Transform groundCheck;
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour
         
         totalMoveSpeed = moveSpeed;
         totalJumpForce = jumpForce;
+        totalAirJumps = maxAirJumps;
 
         StateMachine = new FSM<PlayerController>(this);
 
@@ -131,15 +133,15 @@ public class PlayerController : MonoBehaviour
         specialAbility.Value = false;
     }
 
-    public void SetUpgrades(float speedIncrease, float jumpForceIncrease) {
+    public void SetUpgrades(float speedIncrease, float jumpForceIncrease, int extraAirJumps) {
         totalMoveSpeed = moveSpeed + speedIncrease;
         totalJumpForce = jumpForce + jumpForceIncrease;
+        totalAirJumps = maxAirJumps + extraAirJumps;
     }
 
 
     private void Update()
     {
-        
         if (!CanControl)
         {
             rb.linearVelocity = Vector2.zero;
@@ -185,7 +187,7 @@ public class PlayerController : MonoBehaviour
         if (IsTouchingWall(out _) && !wasTouchingWall)
         {
             wasTouchingWall = true;
-            airJumpsAvailable = maxAirJumps;
+            airJumpsAvailable = totalAirJumps;
         }
         else if (!IsTouchingWall(out _))
         {
@@ -296,7 +298,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // ===== JUMP LOGIC =====
-    public void EnterAir() => airJumpsAvailable = maxAirJumps;
+    public void EnterAir() => airJumpsAvailable = totalAirJumps;
 
     // 🔧 코요테 + 버퍼 기반 지상점프
     public bool TryGroundOrBufferedJump()
@@ -333,7 +335,7 @@ public class PlayerController : MonoBehaviour
         jumpStartTime = Time.time;
 
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * totalJumpForce, ForceMode2D.Impulse);
 
         lastJumpPressedTime = -999f;
     }
@@ -443,7 +445,7 @@ public class PlayerController : MonoBehaviour
             ForceMode2D.Impulse);
 
         // 벽점프 후에도 공중점프 남겨두기
-        airJumpsAvailable = maxAirJumps;
+        airJumpsAvailable = totalAirJumps;
     }
 
     // ==== GROUNDED ====

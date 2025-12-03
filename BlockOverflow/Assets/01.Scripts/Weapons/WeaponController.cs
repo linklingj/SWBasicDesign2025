@@ -9,11 +9,15 @@ public class WeaponController : MonoBehaviour {
     private Gamepad _gamepad;
     
     private CameraController _cameraController;
+    private PlayerHealth _playerHealth;
+
+    private float finalRevengeMultiplier = 1;
 
     private void Awake() {
         if (weapon == null) weapon = GetComponentInChildren<Weapon>();
         _playerInput = GetComponentInParent<PlayerInput>();
         _cameraController = FindFirstObjectByType<CameraController>();
+        _playerHealth = GetComponent<PlayerHealth>();
         //weapon?.Init(0);
     }
     
@@ -30,8 +34,15 @@ public class WeaponController : MonoBehaviour {
 
     private void Update() {
         if (weapon == null) return;
+        
+        float damageMultiplier = 1f;
+        if (_playerHealth.CurrentHealth <= _playerHealth.MaxHealth * 0.3f)
+        {
+            damageMultiplier = finalRevengeMultiplier;
+        }
+        
         if (Mouse.current != null && Mouse.current.leftButton.isPressed) {
-            if (weapon.Fire()) CameraShake();
+            if (weapon.Fire(damageMultiplier)) CameraShake();
         }
         if (_gamepad != null)
         {
@@ -40,7 +51,7 @@ public class WeaponController : MonoBehaviour {
 
             if (trigger >= 0.1f)
             {
-                if (weapon.Fire()) CameraShake();
+                if (weapon.Fire(damageMultiplier)) CameraShake();
             }
         }
         
@@ -66,7 +77,8 @@ public class WeaponController : MonoBehaviour {
         weapon?.Init(newWeapon, playerIdx);
     }
     
-    public void SetUpgrades(int damageIncrease, float fireRateIncrease) {
-        weapon?.SetUpgrades(damageIncrease, fireRateIncrease);
+    public void SetUpgrades(int damageIncrease, float fireRateIncrease, float bulletSizeMultiplier, float finalRevengeMult = 1f, bool reflectOnWalls = false) {
+        weapon?.SetUpgrades(damageIncrease, fireRateIncrease, bulletSizeMultiplier, reflectOnWalls);
+        finalRevengeMultiplier = finalRevengeMult;
     }
 }

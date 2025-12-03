@@ -122,10 +122,20 @@ public class BattleManager : SerializedMonoBehaviour
         p2Weapon.SetWeapon(weaponDatas[playerData2.selectedWeaponType], 2);
         
         //업그레이드 적용
-        p1Weapon.SetUpgrades(playerData1.playerStats.damageIncrease, playerData1.playerStats.fireRateIncrease);
-        p2Weapon.SetUpgrades(playerData2.playerStats.damageIncrease, playerData2.playerStats.fireRateIncrease);
-        player1.SetUpgrades(playerData1.playerStats.speedIncrease, playerData1.playerStats.jumpIncrease);
-        player2.SetUpgrades(playerData2.playerStats.speedIncrease, playerData2.playerStats.jumpIncrease);
+        p1Weapon.SetUpgrades(playerData1.playerStats.damageIncrease, 
+            playerData1.playerStats.fireRateIncrease, 
+            playerData1.playerStats.bulletSizeMultiplier,
+            playerData1.playerStats.finalRevengeMultiplier,
+            playerData1.playerStats.reflectOnWalls
+            );
+        p2Weapon.SetUpgrades(playerData2.playerStats.damageIncrease,
+            playerData2.playerStats.fireRateIncrease,
+            playerData2.playerStats.bulletSizeMultiplier,
+            playerData2.playerStats.finalRevengeMultiplier
+            ,playerData2.playerStats.reflectOnWalls
+            );
+        player1.SetUpgrades(playerData1.playerStats.speedIncrease, playerData1.playerStats.jumpIncrease, playerData1.playerStats.extraJumpCount);
+        player2.SetUpgrades(playerData2.playerStats.speedIncrease, playerData2.playerStats.jumpIncrease, playerData2.playerStats.extraJumpCount);
         
         //플레이어 체력 초기화 및 죽음 이벤트 연결
         var p1Health = player1.GetComponent<PlayerHealth>();

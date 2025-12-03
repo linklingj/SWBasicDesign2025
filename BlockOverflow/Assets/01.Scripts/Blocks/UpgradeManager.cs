@@ -117,17 +117,22 @@ public class UpgradeManager : SerializedMonoBehaviour
     {
         var blocks = GetRewardBlocks();
         for (int i = 0; i < blocks.Count; i++)
+        {
             rewardBlocks.Add(Instantiate(blocks[i]).GetComponent<Block>());
+            rewardBlocks[i].gameObject.SetActive(false);
+        }
         
-        // 보여주기
+        StartCoroutine(ShowRewardBlocks());
+    }
+    
+    private IEnumerator ShowRewardBlocks()
+    {
         for (int i = 0; i < rewardBlocks.Count; i++)
         {
-            var i1 = i;
-            DOVirtual.DelayedCall(i * 0.5f, () =>
-            {
-                rewardBlocks[i1].Appear(i1, 3);
-                blocksUI.SetRewardText(i1, rewardBlocks[i1]);
-            }, false);
+            rewardBlocks[i].gameObject.SetActive(true);
+            rewardBlocks[i].Appear(i, 3);
+            blocksUI.SetRewardText(i, rewardBlocks[i]);
+            yield return new WaitForSeconds(0.3f);
         }
     }
 

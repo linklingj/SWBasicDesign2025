@@ -8,7 +8,7 @@ public class UltimateWeapon : Weapon
     [SerializeField] private float ultimateDamage = 60f;
 
     public void SetFirePoint(Transform fp) => firePoint = fp;
-    public override bool Fire()
+    public override bool Fire(float damageMultiplier = 1f)
     {
         if (bulletPrefab == null || !CanFire()) return false;
 
@@ -29,7 +29,7 @@ public class UltimateWeapon : Weapon
         return true;
     }
 
-    protected override void ShootBullet(Vector3 pos, Vector3 dir)
+    protected override void ShootBullet(Vector3 pos, Vector3 dir, float damageMultiplier = 1f)
     {
         Quaternion rot = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
 

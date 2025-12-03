@@ -2544,7 +2544,7 @@ PrefabInstance:
     - target: {fileID: 1994551507706256509, guid: 5fc9eaf3ab91b44808f4a99857df20b0, type: 3}
       propertyPath: playerData1
       value: 
-      objectReference: {fileID: 11400000, guid: cb2b9a238719a4a3c9be07dfc8fab391, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1994551507706256509, guid: 5fc9eaf3ab91b44808f4a99857df20b0, type: 3}
       propertyPath: playerData2
       value: 

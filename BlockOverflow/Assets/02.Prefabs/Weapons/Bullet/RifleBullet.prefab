@@ -48,9 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65648aad5688c4e3b810b9825c2a31b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 11400000, guid: 48b66710d08594d02a740f99a4c185ba, type: 2}
+  originalScale: {x: 0, y: 0, z: 0}
   impactPrefab: {fileID: 2492376117500618341, guid: e7b834f054c7343dba6664fe3120ad87, type: 3}
   impactOffset: 0.02
+  isUltimate: 0
 --- !u!212 &1110849339197282372
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93,7 +94,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1572828157
-  m_SortingLayer: 8
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fe5ee3f92dc1c4bf68b327f8cd800b73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
