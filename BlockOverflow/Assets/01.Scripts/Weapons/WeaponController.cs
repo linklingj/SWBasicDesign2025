@@ -30,7 +30,7 @@ public class WeaponController : MonoBehaviour {
 
     private void Update() {
         if (weapon == null) return;
-        if (Mouse.current != null && Mouse.current.leftButton.isPressed) {
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) {
             if (weapon.Fire()) CameraShake();
         }
         if (_gamepad != null)

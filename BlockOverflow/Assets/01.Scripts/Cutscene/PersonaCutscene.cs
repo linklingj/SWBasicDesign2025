@@ -118,7 +118,7 @@ public class PersonaCutscene : MonoBehaviour
                 .SetUpdate(true);
 
             // 🎥 시네마틱 카메라 연출
-            DoCameraEffects();
+            //DoCameraEffects();
         });
 
 
@@ -221,49 +221,49 @@ public class PersonaCutscene : MonoBehaviour
         if (isPlaying)
             Time.timeScale = prevTimeScale;
     }
-    private void DoCameraEffects()
-    {
-        if (!cutsceneCamera) return;
-
-        var cam = cutsceneCamera;
-        float startSize = cam.orthographicSize;
-
-        Sequence camSeq = DOTween.Sequence().SetUpdate(true);
-
-        // ░▒▓ 👁 1) 아주 서서히… 줌인 (대비 심화) ▓▒░
-        camSeq.Append(
-            DOTween.To(
-                    () => cam.orthographicSize,
-                    v => cam.orthographicSize = v,
-                    startSize * 0.78f,    // 더 가까이 (22% 확대 효과)
-                    2.2f                 // ★ 매우 느리게 진행
-                )
-                .SetEase(Ease.InOutQuad)
-        );
-
-        // ░▒▓ 📡 2) 느린 흔들림 → 살아있는 느낌 ▓▒░
-        camSeq.Join(
-            cam.transform.DOShakePosition(
-                    2.2f,                  // 줌 전체 구간 동안 지속적으로
-                    new Vector3(0.25f, 0.20f, 0),   // 미세한 파동 같은 흔들림
-                    4,                    // 천천히 덜컹
-                    70f,
-                    false,
-                    true
-                )
-                .SetUpdate(true)
-        );
-       
-
-        // ░▒▓ 🌑 4) 원래대로 복귀 ▓▒░
-        camSeq.Append(
-            DOTween.To(
-                () => cam.orthographicSize,
-                v => cam.orthographicSize = v,
-                startSize,
-                0.8f
-            ).SetEase(Ease.OutSine)
-        );
-    }
+    // private void DoCameraEffects()
+    // {
+    //     if (!cutsceneCamera) return;
+    //
+    //     var cam = cutsceneCamera;
+    //     float startSize = cam.orthographicSize;
+    //
+    //     Sequence camSeq = DOTween.Sequence().SetUpdate(true);
+    //
+    //     // ░▒▓ 👁 1) 아주 서서히… 줌인 (대비 심화) ▓▒░
+    //     camSeq.Append(
+    //         DOTween.To(
+    //                 () => cam.orthographicSize,
+    //                 v => cam.orthographicSize = v,
+    //                 startSize * 0.78f,    // 더 가까이 (22% 확대 효과)
+    //                 2.2f                 // ★ 매우 느리게 진행
+    //             )
+    //             .SetEase(Ease.InOutQuad)
+    //     );
+    //
+    //     // ░▒▓ 📡 2) 느린 흔들림 → 살아있는 느낌 ▓▒░
+    //     camSeq.Join(
+    //         cam.transform.DOShakePosition(
+    //                 2.2f,                  // 줌 전체 구간 동안 지속적으로
+    //                 new Vector3(0.25f, 0.20f, 0),   // 미세한 파동 같은 흔들림
+    //                 4,                    // 천천히 덜컹
+    //                 70f,
+    //                 false,
+    //                 true
+    //             )
+    //             .SetUpdate(true)
+    //     );
+    //    
+    //
+    //     // ░▒▓ 🌑 4) 원래대로 복귀 ▓▒░
+    //     camSeq.Append(
+    //         DOTween.To(
+    //             () => cam.orthographicSize,
+    //             v => cam.orthographicSize = v,
+    //             startSize,
+    //             0.8f
+    //         ).SetEase(Ease.OutSine)
+    //     );
+    // }
 
 }
