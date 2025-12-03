@@ -22,6 +22,8 @@ public class Bullet : PoolObject {
         rb = GetComponent<Rigidbody2D>();
     }
 
+
+
     public void Init(Vector2 pos, Vector3 direction, BulletData data, int playerIndex = 1)
     {
         released = false;
@@ -42,6 +44,7 @@ public class Bullet : PoolObject {
             Release();
         }
     }
+    
 
     private void FixedUpdate()
     {
