@@ -44,9 +44,9 @@ Material:
     - _SizeTimeMult: 0.05
     m_Colors:
     - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+    - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _ScrollSpeed: {r: 0, g: -0.4, b: 0, a: 0}
-    - _Tiling: {r: 15, g: 15, b: 0, a: 0}
+    - _Tiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2563469075609340343

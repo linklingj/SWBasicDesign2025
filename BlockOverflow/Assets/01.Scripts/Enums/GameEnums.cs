@@ -21,7 +21,8 @@ public enum GameState
     Title,
     CharacterSelection,
     Battle,
-    Reward
+    Reward,
+    Result
 }
 
 public enum WeaponType 

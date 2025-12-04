@@ -29,6 +29,8 @@ public class Weapon : MonoBehaviour
     
     protected int extraDamage = 0;
     protected float extraFireRate = 0f;
+    protected float bulletSize = 1f;
+    protected bool reflectOnWalls = false;
     protected BulletData bulletData;
 
     // 반동 기준값
@@ -87,10 +89,12 @@ public class Weapon : MonoBehaviour
         //    animator.runtimeAnimatorController = data.animatorController;
     }
     
-    public void SetUpgrades(int damageIncrease, float fireRateIncrease)
+    public void SetUpgrades(int damageIncrease, float fireRateIncrease, float bulletSizeMultiplier, bool reflectOnWall)
     {
         extraDamage = damageIncrease;
         extraFireRate = fireRateIncrease;
+        bulletSize = bulletSizeMultiplier;
+        this.reflectOnWalls = reflectOnWall;
     }
 
     private void Update()
@@ -98,7 +102,7 @@ public class Weapon : MonoBehaviour
         //animator.SetBool(IsShooting, !CanFire());
     }
 
-    public virtual bool Fire()
+    public virtual bool Fire(float damageMultiplier = 1f)
     {
         if (!CanFire() || bulletPrefab == null) return false;
 
@@ -107,7 +111,7 @@ public class Weapon : MonoBehaviour
 
         if (direction.sqrMagnitude <= Mathf.Epsilon) return false;
 
-        ShootBullet(spawnPos, direction);
+        ShootBullet(spawnPos, direction, damageMultiplier);
         ScheduleNextShot();
 
         // 🔥 반동 재생 (이제 로컬 기준이라 캐릭터 따라감)
@@ -132,7 +136,7 @@ public class Weapon : MonoBehaviour
         nextFireTime = Time.time + cooldown;
     }
 
-    protected virtual void ShootBullet(Vector3 pos, Vector3 dir)
+    protected virtual void ShootBullet(Vector3 pos, Vector3 dir, float damageMultiplier = 1f)
     {
         if (bulletPrefab == null) return;
 
@@ -147,6 +151,7 @@ public class Weapon : MonoBehaviour
         if (ObjectPoolManager.Instance)
         {
             bullet = ObjectPoolManager.Instance.Get(bulletPrefab, pos, bulletRotation).transform;
+            bullet.localScale *= bulletSize;
         }
 
         if (bullet == null)
@@ -157,7 +162,8 @@ public class Weapon : MonoBehaviour
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
         if (bulletComponent)
         {
-            bulletComponent.SetDamage(data.damage + extraDamage);
+            bulletComponent.SetDamage((data.damage + extraDamage) * damageMultiplier);
+            bulletComponent.SetReflectOnWalls(reflectOnWalls);
             bulletComponent.Init(pos, dir, bulletData, playerIdx);
         }
 

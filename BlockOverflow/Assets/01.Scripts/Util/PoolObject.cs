@@ -10,9 +10,11 @@ public class PoolObject : MonoBehaviour
     public int PrefabID { get { return _prefabID; } set { _prefabID = value; } }
 
     //public Transform parentTransform;//풀로 돌아갈 경우 부모가 되는 트렌스폼
+    public Vector3 originalScale;
 
     public void Get()
     {
+        originalScale = transform.localScale;
         gameObject.SetActive(true);
     }
 
@@ -31,6 +33,7 @@ public class PoolObject : MonoBehaviour
         }
 
         transform.position = Vector3.zero;
+        transform.localScale = originalScale;
         gameObject.SetActive(false);
     }
 
