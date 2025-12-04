@@ -159,6 +159,7 @@ public class PlayerController : MonoBehaviour
         if (moveInput.x > 0.01f)
         {
             isFacingRight = true;
+
             movedust.transform.localPosition = dustright;
             movedust.transform.rotation = Quaternion.Euler(180, 0, 0);
             
@@ -167,6 +168,7 @@ public class PlayerController : MonoBehaviour
         else if (moveInput.x < -0.01f)
         {
             isFacingRight = false;
+
             movedust.transform.localPosition = dustleft;
             movedust.transform.rotation = Quaternion.Euler(-180, 0, 0);
         }
