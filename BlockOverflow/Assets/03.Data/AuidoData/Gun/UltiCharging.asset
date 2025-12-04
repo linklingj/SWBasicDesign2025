@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UltiCharging
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: b32d10c5215bb4336a9d605ed8534188, type: 3}
-  trimming: {x: 1, y: 2}
+  trimming: {x: 1, y: 2.5}
   audioMixerGroup: {fileID: 0}
   volume: 1
   pitch: 1
