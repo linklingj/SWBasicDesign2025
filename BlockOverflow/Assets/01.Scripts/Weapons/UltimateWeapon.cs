@@ -30,7 +30,7 @@ public class UltimateWeapon : Weapon
         chargeFx.transform.position = firePoint.position + chargepos;
     }
     
-    public override bool Fire()
+    public override bool Fire(float damageMultiplier = 1f)
     {
         if (isAnimating) return false;
         if (bulletPrefab == null || !CanFire()) return false;
@@ -123,7 +123,7 @@ public class UltimateWeapon : Weapon
     }
 
 
-    protected override void ShootBullet(Vector3 pos, Vector3 dir)
+    protected override void ShootBullet(Vector3 pos, Vector3 dir, float damageMultiplier = 1f)
     {
         Quaternion rot = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
 

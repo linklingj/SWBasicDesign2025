@@ -185,7 +185,7 @@ public class Weapon : MonoBehaviour
         if (bulletComponent)
         {
             bulletComponent.SetDamage((data.damage + extraDamage) * damageMultiplier);
-            bulletComponent.SetReflectOnWalls(reflectOnWalls);
+            //bulletComponent.SetReflectOnWalls(reflectOnWalls);
             bulletComponent.Init(pos, dir, bulletData, playerIdx);
         }
 
