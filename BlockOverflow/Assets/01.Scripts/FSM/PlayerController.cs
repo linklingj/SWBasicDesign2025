@@ -167,20 +167,12 @@ public class PlayerController : MonoBehaviour
         {
             isFacingRight = true;
 
-            Vector3 scale = transform.localScale;
-            scale.x = Mathf.Abs(scale.x); // 1P/오른쪽=+
-            transform.localScale = scale;
-
             movedust.transform.localPosition = dustright;
             movedust.transform.rotation = Quaternion.Euler(180, 0, 0);
         }
         else if (moveInput.x < -0.01f)
         {
             isFacingRight = false;
-
-            Vector3 scale = transform.localScale;
-            scale.x = -Mathf.Abs(scale.x); // 2P/왼쪽=-
-            transform.localScale = scale;
 
             movedust.transform.localPosition = dustleft;
             movedust.transform.rotation = Quaternion.Euler(-180, 0, 0);
@@ -296,10 +288,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log("ULTIMATE START");
 
         SetControl(false);
-
-        // 🔒 방향 잠금
-        Vector3 lockScale = transform.localScale;
-        transform.localScale = lockScale;
 
         Transform firePos = transform.Find("Weapon/FirePos");
         if (!firePos) firePos = transform;
