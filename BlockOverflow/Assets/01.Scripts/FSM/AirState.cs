@@ -11,12 +11,31 @@ public class AirState : State<PlayerController>
     {
         owner.ApplyMovement();
 
-        // --------------------------------------
-        // 🔹 짧은 점프 처리 (절대 첫 프레임 컷 금지!)
-        // --------------------------------------
+        // 1) 🔥 벽 점프 최우선
+        if (owner.JumpThisFrame && owner.IsTouchingWall(out Vector2 wallNormal))
+        {
+            owner.DoWallJump(wallNormal);
+            owner.ConsumeJumpPress();
+            return;
+        }
+
+        // 2) 🔥 공중 2단 점프
+        if (owner.JumpThisFrame && owner.TryAirJump())
+        {
+            owner.ConsumeJumpPress();
+            return;
+        }
+
+        // 3) (선택) 벽에 닿아 있을 때 살짝 스틱 상태로 넘기고 싶다면
+        if (owner.IsTouchingWall(out _) && owner.Rb.linearVelocity.y <= 0f)
+        {
+            Set<WallStickState>();
+            return;
+        }
+
+        // 4) 짧은 점프 컷
         if (owner.ConsumeJumpReleased())
         {
-            // 첫 프레임에는 컷 불가
             if (Time.frameCount != owner.jumpStartFrame &&
                 owner.Rb.linearVelocity.y > 0f)
             {
@@ -24,37 +43,10 @@ public class AirState : State<PlayerController>
             }
         }
 
-        // --------------------------------------
-        // 🔹 벽점프 (JumpThisFrame만 사용)
-        // --------------------------------------
-        if (owner.JumpThisFrame && owner.IsTouchingWall(out Vector2 wallNormal))
-        {
-            owner.DoWallJump(wallNormal);
-            return;
-        }
-
-        // --------------------------------------
-        // 🔹 공중 점프 (더블 점프)
-        // --------------------------------------
-        if (owner.JumpThisFrame && owner.TryAirJump())
-            return;
-
-        // --------------------------------------
-        // 🔹 벽 슬라이드
-        // --------------------------------------
-        if (owner.CanWallStickAgain() && owner.IsTouchingWall(out _))
-        {
-            Set<WallStickState>();
-            return;
-        }
-
-        // --------------------------------------
-        // 🔹 착지
-        // --------------------------------------
+        // 5) 착지
         if (owner.IsGrounded() && owner.Rb.linearVelocity.y <= 0.01f)
         {
             owner.hasStartedJump = false;
-
             if (Mathf.Abs(owner.MoveInput.x) > 0.01f)
                 Set<MoveState>();
             else

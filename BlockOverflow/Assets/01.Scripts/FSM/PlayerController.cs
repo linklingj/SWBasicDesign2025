@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,6 +42,14 @@ public class PlayerController : MonoBehaviour
     public Observable<bool> specialAbility;
     [SerializeField] private GameObject specialAvailibleEffect;
     
+    [Header("Wall Check")]
+    [SerializeField] private Transform wallCheckLeftUp;
+    [SerializeField] private Transform wallCheckLeftDown;
+    [SerializeField] private Transform wallCheckRightUp;
+    [SerializeField] private Transform wallCheckRightDown;
+    [SerializeField] private float wallCheckRadius = 0.2f;
+    public void ConsumeJumpPress() => JumpThisFrame = false;
+    
     private Rigidbody2D rb;
     private PlayerInput playerInput;
 
@@ -56,6 +65,8 @@ public class PlayerController : MonoBehaviour
     public bool jumpReleasedThisFrame;
     public bool attackPressedThisFrame;
     public bool crouchHeld;
+
+    private bool jumpPressedBuffered;   // 🔥 추가: 진짜 물리 입력 버퍼
     
 
     // 점프 관련
@@ -82,8 +93,9 @@ public class PlayerController : MonoBehaviour
     public Vector2 MoveInput => moveInput;
     public bool IsCrouching { get; private set; }
     public bool CanControl { get; private set; } = false;
+    private float originalGravity;
     
-
+    public float OriginalGravity { get; private set; }
 
     private void Awake()
     {
@@ -102,6 +114,7 @@ public class PlayerController : MonoBehaviour
         }
         
         specialAbility.AddListener(OnSpecialAbility);
+        originalGravity = rb.gravityScale;
     }
 
     private void Start()
@@ -147,18 +160,17 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
+        if (IsTouchingWall(out _))
+            Debug.Log("WALL!");
         if (!CanControl)
         {
             rb.linearVelocity = Vector2.zero;
             return;
         }
-
-        if (Keyboard.current.uKey.wasPressedThisFrame)
-        {
-            Debug.Log("U KEY ULTIMATE TEST");
-            OnUltimate(new InputAction.CallbackContext());
-        }
+        
+        // 🔥 한 프레임짜리 점프 입력 확정
+        JumpThisFrame = jumpPressedBuffered;
+        jumpPressedBuffered = false;
         
         StateMachine.Update();
 
@@ -185,25 +197,30 @@ public class PlayerController : MonoBehaviour
             movedust.SetActive(true);   
             lastGroundedTime = Time.time;
             ClearWallStickLockoutOnLand();
-
-            // ✅ 땅에 있고 위로 안 날아갈 때는 "점프 중 아님"
+            
+            jumpReleasedThisFrame = false;   // ⭐ 점프 릴리즈 버그 방지
+            
             if (rb.linearVelocity.y <= 0f)
                 hasStartedJump = false;
         }
 
-        // 벽 닿았을 때 공중 점프 회복
-        if (IsTouchingWall(out _) && !wasTouchingWall)
+        bool isTouchingWallNow = IsTouchingWall(out _);
+        if (isTouchingWallNow && !wasTouchingWall)
         {
+            // 벽에 새로 닿는 순간!
             wasTouchingWall = true;
-            airJumpsAvailable = maxAirJumps;
+            airJumpsAvailable = maxAirJumps; 
+            wallStickLockout = false; 
         }
-        else if (!IsTouchingWall(out _))
+        else if (!isTouchingWallNow)
         {
             wasTouchingWall = false;
         }
-
-
-        JumpThisFrame = false;
+        if (!IsTouchingWall(out _) && wasTouchingWall)
+        {
+            airJumpsAvailable = maxAirJumps; // 🔥 한 번 더 보장
+        }
+        
     }
     
 
@@ -219,21 +236,20 @@ public class PlayerController : MonoBehaviour
         movedust.SetActive(false);
         if (ctx.started)
         {
-            
             lastJumpPressedTime = Time.time;
 
-            JumpThisFrame = true;
-            jumpPressedThisFrame = true;
+            jumpPressedBuffered = true;      // 🔥 한 프레임짜리 입력 버퍼
+            jumpPressedThisFrame = true;     // 이건 너가 쓰고 있으면 유지
 
             JumpHeld = true;
         }
         else if (ctx.canceled)
         {
-
             jumpReleasedThisFrame = true;
             JumpHeld = false;
         }
     }
+
 
     public void OnCrouch(InputAction.CallbackContext ctx)
     {
@@ -348,6 +364,7 @@ public class PlayerController : MonoBehaviour
         {
             airJumpsAvailable--;
             DoJump();
+            wallStickLockout = false;
             return true;
         }
         return false;
@@ -426,30 +443,39 @@ public class PlayerController : MonoBehaviour
     // ==== WALL CHECK ====
     public bool IsTouchingWall(out Vector2 wallNormal)
     {
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, wallCheckDistance, groundMask);
-        RaycastHit2D hitLeft  = Physics2D.Raycast(transform.position, Vector2.left,  wallCheckDistance, groundMask);
-
-        if (hitRight.collider != null)
-        {
-            wallNormal = hitRight.normal;
-            return true;
-        }
-        if (hitLeft.collider != null)
-        {
-            wallNormal = hitLeft.normal;
-            return true;
-        }
-
         wallNormal = Vector2.zero;
+
+        bool leftUp   = Physics2D.OverlapCircle(wallCheckLeftUp.position,   wallCheckRadius, groundMask);
+        bool leftDown = Physics2D.OverlapCircle(wallCheckLeftDown.position, wallCheckRadius, groundMask);
+        bool rightUp  = Physics2D.OverlapCircle(wallCheckRightUp.position,  wallCheckRadius, groundMask);
+        bool rightDown= Physics2D.OverlapCircle(wallCheckRightDown.position,wallCheckRadius, groundMask);
+
+        if (leftUp || leftDown)
+        {
+            wallNormal = Vector2.right; // 왼쪽 벽 → 오른쪽으로 튕김
+            return true;
+        }
+
+        if (rightUp || rightDown)
+        {
+            wallNormal = Vector2.left; // 오른쪽 벽 → 왼쪽으로 튕김
+            return true;
+        }
+
         return false;
     }
+
+
+
 
     // ==== WALL STICK ====
     public void BeginWallStick()
     {
         wallStickTimer = wallStickMaxTime;
-        rb.linearVelocity = new Vector2(0f, Mathf.Min(rb.linearVelocity.y, -1f));
+        rb.gravityScale = 0f; // 🔥 중력 제거 → 벽 달라붙기
+        rb.linearVelocity = new Vector2(0f, 0f);
     }
+
     
     public void OnSpecialAbility(bool enabled)
     {
@@ -464,14 +490,28 @@ public class PlayerController : MonoBehaviour
 
     public void DoWallJump(Vector2 wallNormal)
     {
-        Vector2 pushDir = (Vector2.up + (-wallNormal)).normalized;
-        rb.linearVelocity = Vector2.zero;
-        rb.AddForce(new Vector2(pushDir.x * wallJumpForce.x, wallJumpForce.y),
-            ForceMode2D.Impulse);
+        hasStartedJump = true;
+        jumpStartFrame = Time.frameCount;
 
-        // 벽점프 후에도 공중점프 남겨두기
+        rb.linearVelocity = Vector2.zero;
+
+        // 🔥 벽에서 반대 방향 + 위로 튕기기
+        Vector2 force = new Vector2(
+            wallNormal.x * wallJumpForce.x * 1.3f, // ← 여기서 wallNormal.x 그대로!
+            wallJumpForce.y * 1.1f
+        );
+
+        rb.AddForce(force, ForceMode2D.Impulse);
+
+        // 원하면 이거 유지
+        // StartCoroutine(LockHorizontalControl());
+
+        // 벽 점프는 항상 "1단 점프" 취급 → 공중 점프 리필
         airJumpsAvailable = maxAirJumps;
+        wallStickLockout = false;
     }
+
+
 
     // ==== GROUNDED ====
     public bool IsGrounded()
@@ -493,6 +533,12 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
     }
     
+    private IEnumerator LockHorizontalControl()
+    {
+        CanControl = false;
+        yield return new WaitForSeconds(0.08f); // 손맛 튜닝 가능
+        CanControl = true;
+    }
     
 
 }
