@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallStickMaxTime = 0.3f;
 
     [Header("Ultimate / Cutscene")]
-    [SerializeField] private PersonaCutscene cutscene;
+    [SerializeField] private UltimateCutsceneDirector cutscene;
     [SerializeField] private UltimateWeapon ultimateWeapon;
     
     [Header("Special Ability")]
@@ -111,8 +111,6 @@ public class PlayerController : MonoBehaviour
     {
         StateMachine.Set<IdleState>();
 
-        if (cutscene == null)
-            cutscene = FindObjectOfType<PersonaCutscene>();
 
         if (ultimateWeapon != null)
         {
@@ -254,19 +252,11 @@ public class PlayerController : MonoBehaviour
         if (!ctx.started || !CanControl) return;
 
         Debug.Log("ULTIMATE TRIGGERED");
-
-        if (cutscene == null)
-            cutscene = FindObjectOfType<PersonaCutscene>();
-
-        if (cutscene == null)
-        {
-            Debug.LogWarning("PersonaCutscene is not found! Make sure it is active.");
-            return;
-        }
+        
 
         SetControl(false);
 
-        cutscene.Play(() =>
+        cutscene.Play(this.transform, transform, () =>
         {
             if (ultimateWeapon != null)
             {
@@ -277,7 +267,7 @@ public class PlayerController : MonoBehaviour
                 Debug.LogWarning("UltimateWeaponController not assigned!");
             }
 
-            SetControl(true);
+            SetControl(true);412
         });
     }
 

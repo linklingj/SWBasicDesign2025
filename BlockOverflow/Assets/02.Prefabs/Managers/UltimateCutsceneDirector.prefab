@@ -193,27 +193,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 7260827169335556706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e750fb9a59fdf143a15238e931a8a69, type: 3}
+  m_Script: {fileID: 11500000, guid: f0083bbdd91cd4e4dbb8e62292fa4857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cutsceneCamera: {fileID: 4592014788264886754}
-  worldUI: {fileID: 0}
+  worldUI: {fileID: 7502787871433755809}
   sfxSource: {fileID: 0}
   ultimateSFX: {fileID: 0}
-  entryXOffset: 20
+  entryXOffset: 18
   entryZOffset: 6
   entryDuration: 0.55
-  baseHeight: 2.5
-  closeHeight: 2.5
-  closeZOffset: 0
+  baseHeight: 2.2
+  closeHeight: 1.7
+  closeZOffset: 1.8
   closeXOffset: 2.2
   closeUpFOV: 25
   closeDuration: 0.6
   tiltX: 10
-  tiltY: 35
+  tiltY: 25
   slightShakePower: 0.1
-  barTop: {fileID: 6777901405028305625}
-  barBottom: {fileID: 3852706164465886784}
+  barTop: {fileID: 0}
+  barBottom: {fileID: 0}
   barAnimTime: 0.35
   barSize: 160
 --- !u!1 &7502787871433755809
