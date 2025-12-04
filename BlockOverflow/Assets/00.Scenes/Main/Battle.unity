@@ -2544,7 +2544,7 @@ PrefabInstance:
     - target: {fileID: 1994551507706256509, guid: 5fc9eaf3ab91b44808f4a99857df20b0, type: 3}
       propertyPath: playerData1
       value: 
-      objectReference: {fileID: 11400000, guid: cb2b9a238719a4a3c9be07dfc8fab391, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1994551507706256509, guid: 5fc9eaf3ab91b44808f4a99857df20b0, type: 3}
       propertyPath: playerData2
       value: 
@@ -2924,7 +2924,7 @@ MonoBehaviour:
           m_CallState: 2
   playerPrefab: {fileID: 8675466437622409480, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
   mapPrefabs:
-  - {fileID: 3013577924473924083, guid: e3f006779700f44e7a55c49041c84d50, type: 3}
+  - {fileID: 4504306099718719972, guid: 1bca4a7dc52a74b389309a3ab29dc5e6, type: 3}
   prestartDelay: 1
   cameraController: {fileID: 676279998}
   battleUI: {fileID: 1058888179}

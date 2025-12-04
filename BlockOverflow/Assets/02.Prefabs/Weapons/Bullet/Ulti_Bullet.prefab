@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65648aad5688c4e3b810b9825c2a31b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalScale: {x: 0, y: 0, z: 0}
   impactPrefab: {fileID: 31085477161063843, guid: 87c99bef2c34d4fdf82f62c90d88e212, type: 3}
   impactOffset: 0.02
   isUltimate: 0

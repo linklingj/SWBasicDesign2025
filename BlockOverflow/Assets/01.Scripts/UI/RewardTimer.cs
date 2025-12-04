@@ -7,6 +7,8 @@ public class RewardTimer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private float waitTime = 30f; // 30초
+    [SerializeField] UpgradeManager upgradeManager;
+    [SerializeField] TextUIElement finishedText;
 
     private float remaining;
 
@@ -68,7 +70,12 @@ public class RewardTimer : MonoBehaviour
         timerText.transform.localScale = Vector3.one * 0.8f;
         timerText.transform.DOScale(1f, 0.1f).SetEase(Ease.OutBack);
         timerText.DOFade(0f, 0.9f);
+        
+        finishedText.gameObject.SetActive(true);
+        finishedText.SetSizeEmphasisTween();
+        timerText.gameObject.SetActive(false);
 
-        SceneLoader.Instance.LoadScene(SceneName.Battle);
+        yield return new WaitForSeconds(3f);
+        upgradeManager.OnCountdownFinished();
     }
 }

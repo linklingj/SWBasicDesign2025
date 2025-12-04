@@ -8,7 +8,8 @@ public enum SceneName
     Title,
     CharacterSelection,
     Battle,
-    Reward
+    Reward,
+    Result
 }
 
 public class SceneLoader : Singleton<SceneLoader>
