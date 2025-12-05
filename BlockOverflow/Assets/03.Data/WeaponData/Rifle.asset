@@ -16,6 +16,8 @@ MonoBehaviour:
   damage: 8
   fireRate: 5
   weaponType: 0
+  shotSound: {fileID: 11400000, guid: 0ef797372df17491dba878f32438bb61, type: 2}
+  shotSoundName: Rifle_Sound
   bulletData: {fileID: 11400000, guid: 48b66710d08594d02a740f99a4c185ba, type: 2}
   weaponSprite: {fileID: 8271715202566429118, guid: a245a47fdaed64ed3a7fb98d0fc02ca8, type: 3}
   bulletPrefab: {fileID: 3004987730608447500, guid: 51712a504d35b6542b8631dbad146255, type: 3}

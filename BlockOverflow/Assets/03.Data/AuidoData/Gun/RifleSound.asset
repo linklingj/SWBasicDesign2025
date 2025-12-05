@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6dbc77234e8b44a88f056e9ff5b5554, type: 3}
   m_Name: RifleSound
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: f82740b609d884172abb877ecfaefc02, type: 3}
+  clip: {fileID: 8300000, guid: e2f7a7c92d44c4ce4aeb8de6bcb21439, type: 3}
   trimming: {x: 0, y: 0.42528343}
   audioMixerGroup: {fileID: 0}
   volume: 1

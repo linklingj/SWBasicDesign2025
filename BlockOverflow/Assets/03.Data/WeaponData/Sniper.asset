@@ -16,6 +16,8 @@ MonoBehaviour:
   damage: 30
   fireRate: 1
   weaponType: 2
+  shotSound: {fileID: 11400000, guid: 66020f1c84e8949409af569cc6702c05, type: 2}
+  shotSoundName: Sniper_Sound
   bulletData: {fileID: 11400000, guid: ba4e5db3f09d14636b0f081a63e159d1, type: 2}
   weaponSprite: {fileID: -3656602075172381145, guid: c8fb6ac3526204f84a25634f0fffc54d, type: 3}
   bulletPrefab: {fileID: 3004987730608447500, guid: 61c34da696af8431dbdaa5b325fe40f1, type: 3}

@@ -69,7 +69,10 @@ public class CameraController : SerializedMonoBehaviour
         if (cam == null) cam = Camera.main;
 
         // 목표 사이즈로 부드럽게 변경
-        cam.DOFieldOfView(zoomSize[zoomType], zoomDuration).SetEase(Ease.InOutQuad);
+        if (cam.orthographic)
+            cam.DOOrthoSize(zoomSize[zoomType], zoomDuration).SetEase(Ease.InOutQuad);
+        else
+            cam.DOFieldOfView(zoomSize[zoomType], zoomDuration).SetEase(Ease.InOutQuad);
         // 카메라 위치 보정
         focusPoint.z = z;
         transform.DOMove(ClampCameraPosition(focusPoint), zoomDuration).SetEase(Ease.InOutQuad);

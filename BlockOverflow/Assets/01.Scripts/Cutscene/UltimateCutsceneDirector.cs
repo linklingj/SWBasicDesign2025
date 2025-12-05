@@ -184,5 +184,4 @@ public class UltimateCutsceneDirector : MonoBehaviour
             onComplete?.Invoke();
         });
     }
-
 }

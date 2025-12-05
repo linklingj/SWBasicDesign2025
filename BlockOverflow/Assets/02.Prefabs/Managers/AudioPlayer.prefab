@@ -62,3 +62,17 @@ MonoBehaviour:
     audioData: {fileID: 11400000, guid: 2b37a747810f44a8c8f4341bbac21f65, type: 2}
   - name: Player_Fall
     audioData: {fileID: 11400000, guid: 9811f1247083747d1a2bd726c07eb82c, type: 2}
+  - name: Pistol_Sound
+    audioData: {fileID: 11400000, guid: 06067bb31be3e402eb0fc96e340edd12, type: 2}
+  - name: Rifle_Sound
+    audioData: {fileID: 11400000, guid: 0ef797372df17491dba878f32438bb61, type: 2}
+  - name: Sniper_Sound
+    audioData: {fileID: 11400000, guid: 66020f1c84e8949409af569cc6702c05, type: 2}
+  - name: Ulti_Sound
+    audioData: {fileID: 11400000, guid: 525140038d82645a79f93e6c48af16e2, type: 2}
+  - name: Player_Hit
+    audioData: {fileID: 11400000, guid: ed3bad5fd55d447dea5a67c7180cdf01, type: 2}
+  - name: Ulti_Hit
+    audioData: {fileID: 11400000, guid: b8efd9229b539451cbb2db12b4fda682, type: 2}
+  - name: Ulti_Charge
+    audioData: {fileID: 11400000, guid: 168ccaa0c34b0407dba7a85fce3aa9f2, type: 2}

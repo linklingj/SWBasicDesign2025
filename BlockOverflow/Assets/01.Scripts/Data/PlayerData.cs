@@ -106,8 +106,14 @@ public class PlayerData : ScriptableObject
         }
     }
     
+    void ResetStats()
+    {
+        playerStats = new PlayerStats();
+    }
+    
     public void UpdatePlayerStats(Func<string, Block> blockFactory)
     {
+        ResetStats();
         foreach (var block in ownedBlocks)
         {
             Block b = blockFactory(block.blockId);

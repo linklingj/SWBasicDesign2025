@@ -45,6 +45,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             CurrentHealth = 0f;
             Die();
         }
+        
     }
     public void Die()
     {

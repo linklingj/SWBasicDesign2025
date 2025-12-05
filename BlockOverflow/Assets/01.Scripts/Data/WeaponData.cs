@@ -9,6 +9,8 @@ public class WeaponData : ScriptableObject {
     [LabelText("데이지"), Min(0)] public float damage;
     [LabelText("연사 속도"), Min(0)] public float fireRate;
     [LabelText("무기 타입")] public WeaponType weaponType;
+    [LabelText("사운드")] public AudioData shotSound;
+    [LabelText("사운드 이름")] public string shotSoundName;
     public BulletData bulletData;
     
     

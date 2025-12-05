@@ -12,6 +12,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject muzzleFlashPrefab;
     [SerializeField] private GameObject usedAmmoPrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private AudioData shotSound;
+    private string shotSoundName;
+    [SerializeField] private float shotPitchRange = 0.05f; 
     
     [SerializeField] protected WeaponData weaponData;
     public WeaponData Data => weaponData;
@@ -29,6 +32,8 @@ public class Weapon : MonoBehaviour
     
     protected int extraDamage = 0;
     protected float extraFireRate = 0f;
+    protected float bulletSize = 1f;
+    protected bool reflectOnWalls = false;
     protected BulletData bulletData;
 
     // 반동 기준값
@@ -82,15 +87,24 @@ public class Weapon : MonoBehaviour
         if (spriteRenderer != null && data.weaponSprite != null)
             spriteRenderer.sprite = data.weaponSprite;
 
+        if (data != null && data.shotSound != null)
+        {
+            shotSound = data.shotSound;
+            shotSoundName = data.shotSoundName;
+        }
+
+        
         // 3) 애니메이션 교체
         //if (animator != null && data.animatorController != null)
         //    animator.runtimeAnimatorController = data.animatorController;
     }
     
-    public void SetUpgrades(int damageIncrease, float fireRateIncrease)
+    public void SetUpgrades(int damageIncrease, float fireRateIncrease, float bulletSizeMultiplier, bool reflectOnWall)
     {
         extraDamage = damageIncrease;
         extraFireRate = fireRateIncrease;
+        bulletSize = bulletSizeMultiplier;
+        this.reflectOnWalls = reflectOnWall;
     }
 
     private void Update()
@@ -98,7 +112,7 @@ public class Weapon : MonoBehaviour
         //animator.SetBool(IsShooting, !CanFire());
     }
 
-    public virtual bool Fire()
+    public virtual bool Fire(float damageMultiplier = 1f)
     {
         if (!CanFire() || bulletPrefab == null) return false;
 
@@ -107,8 +121,20 @@ public class Weapon : MonoBehaviour
 
         if (direction.sqrMagnitude <= Mathf.Epsilon) return false;
 
-        ShootBullet(spawnPos, direction);
+        ShootBullet(spawnPos, direction, damageMultiplier);
         ScheduleNextShot();
+        
+        // 사운드 재생
+        // 원래 피치 저장
+        float originalPitch = shotSound.pitch;
+
+        // 2) 랜덤 피치 적용
+        float offset = UnityEngine.Random.Range(-shotPitchRange, shotPitchRange);
+        shotSound.pitch = Mathf.Clamp(originalPitch + offset, 0.5f, 2f);
+        //AudioPlayer.Instance.Play("Ulti_Sound");
+        AudioPlayer.Instance.Play(shotSoundName);
+        
+        shotSound.pitch = originalPitch;
 
         // 🔥 반동 재생 (이제 로컬 기준이라 캐릭터 따라감)
         PlayRecoil(direction);
@@ -132,7 +158,7 @@ public class Weapon : MonoBehaviour
         nextFireTime = Time.time + cooldown;
     }
 
-    protected virtual void ShootBullet(Vector3 pos, Vector3 dir)
+    protected virtual void ShootBullet(Vector3 pos, Vector3 dir, float damageMultiplier = 1f)
     {
         if (bulletPrefab == null) return;
 
@@ -147,6 +173,7 @@ public class Weapon : MonoBehaviour
         if (ObjectPoolManager.Instance)
         {
             bullet = ObjectPoolManager.Instance.Get(bulletPrefab, pos, bulletRotation).transform;
+            bullet.localScale *= bulletSize;
         }
 
         if (bullet == null)
@@ -157,7 +184,8 @@ public class Weapon : MonoBehaviour
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
         if (bulletComponent)
         {
-            bulletComponent.SetDamage(data.damage + extraDamage);
+            bulletComponent.SetDamage((data.damage + extraDamage) * damageMultiplier);
+            //bulletComponent.SetReflectOnWalls(reflectOnWalls);
             bulletComponent.Init(pos, dir, bulletData, playerIdx);
         }
 

@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private PlayerData playerData1;
     [SerializeField] private PlayerData playerData2;
     
-    private List<int> winPlayerIndices = new List<int>();
+    public List<int> winPlayerIndices = new List<int>();
     
     public MapType currentMapType = MapType.Swamp;
 
@@ -60,6 +60,17 @@ public class GameManager : Singleton<GameManager>
         SceneLoader.Instance.LoadScene(SceneName.Reward, () => ChangeGameState(GameState.Reward));
     }
 
+    public void ToResult()
+    {
+        SceneLoader.Instance.LoadScene(SceneName.Result, () => ChangeGameState(GameState.Result));
+    }
+    
+    public void ToTitle()
+    {
+        ResetData();
+        SceneLoader.Instance.LoadScene(SceneName.Title, () => ChangeGameState(GameState.Title));
+    }
+
     public int GetPreviousWinner()
     {
         if (winPlayerIndices.Count == 0)
@@ -81,6 +92,14 @@ public class GameManager : Singleton<GameManager>
 
         if (playerData1 == null || playerData2 == null) GeneratePlayerData();
         playerData = playerIndex == 1 ? playerData1 : playerData2;
+    }
+    
+    void ResetData()
+    {
+        playerData1 = null;
+        playerData2 = null;
+        currentMapType = MapType.Swamp;
+        winPlayerIndices.Clear();
     }
 
     private static GameState GetGameStateFromScene(SceneName sceneName)
