@@ -623,6 +623,11 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!224 &309554291 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3852706164465886784, guid: 982765fed961f4a4f81b274e4b359776, type: 3}
+  m_PrefabInstance: {fileID: 1890814673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &357057131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2567,6 +2572,48 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fc9eaf3ab91b44808f4a99857df20b0, type: 3}
+--- !u!224 &1639760846 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6777901405028305625, guid: 982765fed961f4a4f81b274e4b359776, type: 3}
+  m_PrefabInstance: {fileID: 1890814673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1646942791 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7260827169335556706, guid: 982765fed961f4a4f81b274e4b359776, type: 3}
+  m_PrefabInstance: {fileID: 1890814673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1646942794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646942791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0083bbdd91cd4e4dbb8e62292fa4857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneCamera: {fileID: 519420031}
+  worldUI: {fileID: 1330169865}
+  sfxSource: {fileID: 0}
+  ultimateSFX: {fileID: 0}
+  entryXOffset: 18
+  entryZOffset: 6
+  entryDuration: 0.55
+  baseHeight: 2.2
+  closeHeight: 1.7
+  closeZOffset: 1.8
+  closeXOffset: 2.2
+  closeUpFOV: 25
+  closeDuration: 0.6
+  tiltX: 10
+  tiltY: 25
+  slightShakePower: 0.1
+  barTop: {fileID: 1639760846}
+  barBottom: {fileID: 309554291}
+  barAnimTime: 0.35
+  barSize: 160
 --- !u!1001 &1727460289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2929,7 +2976,7 @@ MonoBehaviour:
           m_CallState: 2
   playerPrefab: {fileID: 8675466437622409480, guid: ed2e5352000444d558c4d69b2b80ff4e, type: 3}
   mapPrefabs:
-  - {fileID: 3013577924473924083, guid: e3f006779700f44e7a55c49041c84d50, type: 3}
+  - {fileID: 9083697893885518159, guid: e3f006779700f44e7a55c49041c84d50, type: 3}
   prestartDelay: 1
   cameraController: {fileID: 676279998}
   battleUI: {fileID: 1058888179}
@@ -3169,10 +3216,14 @@ PrefabInstance:
       propertyPath: cutsceneCamera
       value: 
       objectReference: {fileID: 519420031}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8197792581247917979, guid: 982765fed961f4a4f81b274e4b359776, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7260827169335556706, guid: 982765fed961f4a4f81b274e4b359776, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1646942794}
   m_SourcePrefab: {fileID: 100100000, guid: 982765fed961f4a4f81b274e4b359776, type: 3}
 --- !u!1 &1949622373
 GameObject:
