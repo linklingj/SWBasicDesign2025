@@ -12,9 +12,10 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private PlayerData playerData1;
     [SerializeField] private PlayerData playerData2;
+    [SerializeField] public BattleManager battleManager;
     
     public List<int> winPlayerIndices = new List<int>();
-    
+   
     public MapType currentMapType = MapType.Swamp;
 
     protected override void Awake()

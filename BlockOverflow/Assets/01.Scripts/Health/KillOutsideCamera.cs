@@ -21,7 +21,6 @@ public class KillOutsideCamera : MonoBehaviour
         health = GetComponent<PlayerHealth>();
         _timer = startGraceTime;
         _enabled = false;
-        
     }
 
     private void Update()
@@ -51,8 +50,6 @@ public class KillOutsideCamera : MonoBehaviour
         }
     }
     
-    
-
     public void EnableKill()
     {
         _enabled = true;
@@ -61,6 +58,7 @@ public class KillOutsideCamera : MonoBehaviour
     public void DisableKill()
     {
         _enabled = false;
+        _timer = 2.0f;
     }
 
 

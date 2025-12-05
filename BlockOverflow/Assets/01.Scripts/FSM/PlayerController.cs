@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform wallCheckRightUp;
     [SerializeField] private Transform wallCheckRightDown;
     [SerializeField] private float wallCheckRadius = 0.2f;
+    
+    
     public void ConsumeJumpPress() => JumpThisFrame = false;
     
     private Rigidbody2D rb;
@@ -59,7 +61,8 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 dustright = new Vector3(-.4f, -.5f, 0);
     private Vector3 dustleft = new Vector3(.4f, -.5f, 0);
-    
+    private KillOutsideCamera killOutsideCamera;
+
 
     // 입력 플래그
     public bool jumpPressedThisFrame;
@@ -305,9 +308,19 @@ public class PlayerController : MonoBehaviour
     {
         if (!ctx.started || !CanControl) return;
         Debug.Log("ULTIMATE START");
-
+        
         SetControl(false);
+        
+        var other = GameManager.Instance.battleManager.GetOtherPlayer(this);
 
+        // 🔥 둘 다 사망 판정 OFF
+        GetComponent<KillOutsideCamera>().DisableKill();
+        other.GetComponent<KillOutsideCamera>().DisableKill();
+
+        // 🔥 둘 다 조작 금지
+        SetControl(false);
+        other.SetControl(false);
+        
         Transform firePos = transform.Find("Weapon/FirePos");
         if (!firePos) firePos = transform;
 
@@ -317,14 +330,15 @@ public class PlayerController : MonoBehaviour
             () =>
             {
                 ultimateWeapon?.Fire();
+                
                 SetControl(true);
+                other.SetControl(true);
+
+                GetComponent<KillOutsideCamera>().EnableKill();
+                other.GetComponent<KillOutsideCamera>().EnableKill();
             }
         );
     }
-
-
-
-
     
     // === CONSUME HELPERS ===
     public bool ConsumeJumpReleased()

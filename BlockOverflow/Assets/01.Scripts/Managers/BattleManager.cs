@@ -49,6 +49,7 @@ public class BattleManager : SerializedMonoBehaviour
     private void Awake()
     {
         GameManager.Instance.OnGameStateChanged += GameStateChanged;
+        GameManager.Instance.battleManager = this;
     }
 
     private void Start()
@@ -231,5 +232,14 @@ public class BattleManager : SerializedMonoBehaviour
     {
         yield return new WaitUntil(() => gameTime >= delay);
         frog.StartMoving();
+    }
+    
+    public PlayerController GetOtherPlayer(PlayerController me)
+    {
+        if (me == player1) return player2;
+        if (me == player2) return player1;
+
+        Debug.LogWarning("⚠️ 전달된 PlayerController가 player1도 player2도 아닙니다.");
+        return null;
     }
 }
