@@ -687,8 +687,13 @@ PrefabInstance:
       propertyPath: worldUI
       value: 
       objectReference: {fileID: 1604186740}
+    - target: {fileID: 8197792581247917979, guid: 982765fed961f4a4f81b274e4b359776, type: 3}
+      propertyPath: cutsceneCamera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8473014127399452954, guid: 982765fed961f4a4f81b274e4b359776, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 982765fed961f4a4f81b274e4b359776, type: 3}

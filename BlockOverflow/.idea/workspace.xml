@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f685557c-d36b-4fc4-b4e3-511a19f48f2f" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/09.Fonts/Cafe24PROUP_EMP 2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/09.Fonts/Cafe24PROUP_EMP 2.asset" afterDir="false" />
-    </list>
+    <list default="true" id="f685557c-d36b-4fc4-b4e3-511a19f48f2f" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,6 +53,7 @@
       <updated>1764171253773</updated>
       <workItem from="1764171255153" duration="5000" />
       <workItem from="1764403524030" duration="1100000" />
+      <workItem from="1764941430768" duration="332000" />
     </task>
     <servers />
   </component>
