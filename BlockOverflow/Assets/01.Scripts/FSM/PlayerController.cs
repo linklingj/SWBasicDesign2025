@@ -267,7 +267,7 @@ public class PlayerController : MonoBehaviour
                 Debug.LogWarning("UltimateWeaponController not assigned!");
             }
 
-            SetControl(true);412
+            SetControl(true);//412
         });
     }
 
