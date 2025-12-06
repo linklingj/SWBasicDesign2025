@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private PlayerData playerData2;
     [SerializeField] public BattleManager battleManager;
     
+    public int round = 0;
     public List<int> winPlayerIndices = new List<int>();
    
     public MapType currentMapType = MapType.Swamp;
@@ -51,6 +52,7 @@ public class GameManager : Singleton<GameManager>
 
     public void BattleStart()
     {
+        round++;
         if (playerData1 == null || playerData2 == null) GeneratePlayerData();
         SceneLoader.Instance.LoadScene(SceneName.Battle);
     }

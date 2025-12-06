@@ -120,6 +120,11 @@ public class PlayerController : MonoBehaviour
         
         specialAbility.AddListener(OnSpecialAbility);
         originalGravity = rb.gravityScale;
+
+        if (SceneLoader.Instance.GetCurrentScene() == SceneName.Reward)
+        {
+            CanControl = false;
+        }
     }
 
     private void Start()
@@ -151,7 +156,7 @@ public class PlayerController : MonoBehaviour
             cutsceneDirector = FindObjectOfType<UltimateCutsceneDirector>();
 
             if (cutsceneDirector == null)
-                Debug.LogError("❌ UltimateCutsceneDirector not found in scene!");
+                Debug.Log("❌ UltimateCutsceneDirector not found in scene!");
             else
                 Debug.Log("✔ Director auto-assigned!");
         }
@@ -166,8 +171,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (IsTouchingWall(out _))
-            Debug.Log("WALL!");
         if (!CanControl)
         {
             rb.linearVelocity = Vector2.zero;
@@ -224,7 +227,7 @@ public class PlayerController : MonoBehaviour
         }
         if (!IsTouchingWall(out _) && wasTouchingWall)
         {
-            airJumpsAvailable = maxAirJumps; // 🔥 한 번 더 보장
+            airJumpsAvailable = maxAirJumps;
         }
         
     }
@@ -306,7 +309,7 @@ public class PlayerController : MonoBehaviour
     // }
     public void OnUltimate(InputAction.CallbackContext ctx)
     {
-        if (!ctx.started || !CanControl) return;
+        if (!ctx.started || !CanControl || !specialAbility.Value) return;
         Debug.Log("ULTIMATE START");
         
         SetControl(false);
@@ -462,6 +465,7 @@ public class PlayerController : MonoBehaviour
     public bool IsTouchingWall(out Vector2 wallNormal)
     {
         wallNormal = Vector2.zero;
+        if (!CanControl) return false;
 
         bool leftUp   = Physics2D.OverlapCircle(wallCheckLeftUp.position,   wallCheckRadius, groundMask);
         bool leftDown = Physics2D.OverlapCircle(wallCheckLeftDown.position, wallCheckRadius, groundMask);

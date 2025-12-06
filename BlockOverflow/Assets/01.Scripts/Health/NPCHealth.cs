@@ -21,6 +21,7 @@ public class NPCHealth : MonoBehaviour, IDamageable
 
         CurrentHealth = Mathf.Max(0, CurrentHealth - damageAmount);
 
+        Debug.Log(damagingPlayerIdx);
         if (IsDead)
         {
             OnDeath?.Invoke(damagingPlayerIdx);

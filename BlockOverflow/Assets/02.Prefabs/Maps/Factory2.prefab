@@ -362,7 +362,21 @@ MonoBehaviour:
   originalCameraPos: {fileID: 8406075513828517603}
   finalCameraPos: {fileID: 5200557666763623676}
   mapType: 2
-  specialWayPoints: []
+  specialWayPoints:
+  - {fileID: 2688291752619257788}
+  - {fileID: 4275730790074694886}
+  - {fileID: 8045485351134437970}
+  - {fileID: 1647301987456924757}
+  - {fileID: 8611561595649342356}
+  - {fileID: 7727837541587915300}
+  - {fileID: 5786700438467318524}
+  - {fileID: 3433803141528768569}
+  - {fileID: 901216825698990812}
+  - {fileID: 468812779605685995}
+  - {fileID: 1773832691735920313}
+  - {fileID: 4213658167455173383}
+  - {fileID: 1454124182656956748}
+  - {fileID: 7533319788066514667}
   mapBGM: {fileID: 11400000, guid: fe05df4e4e0f0477c9d64ca8421f826e, type: 2}
 --- !u!1 &5196514704351373457
 GameObject:
@@ -4695,7 +4709,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
   m_Origin: {x: -20, y: 0, z: 0}
   m_Size: {x: 50, y: 40, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -5387,7 +5401,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
   m_Origin: {x: -20, y: 0, z: 0}
   m_Size: {x: 50, y: 39, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}

@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class BattleManager : SerializedMonoBehaviour
@@ -23,8 +24,9 @@ public class BattleManager : SerializedMonoBehaviour
     [SerializeField] private Transform StageTransform;
     [SerializeField] private Transform PlayerTransform;
     
-    [SerializeField] private SpecialObject frog;
-    [SerializeField] private float frogSpawnTime;
+    private SpecialObject curSpecialObj;
+    [SerializeField] private Dictionary<MapType, GameObject> specialObjectPrefabs;
+    [SerializeField] private float objSpawnTime;
 
     [SerializeField] private Dictionary<WeaponType, WeaponData> weaponDatas;
     
@@ -55,7 +57,7 @@ public class BattleManager : SerializedMonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        GenerateMap();
+        GenerateMap(GameManager.Instance.round-1);
         StartBattle();
     }
 
@@ -70,11 +72,11 @@ public class BattleManager : SerializedMonoBehaviour
             StartBattle();
     }
     
-    public int GenerateMap()
+    public void GenerateMap(int round)
     {
-        int randIdx = Random.Range(0, mapPrefabs.Count);
+        int idx = (round + mapPrefabs.Count) % mapPrefabs.Count;
         
-        GameObject m = Instantiate(mapPrefabs[randIdx], StageTransform);
+        GameObject m = Instantiate(mapPrefabs[idx], StageTransform);
         m.transform.position = Vector3.zero;
         map = m.GetComponent<Maps>();
         m.SetActive(true);
@@ -82,13 +84,14 @@ public class BattleManager : SerializedMonoBehaviour
         foreach (var bg in bgObjects)
             bg.Value.SetActive(false);
         bgObjects[map.mapType].SetActive(true);
+
+        curSpecialObj = Instantiate(specialObjectPrefabs[map.mapType], new Vector3(1000, 1000, 0), Quaternion.identity).GetComponent<SpecialObject>();
+        curSpecialObj.transform.SetParent(StageTransform);
         
         GameManager.Instance.currentMapType = map.mapType;
         
         AudioPlayer.Instance.PlayBGM(map.mapBGM);
         AudioPlayer.Instance.FadeInBGM(0.5f);
-        
-        return randIdx;
     }
     
     [Button]
@@ -167,7 +170,7 @@ public class BattleManager : SerializedMonoBehaviour
         //승리 애니메이션
         //슬로우
         gameStarted.Value = false;
-        frog.StopMoving();
+        curSpecialObj.StopMoving();
         player1.GetComponent<KillOutsideCamera>().DisableKill();
         player2.GetComponent<KillOutsideCamera>().DisableKill();
         battleUI.Win(winnerIndex);
@@ -206,14 +209,14 @@ public class BattleManager : SerializedMonoBehaviour
     
     private void SetSpecialObject()
     {
-        if (frog != null && map.specialWayPoints != null)
+        if (curSpecialObj != null && map.specialWayPoints != null)
         {
-            frog.gameObject.SetActive(true);
-            frog.Init(map.specialWayPoints.ToArray());
+            curSpecialObj.gameObject.SetActive(true);
+            curSpecialObj.Init(map.specialWayPoints.ToArray());
         }
 
-        frog.OnDeath += GiveSpecialAbility;
-        StartCoroutine(SpawnSpecialObjectAfterDelay(frogSpawnTime));
+        curSpecialObj.OnDeath += GiveSpecialAbility;
+        StartCoroutine(SpawnSpecialObjectAfterDelay(objSpawnTime));
     }
 
     public void GiveSpecialAbility(int playerIdx)
@@ -231,7 +234,7 @@ public class BattleManager : SerializedMonoBehaviour
     private IEnumerator SpawnSpecialObjectAfterDelay(float delay)
     {
         yield return new WaitUntil(() => gameTime >= delay);
-        frog.StartMoving();
+        curSpecialObj.StartMoving();
     }
     
     public PlayerController GetOtherPlayer(PlayerController me)
@@ -239,7 +242,6 @@ public class BattleManager : SerializedMonoBehaviour
         if (me == player1) return player2;
         if (me == player2) return player1;
 
-        Debug.LogWarning("⚠️ 전달된 PlayerController가 player1도 player2도 아닙니다.");
         return null;
     }
 }

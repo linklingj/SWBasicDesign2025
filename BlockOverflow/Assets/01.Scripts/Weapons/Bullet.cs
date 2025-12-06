@@ -79,13 +79,12 @@ public class Bullet : PoolObject {
 
         if (damageable != null)
         {
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(damage, playerIdx);
             Vector2 p = other.ClosestPoint(rb.position);
             SpawnImpact(p, -moveDir);
             if (!isUltimate)
             {
                 AudioPlayer.Instance.Play("Player_Hit");
-                Debug.Log("평타");
             }
             else AudioPlayer.Instance.Play("Ulti_Hit");
         }

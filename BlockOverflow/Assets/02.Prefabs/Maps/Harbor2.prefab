@@ -369,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 7109527636121836928}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.8, y: -25.4, z: 0}
+  m_LocalPosition: {x: -4.8, y: -24.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2303,7 +2303,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7294118, g: 0.7294118, b: 0.7294118, a: 1}
   m_Origin: {x: -20, y: 0, z: 0}
   m_Size: {x: 50, y: 40, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -2490,7 +2490,7 @@ Transform:
   m_GameObject: {fileID: 7530175443330389926}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.8, y: -25.4, z: 0}
+  m_LocalPosition: {x: -4.8, y: -24.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2684,7 +2684,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
   m_Origin: {x: -20, y: 0, z: 0}
   m_Size: {x: 50, y: 38, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -3150,7 +3150,22 @@ MonoBehaviour:
   originalCameraPos: {fileID: 5495380721710231442}
   finalCameraPos: {fileID: 5802726804467672373}
   mapType: 1
-  specialWayPoints: []
+  specialWayPoints:
+  - {fileID: 2801329151915904425}
+  - {fileID: 7486303200586084808}
+  - {fileID: 2865840321016378455}
+  - {fileID: 3788871930702385851}
+  - {fileID: 3774446572254586901}
+  - {fileID: 332257116205979344}
+  - {fileID: 5063288375938276605}
+  - {fileID: 909119035970534952}
+  - {fileID: 2004227381903032195}
+  - {fileID: 6796100153209055675}
+  - {fileID: 534106443450808988}
+  - {fileID: 8208648245313936301}
+  - {fileID: 4125109666665262747}
+  - {fileID: 9171210227274284633}
+  - {fileID: 2180204822857608987}
   mapBGM: {fileID: 11400000, guid: 4e835feecb7bf4075940a361a389e5bd, type: 2}
 --- !u!1 &9197759930420546289
 GameObject:
