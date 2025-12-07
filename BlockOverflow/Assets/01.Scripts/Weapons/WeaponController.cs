@@ -40,10 +40,11 @@ public class WeaponController : MonoBehaviour {
         {
             damageMultiplier = finalRevengeMultiplier;
         }
-        
+#if UNITY_EDITOR
         if (Mouse.current != null && Mouse.current.leftButton.isPressed) {
             if (weapon.Fire(damageMultiplier)) CameraShake();
         }
+#endif
         if (_gamepad != null)
         {
             float trigger = _gamepad.rightTrigger.ReadValue(); // 0 ~ 1
