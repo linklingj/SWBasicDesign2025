@@ -341,6 +341,8 @@ public class PlayerController : MonoBehaviour
                 other.GetComponent<KillOutsideCamera>().EnableKill();
             }
         );
+        
+        specialAbility.Value = false;
     }
     
     // === CONSUME HELPERS ===

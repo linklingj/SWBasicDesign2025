@@ -170,7 +170,7 @@ public class BattleManager : SerializedMonoBehaviour
         //승리 애니메이션
         //슬로우
         gameStarted.Value = false;
-        curSpecialObj.StopMoving();
+        //curSpecialObj.StopMoving();
         player1.GetComponent<KillOutsideCamera>().DisableKill();
         player2.GetComponent<KillOutsideCamera>().DisableKill();
         battleUI.Win(winnerIndex);
