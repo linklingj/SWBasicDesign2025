@@ -100,6 +100,7 @@ public class Bullet : PoolObject {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.transform.tag == "Bullet") return;
         if (!isUltimate)
         {
             ContactPoint2D cp = collision.GetContact(0);
