@@ -121,7 +121,18 @@ public class Weapon : MonoBehaviour
 
         if (direction.sqrMagnitude <= Mathf.Epsilon) return false;
 
-        ShootBullet(spawnPos, direction, damageMultiplier);
+        if (weaponData.name == "Pistol")
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                // 피스톨은 약간 랜덤 탄퍼짐
+                float spreadAngle = UnityEngine.Random.Range(-5f, 5f);
+                direction = Quaternion.Euler(0f, 0f, spreadAngle) * direction;
+                ShootBullet(spawnPos, direction, damageMultiplier);
+            }
+            
+        }
+        else ShootBullet(spawnPos, direction, damageMultiplier);
         ScheduleNextShot();
         
         // 사운드 재생
