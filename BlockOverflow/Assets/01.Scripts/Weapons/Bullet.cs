@@ -80,6 +80,13 @@ public class Bullet : PoolObject {
 
         if (damageable != null)
         {
+            if ((PlayerHealth)damageable)
+            {
+                if (other.gameObject.GetComponentInParent<PlayerController>().PlayerIndex == playerIdx);
+                {
+                    return;
+                }
+            }
             damageable.TakeDamage(damage, playerIdx);
             Vector2 p = other.ClosestPoint(rb.position);
             SpawnImpact(p, -moveDir);

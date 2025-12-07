@@ -90,7 +90,6 @@ public class UltimateWeapon : Weapon
         seq.AppendCallback(() =>
         {
             if (chargeFx != null)
-                Debug.Log("차징!");
                 chargeFx.Play();
                 
         });

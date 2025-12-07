@@ -1330,6 +1330,7 @@ MonoBehaviour:
   jumpStartFrame: 0
   airJumpsAvailable: 0
   wasTouchingWall: 0
+  PlayerIndex: -1
 --- !u!50 &9030402184952837912
 Rigidbody2D:
   serializedVersion: 5
@@ -1603,11 +1604,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 161766902907163530, guid: bf4a58ddd24ae4eb6b3442d8305bd151, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 161766902907163530, guid: bf4a58ddd24ae4eb6b3442d8305bd151, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 161766902907163530, guid: bf4a58ddd24ae4eb6b3442d8305bd151, type: 3}
       propertyPath: m_LocalPosition.x

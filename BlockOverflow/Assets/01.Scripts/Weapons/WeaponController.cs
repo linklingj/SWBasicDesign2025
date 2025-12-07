@@ -41,9 +41,9 @@ public class WeaponController : MonoBehaviour {
             damageMultiplier = finalRevengeMultiplier;
         }
         
-        if (Mouse.current != null && Mouse.current.leftButton.isPressed) {
-            if (weapon.Fire(damageMultiplier)) CameraShake();
-        }
+        // if (Mouse.current != null && Mouse.current.leftButton.isPressed) {
+        //     if (weapon.Fire(damageMultiplier)) CameraShake();
+        // }
         if (_gamepad != null)
         {
             float trigger = _gamepad.rightTrigger.ReadValue(); // 0 ~ 1

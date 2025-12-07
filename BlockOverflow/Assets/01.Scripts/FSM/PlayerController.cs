@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour
     
     public float OriginalGravity { get; private set; }
 
+    public int PlayerIndex = -1;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

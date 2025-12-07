@@ -120,6 +120,8 @@ public class BattleManager : SerializedMonoBehaviour
         
         player1.transform.SetParent(PlayerTransform);
         player2.transform.SetParent(PlayerTransform);
+        player1.PlayerIndex = 1;
+        player2.PlayerIndex = 2;
         
         //플레이어 무기 적용
         var p1Weapon = player1.GetComponent<WeaponController>();
