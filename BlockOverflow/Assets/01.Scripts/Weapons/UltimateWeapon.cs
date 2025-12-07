@@ -144,9 +144,16 @@ public class UltimateWeapon : Weapon
     
     private void DoUltimateShot(Vector3 pos, Vector3 dir)
     {
-        ShootBullet(pos, dir);
+        Vector3 p = firePoint.position;
+        Vector3 d = firePoint.right;
+
+        // 좌우 반전 대응
+        if (transform.lossyScale.x < 0)
+            d = -d;
+        
+        ShootBullet(p, d);
         ScheduleNextShot();
-        PlayRecoil(dir);
+        PlayRecoil(d);
 
         Debug.Log($"🔥 Ultimate Fired! dmg={ultimateDamage}");
         
