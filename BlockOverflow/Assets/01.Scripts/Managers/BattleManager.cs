@@ -46,6 +46,8 @@ public class BattleManager : SerializedMonoBehaviour
 
     private float gameTime;
     public float GameTime => gameTime;
+    
+    bool gameEnd = false;
 
 
     private void Awake()
@@ -160,6 +162,8 @@ public class BattleManager : SerializedMonoBehaviour
     
     public void OnPlayerDeath(int playerIdx)
     {
+        if (gameEnd) return;
+        gameEnd = true;
         StartCoroutine(StopBattle(playerIdx == 1 ? 2 : 1));
     }
 

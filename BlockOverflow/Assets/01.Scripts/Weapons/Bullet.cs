@@ -75,6 +75,7 @@ public class Bullet : PoolObject {
 
     private void OnTriggerEnter2D(Collider2D other)
     { 
+        if (other.transform.CompareTag("Bullet")) return;
         var damageable = other.GetComponentInParent<IDamageable>();
 
         if (damageable != null)
@@ -100,7 +101,7 @@ public class Bullet : PoolObject {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Bullet") return;
+        if (collision.transform.CompareTag("Bullet")) return;
         if (!isUltimate)
         {
             ContactPoint2D cp = collision.GetContact(0);
