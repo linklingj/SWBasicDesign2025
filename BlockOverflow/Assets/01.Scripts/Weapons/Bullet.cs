@@ -80,9 +80,11 @@ public class Bullet : PoolObject {
 
         if (damageable != null)
         {
-            if ((PlayerHealth)damageable)
+            var playerHealth = damageable as PlayerHealth;
+            if (playerHealth != null)
             {
-                if (other.gameObject.GetComponentInParent<PlayerController>().PlayerIndex == playerIdx);
+                var controller = other.GetComponentInParent<PlayerController>();
+                if (controller != null && controller.PlayerIndex == playerIdx)
                 {
                     return;
                 }
