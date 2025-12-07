@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float airControlMultiplier = 0.8f;
     [SerializeField] private float crouchMoveMultiplier = 0.5f;
     private float totalMoveSpeed;
-    private float totalJumpIncrease;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 15f;
@@ -19,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpBuffer = 0.1f;
     [SerializeField] private float jumpCutMultiplier = 0.5f;
     [SerializeField] public int maxAirJumps = 1;
+    private float totalJumpForce;
+    private int totalAirJumps;
 
     [Header("Ground / Wall Check")]
     [SerializeField] private Transform groundCheck;
@@ -109,7 +110,8 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         
         totalMoveSpeed = moveSpeed;
-        totalJumpIncrease = jumpForce;
+        totalJumpForce = jumpForce;
+        totalAirJumps = maxAirJumps;
 
         StateMachine = new FSM<PlayerController>(this);
 
@@ -165,9 +167,10 @@ public class PlayerController : MonoBehaviour
         specialAbility.Value = false;
     }
 
-    public void SetUpgrades(float speedIncrease, float jumpIncrease) {
+    public void SetUpgrades(float speedIncrease, float jumpIncrease, int airJumpIncrease = 0) {
         totalMoveSpeed = moveSpeed + speedIncrease;
-        totalJumpIncrease = jumpForce + jumpIncrease;
+        totalJumpForce = jumpForce + jumpIncrease;
+        totalAirJumps = maxAirJumps + airJumpIncrease;
     }
 
 
@@ -220,7 +223,7 @@ public class PlayerController : MonoBehaviour
         {
             // 벽에 새로 닿는 순간!
             wasTouchingWall = true;
-            airJumpsAvailable = maxAirJumps; 
+            airJumpsAvailable = totalAirJumps; 
             wallStickLockout = false; 
         }
         else if (!isTouchingWallNow)
@@ -229,7 +232,7 @@ public class PlayerController : MonoBehaviour
         }
         if (!IsTouchingWall(out _) && wasTouchingWall)
         {
-            airJumpsAvailable = maxAirJumps;
+            airJumpsAvailable = totalAirJumps;
         }
         
     }
@@ -363,7 +366,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // ===== JUMP LOGIC =====
-    public void EnterAir() => airJumpsAvailable = maxAirJumps;
+    public void EnterAir() => airJumpsAvailable = totalAirJumps;
 
     // 🔧 코요테 + 버퍼 기반 지상점프
     public bool TryGroundOrBufferedJump()
@@ -401,7 +404,7 @@ public class PlayerController : MonoBehaviour
         jumpStartTime = Time.time;
 
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * totalJumpForce, ForceMode2D.Impulse);
 
         lastJumpPressedTime = -999f;
     }
@@ -444,7 +447,7 @@ public class PlayerController : MonoBehaviour
     public void ApplyMovement()
     {
         float baseSpeed = totalMoveSpeed;
-        float baseJump = totalJumpIncrease;
+        float baseJump = totalJumpForce;
         if (IsCrouching)
             baseSpeed *= crouchMoveMultiplier;
 
@@ -533,7 +536,7 @@ public class PlayerController : MonoBehaviour
         // StartCoroutine(LockHorizontalControl());
 
         // 벽 점프는 항상 "1단 점프" 취급 → 공중 점프 리필
-        airJumpsAvailable = maxAirJumps;
+        airJumpsAvailable = totalAirJumps;
         wallStickLockout = false;
     }
 
