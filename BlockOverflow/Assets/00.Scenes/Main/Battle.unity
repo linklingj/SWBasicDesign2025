@@ -1186,6 +1186,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5316578700034518012, guid: e2ae0bd8ea96f41c9ab878a88d0a803c, type: 3}
   m_PrefabInstance: {fileID: 293076696}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &874581841 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4510225071124597085, guid: 231219eb2d95644f1b04b00e9eb99f24, type: 3}
+  m_PrefabInstance: {fileID: 980781656712729420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &913739155
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,6 +2241,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!212 &1541083561 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2111861646389254363, guid: 6026cdfc73eae435a955db3d58260748, type: 3}
+  m_PrefabInstance: {fileID: 6906502271858203007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1563001938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,22 +2416,27 @@ MonoBehaviour:
   worldUI: {fileID: 1330169865}
   sfxSource: {fileID: 0}
   ultimateSFX: {fileID: 0}
-  entryXOffset: 18
-  entryZOffset: 6
-  entryDuration: 0.55
-  baseHeight: 2.2
-  closeHeight: 1.7
-  closeZOffset: 1.8
-  closeXOffset: 2.2
-  closeUpFOV: 25
-  closeDuration: 0.6
+  backgroundBlur:
+  - {fileID: 874581841}
+  - {fileID: 1780745234}
+  - {fileID: 1541083561}
+  entryXOffset: 1.5
+  entryZOffset: 1.2
+  entryDuration: 0.75
+  baseHeight: 1.2
+  closeHeight: 0
+  closeZOffset: 3.5
+  closeXOffset: 0
+  closeUpFOV: 70
+  closeDuration: 0.5
   tiltX: 10
   tiltY: 25
-  slightShakePower: 0.1
+  slightShakePower: 0.2
   barTop: {fileID: 1639760846}
   barBottom: {fileID: 309554291}
   barAnimTime: 0.35
-  barSize: 160
+  bgColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+  barSize: 180
 --- !u!1001 &1727460289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2570,6 +2585,11 @@ Transform:
   - {fileID: 1448875258}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1780745234 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1612606351564876771, guid: a674eb554cc984bb3a6367ee56c3b602, type: 3}
+  m_PrefabInstance: {fileID: 7343308988035651929}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1802884451
 GameObject:
   m_ObjectHideFlags: 0
