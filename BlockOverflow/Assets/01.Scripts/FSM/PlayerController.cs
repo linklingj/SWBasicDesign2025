@@ -325,7 +325,7 @@ public class PlayerController : MonoBehaviour
         DOVirtual.DelayedCall(1f, () => angryEye.SetActive(true), true);
         
         SetControl(false);
-        
+        AudioPlayer.Instance.Play("UltiScene");
         var other = GameManager.Instance.battleManager.GetOtherPlayer(this);
 
         // 🔥 둘 다 사망 판정 OFF
@@ -519,6 +519,7 @@ public class PlayerController : MonoBehaviour
     public void OnSpecialAbility(bool enabled)
     {
         specialAvailibleEffect.SetActive(enabled);
+        AudioPlayer.Instance.Play("get_Ability");
     }
 
     public void TickWallStick() => wallStickTimer -= Time.deltaTime;

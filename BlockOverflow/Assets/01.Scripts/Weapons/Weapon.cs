@@ -152,7 +152,7 @@ public class Weapon : MonoBehaviour
         float cooldown = 0f;
         if (data != null && data.fireRate > 0f)
         {
-            cooldown = 1f / (data.fireRate + extraFireRate);
+            cooldown = 1f / (data.fireRate * (1+extraFireRate));
         }
 
         nextFireTime = Time.time + cooldown;
