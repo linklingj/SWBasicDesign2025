@@ -506,6 +506,7 @@ public class PlayerController : MonoBehaviour
     public void OnSpecialAbility(bool enabled)
     {
         specialAvailibleEffect.SetActive(enabled);
+        AudioPlayer.Instance.Play("get_Ability");
     }
 
     public void TickWallStick() => wallStickTimer -= Time.deltaTime;
