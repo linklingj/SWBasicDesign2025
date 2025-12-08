@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6dbc77234e8b44a88f056e9ff5b5554, type: 3}
-  m_Name: Ulti_get
+  m_Name: UltiCutscene
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: c009f7f79bc594e5282b4c13ec489fad, type: 3}
-  trimming: {x: 0, y: 1.4106122}
+  clip: {fileID: 8300000, guid: 45f4a772ac77441af847961e958f697d, type: 3}
+  trimming: {x: 0, y: 2.376}
   audioMixerGroup: {fileID: 0}
   volume: 1
   pitch: 1

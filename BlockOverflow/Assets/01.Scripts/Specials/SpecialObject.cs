@@ -56,6 +56,7 @@ public class SpecialObject : MonoBehaviour
     {
         anim.SetTrigger("Death");
         OnDeath?.Invoke(damagingPlayerIdx);
+        AudioPlayer.Instance.Play("get_Ability");
         StartCoroutine(Kill());
     }
 
