@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     public Observable<bool> specialAbility;
     [SerializeField] private GameObject specialAvailibleEffect;
     [SerializeField] private GameObject angryEye;
+    bool ultimateUsed = false;
     
     [Header("Wall Check")]
     [SerializeField] private Transform wallCheckLeftUp;
@@ -115,6 +116,7 @@ public class PlayerController : MonoBehaviour
         totalMoveSpeed = moveSpeed;
         totalJumpForce = jumpForce;
         totalAirJumps = maxAirJumps;
+        ultimateUsed = false;
 
         StateMachine = new FSM<PlayerController>(this);
 
@@ -320,7 +322,8 @@ public class PlayerController : MonoBehaviour
     [Button]
     public void OnUltimate(InputAction.CallbackContext ctx)
     {
-        //if (!ctx.started || !CanControl || !specialAbility.Value) return;
+        if (!ctx.started || !CanControl || !specialAbility.Value || ultimateUsed) return;
+        ultimateUsed = true;
         Debug.Log("ULTIMATE START");
         DOVirtual.DelayedCall(1.2f, () => angryEye.SetActive(true), true);
         
