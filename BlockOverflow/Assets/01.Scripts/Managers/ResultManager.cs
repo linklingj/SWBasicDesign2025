@@ -11,6 +11,8 @@ public class ResultManager : MonoBehaviour {
     [SerializeField] private GameObject boxGroup2;
     [SerializeField] private PlayerController p1;
     [SerializeField] private PlayerController p2;
+    [SerializeField] private PlayerCustomize p1Customize;
+    [SerializeField] private PlayerCustomize p2Customize;
     [SerializeField] private TextUIElement winText;
     [SerializeField] private GameObject winEffect;
     [SerializeField] private CameraController cameraController;
@@ -23,13 +25,23 @@ public class ResultManager : MonoBehaviour {
     private void Awake()
     {
         bg.DOColor(new Color(0.8f,0.8f,0.8f), "_Color", 0f);
-        p1.SetControl(false);
-        p2.SetControl(false);
+        //p1.SetControl(false);
+        //p2.SetControl(false);
+        PlayerData playerData1, playerData2;
+        GameManager.Instance.GetPlayerData(out playerData1, 1);
+        GameManager.Instance.GetPlayerData(out playerData2, 2);
+
+        p1Customize.Init(playerData1.customization);
+        p2Customize.Init(playerData2.customization);
+        p1Customize.SetAll();
+        p2Customize.SetAll();
+        
+        StartCoroutine(ShowResult());
     }
 
     private void Start()
     {
-        StartCoroutine(ShowResult());
+        Debug.Log("Start");
         AudioPlayer.Instance.FadeOutBGM(1);
     }
 
@@ -37,6 +49,7 @@ public class ResultManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(1f);
         int wc1 = 0, wc2 = 0;
+        Debug.Log("count: " + GameManager.Instance.winPlayerIndices.Count);
         foreach (int wp in GameManager.Instance.winPlayerIndices)
         {
             if (wp == 1)
@@ -57,6 +70,7 @@ public class ResultManager : MonoBehaviour {
         }
 
         int finalWinner = GameManager.Instance.GetPreviousWinner();
+        Debug.Log("win: " + finalWinner);
         int finalLoser = finalWinner == 1 ? 2 : 1;
         
         GameObject loserBoxGroup = finalLoser == 1 ? boxGroup1 : boxGroup2;
