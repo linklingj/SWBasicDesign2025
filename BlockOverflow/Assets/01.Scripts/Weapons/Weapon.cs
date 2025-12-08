@@ -278,7 +278,7 @@ public class Weapon : MonoBehaviour
         );
     }
     
-    private void OnDisable()
+    public void OnDisable()
     {
         if (recoilPivot != null)
             DOTween.Kill(recoilPivot);
