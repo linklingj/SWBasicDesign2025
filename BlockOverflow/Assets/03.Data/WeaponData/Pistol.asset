@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   weaponName: Pistol
-  damage: 12
+  damage: 18
   fireRate: 3
-  weaponType: 3
+  weaponType: 1
   shotSound: {fileID: 11400000, guid: 06067bb31be3e402eb0fc96e340edd12, type: 2}
   shotSoundName: Pistol_Sound
   bulletData: {fileID: 11400000, guid: 5178ef3d0f4644be8baad151843c2a58, type: 2}
