@@ -320,7 +320,7 @@ public class PlayerController : MonoBehaviour
     [Button]
     public void OnUltimate(InputAction.CallbackContext ctx)
     {
-        if (!ctx.started || !CanControl || !specialAbility.Value) return;
+        //if (!ctx.started || !CanControl || !specialAbility.Value) return;
         Debug.Log("ULTIMATE START");
         DOVirtual.DelayedCall(1.2f, () => angryEye.SetActive(true), true);
         

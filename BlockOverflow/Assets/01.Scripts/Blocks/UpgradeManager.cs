@@ -23,6 +23,7 @@ public class UpgradeManager : SerializedMonoBehaviour
     [SerializeField] BlocksUI blocksUI;
     [SerializeField] GameObject toNextButton;
     [SerializeField] private Dictionary<MapType, GameObject> bgObjects;
+    [SerializeField] private PlayerCustomize player;
     
     [Header("Sound")]
     [SerializeField] AudioData upgradeBGM;
@@ -70,6 +71,8 @@ public class UpgradeManager : SerializedMonoBehaviour
             owner.loserIndex = GameManager.Instance.GetPreviousLoser();
             GameManager.Instance.GetPlayerData(out owner.playerData, owner.loserIndex);
             owner.inventory.LoadFromPlayerData(owner.playerData, (string id) => owner.presetBlocks[id]);
+            owner.player.Init(owner.playerData.customization);
+            owner.player.SetAll();
             
             owner.blocksUI.SetTitleText(owner.loserIndex);
             owner.blocksUI.SetUpgradeText(owner.inventory.blocks);

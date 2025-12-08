@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEditor.Rendering;
 
 // 블록의 기본 클래스
 // 블록의 최대 크기는 4x4

@@ -157,14 +157,14 @@ public class BlockCreator : SerializedMonoBehaviour {
             Event.current.Use();
         }
 
-        UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? new Color(0.1f, 0.8f, 0.2f) : new Color(0, 0, 0, 0.5f));
+        //UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? new Color(0.1f, 0.8f, 0.2f) : new Color(0, 0, 0, 0.5f));
 
         return value;
     }
     
     public static BlockElement DrawColoredGridEl(Rect rect, BlockElement value)
     {
-        UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? BlockType.BasicStats.ToColor() : new Color(0, 0, 0, 0.5f));
+        //UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? BlockType.BasicStats.ToColor() : new Color(0, 0, 0, 0.5f));
 
         return value;
     }

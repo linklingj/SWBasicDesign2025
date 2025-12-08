@@ -25,7 +25,7 @@ public class Inventory : SerializedMonoBehaviour {
     public void LoadFromPlayerData(PlayerData data, Func<string, Block> blockFactory)
     {
         data.LoadInventory(this, blockFactory);
-        UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+        //UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
     }
 
 
@@ -35,7 +35,7 @@ public class Inventory : SerializedMonoBehaviour {
         blockPlacedGrid = new BlockElement[InventoryHeight, InventoryWidth];
         blocks = new List<Block>();
         //odin inspector 새로고침
-        UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+        //UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
     }
     
     public Vector2 GetInventoryLeftUp()
@@ -147,7 +147,7 @@ public class Inventory : SerializedMonoBehaviour {
 
         block.PlaceBlock(position,GetInventoryLeftUp());
         
-        UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+        //UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
     }
 
     public void Set(Block block, Vector2Int position, int rotationState)

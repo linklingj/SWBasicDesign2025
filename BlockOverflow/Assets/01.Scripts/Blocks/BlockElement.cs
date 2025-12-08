@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
+#if UNITY_EDITOR
 using Sirenix.OdinInspector.Editor;
-using Sirenix.Utilities.Editor;
+#endif
+//using Sirenix.Utilities.Editor;
 
 public class BlockElement : MonoBehaviour {
     private SpriteRenderer sr;
@@ -17,13 +19,15 @@ public class BlockElement : MonoBehaviour {
     }
 }
 
+#if UNITY_EDITOR
 public class BlockElementEditor : OdinEditor
 {
     public override void OnInspectorGUI()
     {
-        SirenixEditorGUI.Title("Block Element", null, TextAlignment.Left, true);
-        SirenixEditorGUI.HorizontalLineSeparator(2);
+        //SirenixEditorGUI.Title("Block Element", null, TextAlignment.Left, true);
+        //SirenixEditorGUI.HorizontalLineSeparator(2);
         base.OnInspectorGUI();
     }
     
 }
+#endif
