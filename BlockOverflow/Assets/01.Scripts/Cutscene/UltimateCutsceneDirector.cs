@@ -68,8 +68,7 @@ public class UltimateCutsceneDirector : MonoBehaviour
         if (camController)
         {
             camController.HideFireTemporary();
-            camController.enabled = false;
-            
+            camController.Pause();
         }
 
 
@@ -170,8 +169,8 @@ public class UltimateCutsceneDirector : MonoBehaviour
 
         if (camController)
         {
-            camController.enabled = true;
             camController.ShowFireTemporary();
+            camController.Resume();
             
         }
 

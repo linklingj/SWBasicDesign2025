@@ -44,12 +44,15 @@ public class CameraController : SerializedMonoBehaviour
     [SerializeField] AudioData startShrinkSound;
     bool played = false;
 
+    // 🔥 추가된 부분
+    private bool IsPaused = false;
+    private bool wasFollowingBeforePause = false;
+    
     private void Awake()
     {
         cam = GetComponentInChildren<Camera>();
         sineTime = 0;
         if (postProcessVolume != null) postProcessVolume.profile.TryGet(out vignette);
-        
         if (screenFireEffect) screenFireEffect.SetActive(false);
     }
 
@@ -59,34 +62,24 @@ public class CameraController : SerializedMonoBehaviour
         UpdateSineMovement();
     }
 
-
-    /// <summary>
-    /// 카메라 줌을 부드럽게 변경하고, cameraRange를 지키며 위치 보정
-    /// </summary>
     [Button]
     public void ZoomTo(Vector3 focusPoint, zoomType zoomType = zoomType.Normal, float zoomDuration = 0.3f, float z = -31.6f)
     {
         if (cam == null) cam = Camera.main;
 
-        // 목표 사이즈로 부드럽게 변경
         if (cam.orthographic)
             cam.DOOrthoSize(zoomSize[zoomType], zoomDuration).SetEase(Ease.InOutQuad);
         else
             cam.DOFieldOfView(zoomSize[zoomType], zoomDuration).SetEase(Ease.InOutQuad);
-        // 카메라 위치 보정
+
         focusPoint.z = z;
         transform.DOMove(ClampCameraPosition(focusPoint), zoomDuration).SetEase(Ease.InOutQuad);
     }
 
-    /// <summary>
-    /// 카메라 위치를 cameraRange 내로 제한
-    /// </summary>
     private Vector3 ClampCameraPosition(Vector3 focusPoint)
     {
-        // clamp 적용
         float clampedX = Mathf.Clamp(focusPoint.x, cameraRangeX.x, cameraRangeX.y);
         float clampedY = Mathf.Clamp(focusPoint.y, cameraRangeY.x, cameraRangeY.y);
-
         return new Vector3(clampedX, clampedY, focusPoint.z);
     }
     
@@ -104,8 +97,11 @@ public class CameraController : SerializedMonoBehaviour
 
     public void MoveCamera()
     {
+        if (IsPaused) return; // 🔥 컷신 중엔 카메라 이동 정지
+
         if (!battleManager || !startPos || !endPos) return;
         if (!battleManager.gameStarted) return;
+
         float moveTime = battleManager.GameTime - moveStartTime;
         if (moveTime <= 0)
         {
@@ -124,22 +120,20 @@ public class CameraController : SerializedMonoBehaviour
         
         transform.position = Vector3.Lerp(startPos.position, endPos.position, t);
 
-        //vignette 효과 업데이트
         float intensity = Mathf.Lerp(0.2f, vignetteMax, t);
 
         if (t > 0.99f) intensity += Mathf.Sin((moveTime - moveDuration) * vignetteBlinkSpeed) * 0.03f;
 
         if (vignette) vignette.intensity.value = Mathf.Clamp01(intensity);
-        
-        
     }
     
     private void UpdateSineMovement()
     {
+        if (IsPaused) return; // 🔥 흔들림도 정지
+
         if (childObj == null) return;
 
         sineTime += Time.deltaTime * sineFrequency;
-
         float offsetY = Mathf.Sin(sineTime) * sineAmplitude;
         Vector3 localPos = childObj.localPosition;
         localPos.y = offsetY;
@@ -148,16 +142,28 @@ public class CameraController : SerializedMonoBehaviour
 
     public void HideFireTemporary()
     {
-        
         if (played) screenFireEffect.SetActive(false);
         Debug.Log("Hide Fire Effect");
-        
     }
 
     public void ShowFireTemporary()
     {
         if (played) screenFireEffect.SetActive(true);
         Debug.Log("show Fire Effect");
-        
+    }
+
+    public void Pause()
+    {
+        wasFollowingBeforePause = !IsPaused;
+        IsPaused = true;
+    }
+
+    public void Resume()
+    {
+        if (!wasFollowingBeforePause)
+        {
+            return;
+        }
+        IsPaused = false;
     }
 }
