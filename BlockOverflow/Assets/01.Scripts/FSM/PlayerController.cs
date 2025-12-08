@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
 
             if (weaponFirePoint != null && normalWeapon != null)
             {
-                ultimateWeapon.Init(normalWeapon.Data, 0); // WeaponData 전달
+                ultimateWeapon.Init(normalWeapon.Data, PlayerIndex); // WeaponData 전달
                 ultimateWeapon.SetFirePoint(weaponFirePoint); // FirePos 등록
             }
             else
@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour
     {
         //if (!ctx.started || !CanControl || !specialAbility.Value) return;
         Debug.Log("ULTIMATE START");
-        DOVirtual.DelayedCall(1f, () => angryEye.SetActive(true), true);
+        DOVirtual.DelayedCall(1.2f, () => angryEye.SetActive(true), true);
         
         SetControl(false);
         AudioPlayer.Instance.Play("UltiScene");
