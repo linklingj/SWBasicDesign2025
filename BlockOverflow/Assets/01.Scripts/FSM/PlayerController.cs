@@ -327,7 +327,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log("ULTIMATE START");
         DOVirtual.DelayedCall(1.2f, () => angryEye.SetActive(true), true);
         
-        SetControl(false);
         AudioPlayer.Instance.Play("UltiScene");
         var other = GameManager.Instance.battleManager.GetOtherPlayer(this);
 
@@ -335,9 +334,8 @@ public class PlayerController : MonoBehaviour
         GetComponent<KillOutsideCamera>().DisableKill();
         other.GetComponent<KillOutsideCamera>().DisableKill();
 
-        // 🔥 둘 다 조작 금지
-        SetControl(false);
-        other.SetControl(false);
+        playerInput.actions.Disable();
+        other.playerInput.actions.Disable();
         
         
         
@@ -350,9 +348,9 @@ public class PlayerController : MonoBehaviour
             () =>
             {
                 ultimateWeapon?.Fire();
-                
-                SetControl(true);
-                other.SetControl(true);
+
+                playerInput.actions.Enable();
+                other.playerInput.actions.Enable();
 
                 GetComponent<KillOutsideCamera>().EnableKill();
                 other.GetComponent<KillOutsideCamera>().EnableKill();
