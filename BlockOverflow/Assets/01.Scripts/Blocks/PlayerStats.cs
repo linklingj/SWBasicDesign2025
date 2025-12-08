@@ -12,4 +12,5 @@ public class PlayerStats {
     public float bulletSizeMultiplier = 1f;
     public float finalRevengeMultiplier = 1;
     public bool reflectOnWalls = false;
+    public int ultDamageIncrease = 0;
 }

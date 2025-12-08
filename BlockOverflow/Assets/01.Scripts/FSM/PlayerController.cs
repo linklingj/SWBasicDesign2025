@@ -167,10 +167,11 @@ public class PlayerController : MonoBehaviour
         specialAbility.Value = false;
     }
 
-    public void SetUpgrades(float speedIncrease, float jumpIncrease, int airJumpIncrease = 0) {
+    public void SetUpgrades(float speedIncrease, float jumpIncrease, int airJumpIncrease = 0, float ultimateDamageIncrease = 0f) {
         totalMoveSpeed = moveSpeed + speedIncrease;
         totalJumpForce = jumpForce + jumpIncrease;
         totalAirJumps = maxAirJumps + airJumpIncrease;
+        if (ultimateWeapon) ultimateWeapon.SetUltDamageAdd(ultimateDamageIncrease);
     }
 
 
