@@ -281,13 +281,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_strip10_7
+      name: angry1
       rect:
         serializedVersion: 2
-        x: 1325
-        y: 0
-        width: 50
-        height: 62
+        x: 1326
+        y: 38
+        width: 35
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -303,13 +303,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_strip10_8
+      name: angry5
       rect:
         serializedVersion: 2
-        x: 1505
-        y: 0
-        width: 50
-        height: 62
+        x: 1495
+        y: 36
+        width: 35
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -346,6 +346,116 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: angry2
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 38
+        width: 35
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34beb8357ce8141c7a40d6ef9d9ee16d
+      internalID: 1697233410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: angry3
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 36
+        width: 35
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd410c7ed4dd7459295510829a7789fa
+      internalID: -1430549801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: angry4
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 36
+        width: 35
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f679f92cbeb794968adc8490a06611be
+      internalID: 1837899658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: angry6
+      rect:
+        serializedVersion: 2
+        x: 1532
+        y: 36
+        width: 35
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31720dd182db34f9e8e44b118c430c03
+      internalID: 537525361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Eyes_0
+      rect:
+        serializedVersion: 2
+        x: 1252
+        y: 36
+        width: 35
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b3bed93ef0f74785b22bd26e7abbb9f
+      internalID: -2024228662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -360,6 +470,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Eyes_0: -2024228662
+      angry1: -7158856262680150179
+      angry2: 1697233410
+      angry3: -1430549801
+      angry4: 1837899658
+      angry5: 5459098313663167886
+      angry6: 537525361
       idle_strip10_0: 1551578244945190711
       idle_strip10_1: 2096632361905306409
       idle_strip10_2: 443243443431087269
@@ -367,8 +484,6 @@ TextureImporter:
       idle_strip10_4: 2143689953279747895
       idle_strip10_5: -8438645286927950940
       idle_strip10_6: 5758923052092236013
-      idle_strip10_7: -7158856262680150179
-      idle_strip10_8: 5459098313663167886
       idle_strip10_9: -1340177909236875128
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

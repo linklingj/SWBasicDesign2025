@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
     [Header("Special Ability")]
     public Observable<bool> specialAbility;
     [SerializeField] private GameObject specialAvailibleEffect;
+    [SerializeField] private GameObject angryEye;
     
     [Header("Wall Check")]
     [SerializeField] private Transform wallCheckLeftUp;
@@ -141,6 +144,7 @@ public class PlayerController : MonoBehaviour
 
         if (ultimateWeapon != null)
         {
+            angryEye.SetActive(false);
             Transform weaponFirePoint = transform.Find("Weapon/FirePos");
             Weapon normalWeapon = GetComponentInChildren<Weapon>(); // ⭐ 현재 무기 가져오기
 
@@ -313,10 +317,12 @@ public class PlayerController : MonoBehaviour
     //         SetControl(true);
     //     });
     // }
+    [Button]
     public void OnUltimate(InputAction.CallbackContext ctx)
     {
-        if (!ctx.started || !CanControl || !specialAbility.Value) return;
+        //if (!ctx.started || !CanControl || !specialAbility.Value) return;
         Debug.Log("ULTIMATE START");
+        DOVirtual.DelayedCall(1f, () => angryEye.SetActive(true), true);
         
         SetControl(false);
         
@@ -329,6 +335,8 @@ public class PlayerController : MonoBehaviour
         // 🔥 둘 다 조작 금지
         SetControl(false);
         other.SetControl(false);
+        
+        
         
         Transform firePos = transform.Find("Weapon/FirePos");
         if (!firePos) firePos = transform;
@@ -345,6 +353,7 @@ public class PlayerController : MonoBehaviour
 
                 GetComponent<KillOutsideCamera>().EnableKill();
                 other.GetComponent<KillOutsideCamera>().EnableKill();
+                angryEye.SetActive(false);
             }
         );
         

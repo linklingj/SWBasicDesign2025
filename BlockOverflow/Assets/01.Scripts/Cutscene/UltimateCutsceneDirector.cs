@@ -9,6 +9,7 @@ public class UltimateCutsceneDirector : MonoBehaviour
     [SerializeField] private GameObject worldUI;
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioClip ultimateSFX;
+    [SerializeField] private SpriteRenderer[] backgroundBlur;
 
     [Header("Entry Move (Diagonal Intro)")]
     [SerializeField] private float entryXOffset = 18f;
@@ -34,6 +35,7 @@ public class UltimateCutsceneDirector : MonoBehaviour
     [SerializeField] private RectTransform barTop;
     [SerializeField] private RectTransform barBottom;
     [SerializeField] private float barAnimTime = 0.35f;
+    [SerializeField] private Color bgColor;
 
     [SerializeField] private float barSize = 160f; // 바 두께
 
@@ -44,11 +46,14 @@ public class UltimateCutsceneDirector : MonoBehaviour
 
     private Transform target;
     private Transform firePoint;
+    private Color originalBGColor;
 
     private const float StageCenterX = 0f; // 🔥 스테이지 중심 기준(스크롤 없음)
 
     public void Play(Transform user, Transform firePos, Action finished)
     {
+        originalBGColor = backgroundBlur[0].color;
+        foreach (var bg in backgroundBlur) bg.color = bgColor;
         target = user;
         firePoint = firePos ? firePos : user;
         onFinished = finished;
@@ -76,7 +81,7 @@ public class UltimateCutsceneDirector : MonoBehaviour
 
         Vector3 focus = firePoint.position;
         Vector3 viewPoint = focus + Vector3.up * 1.45f;
-        float camZ = -17f; 
+        float camZ = -5f; 
 
         // Step0 - Start
         Vector3 startPos = new Vector3(
@@ -125,7 +130,7 @@ public class UltimateCutsceneDirector : MonoBehaviour
         ));
 
         // STEP 3 : Impact Shake
-        seq.Append(cutsceneCamera.transform.DOShakePosition(0.15f, slightShakePower));
+        seq.Append(cutsceneCamera.transform.DOShakePosition(0.15f, slightShakePower, 20));
         seq.AppendCallback(() => Time.timeScale = 0.05f);
         seq.AppendInterval(0.04f);
         seq.AppendCallback(() => Time.timeScale = 0f);
@@ -148,6 +153,7 @@ public class UltimateCutsceneDirector : MonoBehaviour
             onFinished?.Invoke();
             onFinished = null;
         });
+        foreach (var bg in backgroundBlur) bg.color = originalBGColor;
     }
     
     // 🎬 시네마틱 바 애니메이션
