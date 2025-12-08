@@ -117,6 +117,7 @@ public class CameraController : SerializedMonoBehaviour
         {
             AudioPlayer.Instance.Play(startShrinkSound);
             played = true;
+            screenFireEffect.SetActive(true);
         }
         
         float t = Mathf.Clamp01(moveTime / moveDuration);
@@ -130,7 +131,7 @@ public class CameraController : SerializedMonoBehaviour
 
         if (vignette) vignette.intensity.value = Mathf.Clamp01(intensity);
         
-        screenFireEffect.SetActive(true);
+        
     }
     
     private void UpdateSineMovement()
@@ -147,13 +148,16 @@ public class CameraController : SerializedMonoBehaviour
 
     public void HideFireTemporary()
     {
+        
         if (played) screenFireEffect.SetActive(false);
+        Debug.Log("Hide Fire Effect");
         
     }
 
     public void ShowFireTemporary()
     {
         if (played) screenFireEffect.SetActive(true);
+        Debug.Log("show Fire Effect");
         
     }
 }

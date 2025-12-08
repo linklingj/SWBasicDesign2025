@@ -38,6 +38,8 @@ public class UltimateCutsceneDirector : MonoBehaviour
     [SerializeField] private Color bgColor;
 
     [SerializeField] private float barSize = 160f; // 바 두께
+    
+    private CameraController camController;
 
     private Vector3 originalPos;
     private Quaternion originalRot;
@@ -52,6 +54,7 @@ public class UltimateCutsceneDirector : MonoBehaviour
 
     public void Play(Transform user, Transform firePos, Action finished)
     {
+        
         originalBGColor = backgroundBlur[0].color;
         foreach (var bg in backgroundBlur) bg.color = bgColor;
         
@@ -61,7 +64,14 @@ public class UltimateCutsceneDirector : MonoBehaviour
 
         if (!cutsceneCamera) cutsceneCamera = Camera.main;
         cutsceneCamera.depth = 20;
-        cutsceneCamera.GetComponent<CameraController>().HideFireTemporary();
+        camController = cutsceneCamera.GetComponentInParent<CameraController>();
+        if (camController)
+        {
+            camController.HideFireTemporary();
+            camController.enabled = false;
+            
+        }
+
 
         // UI / Freeze
         worldUI?.SetActive(false);
@@ -138,7 +148,6 @@ public class UltimateCutsceneDirector : MonoBehaviour
         seq.AppendCallback(() => Time.timeScale = 0f);
         
         seq.OnComplete(FinishCutscene);
-        cutsceneCamera.GetComponent<CameraController>().ShowFireTemporary();
         
     }
 
@@ -158,6 +167,14 @@ public class UltimateCutsceneDirector : MonoBehaviour
             onFinished = null;
         });
         foreach (var bg in backgroundBlur) bg.color = originalBGColor;
+
+        if (camController)
+        {
+            camController.enabled = true;
+            camController.ShowFireTemporary();
+            
+        }
+
     }
     
     // 🎬 시네마틱 바 애니메이션
