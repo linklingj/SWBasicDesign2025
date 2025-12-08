@@ -32,6 +32,8 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
     
     [SerializeField] private RectTransform CharacterSelectUI;
 
+    [SerializeField] private WeaponInfoUI weaponInfoUI;
+
     [Header("Sound")] 
     [SerializeField] private AudioData selectSound;
     [SerializeField] private AudioData confirmSound;
@@ -257,6 +259,7 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
         playerData.selectedWeaponType = weaponType;
         customization.Init(playerData.customization);
         playerWeapon.SetWeapon(weaponData[weaponType], index);
+        weaponInfoUI.SetWeaponInfo(weaponType);
     }
     
     [Button]
@@ -286,11 +289,13 @@ public class CharacterSelectManager : SerializedMonoBehaviour {
             playerWeapon.enabled = true;
             playerWeapon.SetWeapon(weaponData[WeaponType.Rifle], index);
             AnimateWeapons();
+            weaponInfoUI.ShowWeaponInfo(WeaponType.Rifle);
         }
 
         if (state == 1)
         {
             nextButton.gameObject.SetActive(false);
+            weaponInfoUI.HideWeaponInfo();
             if (otherPlayerSelectManager.state == 2)
             {
                 startButton.SetActive(true);

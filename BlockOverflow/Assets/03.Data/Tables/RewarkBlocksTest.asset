@@ -16,7 +16,7 @@ MonoBehaviour:
   - rarity: 0
     blockList:
     - {fileID: 3141039918943754851, guid: 6f75d6e98ad6d42c6878ad9e863b55b6, type: 3}
-    - {fileID: 8900657176299890677, guid: 9f63fdba815ca4c9dac60cbf9f945cd4, type: 3}
+    - {fileID: 2249508787519651058, guid: 40626c76db4144683a9c2b0fcf316f62, type: 3}
     - {fileID: 2033604058132366295, guid: ed217f499590940cc9b9b356f095ac88, type: 3}
   - rarity: 1
     blockList:

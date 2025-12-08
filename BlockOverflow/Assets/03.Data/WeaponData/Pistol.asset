@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   weaponName: Pistol
-  damage: 18
+  damage: 16
   fireRate: 3
   weaponType: 1
   shotSound: {fileID: 11400000, guid: 06067bb31be3e402eb0fc96e340edd12, type: 2}
