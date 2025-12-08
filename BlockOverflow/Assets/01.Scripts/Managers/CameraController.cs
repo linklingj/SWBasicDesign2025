@@ -42,7 +42,7 @@ public class CameraController : SerializedMonoBehaviour
     
     [Header("Sound")]
     [SerializeField] AudioData startShrinkSound;
-    bool soundPlayed = false;
+    bool played = false;
 
     private void Awake()
     {
@@ -113,10 +113,10 @@ public class CameraController : SerializedMonoBehaviour
             return;
         }
         
-        if (!soundPlayed)
+        if (!played)
         {
             AudioPlayer.Instance.Play(startShrinkSound);
-            soundPlayed = true;
+            played = true;
         }
         
         float t = Mathf.Clamp01(moveTime / moveDuration);
@@ -143,5 +143,17 @@ public class CameraController : SerializedMonoBehaviour
         Vector3 localPos = childObj.localPosition;
         localPos.y = offsetY;
         childObj.localPosition = localPos;
+    }
+
+    public void HideFireTemporary()
+    {
+        if (played) screenFireEffect.SetActive(false);
+        
+    }
+
+    public void ShowFireTemporary()
+    {
+        if (played) screenFireEffect.SetActive(true);
+        
     }
 }

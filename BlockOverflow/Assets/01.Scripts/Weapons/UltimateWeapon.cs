@@ -21,7 +21,7 @@ public class UltimateWeapon : Weapon
 
     public void SetFirePoint(Transform fp) => firePoint = fp;
     private bool isAnimating = false;
-    private Vector3 chargepos = new Vector3(-3, 0, 0);
+    private Vector3 chargepos = new Vector3(-4f, 0, 0);
     
     private void Awake()
     {

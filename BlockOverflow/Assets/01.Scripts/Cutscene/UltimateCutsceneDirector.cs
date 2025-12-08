@@ -54,12 +54,14 @@ public class UltimateCutsceneDirector : MonoBehaviour
     {
         originalBGColor = backgroundBlur[0].color;
         foreach (var bg in backgroundBlur) bg.color = bgColor;
+        
         target = user;
         firePoint = firePos ? firePos : user;
         onFinished = finished;
 
         if (!cutsceneCamera) cutsceneCamera = Camera.main;
         cutsceneCamera.depth = 20;
+        cutsceneCamera.GetComponent<CameraController>().HideFireTemporary();
 
         // UI / Freeze
         worldUI?.SetActive(false);
@@ -136,6 +138,8 @@ public class UltimateCutsceneDirector : MonoBehaviour
         seq.AppendCallback(() => Time.timeScale = 0f);
         
         seq.OnComplete(FinishCutscene);
+        cutsceneCamera.GetComponent<CameraController>().ShowFireTemporary();
+        
     }
 
     private void FinishCutscene()
