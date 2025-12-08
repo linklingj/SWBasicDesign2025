@@ -1460,6 +1460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 7344980455148113763}
+  eye: {fileID: 781314791342059548}
   hat: {fileID: 3970740978709699173}
 --- !u!212 &1048356768493872553
 SpriteRenderer:
