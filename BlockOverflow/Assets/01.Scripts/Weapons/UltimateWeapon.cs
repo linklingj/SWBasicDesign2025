@@ -7,6 +7,7 @@ public class UltimateWeapon : Weapon
     [SerializeField] private float ultimateSpeed = 25f;
     [SerializeField] private float ultimateRange = 60f;
     [SerializeField] private float ultimateDamage = 60f;
+    private float totalUltimateDamage;
     
     
     [Header("Ultimate Visual")]
@@ -28,6 +29,12 @@ public class UltimateWeapon : Weapon
         if (ultiWeaponVisual != null)
             ultiWeaponVisual.SetActive(false);
         chargeFx.transform.position = firePoint.position + chargepos;
+        totalUltimateDamage = ultimateDamage;
+    }
+    
+    public void SetUltDamageAdd(float add)
+    {
+        totalUltimateDamage = ultimateDamage + add;
     }
     
     public override bool Fire(float damageMultiplier = 1f)
@@ -131,7 +138,7 @@ public class UltimateWeapon : Weapon
         if (!b) return;
 
         b.SetUltimate(true);
-        b.SetDamage(ultimateDamage);
+        b.SetDamage(totalUltimateDamage);
 
         // 🔥 BulletData 새로 만들어 적용
         BulletData data = new BulletData();
@@ -154,7 +161,7 @@ public class UltimateWeapon : Weapon
         ScheduleNextShot();
         PlayRecoil(d);
 
-        Debug.Log($"🔥 Ultimate Fired! dmg={ultimateDamage}");
+        Debug.Log($"🔥 Ultimate Fired! dmg={totalUltimateDamage}");
         
         AudioPlayer.Instance.Play("Ulti_Sound");
     }

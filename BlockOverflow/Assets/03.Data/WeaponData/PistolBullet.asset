@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PistolBullet
   m_EditorClassIdentifier: 
   name: PistolBullet
-  range: 9
+  range: 12
   bulletSpeed: 20

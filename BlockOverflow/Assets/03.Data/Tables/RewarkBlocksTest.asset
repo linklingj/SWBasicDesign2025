@@ -15,16 +15,15 @@ MonoBehaviour:
   DiceByRarity:
   - rarity: 0
     blockList:
-    - {fileID: 2959407818568011593, guid: 422e7f8e2f6fb44289618fbccffaea5f, type: 3}
+    - {fileID: 3141039918943754851, guid: 6f75d6e98ad6d42c6878ad9e863b55b6, type: 3}
     - {fileID: 2249508787519651058, guid: 40626c76db4144683a9c2b0fcf316f62, type: 3}
     - {fileID: 2033604058132366295, guid: ed217f499590940cc9b9b356f095ac88, type: 3}
   - rarity: 1
     blockList:
     - {fileID: 2959407818568011593, guid: 422e7f8e2f6fb44289618fbccffaea5f, type: 3}
-    - {fileID: 2033604058132366295, guid: ed217f499590940cc9b9b356f095ac88, type: 3}
-    - {fileID: 4931877991277341688, guid: f1c4fe95ace744589bd09431c6602bce, type: 3}
+    - {fileID: 3141039918943754851, guid: 6f75d6e98ad6d42c6878ad9e863b55b6, type: 3}
+    - {fileID: 2249508787519651058, guid: 40626c76db4144683a9c2b0fcf316f62, type: 3}
   - rarity: 2
     blockList:
-    - {fileID: 4931877991277341688, guid: f1c4fe95ace744589bd09431c6602bce, type: 3}
-    - {fileID: 2033604058132366295, guid: ed217f499590940cc9b9b356f095ac88, type: 3}
+    - {fileID: 2249508787519651058, guid: 40626c76db4144683a9c2b0fcf316f62, type: 3}
     - {fileID: 2249508787519651058, guid: 40626c76db4144683a9c2b0fcf316f62, type: 3}
