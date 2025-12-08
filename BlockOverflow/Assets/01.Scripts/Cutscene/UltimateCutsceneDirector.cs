@@ -41,11 +41,10 @@ public class UltimateCutsceneDirector : MonoBehaviour
     private Quaternion originalRot;
     private float originalFOV;
     private Action onFinished;
-    private CameraController camCtrl;
 
     private Transform target;
     private Transform firePoint;
-    
+
     private const float StageCenterX = 0f; // 🔥 스테이지 중심 기준(스크롤 없음)
 
     public void Play(Transform user, Transform firePos, Action finished)
@@ -53,21 +52,17 @@ public class UltimateCutsceneDirector : MonoBehaviour
         target = user;
         firePoint = firePos ? firePos : user;
         onFinished = finished;
-        
+
         if (!cutsceneCamera) cutsceneCamera = Camera.main;
         cutsceneCamera.depth = 20;
-        camCtrl = cutsceneCamera.GetComponentInParent<CameraController>();
-        if (camCtrl)
-            camCtrl.enabled = false;
-
 
         // UI / Freeze
         worldUI?.SetActive(false);
         Time.timeScale = 0f;
 
-        
-        AudioPlayer.Instance.Play("UltiCutscene");
-        
+        // 사운드
+        if (ultimateSFX && sfxSource)
+            sfxSource.PlayOneShot(ultimateSFX);
 
         // Restore data
         originalPos = cutsceneCamera.transform.position;
@@ -153,9 +148,6 @@ public class UltimateCutsceneDirector : MonoBehaviour
             onFinished?.Invoke();
             onFinished = null;
         });
-        if (camCtrl)
-            camCtrl.enabled = true;
-
     }
     
     // 🎬 시네마틱 바 애니메이션
