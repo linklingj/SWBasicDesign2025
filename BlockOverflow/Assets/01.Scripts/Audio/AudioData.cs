@@ -15,7 +15,7 @@ public class AudioData : ScriptableObject {
     [Title("Playback Settings")]
     public AudioMixerGroup audioMixerGroup;
 
-    [Range(0f, 1f)]
+    [Range(0f, 2f)]
     public float volume = 1.0f;
 
     [Range(0.5f, 2f)]
