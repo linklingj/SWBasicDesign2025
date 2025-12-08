@@ -319,7 +319,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("ULTIMATE START");
         
         SetControl(false);
-        
+        AudioPlayer.Instance.Play("UltiScene");
         var other = GameManager.Instance.battleManager.GetOtherPlayer(this);
 
         // 🔥 둘 다 사망 판정 OFF
